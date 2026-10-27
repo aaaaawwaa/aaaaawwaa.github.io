@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>方波傅里叶级数实验 · LumenTrace</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f8faf9;--panel:#fff;--ink:#203b35;--muted:#587169;--accent:#287969;--line:#dfe9e4;--ideal:#ad7845}
+    @media(prefers-color-scheme:dark){:root{--bg:#151d1f;--panel:#1b2325;--ink:#dfebe5;--muted:#a6b9af;--accent:#8cd3bc;--line:#344543;--ideal:#d5ae7b}}
+    *{box-sizing:border-box}body{margin:0;padding:clamp(16px,3vw,30px);background:var(--bg);color:var(--ink);font:15px/1.75 'Microsoft YaHei',sans-serif}
+    main{max-width:900px;margin:auto}.eyebrow{font:600 11px monospace;letter-spacing:.16em;color:var(--accent)}h1{font-size:clamp(23px,4vw,31px);line-height:1.3;margin:10px 0}p{color:var(--muted);margin:.7rem 0}.panel{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:clamp(14px,3vw,24px)}
+    .controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.controls label{font-weight:600}.controls output{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}.controls input{flex:1;min-width:150px;accent-color:var(--accent)}button{background:transparent;border:1px solid var(--line);border-radius:6px;padding:6px 12px;color:var(--ink);font:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .legend{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:14px 0 4px}.legend i{display:inline-block;width:20px;border-top:3px solid var(--accent);vertical-align:middle;margin-right:6px}.legend i.target{border-color:var(--ideal);border-top-style:dashed}canvas{display:block;width:100%;height:260px;touch-action:pan-y}.formula{font-family:Georgia,serif;font-size:16px;color:var(--ink)}.note{font-size:13px;max-width:75ch}@media(max-width:480px){canvas{height:220px}.controls{gap:10px}.controls input{flex-basis:100%;order:3}}
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">INTERACTIVE LAB / SIGNAL PROCESSING</div>
+  <h1>方波的傅里叶级数</h1>
+  <p>改变奇次谐波项数，观察部分和如何逼近理想方波。</p>
+  <section class="panel" aria-label="方波傅里叶级数实验">
+    <div class="controls"><label for="terms">谐波项数 <output id="count" for="terms" aria-live="polite">5</output></label><input id="terms" type="range" min="1" max="40" step="1" value="5"><button id="reset" type="button">重置</button></div>
+    <div class="legend"><span><i></i>傅里叶部分和</span><span><i class="target"></i>理想方波</span></div>
+    <canvas id="plot" aria-label="方波傅里叶级数波形图">浏览器不支持 Canvas，请使用现代浏览器。</canvas>
+    <p class="formula">f<sub>N</sub>(x) = 4/π · Σ sin((2k−1)x)/(2k−1)，k = 1 … N</p>
+    <p class="note">跳变点附近会出现吉布斯现象：增加项数会缩窄过冲区域，但峰值过冲不会随项数增加而消失。图中的理想方波幅度为 ±1；跳变点取左右极限的平均值 0。</p>
+  </section>
+</main><script type="module" src="./fourier-lab.mjs"></script></body></html>

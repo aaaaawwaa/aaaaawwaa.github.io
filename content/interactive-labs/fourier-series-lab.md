@@ -11,6 +11,15 @@ tags:
 
 周期信号可以分解为不同频率正弦波的叠加。本实验用有限项正弦和去逼近一个 50% 占空比的方波，观察三件事：项数增加时误差如何变化、跳变处的过冲是否消失、以及高次谐波带来的波形细节。
 
+## 在线交互实验
+
+调整下方滑杆，观察前 $N$ 个奇次谐波的部分和如何逼近理想方波，以及跳变处的过冲。
+滑杆中的 $N$ 是**奇次谐波项数**，最高谐波为 $2N-1$；下面的 Python 代码中 $K$ 表示最高奇次谐波，两者含义不同。
+
+<iframe src="/static/lab/fourier/" title="方波傅里叶级数交互实验" sandbox="allow-scripts allow-same-origin" loading="lazy" style="width:100%;height:590px;border:1px solid var(--lightgray);border-radius:12px"></iframe>
+
+<a href="/static/lab/fourier/" target="_blank" rel="noopener">在新页面打开完整实验</a>
+
 ## 方波的傅里叶级数
 
 幅度为 $A$、周期为 $T$ 的奇对称方波，其傅里叶级数为
@@ -51,7 +60,7 @@ plt.show()
 
 ## 观察什么
 
-| 项数 K | 现象 |
+| 最高奇次谐波 K | 现象 |
 | --- | --- |
 | 1 | 只有基波，波形是纯正弦 |
 | 3 | 开始出现平顶与陡边 |
