@@ -1,0 +1,141 @@
+# TEST-REPORT.md · 测试报告与后续计划
+
+> 测试时间：2026-10-27（Asia/Shanghai）
+> 测试对象：LumenTrace Wiki（Quartz v5.0.0）
+> 结论：**Phase 1 最小可运行站点已在本机跑通**；Phase 2–5 待实施（远程部署尚未执行，未做任何对外发布）。
+
+---
+
+## 1. 测试环境
+
+| 项目 | 实测值 |
+| --- | --- |
+| 操作系统 | Windows 11 家庭版 中文版（10.0.26200） |
+| PowerShell | 7.5.5 |
+| Node.js | v24.14.1（Quartz 要求 ≥ 22） |
+| npm | 11.16.0（要求 ≥ 10.9.2） |
+| Git | 2.54.0.windows.1 |
+| 浏览器（自动化验证） | Google Chrome headless（CDP 驱动） |
+| 项目路径 | `C:\Users\张书清\Desktop\Document_repository\embedded_development_learning\LumenTrace-Wiki` |
+| 磁盘剩余 | ≈ 33 GB |
+
+---
+
+## 2. Phase 0 环境调查结论
+
+| 检查项 | 结果 |
+| --- | --- |
+| Node / npm / Git | 均满足 Quartz 5 要求 ✅ |
+| npm registry | 已配置 `registry.npmmirror.com`，可用 ✅ |
+| GitHub 直连 | `git ls-remote` 可用，但 **`git clone` 间歇性 TLS 中断**（`unexpected eof while reading`）⚠️ |
+| 端口 8080 / 3001 | 空闲 ✅ |
+| 已有项目 | 目标目录原本不存在，未覆盖任何现有工程 ✅ |
+| Obsidian Vault | 与站点仓库**分离**（Vault 自身是独立 git 仓库，站点不写入 Vault）✅ |
+
+---
+
+## 3. Phase 1 验收项与结果
+
+| # | 验收项 | 结果 | 证据 |
+| --- | --- | --- | --- |
+| 1 | 本地启动成功、页面可浏览 | ✅ | `npx quartz build --serve` 输出 `Started a Quartz server listening at http://localhost:8080`；HTTP GET `/` 返回 200 |
+| 2 | ≥ 5 篇示例文章可通过导航与知识链接访问 | ✅ | 25 个 Markdown 文件（1 首页 + 8 分类索引 + 13 篇文章 + 3 张 Maps），构建出 **66 个 HTML 页面**（含 tag 页、文件夹页） |
+| 3 | 搜索正常工作 | ✅ | CDP 实测：查询「傅里叶」返回结果卡片，命中「傅里叶级数实验」且标题高亮；「DFT」「状态机」「误码率」均可命中 |
+| 4 | 数学公式正常 | ✅ | 构建产物含 **151 处 KaTeX 标记**（构建期 SSR，无前端渲染依赖） |
+| 5 | 代码块正常 | ✅ | **15 个** `data-rehype-pretty-code-figure` 代码块，python / matlab / verilog / c 四种语言高亮 |
+| 6 | 知识图谱正常 | ✅ | `static/contentIndex.json`（65 条）生成；Graph 组件在桌面/移动视图均渲染出节点图 |
+| 7 | 中文显示正常 | ✅ | 66/66 页面含中文；桌面 1440px 与移动 390px 截图人工检查无乱码、无横向滚动 |
+| 8 | 内部链接与静态资源无失效 | ✅ | 自检脚本扫描 `public/` 全部 HTML：**站内链接 1827 个，断链 0** |
+| 9 | 公开构建内容无私人笔记/密钥 | ⚠️ 部分 | 当前 `content/` 全部为新建示例文章，无敏感内容；**自动化敏感信息扫描脚本尚未实现**（Phase 3 交付） |
+| 10 | 生产构建成功 | ✅ | `Emitted 142 files to public in 10s`；`npm run audit` 全部 PASS |
+| 11 | 明暗主题切换 | ✅ | 头部主题按钮存在并可切换（`darkmode` 插件），亮/暗截图均正常 |
+| 12 | 响应式（电脑/平板/移动） | ✅ | 1440px / 390px 截图验证，无横向溢出 |
+| 13 | Mermaid 渲染 | ✅ | 14 处 mermaid 容器；实测知识网络图渲染成功（依赖 cdnjs 运行时） |
+| 14 | 反向链接 / 目录 | ✅ | 文章页右侧展示「反向链接」「目录」，数据来自内容索引 |
+| 15 | 远程部署与 HTTPS | ❌ 未执行 | 按约定需先获得授权；详见 DEPLOYMENT.md |
+
+### 3.1 `npm run audit` 实际输出（节选）
+
+```text
+[PASS] 页面数量 > 0 — 66 个 HTML 页面
+[PASS] 站内断链为 0 — 0 个断链
+[PASS] 内容索引存在（搜索 + 图谱） — static/contentIndex.json
+[PASS] 内容索引包含中文 — 索引条目 65 条
+[PASS] Mermaid 图已渲染 — 14 处 mermaid 容器
+[PASS] LaTeX 公式已渲染 — 151 处 katex 标记
+[PASS] 代码块已高亮 — 15 个代码块
+[PASS] 中文页面正常 — 66/66 个页面含中文
+[PASS] RSS 已生成 — index.xml
+[PASS] sitemap 已生成 — sitemap.xml
+
+页面: 66 | 文件: 142 | 站内链接: 1827 | 外链: 726 | 锚点: 324
+Mermaid: 14 | KaTeX: 151 | 代码块: 15 | 表格: 30 | Callout: 31
+```
+
+### 3.2 构建性能实测
+
+| 指标 | 实测值 |
+| --- | --- |
+| 解析 25 个 Markdown | 1–2 s |
+| 输出 142 个文件（含 66 页 OG 社交卡片） | 10–16 s |
+| 产物总大小 | 3.4 MB |
+| 构建并发 | 25 篇时有效并发为 1（Quartz 5 默认 `clamp(文件数/128, 1, 4)`） |
+
+---
+
+## 4. 实施过程中遇到的关键问题与解决
+
+| # | 问题 | 根因（已定位到源码） | 解决 |
+| --- | --- | --- | --- |
+| 1 | `npx quartz plugin install` 长时间卡住，只装到 26/42 | 安装器逐个 `git clone` GitHub 插件仓库；本机直连 GitHub 出现 TLS 中断 | 提供离线方案 `scripts/provision-plugins.ts`：从 npm 获取同源 `@quartz-community/*` 预构建包解包 + 本地 git 初始化 + 调官方 `regeneratePluginIndex()`，44/44 成功 |
+| 2 | 首次构建报 `Could not resolve "../../.quartz/plugins"` | 安装中断导致未生成 `.quartz/plugins/index.ts` | 同上，索引由官方函数重新生成 |
+| 3 | 链接全部为小写、输出文件名保留大小写 → 线上会 404 | `crawl-links@1.0.0` 内置的新版 utils 会把 slug 转小写，而 Quartz 5.0.0 core 按原始大小写输出文件；**Windows 本地不区分大小写，问题被掩盖** | 把 `content/` 的目录与文件名统一改为小写 kebab-case；改后断链 0 |
+| 4 | 首次构建出现 `CNAME` 文件，内容为 `lumentrace-wiki.pages.dev` | `cname` 插件按 `baseUrl` 生成 CNAME，而 Pages 项目站不需要该文件 | 关闭 `cname` 插件（绑定自定义域名时再按需开启） |
+| 5 | 首页与文章页 Properties 面板与下方 tag 药丸重复展示 tags | `note-properties` 的 `includedProperties` 含 `tags` | 改为只展示 `description` / `aliases` |
+| 6 | 移动端站点标题换行、属性表可能横向溢出 | 上游样式未针对中文长标题优化 | `custom.scss` 增加 `@media (max-width: 800px)` 规则 |
+
+---
+
+## 5. 已知问题与限制
+
+### 5.1 技术限制（Quartz 5.0.0 上游行为）
+
+1. **WaveDrom 无原生渲染**：42 个官方插件中没有 WaveDrom。方案：预渲染 SVG 后当图片插入（与 Obsidian Vault 现有约定一致），或做独立交互页。
+2. **搜索的根路径依赖**：search 插件把索引地址与结果链接写成根绝对路径，**子路径部署（GitHub Pages 项目站）搜索会失效**。→ 部署到 Cloudflare Pages 根路径，或绑定自定义域名。
+3. **中文搜索是单字索引**（unigram）而非分词：召回率高、精度一般，多字查询为 AND 交集语义；无拼音、无繁简互转。当前 25 篇规模可接受。
+4. **附件不受 ignorePatterns 保护**：过滤器只处理 Markdown；`content/` 下的图片/PDF 会无条件发布。→ 靠白名单目录 + 人工检查（Phase 3 补自动化扫描）。
+5. **外部 CDN 依赖**：Mermaid 运行时来自 cdnjs、KaTeX 样式来自 jsdelivr、字体来自 Google Fonts。任一不可达时**页面不报错但功能降级**（图空白/公式样式错乱/字体回退）。
+6. **部分 UI 文案仍为英文**：属性面板 Properties、面包屑根节点 Home、OG 卡片里的 "3 min read"。属上游文案，未做二次翻译。
+7. **首页 OG 卡片标题重复**：`pageTitle` + `pageTitleSuffix` 渲染为 "LumenTrace Wiki · LumenTrace"，仅首页如此，属观感问题。
+8. **headless Chrome 截图偶发滚动偏移**：legacy `--screenshot` 模式受布局时序影响；已改用 CDP 截图（先 `window.scrollTo(0,0)`）作为准。
+
+### 5.2 尚未实施（按计划后续阶段）
+
+- Obsidian → Wiki 的白名单同步脚本与附件映射（Phase 3）
+- 敏感内容自动扫描（密钥正则、白名单比对）（Phase 3）
+- 交互式 HTML 实验页（Phase 4）
+- 远程仓库创建 / Cloudflare 授权 / 域名解析（Phase 5，需授权）
+- `quartz/static/lab/` 与笔记间的 iframe 嵌入验证
+
+---
+
+## 6. 后续实施计划
+
+| 阶段 | 内容 | 验收 |
+| --- | --- | --- |
+| **Phase 2** | 视觉与功能打磨：移动端细节、暗色模式对比度、首页信息密度、可选自托管 mermaid / KaTeX 以摆脱 CDN、评估 WaveDrom 预渲染流程 | 亮/暗 × 桌面/平板/移动 六套截图与自检全绿 |
+| **Phase 3** | `scripts/sync-public.mjs`：按白名单目录从 Vault 复制 Markdown 与引用附件到 `content/`，保留路径映射；生成同步清单；`scripts/check-secrets.mjs` 扫描密钥与私有标记 | 同步 10+ 篇真实笔记后 `npm run verify` 通过；敏感样本被拦截 |
+| **Phase 4** | 交互实验：方波傅里叶级数合成器（Canvas + 谐波数滑杆 + 吉布斯现象观察），放 `quartz/static/lab/fourier/`，在 `interactive-labs/fourier-series-lab.md` 内 iframe 嵌入 | 本地 + 预览环境实测可交互、移动端可用 |
+| **Phase 5** | Cloudflare Pages 部署、GitHub Actions 备份方案、域名与 HTTPS、链接与公开内容复检 | 线上 HTTPS 可访问、搜索/图谱/公式/代码均正常 |
+
+---
+
+## 7. 复现测试的命令
+
+```bash
+cd "C:\Users\张书清\Desktop\Document_repository\embedded_development_learning\LumenTrace-Wiki"
+npm install
+npm run plugins:offline     # 或 npm run plugins:install（GitHub 可用时）
+npm run verify              # 构建 + 自检
+npm run dev                 # http://localhost:8080
+```
