@@ -11,7 +11,9 @@ tags:
 
 任何带通信号都可以用两个正交载波写成
 
-$$ s(t)=I(t)\cos(2\pi f_c t)-Q(t)\sin(2\pi f_c t) $$
+$$
+s(t)=I(t)\cos(2\pi f_c t)-Q(t)\sin(2\pi f_c t)
+$$
 
 $I(t)$ 称为同相分量（in-phase），$Q(t)$ 称为正交分量（quadrature）。因为 $\cos$ 与 $\sin$ 在同一周期内正交，两路信号可以独立处理、叠加传输而不互相干扰，这就是正交调制能倍增频谱效率的根本原因。
 
@@ -19,17 +21,23 @@ $I(t)$ 称为同相分量（in-phase），$Q(t)$ 称为正交分量（quadrature
 
 QPSK 把两个比特映射为一个符号，符号相位取四个值：
 
-$$ s_i(t)=\sqrt{\frac{2E_s}{T_s}}\cos\left(2\pi f_c t-(2i-1)\frac{\pi}{4}\right),\quad i=1,2,3,4 $$
+$$
+s_i(t)=\sqrt{\frac{2E_s}{T_s}}\cos\left(2\pi f_c t-(2i-1)\frac{\pi}{4}\right),\quad i=1,2,3,4
+$$
 
 在 $I$-$Q$ 平面上，四个星座点位于 $(\pm1,\pm1)/\sqrt{2}$ 方向，幅度相同、相位相隔 $90^\circ$。为降低误码率，采用格雷映射（Gray mapping）：相邻星座点只相差 1 个比特，使一个符号错误平均只造成一个比特错误，于是
 
-$$ P_b\approx\frac{1}{\log_2 M}P_s $$
+$$
+P_b\approx\frac{1}{\log_2 M}P_s
+$$
 
 ## 带宽效率
 
 QPSK 每符号承载 2 个比特，因此符号速率与比特速率的关系为
 
-$$ R_s=\frac{R_b}{2} $$
+$$
+R_s=\frac{R_b}{2}
+$$
 
 在相同的符号速率下，QPSK 的比特率是 BPSK 的两倍；反过来说，在相同比特率下 QPSK 只需要一半带宽，这是它被广泛使用的主要理由。
 
@@ -37,7 +45,9 @@ $$ R_s=\frac{R_b}{2} $$
 
 AWGN 信道下，采用格雷映射的 QPSK 误比特率为
 
-$$ P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right) $$
+$$
+P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)
+$$
 
 与 BPSK 形式相同：因为 QPSK 可看作两路正交的 BPSK，两路互不干扰，误码性能不变而带宽减半，这是 QPSK 的经典结论。
 

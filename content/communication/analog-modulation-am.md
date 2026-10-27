@@ -15,13 +15,17 @@ tags:
 
 标准调幅（DSB-LC，带载波的幅度调制）可写为
 
-$$ s(t)=\left[A_c+m(t)\right]\cos(2\pi f_c t) $$
+$$
+s(t)=\left[A_c+m(t)\right]\cos(2\pi f_c t)
+$$
 
 其中 $A_c$ 是载波幅度，$m(t)$ 是基带消息信号（零均值），$f_c$ 是载波频率。为避免过调制，必须满足 $\left|m(t)\right|\le A_c$。
 
 对单音调制 $m(t)=A_m\cos(2\pi f_m t)$，定义调制度
 
-$$ \mu=\frac{A_m}{A_c} $$
+$$
+\mu=\frac{A_m}{A_c}
+$$
 
 $\mu<1$ 为欠调制，$\mu=1$ 为 100% 调制，$\mu>1$ 为过调制。
 
@@ -32,11 +36,15 @@ $\mu<1$ 为欠调制，$\mu=1$ 为 100% 调制，$\mu>1$ 为过调制。
 
 对 $s(t)$ 取傅里叶变换，利用频移性质得到
 
-$$ S(f)=\frac{A_c}{2}\left[\delta(f-f_c)+\delta(f+f_c)\right]+\frac{1}{2}\left[M(f-f_c)+M(f+f_c)\right] $$
+$$
+S(f)=\frac{A_c}{2}\left[\delta(f-f_c)+\delta(f+f_c)\right]+\frac{1}{2}\left[M(f-f_c)+M(f+f_c)\right]
+$$
 
 即载波分量加上对称分布的上、下边带。若基带信号带宽为 $W$，则 AM 信号的带宽为
 
-$$ B=2W $$
+$$
+B=2W
+$$
 
 这是 AM 频谱效率不高的直接原因：一半带宽用来传冗余的共轭边带。
 
@@ -44,7 +52,9 @@ $$ B=2W $$
 
 对单音调制，边带功率与总功率之比为
 
-$$ \eta=\frac{P_{side}}{P_{total}}=\frac{\mu^2}{2+\mu^2}\times 100\% $$
+$$
+\eta=\frac{P_{side}}{P_{total}}=\frac{\mu^2}{2+\mu^2}\times 100\%
+$$
 
 $\mu=1$ 时 $\eta\approx 33.3\%$。也就是说即使 100% 调制，仍有三分之二的发射功率消耗在不携带信息的载波上。
 
@@ -52,7 +62,9 @@ $\mu=1$ 时 $\eta\approx 33.3\%$。也就是说即使 100% 调制，仍有三分
 
 二极管加 RC 低通是最简单的解调方式，条件是要同时满足：
 
-$$ \frac{1}{2\pi f_c}\ll RC\ll\frac{1}{2\pi W} $$
+$$
+\frac{1}{2\pi f_c}\ll RC\ll\frac{1}{2\pi W}
+$$
 
 左边保证 RC 能跟随载波变化、滤掉载波本身；右边保证能跟得上包络的变化而不产生对角切割失真（diagonal clipping）。
 

@@ -21,7 +21,9 @@ tags:
 
 RAG 的核心是相似度检索。把每段文本编码为向量后，用余弦相似度排序：
 
-$$ \cos(\mathbf{a},\mathbf{b})=\frac{\mathbf{a}\cdot\mathbf{b}}{\lVert\mathbf{a}\rVert\,\lVert\mathbf{b}\rVert} $$
+$$
+\cos(\mathbf{a},\mathbf{b})=\frac{\mathbf{a}\cdot\mathbf{b}}{\lVert\mathbf{a}\rVert\,\lVert\mathbf{b}\rVert}
+$$
 
 检索到最相关的若干片段后，把它们拼进提示词再让模型回答。工程要点有三个：切块大小（太碎丢上下文，太大稀释关键信息）、是否需要重排序（rerank）、以及回答中必须给出原文出处。
 

@@ -15,11 +15,15 @@ tags:
 
 LTI 系统的输出等于输入与冲激响应的卷积：
 
-$$ y(t)=x(t)*h(t)=\int_{-\infty}^{\infty}x(\tau)\,h(t-\tau)\,d\tau $$
+$$
+y(t)=x(t)*h(t)=\int_{-\infty}^{\infty}x(\tau)\,h(t-\tau)\,d\tau
+$$
 
 离散形式是加权求和：
 
-$$ y[n]=x[n]*h[n]=\sum_{k=-\infty}^{\infty}x[k]\,h[n-k] $$
+$$
+y[n]=x[n]*h[n]=\sum_{k=-\infty}^{\infty}x[k]\,h[n-k]
+$$
 
 卷积的直观理解是「翻转、平移、相乘、求和」：每一个输入样本都对输出产生一个移位并缩放后的冲激响应副本，输出是所有副本的叠加。FIR 滤波器就是有限长度的 $h[n]$。
 
@@ -27,7 +31,9 @@ $$ y[n]=x[n]*h[n]=\sum_{k=-\infty}^{\infty}x[k]\,h[n-k] $$
 
 对离散信号取离散时间傅里叶变换（DTFT），系统函数为
 
-$$ H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]\,e^{-j\omega n} $$
+$$
+H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]\,e^{-j\omega n}
+$$
 
 由卷积定理，时域卷积对应频域相乘：$Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})$。因此滤波器设计的本质是设计 $|H(e^{j\omega})|$ 的形状。需要注意 $H(e^{j\omega})$ 以 $2\pi$ 为周期，这是离散时间信号频谱的固有性质。
 
@@ -35,11 +41,15 @@ $$ H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]\,e^{-j\omega n} $$
 
 连续信号经理想采样后，频谱会以采样频率 $f_s$ 为间隔周期性复制。若信号的最高频率为 $f_{max}$，只有满足
 
-$$ f_s > 2f_{max} $$
+$$
+f_s > 2f_{max}
+$$
 
 才能保证相邻复制谱不重叠，这称为奈奎斯特（Nyquist）采样定理。工程上通常留出余量，例如音频采样取 44.1 kHz 而按 20 kHz 带宽设计。不满足条件时，高频成分会折叠到低频，形成混叠：
 
-$$ f_{alias}=\left|f_0-k f_s\right|,\quad k\in\mathbb{Z} $$
+$$
+f_{alias}=\left|f_0-k f_s\right|,\quad k\in\mathbb{Z}
+$$
 
 > [!warning] 混叠是不可逆的
 > 一旦采样率不足，高频分量与低频分量在数字域完全重合，后级滤波器无法区分。抗混叠滤波器必须放在 ADC 之前，属于模拟域。

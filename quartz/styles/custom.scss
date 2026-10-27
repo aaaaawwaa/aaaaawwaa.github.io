@@ -1,236 +1,158 @@
 @use "./base.scss";
 
-/* =============================================================================
-   LumenTrace Wiki · 自定义样式
-   设计目标：中文可读性优先、合理信息密度、克制的视觉强调、知识关联清晰。
-   仅使用 Quartz 内置 CSS 变量与既有类名，不引入额外前端依赖。
-   ============================================================================= */
-
-/* ---------- 1. 字体栈：中文回退到系统字体，避免 Google Fonts 加载失败时无衬线缺失 ---------- */
+/* LumenTrace: a quiet technical library. All custom styling lives here. */
 :root {
-  --bodyFont: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC",
-    sans-serif;
-  --headerFont: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --codeFont: "JetBrains Mono", "Cascadia Code", Consolas, "Courier New",
-    monospace;
+  --bodyFont: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --headerFont: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --codeFont: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --lt-surface: #fff;
+  --lt-panel: #f0f4f3;
+  --lt-line: #dfe8e4;
+  --lt-ink: #203b35;
+  --lt-muted: #657a73;
+  --lt-accent: #287969;
+  --lt-gold: #ad7845;
+  --lt-shadow: 0 8px 30px #17382d08;
 }
-
-/* ---------- 2. 正文排版：中文需要更宽松的行高与字距 ---------- */
-body {
-  font-feature-settings: "kern" 1, "liga" 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+:root[saved-theme="dark"] {
+  --lt-surface: #1b2325;
+  --lt-panel: #202d2d;
+  --lt-line: #344543;
+  --lt-ink: #dfebe5;
+  --lt-muted: #9aafa6;
+  --lt-accent: #8cd3bc;
+  --lt-gold: #d5ae7b;
+  --lt-shadow: 0 8px 30px #00000012;
 }
-
-article {
-  line-height: 1.78;
-  letter-spacing: 0.01em;
-
-  p {
-    margin: 0.9rem 0;
-  }
-
-  /* 中英文混排时给行内代码留出呼吸空间 */
-  code {
-    letter-spacing: 0;
-  }
+* { box-sizing: border-box; }
+body { -webkit-font-smoothing: antialiased; }
+a, button, summary { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--lt-accent);
+  outline-offset: 4px;
+  border-radius: 3px;
 }
-
-/* ---------- 3. 标题层级：H2 用左侧细强调线建立章节节奏 ---------- */
-article {
-  h1 {
-    font-size: 1.9rem;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
-  }
-
-  h2 {
-    margin-top: 2.2rem;
-    padding-left: 0.6rem;
-    border-left: 3px solid var(--secondary);
-    line-height: 1.4;
-  }
-
-  h3 {
-    margin-top: 1.6rem;
-    color: var(--darkgray);
-  }
+.page { max-width: 1540px; }
+.page > #quartz-body { column-gap: 2.2rem; }
+@media (min-width: 1201px) {
+  .page > #quartz-body { grid-template-columns: 260px minmax(0, 1fr) 260px; }
 }
-
-/* ---------- 4. 链接：可辨识但不喧哗 ---------- */
-article a {
-  text-decoration: none;
-  background-image: linear-gradient(var(--secondary), var(--secondary));
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.18s ease, color 0.18s ease;
-
-  &:hover {
-    background-size: 100% 1px;
-  }
+#quartz-body .sidebar { font-size: .88rem; }
+.sidebar.left { gap: 1.4rem !important; padding-right: .6rem; }
+.page-title { font-size: 1.35rem; line-height: 1.4; letter-spacing: -.04em; }
+.page-title a { color: var(--lt-ink); }
+.page-title::after {
+  content: "电子信息 · 学习与实践";
+  display: block; margin-top: .55rem; color: var(--lt-muted);
+  font: 400 .73rem/1.6 var(--bodyFont); letter-spacing: .12em;
 }
-
-/* ---------- 5. 代码块：细边框 + 圆角，避免大面积高对比背景 ---------- */
-pre {
-  border-radius: 6px;
-  border: 1px solid var(--lightgray);
-  padding: 0.85rem 1rem;
-  line-height: 1.55;
-  font-size: 0.86rem;
+.search > .search-button {
+  border: 1px solid var(--lt-line); background: var(--lt-surface);
+  border-radius: 9px; min-height: 38px;
 }
-
-code {
-  font-size: 0.88em;
+.search > .search-button:hover { border-color: var(--lt-accent); }
+.explorer button h2 { font-size: .76rem; letter-spacing: .12em; color: var(--lt-muted); }
+.explorer-content { line-height: 1.7; }
+.explorer-content a { font-weight: 400; }
+.explorer-content a.active { background: var(--highlight); border-radius: 5px; }
+.page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--lt-line); }
+.article-title { color: var(--lt-ink); font-size: clamp(1.8rem, 3.2vw, 2.55rem); line-height: 1.35; letter-spacing: -.035em; }
+.content-meta { font-size: .78rem; color: var(--lt-muted); }
+.tags { gap: .35rem; }
+a.tag-link { font-size: .7rem; font-weight: 500; padding: .16rem .5rem; border: 1px solid var(--lt-line); border-radius: 20px; background: transparent; }
+article { line-height: 1.9; letter-spacing: .012em; min-width: 0; }
+article p { margin: 1rem 0; }
+article h2 {
+  margin-top: 2.5rem; padding: 0 0 .65rem; border: 0;
+  border-bottom: 1px solid var(--lt-line); font-size: 1.4rem; color: var(--lt-ink);
 }
+article h3 { margin-top: 1.9rem; color: var(--lt-ink); font-size: 1.1rem; }
+article a:not(.lt-card):not(.lt-button):not(.lt-feature):not(.lt-path) { text-underline-offset: 4px; }
+article code { letter-spacing: 0; }
+pre { border: 1px solid var(--lt-line); border-radius: 10px; line-height: 1.65; font-size: .83rem; box-shadow: var(--lt-shadow); }
+.table-container { max-width: 100%; overflow-x: auto; border: 1px solid var(--lt-line); border-radius: 9px; }
+table { border-collapse: collapse; font-size: .9rem; width: 100%; }
+th, td { padding: .65rem .8rem; border-bottom: 1px solid var(--lt-line); }
+th { background: var(--lt-panel); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+blockquote { border-left: 3px solid var(--lt-accent); background: var(--lt-panel); padding: .5rem 1.2rem; border-radius: 0 8px 8px 0; }
+.callout { border-radius: 10px; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: .75rem 0; }
+.sidebar.right { gap: 1.8rem !important; }
+.sidebar.right h3, .toc-header h3 { font-size: .77rem; letter-spacing: .08em; color: var(--lt-muted); }
+.graph > .graph-outer { border: 1px solid var(--lt-line); background: var(--lt-surface); border-radius: 12px; }
+.toc { font-size: .8rem; }
+.toc a { font-weight: 400; line-height: 1.6; }
+.backlinks ul li { font-size: .8rem; }
+footer { border-top: 1px solid var(--lt-line); padding-top: 1.2rem; font-size: .72rem; }
 
-/* ---------- 6. 表格：紧凑、可读，用于首页知识板块导航 ---------- */
-.table-container {
-  overflow-x: auto;
-  margin: 1.2rem 0;
+/* Homepage: explicit semantic cards replace the old table-to-grid trick. */
+body[data-slug="index"] .page-header { display: none; }
+body[data-slug="index"] .center { padding-top: 6rem; }
+.lt-hero { padding: 0 0 2rem; border-bottom: 1px solid var(--lt-line); }
+.lt-eyebrow { font: 600 .7rem/1.6 var(--codeFont); color: var(--lt-accent); letter-spacing: .17em; }
+article .lt-hero h1 { font-size: clamp(2.6rem, 4.5vw, 4.1rem); line-height: 1.12; letter-spacing: -.065em; margin: 1.1rem 0 .8rem; color: var(--lt-ink); }
+.lt-subtitle { font-size: 1.25rem; color: var(--lt-ink); font-weight: 500; }
+.lt-hero .lt-lead { font-size: .93rem; line-height: 1.95; max-width: 38rem; color: var(--lt-muted); }
+.lt-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.5rem 0; }
+article a.lt-button { display: inline-flex; align-items: center; gap: 1.4rem; padding: .65rem 1rem; border-radius: 7px; font-size: .82rem; font-weight: 500; background: var(--lt-accent); color: var(--light); }
+article a.lt-button.secondary { background: transparent; color: var(--lt-ink); border: 1px solid var(--lt-line); }
+.lt-process { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; font-size: .7rem; color: var(--lt-muted); margin-top: 1.6rem; }
+.lt-process span { border: 1px solid var(--lt-line); padding: .15rem .55rem; border-radius: 5px; }
+.lt-process b { color: var(--lt-gold); font-weight: 400; }
+.lt-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 2.2rem 0 1rem; }
+article .lt-section-head h2 { margin: 0; border: 0; padding: 0; font-size: 1.15rem; }
+.lt-section-head span { font: .7rem var(--codeFont); color: var(--lt-muted); }
+.lt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+article a.lt-card { display: flex; flex-direction: column; min-width: 0; padding: 1.15rem; border: 1px solid var(--lt-line); border-radius: 10px; background: var(--lt-surface); color: var(--lt-ink); box-shadow: var(--lt-shadow); transition: border-color .18s, transform .18s; }
+article a.lt-card:hover { border-color: var(--lt-accent); transform: translateY(-2px); }
+.lt-card-top { display: flex; justify-content: space-between; align-items: center; }
+.lt-card-top span { color: var(--lt-gold); font: .7rem var(--codeFont); }
+.lt-card-top b { color: var(--lt-muted); font-weight: 400; }
+.lt-card strong { font-size: 1rem; margin: .7rem 0 .35rem; }
+.lt-card p { color: var(--lt-muted); font-size: .79rem; line-height: 1.8; margin: 0; font-weight: 400; }
+.lt-card small { font: .65rem var(--codeFont); margin-top: .9rem; color: var(--lt-accent); letter-spacing: .04em; }
+.lt-feature-list { display: grid; gap: .6rem; }
+article a.lt-feature { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.1rem; background: var(--lt-panel); border: 1px solid transparent; border-radius: 8px; color: var(--lt-ink); }
+article a.lt-feature:hover { border-color: var(--lt-line); }
+.lt-feature strong { display: block; font-size: .88rem; }
+.lt-feature small { display: block; font-size: .75rem; font-weight: 400; color: var(--lt-muted); }
+.lt-feature > span:last-child { color: var(--lt-accent); }
+.lt-note { color: var(--lt-muted); font-size: .75rem; padding: 1.3rem 0 .3rem; }
+@media (max-width: 1200px) {
+  .page > #quartz-body { column-gap: 1.4rem; }
 }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.94rem;
-}
-
-th,
-td {
-  padding: 0.5rem 0.7rem;
-  border-bottom: 1px solid var(--lightgray);
-}
-
-th {
-  font-weight: 600;
-  color: var(--dark);
-  background: var(--highlight);
-  text-align: left;
-}
-
-/* ---------- 7. 引用与提示块 ---------- */
-blockquote {
-  border-left: 3px solid var(--tertiary);
-  background: var(--highlight);
-  border-radius: 0 4px 4px 0;
-  padding: 0.6rem 1rem;
-  margin: 1.1rem 0;
-}
-
-/* ---------- 8. 知识图谱：低对比度节点，突出当前页 ---------- */
-.graph {
-  & > .graph-outer {
-    border-radius: 6px;
-    border-color: var(--lightgray);
-  }
-}
-
-/* ---------- 9. 侧边栏与目录：更轻的视觉权重，让正文成为主角 ---------- */
-#quartz-body .sidebar {
-  font-size: 0.9rem;
-}
-
-.toc {
-  font-size: 0.86rem;
-
-  a {
-    color: var(--darkgray);
-
-    &:hover {
-      color: var(--secondary);
-    }
-  }
-}
-
-/* ---------- 10. 首页：把普通表格渲染成知识板块卡片网格（复用 Markdown 表格结构） ---------- */
-body[data-slug="index"] article table {
-  border: none;
-
-  thead {
-    display: none;
-  }
-
-  tbody {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: 0.8rem;
-  }
-
-  tr {
-    display: flex;
-    flex-direction: column;
-    padding: 0.85rem 1rem;
-    border: 1px solid var(--lightgray);
-    border-radius: 8px;
-    background: var(--light);
-    transition: border-color 0.18s ease, transform 0.18s ease;
-
-    &:hover {
-      border-color: var(--secondary);
-      transform: translateY(-2px);
-    }
-  }
-
-  td {
-    border: none;
-    padding: 0.1rem 0;
-
-    &:first-child {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--dark);
-    }
-
-    &:nth-child(2) {
-      font-size: 0.86rem;
-      color: var(--darkgray);
-    }
-
-    &:not(:first-child):not(:nth-child(2)) {
-      font-size: 0.82rem;
-      color: var(--gray);
-    }
-  }
-}
-
-/* ---------- 11. 移动端：压缩留白，保证一屏信息量 ---------- */
 @media (max-width: 800px) {
-  /* 站点标题在窄屏折成两行会挤压工具栏，缩小字号保持单行 */
-  .page-title {
-    font-size: 1.15rem;
-    white-space: nowrap;
-  }
-
-  /* Properties 表格在窄屏易横向溢出，压缩字号并允许换行 */
-  .note-properties-table {
-    font-size: 0.78rem;
-    table-layout: fixed;
-
-    td {
-      word-break: break-word;
-    }
+  .sidebar.left { padding-right: 0; gap: .65rem !important; }
+  body[data-slug="index"] .center { padding-top: 1.5rem; }
+  .page-title { font-size: 1.15rem; white-space: nowrap; }
+  .page-title::after { display: none; }
+  .page-header { margin-bottom: 1.5rem; }
+  article { line-height: 1.85; }
+  .article-title { font-size: 1.7rem; }
+  article h2 { font-size: 1.25rem; margin-top: 2rem; }
+  .lt-hero { padding-top: .5rem; }
+  article .lt-hero h1 { font-size: 2.75rem; }
+  .lt-subtitle { font-size: 1.1rem; }
+  .lt-grid { gap: .6rem; }
+  article a.lt-card { padding: .9rem; }
+  .lt-card p { font-size: .76rem; }
+  .page #quartz-body .explorer .explorer-content {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    padding: 4.5rem 1rem 1rem;
   }
 }
-
-@media (max-width: 800px) {
-  article {
-    line-height: 1.72;
-
-    h1 {
-      font-size: 1.6rem;
-    }
-
-    h2 {
-      margin-top: 1.7rem;
-      font-size: 1.25rem;
-    }
-  }
-
-  pre {
-    font-size: 0.8rem;
-    padding: 0.7rem 0.75rem;
-  }
+@media (max-width: 420px) {
+  .lt-grid { grid-template-columns: minmax(0, 1fr); }
+  .lt-card strong { margin-top: .4rem; }
+  .lt-actions { gap: .5rem; }
+  article a.lt-button { padding: .6rem .8rem; gap: .65rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }

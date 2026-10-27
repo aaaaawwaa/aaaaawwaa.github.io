@@ -17,25 +17,33 @@ tags:
 
 期望描述中心位置，方差描述离散程度：
 
-$$ \mathrm{Var}[X]=E\left[(X-\mu)^2\right]=E\left[X^2\right]-\left(E[X]\right)^2 $$
+$$
+\mathrm{Var}[X]=E\left[(X-\mu)^2\right]=E\left[X^2\right]-\left(E[X]\right)^2
+$$
 
 方差公式的第二形式在实际计算中更常用。对独立随机变量，和的方差等于方差之和；这一条在分析噪声叠加时反复出现。
 
 ## 高斯分布
 
-$$ f_X(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right) $$
+$$
+f_X(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+$$
 
 高斯分布之所以无处不在，主要有两个原因：中心极限定理说明大量独立小扰动之和趋于高斯分布；而高斯白噪声（AWGN）是通信中最常用的信道模型，它只由均值与方差两个参数决定，数学处理最方便。
 
 对均值为零、方差为 $\sigma^2$ 的高斯变量，尾部概率用 Q 函数表示：
 
-$$ Q(x)=\frac{1}{\sqrt{2\pi}}\int_x^{\infty}e^{-t^2/2}\,dt $$
+$$
+Q(x)=\frac{1}{\sqrt{2\pi}}\int_x^{\infty}e^{-t^2/2}\,dt
+$$
 
 ## 从概率到误码率
 
 以 BPSK 为例，AWGN 信道下接收信号为 $r=s+n$，$n\sim\mathcal{N}(0,\sigma^2)$，判决门限为 0。若 $E_b$ 为每比特能量、$N_0/2$ 为双边噪声功率谱密度，则误比特率为
 
-$$ P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right) $$
+$$
+P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)
+$$
 
 这个结果由「高斯尾部概率」直接给出，是后续学习 [[Communication/Digital-Modulation-QPSK|QPSK]] 与高阶调制的基础。
 

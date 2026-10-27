@@ -15,7 +15,9 @@ tags:
 
 幅度为 $A$、周期为 $T$ 的奇对称方波，其傅里叶级数为
 
-$$ x(t)=\frac{4A}{\pi}\sum_{k=1,3,5,\dots}\frac{1}{k}\sin\left(\frac{2\pi k t}{T}\right) $$
+$$
+x(t)=\frac{4A}{\pi}\sum_{k=1,3,5,\dots}\frac{1}{k}\sin\left(\frac{2\pi k t}{T}\right)
+$$
 
 只有奇次谐波，且幅度按 $1/k$ 衰减。这也是方波听起来"刺耳"的原因：高频分量下降得慢。
 

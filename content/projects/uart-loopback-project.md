@@ -26,7 +26,9 @@ UART 是异步串行接口，没有独立时钟线，收发双方靠约定好的
 
 FPGA 时钟 50 MHz，分频系数为
 
-$$ \text{DIV}=\left\lfloor\frac{f_{clk}}{f_{baud}}\right\rfloor=\left\lfloor\frac{50\,000\,000}{115200}\right\rfloor=434 $$
+$$
+\text{DIV}=\left\lfloor\frac{f_{clk}}{f_{baud}}\right\rfloor=\left\lfloor\frac{50\,000\,000}{115200}\right\rfloor=434
+$$
 
 实际波特率为 $50\,000\,000/434\approx115207$ bps，相对误差约 0.006%，远小于接收端能容忍的范围（10 位累计偏移需小于 5% 位宽）。
 

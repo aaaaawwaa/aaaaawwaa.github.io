@@ -16,7 +16,7 @@
 | npm | 11.16.0（要求 ≥ 10.9.2） |
 | Git | 2.54.0.windows.1 |
 | 浏览器（自动化验证） | Google Chrome headless（CDP 驱动） |
-| 项目路径 | `C:\Users\张书清\Desktop\Document_repository\embedded_development_learning\LumenTrace-Wiki` |
+| 项目路径 | `<项目目录>\LumenTrace-Wiki` |
 | 磁盘剩余 | ≈ 33 GB |
 
 ---
@@ -133,9 +133,12 @@ Mermaid: 14 | KaTeX: 151 | 代码块: 15 | 表格: 30 | Callout: 31
 ## 7. 复现测试的命令
 
 ```bash
-cd "C:\Users\张书清\Desktop\Document_repository\embedded_development_learning\LumenTrace-Wiki"
+cd "<项目目录>\LumenTrace-Wiki"
 npm install
 npm run plugins:offline     # 或 npm run plugins:install（GitHub 可用时）
 npm run verify              # 构建 + 自检
 npm run dev                 # http://localhost:8080
 ```
+## 2026-10-27 视觉升级复验
+
+本轮 npm run verify 退出码为 0，66 个 HTML 页面、1825 个站内链接、0 断链。已验证桌面与手机明暗主题、全文搜索和公式排版。详细记录见 notes/dsh-review-and-visual-upgrade.md。本轮未对外部署。

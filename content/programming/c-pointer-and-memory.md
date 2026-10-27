@@ -11,7 +11,9 @@ tags:
 
 指针变量存储的是内存地址，类型决定了从这个地址读多少字节以及如何解释。指针算术会自动按元素大小缩放：
 
-$$ \mathrm{addr}(p+i)=\mathrm{addr}(p)+i\cdot\mathrm{sizeof}(T) $$
+$$
+\mathrm{addr}(p+i)=\mathrm{addr}(p)+i\cdot\mathrm{sizeof}(T)
+$$
 
 这条规则解释了为什么 `int *p; p+1` 跳 4 个字节，而 `char *q; q+1` 只跳 1 个字节。
 

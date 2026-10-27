@@ -11,7 +11,9 @@ tags:
 
 离散卷积的定义是
 
-$$ y[n]=\sum_{k=0}^{M-1}h[k]\,x[n-k] $$
+$$
+y[n]=\sum_{k=0}^{M-1}h[k]\,x[n-k]
+$$
 
 若用 Python 的 for 循环逐点计算，一个 10 万点的信号会慢到无法迭代。NumPy 的数组运算把循环下沉到 C 层，配合 `np.convolve`、`scipy.signal.lfilter` 可以快一到两个数量级。写 DSP 仿真时，优先考虑"能否用数组整体运算"。
 
@@ -69,7 +71,9 @@ print(f"3 kHz 幅度: {amp(3000):.4f} (滤波前 0.500)")
 
 滤波器的指标通常写成三组数：通带边缘与纹波、阻带边缘与衰减、过渡带宽度。FIR 的阶数 $M$ 与过渡带宽度成反比，粗略估计（Kaiser 经验公式）为
 
-$$ M\approx\frac{-20\log_{10}\sqrt{\delta_1\delta_2}-13}{14.6\,\Delta f/f_s} $$
+$$
+M\approx\frac{-20\log_{10}\sqrt{\delta_1\delta_2}-13}{14.6\,\Delta f/f_s}
+$$
 
 其中 $\delta_1,\delta_2$ 是通带与阻带的容差，$\Delta f$ 是过渡带宽度。设计时先算阶数，再看资源是否允许。
 

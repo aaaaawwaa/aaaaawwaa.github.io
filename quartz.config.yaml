@@ -11,7 +11,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: zh-CN
-  baseUrl: lumentrace-wiki.pages.dev
+  baseUrl: aaaaawwaa.github.io
   ignorePatterns:
     - private
     - templates
@@ -24,29 +24,29 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Inter
+      header: Noto Sans SC
       body: Noto Sans SC
       code: JetBrains Mono
     colors:
       lightMode:
-        light: "#fcfcfd"
-        lightgray: "#e8eaed"
-        gray: "#9aa0a6"
-        darkgray: "#3c4043"
-        dark: "#1f2328"
-        secondary: "#1a5fb4"
-        tertiary: "#2c8c99"
-        highlight: "rgba(26, 95, 180, 0.10)"
+        light: "#f8faf9"
+        lightgray: "#dfe9e4"
+        gray: "#84968e"
+        darkgray: "#3c5149"
+        dark: "#203b35"
+        secondary: "#287969"
+        tertiary: "#a87844"
+        highlight: "rgba(40, 121, 105, 0.09)"
         textHighlight: "#fff2a8"
       darkMode:
-        light: "#15171a"
-        lightgray: "#2a2d31"
-        gray: "#5f6368"
-        darkgray: "#c8ccd1"
-        dark: "#e8eaed"
-        secondary: "#7aa7ff"
-        tertiary: "#4fd1c5"
-        highlight: "rgba(122, 167, 255, 0.12)"
+        light: "#151d1f"
+        lightgray: "#344543"
+        gray: "#889e95"
+        darkgray: "#c4d5cd"
+        dark: "#dfe9e4"
+        secondary: "#8cd3bc"
+        tertiary: "#d5ae7b"
+        highlight: "rgba(140, 211, 188, 0.10)"
         textHighlight: "#8a7a00"
 plugins:
   - source: "github:quartz-community/created-modified-date"
@@ -233,7 +233,7 @@ plugins:
         - description
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5

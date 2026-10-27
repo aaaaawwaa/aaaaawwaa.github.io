@@ -11,13 +11,17 @@ tags:
 
 有限长序列 $x(n)$，$n=0,1,\dots,N-1$，其离散傅里叶变换定义为
 
-$$ X(k)=\sum_{n=0}^{N-1}x(n)\,e^{-j2\pi kn/N},\quad k=0,1,\dots,N-1 $$
+$$
+X(k)=\sum_{n=0}^{N-1}x(n)\,e^{-j2\pi kn/N},\quad k=0,1,\dots,N-1
+$$
 
 它把 $N$ 个时域样本映射为 $N$ 个频域样本。注意 $X(k)$ 表示频率 $f_k=k f_s/N$ 处的复幅度，包含幅度与相位两部分。
 
 反变换为
 
-$$ x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)\,e^{j2\pi kn/N} $$
+$$
+x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)\,e^{j2\pi kn/N}
+$$
 
 Parseval 关系保证能量守恒：$\sum_{n=0}^{N-1}\left|x(n)\right|^2=\frac{1}{N}\sum_{k=0}^{N-1}\left|X(k)\right|^2$。
 
@@ -25,7 +29,9 @@ Parseval 关系保证能量守恒：$\sum_{n=0}^{N-1}\left|x(n)\right|^2=\frac{1
 
 DFT 的频率间隔为
 
-$$ \Delta f=\frac{f_s}{N} $$
+$$
+\Delta f=\frac{f_s}{N}
+$$
 
 提高分辨率（减小 $\Delta f$）的唯一办法是增加观测时长 $T=N/f_s$，即 $\Delta f=1/T$。**补零**只能在频域做插值，让曲线更平滑，并不能真正分辨更近的两个频率成分。
 
@@ -33,7 +39,9 @@ $$ \Delta f=\frac{f_s}{N} $$
 
 实信号的频谱共轭对称，因此工程上常只画 $0\sim f_s/2$ 的单边谱，并把非直流分量的幅度乘 2：
 
-$$ A(f_k)=\frac{2\left|X(k)\right|}{N} $$
+$$
+A(f_k)=\frac{2\left|X(k)\right|}{N}
+$$
 
 忘记乘 2 或忘记除以 $N$，是初学 FFT 时最常见的幅度错误。
 
@@ -82,7 +90,9 @@ print("峰值频率 (Hz):", np.sort(freqs[top]))
 
 FFT 利用旋转因子的对称性与周期性，把一个 $N$ 点 DFT 分解为若干小点数 DFT。基 2（radix-2）算法要求 $N$ 为 2 的整数次幂，复数乘法次数约为
 
-$$ \frac{N}{2}\log_2 N $$
+$$
+\frac{N}{2}\log_2 N
+$$
 
 而直接计算 DFT 需要 $N^2$ 次复数乘法。当 $N=1024$ 时，二者相差约 50 倍，这就是 FFT 能实时处理的关键。
 
