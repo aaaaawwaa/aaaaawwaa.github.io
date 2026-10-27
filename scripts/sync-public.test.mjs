@@ -83,3 +83,27 @@ test('explicit images are copied and embedded references are rewritten', async t
   const result=run(f,true); assert.equal(result.status,0,result.stderr);
   assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/!\[\[vault-notes\/assets\/diagram.svg\|600\]\]/);
 });
+test('unresolvedPolicy text converts unpublished links to readable text and allows apply', async t => {
+  const f=await fixture(t);
+  const original='# 标题\n[[未发布笔记|标签文字]]\n[[另一篇]]\n![[missing.png]]\n';
+  await writeFile(path.join(f.vault,'a.md'), original);
+  await writeFile(f.manifest, JSON.stringify({version:1,unresolvedPolicy:'text',files:[{source:'a.md',destination:'vault-notes/a.md'}],assets:[]}));
+  const preview=run(f); assert.equal(preview.status,0,preview.stderr);
+  const parsed=JSON.parse(preview.stdout);
+  assert.equal(parsed.policy,'text');
+  assert.equal(parsed.converted.length,3);
+  assert.equal(run(f,true).status,0);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.match(out,/标签文字/);
+  assert.ok(!out.includes('[['),'未解析链接不应保留 [[ ]] 语法');
+  assert.match(out,/图片未随站点发布：missing\.png/);
+  assert.equal(await readFile(path.join(f.vault,'a.md'),'utf8'), original,'原始 Vault 笔记不得被修改');
+});
+test('plain wikilinks to explicit assets are rewritten to asset destinations', async t => {
+  const f=await fixture(t); await mkdir(path.join(f.vault,'assets'));
+  await writeFile(path.join(f.vault,'a.md'),'见表 [[assets/x.svg|示意图]]');
+  await writeFile(path.join(f.vault,'assets/x.svg'),'<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}],[{source:'assets/x.svg',destination:'vault-notes/assets/x.svg'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/\[\[vault-notes\/assets\/x\.svg\|示意图\]\]/);
+});

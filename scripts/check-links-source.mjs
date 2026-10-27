@@ -70,6 +70,8 @@ for (const rel of rels.filter((r) => r.endsWith(".md"))) {
       const target = inner.split("|")[0].split("#")[0].trim()
       if (!target) continue
       checked++
+      // 附件型双链（图片、SVG 时序图）直接指向 content 内真实文件
+      if (fileSet.has(target)) continue
       const withExt = target.endsWith(".md") ? target : target + ".md"
       if (mdSet.has(withExt)) continue
       if (baseSet.has(path.basename(withExt, ".md"))) continue

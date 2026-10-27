@@ -13,6 +13,11 @@ for (let i=0;i<args.length;i++) {
 }
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const norm = value => value.replaceAll('\\','/').replace(/^\.\//,'');
+// 默认标题：去掉文件名前的编号/字母前缀，保留中文标题本身
+function defaultTitle(source) {
+  const base = path.posix.basename(source, '.md');
+  return base.replace(/^\s*(?:[0-9]+[.、_\-\s]+|[A-Z][.、\s]+)/, '').trim() || base;
+}
 function safeRelative(value) {
   if (typeof value!=='string' || !value || path.isAbsolute(value) || /^[a-z]:/i.test(value)) throw new Error('清单含无效或绝对路径');
   const p=norm(value), parts=p.split('/');
@@ -37,6 +42,7 @@ async function main() {
   if (inside(vault,site) || inside(site,vault)) throw new Error('Vault 与 Wiki 项目目录不能相同或嵌套');
   const config=JSON.parse(await fs.readFile(options.manifest,'utf8'));
   if (config.version!==1||!Array.isArray(config.files)||!Array.isArray(config.assets)) throw new Error('清单必须包含 version=1、files 和 assets 数组');
+  const policy=config.unresolvedPolicy==='text'?'text':'error';
   const entries=[...config.files.map(x=>({...x,kind:'note'})),...config.assets.map(x=>({...x,kind:'asset'}))];
   const destSet=new Set(), sourceSet=new Set(), byName=new Map();
   for (const x of entries) {
@@ -75,7 +81,22 @@ async function main() {
         const [raw,...labels]=inner.split('|'), target=raw.replace(/\\$/,'').trim();
         if(target.startsWith('#')) return all;
         const base=target.split('#')[0], kind=embed?'asset':'note', match=find(base,x,kind);
-        if(!match) {unresolved.push({file:x.source,target:base});return all;}
+        // 非嵌入的 [[file.svg]] 是对附件的普通链接：若清单里有该附件，改写为指向站点内附件路径的链接
+        if(!match && !embed && kind==='note') {
+          const linkedAsset=find(base,x,'asset');
+          if(linkedAsset) {
+            const anchorPart=target.includes('#')?'#'+target.split('#').slice(1).join('#'):'';
+            const label=labels.length?'|'+labels.join('|'):'';
+            return '[['+linkedAsset.destination+anchorPart+label+']]';
+          }
+        }
+        if(!match) {
+          unresolved.push({file:x.source,target:base,embed:Boolean(embed),action:policy==='text'?'text':'error'});
+          if(policy!=='text') return all;
+          if(embed) return `*（图片未随站点发布：${path.posix.basename(base)}）*`;
+          const fallback=(labels.length?labels.join('|'):path.posix.basename(base).replace(/\.md$/i,'')).trim();
+          return fallback || base;
+        }
         const anchor=target.includes('#')?'#'+target.split('#').slice(1).join('#'):'';
         const out=kind==='note'?match.destination.replace(/\.md$/,''):match.destination;
         const label=labels.length?'|'+labels.join('|'):'';
@@ -85,13 +106,16 @@ async function main() {
         if(/^(?:https?:|data:)/i.test(url)) return all;
         let target=url; try { target=decodeURIComponent(url); } catch {}
         const match=find(target,x,'asset');
-        if(!match){unresolved.push({file:x.source,target});return all;}
+        if(!match){
+          unresolved.push({file:x.source,target,embed:true,action:policy==='text'?'text':'error'});
+          return policy==='text' ? `*（图片未随站点发布：${path.posix.basename(target)}）*` : all;
+        }
         return `![${alt}](./${path.posix.relative(path.posix.dirname(x.destination),match.destination)})`;
       });
       return line.replace(/@@WIKICODE(\d+)@@/g,(_,i)=>saved[Number(i)]);
     }).join('\n');
-    if(!/^---\s*\n/.test(text)) text=`---\ntitle: ${JSON.stringify(x.title||path.posix.basename(x.source,'.md'))}\n---\n\n${text}`;
-    else if(!/^title\s*:/im.test(text.split(/\n---\s*\n/,1)[0])) text=text.replace(/^---\s*\n/,`---\ntitle: ${JSON.stringify(x.title||path.posix.basename(x.source,'.md'))}\n`);
+    if(!/^---\s*\n/.test(text)) text=`---\ntitle: ${JSON.stringify(x.title||defaultTitle(x.source))}\n---\n\n${text}`;
+    else if(!/^title\s*:/im.test(text.split(/\n---\s*\n/,1)[0])) text=text.replace(/^---\s*\n/,`---\ntitle: ${JSON.stringify(x.title||defaultTitle(x.source))}\n`);
     outputs.push({x,data:Buffer.from(text,'utf8')});
   }
   const statePath=path.join(site,'.quartz','sync-public-state.json'); let state={};
@@ -102,8 +126,10 @@ async function main() {
     try {const current=await fs.readFile(target); if(state[x.destination]!==hash(current)) conflicts.push(x.destination);}
     catch(e){if(e.code!=='ENOENT')throw e;}
   }
-  console.log(JSON.stringify({mode:options.apply?'apply':'preview',notes:config.files.length,assets:config.assets.length,unresolved,secretFindings:secrets,conflicts},null,2));
-  if(secrets.length||conflicts.length||(options.apply&&unresolved.length)) throw new Error('存在待处理问题，未执行同步');
+  const converted=unresolved.filter(u=>u.action==='text');
+  console.log(JSON.stringify({mode:options.apply?'apply':'preview',policy,notes:config.files.length,assets:config.assets.length,unresolved,converted,secretFindings:secrets,conflicts},null,2));
+  if(secrets.length||conflicts.length||(options.apply&&unresolved.length&&policy!=='text')) throw new Error('存在待处理问题，未执行同步');
+  if(options.apply&&converted.length) console.log(`已把 ${converted.length} 个未发布的关联目标转为可读文字（见 converted 列表）。`);
   if(!options.apply)return;
   for(const {x,data} of outputs) {
     const target=path.join(content,...x.destination.split('/')); await fs.mkdir(path.dirname(target),{recursive:true});

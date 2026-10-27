@@ -181,3 +181,57 @@ npm run dev                 # http://localhost:8080
 | 1 | 构建期 `Failed to install plugin: quartz-fonts · HTTP 401` | 仓库名是 `quartz-community/fonts`，npm 包名才是 `@quartz-community/quartz-fonts`；config 按 npm 名写错仓库 | config 改为 `github:quartz-community/fonts`，脚本加 npm 包名别名 |
 | 2 | `Unknown file extension ".ts"` / `defaultDateType was not set` | 两个插件不在 `quartz.lock.json`：CI 只按 lockfile 安装，构建期临时克隆后直接 import 未编译源码；`configuration.defaultDateType` 缺失时本地 npm 预构建版有兜底、源码版没有 | 补齐 lockfile 条目；在 `configuration` 段补 `defaultDateType: modified` |
 | 3 | 自检报 150 个断链 | 站点链接生成器在不同插件版本下行为不同：本地版把 slug 转小写，CI 源码版保持原大小写；而内容双链目标仍写 PascalCase | 内容双链统一小写；新增 `scripts/check-links-source.mjs`（源码级、大小写敏感）并接入 `npm run verify` 与 CI |
+
+---
+
+## 9. 批量发布 Obsidian 学习笔记（2026-10-27 第二轮）
+
+### 9.1 发布结果
+
+| 指标 | 实测值 |
+| --- | --- |
+| 发布笔记 | **195 篇**（`content/vault-notes/`） |
+| 发布附件 | **60 个**（34 PNG + 26 SVG），全部被选中笔记显式引用 |
+| 源 Vault Markdown 总量 | 353 篇（本次覆盖目标学科 204 篇候选中的 195 篇） |
+| 站点页面 | 685 个 HTML（含标签页、文件夹页、OG 卡片） |
+| 构建输出 | 1352 个文件 / 65 MB |
+| 内容索引 | 594 条（搜索与知识图谱共用） |
+| 构建耗时 | 220 个 Markdown：解析 32 s，输出 2 min（Windows 本机） |
+| 线上地址 | <https://aaaaawwaa.github.io/> |
+
+学科覆盖：通信原理 16、数字信号处理 8、随机信号处理 61、数字调制 1、5G/6G 22、FPGA 45、线性代数 12、概率论 12、复变函数 11、MATLAB 2、知识地图 5。
+
+### 9.2 构建与检查结果
+
+| 检查 | 结果 |
+| --- | --- |
+| `npm run test:public` | 16 个测试全部通过 |
+| `npm run check:public` | 无敏感项（1 篇笔记的正文标签触发过一次误报排查） |
+| `scripts/check-links-source.mjs` | 221 个 Markdown / 2647 条链接 / **0 问题** |
+| `scripts/audit-site.mjs` | 断链 **0**；KaTeX 17276；Mermaid 98；代码块 178；表格 658；Callout 1994；RSS/sitemap 正常 |
+| 浏览器抽查（本地） | 绪论（81 公式 / 3 Mermaid / 22 callout）、DFT（247 公式）、UART（13 图 / 0 加载失败）、卡尔曼滤波（61 公式）；均无横向溢出 |
+
+### 9.3 本次新增 / 修改的工程能力
+
+| 变更 | 原因 |
+| --- | --- |
+| `sync-public.mjs` 支持 `unresolvedPolicy: "text"` | 指向未发布笔记/附件的链接需要「保留可读文字」，同时逐条记录，不能静默忽略 |
+| `sync-public.mjs` 支持非嵌入的 `[[file.svg]]` 附件链接改写 | 时序分析笔记用表格链接 SVG，原实现只处理嵌入 |
+| `sync-public.mjs` 默认标题去掉编号前缀 | 文件名 `1. 绪论.md` 应显示为「绪论」而不是「1. 绪论」 |
+| `check-links-source.mjs` 接受附件目标 | 同步后产生大量图片链接，检查器需识别 PNG/SVG |
+| `audit-site.mjs` 按浏览器语义钳制越界 `..` | 中文标签链接近似 `../.././../tags/…`，浏览器会在根目录截断，原检查误报断链 |
+| `content/vault-notes/index.md` 导航页 | 195 篇笔记需要学科入口，而不是只靠目录树 |
+
+### 9.4 未发布 / 无法转换的内容
+
+| 类别 | 数量 | 原因 |
+| --- | --- | --- |
+| 作业截图索引及其 7 张截图 | 1 篇 + 7 图 | 作业截图属个人学习材料，且含手写/个人痕迹 |
+| 5G 大唐杯真题 3 篇、题目总结、面试刷题汇总 | 5 篇 | 第三方考试材料 / 求职私人复习资料 |
+| 视频、PDF、TeX 源、WaveDrom JSON5、Canvas、独立 HTML 演示 | 198 个 mp4 等 | 体积大或需单独审阅；HTML 演示可后续按 `quartz/static/lab/` 约定发布 |
+| B 站视频截图 `屏幕截图 2026-10-19 202238.png` | 1 图 | 含第三方视频内容与播放器界面 |
+| 5G 重复笔记（NG-RAN 3 份、5GC 2 份） | 3 份 | 内容不同但同题，只保留最完整一份并在报告中说明 |
+| 缺失引用的图片 | 7 处 | Vault 中找不到对应文件（历史删除），已转为可读文字 |
+| 全库总纲、首页、知识总图等内部导航 | 若干引用 | 属内部聚合页面，未列入公开发布范围，引用转为文字 |
+
+预演中 `converted` 共 **93 条**（30 个不同目标），全部记录在同步输出里，没有通过关闭检查来绕过。

@@ -59,13 +59,18 @@ const stats = {
 const LINK_RE = /(?:href|src)="([^"]+)"/g
 
 function resolveTarget(rel, clean) {
+  // 模拟浏览器 URL 解析：超出站点根目录的 ".." 会被钳制在根，而不是保留成上级相对路径
   const isAbsolute = clean.startsWith("/")
   const stripped = clean.replace(/^\/+/, "").replace(/\/+$/, "")
   if (stripped === "") return "index.html" // 指向站点根目录
-  const joined = isAbsolute
-    ? stripped
-    : path.posix.normalize(path.posix.join(path.posix.dirname(rel), stripped))
-  if (joined === "." || joined === "" || joined === "..") return "index.html"
+  const segments = isAbsolute ? [] : path.posix.dirname(rel).split("/").filter((s) => s && s !== ".")
+  for (const part of stripped.split("/")) {
+    if (!part || part === ".") continue
+    if (part === "..") segments.pop()
+    else segments.push(part)
+  }
+  const joined = segments.join("/")
+  if (joined === "" || joined === ".") return "index.html"
   return joined
 }
 

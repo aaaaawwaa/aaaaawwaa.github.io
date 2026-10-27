@@ -54,6 +54,15 @@
 
 ## 3. 内容规则
 
+### 3.0 两类内容，规则不同
+
+| 位置 | 来源 | 修改方式 |
+| --- | --- | --- |
+| `content/vault-notes/` | 从 Obsidian 同步生成（195 篇 + 60 图） | **不要手工编辑**；改 Vault 中的原始笔记，再 `npm run sync:preview` → `sync:apply` |
+| `content/` 其他目录 | 站内自写内容（首页、示例分类、交互实验） | 直接编辑，但不要覆盖他人已有改动 |
+
+同步器要点：`public-notes.json` 是白名单；`unresolvedPolicy: "text"` 会把指向未发布目标的链接转成可读文字并记录；`sync:apply` 会拒绝覆盖被人工修改过的文件（状态见 `.quartz/sync-public-state.json`，该文件不提交）。
+
 ### 3.1 命名（强制）
 
 - 目录名与文件名：**小写英文 + 短横线**，例：`signal-processing/dft-and-fft.md`
