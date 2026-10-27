@@ -67,7 +67,8 @@ for (const rel of rels.filter((r) => r.endsWith(".md"))) {
     // [[target#anchor|alias]]
     for (const m of clean.matchAll(/\[\[([^\]]+?)\]\]/g)) {
       const inner = m[1]
-      const target = inner.split("|")[0].split("#")[0].trim()
+      // 表格内的双链会用 \| 转义竖线，解析时需去掉末尾反斜杠
+      const target = inner.split("|")[0].replace(/\\$/, "").split("#")[0].trim()
       if (!target) continue
       checked++
       // 附件型双链（图片、SVG 时序图）直接指向 content 内真实文件
@@ -97,7 +98,17 @@ for (const rel of rels.filter((r) => r.endsWith(".md"))) {
       const resolved = decoded.startsWith("/")
         ? decoded.slice(1)
         : path.posix.normalize(path.posix.join(path.posix.dirname(rel), decoded))
-      const candidates = [resolved, resolved + ".md", resolved.replace(/\/$/, "") + "/index.md"]
+      // Quartz 对 "vault-notes/assets/x.svg" 这类写法按 content 根路径解析，
+      // 因此同时尝试「根路径相对」与「文件所在目录相对」两种解释
+      const rootRel = decoded.replace(/^\.\//, "").replace(/^\/+/, "")
+      const candidates = [
+        rootRel,
+        rootRel + ".md",
+        rootRel.replace(/\/$/, "") + "/index.md",
+        resolved,
+        resolved + ".md",
+        resolved.replace(/\/$/, "") + "/index.md",
+      ]
       if (candidates.some((c) => mdSet.has(c) || fileSet.has(c))) continue
       const lower = resolved.toLowerCase()
       const caseOnly = rels.find((r) => r.toLowerCase() === lower)

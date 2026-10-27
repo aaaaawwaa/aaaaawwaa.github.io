@@ -167,7 +167,7 @@ CLOAD OUT 0 20fF
 
 ### 5.1 时序图
 
-![[vault-notes/assets/01-design-implementation-flow/fig-01.svg|1100]]
+![1100](vault-notes/assets/01-design-implementation-flow/fig-01.svg)
 
 ### 5.2 关键时间节点
 

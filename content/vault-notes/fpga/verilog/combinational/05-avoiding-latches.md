@@ -109,7 +109,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/05-avoiding-latches/fig-01.svg|800]]
+![800](vault-notes/assets/05-avoiding-latches/fig-01.svg)
 
 - **锁存行为**：`latch_bad` 在 `sel = 1` 时透明（`out_bad = in1`），`sel = 0` 时保持上一次的值；`out_bad` 开头的 `x` 表示上电未知或保持状态。
 - **组合输出**：`mux_no_latch` 补全了 `else`，`out_good` 始终等于 `sel ? in1 : in2`，不会保持。

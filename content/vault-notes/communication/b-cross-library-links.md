@@ -30,12 +30,12 @@ related: []
 
 | 通信原理 | 用到的概率论知识 | 具体接口 |
 | --- | --- | --- |
-| [[vault-notes/communication/01-introduction]] 信息量与熵 | [[vault-notes/math/probability/01-basic-concepts|1.基本概念]]——概率的定义与性质 | 信息量 $I=\log_2\frac1P$ 是**概率的函数**；熵是概率的加权平均 |
-| [[vault-notes/communication/03-random-processes]] 全章 | [[vault-notes/math/probability/03-random-variables-distributions|3.随机变量及其分布]] | **高斯/瑞利/莱斯/对数正态四大分布原样复用**；"两个独立高斯变量的模服从瑞利"就是该笔记里那句"瑞利 = 两个独立同方差高斯变量的模" |
-| [[vault-notes/communication/03-random-processes]] 窄带过程 | [[vault-notes/math/probability/03-random-variables-distributions|3.随机变量及其分布]] 的"两级衰落"图 | 笔记中快衰落（瑞利/莱斯）↔ 通信原理里"窄带噪声包络"；**同一数学、两种语境** |
-| [[vault-notes/communication/04-channel]] 离散信道容量 | [[vault-notes/math/probability/02-conditional-probability-independence|条件概率及事件的独立性]] | 信道容量 $C=\max[H(x)-H(x/y)]$ 中的条件熵 $H(x/y)$ 由**贝叶斯公式**算出（原书 4.6.1 例即用贝叶斯） |
-| [[vault-notes/communication/04-channel]] 随参信道衰落 | [[vault-notes/math/probability/03-random-variables-distributions|3.随机变量及其分布]] 的瑞利分布 | 多径衰落包络服从瑞利分布——**通信原理讲物理成因，概率论讲数学形式** |
-| [[vault-notes/communication/09-optimal-reception]] | [[vault-notes/math/probability/02-conditional-probability-independence|条件概率及事件的独立性]] 的贝叶斯公式 | **最大后验准则 MAP 就是贝叶斯公式的直接应用**：$P(s_i/r)\propto P(r/s_i)P(s_i)$ |
+| [[vault-notes/communication/01-introduction]] 信息量与熵 | [[vault-notes/math/probability/01-basic-concepts\|1.基本概念]]——概率的定义与性质 | 信息量 $I=\log_2\frac1P$ 是**概率的函数**；熵是概率的加权平均 |
+| [[vault-notes/communication/03-random-processes]] 全章 | [[vault-notes/math/probability/03-random-variables-distributions\|3.随机变量及其分布]] | **高斯/瑞利/莱斯/对数正态四大分布原样复用**；"两个独立高斯变量的模服从瑞利"就是该笔记里那句"瑞利 = 两个独立同方差高斯变量的模" |
+| [[vault-notes/communication/03-random-processes]] 窄带过程 | [[vault-notes/math/probability/03-random-variables-distributions\|3.随机变量及其分布]] 的"两级衰落"图 | 笔记中快衰落（瑞利/莱斯）↔ 通信原理里"窄带噪声包络"；**同一数学、两种语境** |
+| [[vault-notes/communication/04-channel]] 离散信道容量 | [[vault-notes/math/probability/02-conditional-probability-independence\|条件概率及事件的独立性]] | 信道容量 $C=\max[H(x)-H(x/y)]$ 中的条件熵 $H(x/y)$ 由**贝叶斯公式**算出（原书 4.6.1 例即用贝叶斯） |
+| [[vault-notes/communication/04-channel]] 随参信道衰落 | [[vault-notes/math/probability/03-random-variables-distributions\|3.随机变量及其分布]] 的瑞利分布 | 多径衰落包络服从瑞利分布——**通信原理讲物理成因，概率论讲数学形式** |
+| [[vault-notes/communication/09-optimal-reception]] | [[vault-notes/math/probability/02-conditional-probability-independence\|条件概率及事件的独立性]] 的贝叶斯公式 | **最大后验准则 MAP 就是贝叶斯公式的直接应用**：$P(s_i/r)\propto P(r/s_i)P(s_i)$ |
 
 > [!tip] 联动复习法
 > 先读 [[vault-notes/math/probability/03-random-variables-distributions|3.随机变量及其分布]] 的第五节「常见分布」，再读 [[vault-notes/communication/03-random-processes]] 第五、六节——你会发现**同一组公式出现在两个文件夹，但一个问"分布长什么样"、一个问"接收机怎么设计"**。这正是"数学 → 工程"的完整链条。
@@ -46,13 +46,13 @@ related: []
 
 | 通信原理 | 用到的线代知识 | 具体接口 |
 | --- | --- | --- |
-| [[vault-notes/communication/11-error-control-coding]] 线性分组码 | [[vault-notes/math/linear-algebra/02-solving-linear-systems|线性方程组求解]] | **监督矩阵 $H$、生成矩阵 $G$、伴随式 $S=RH^T$**——整章就是模 2 域上的矩阵运算；$G=[I_k\vert Q]$、$H=[P\vert I_r]$ 是分块矩阵 |
-| [[vault-notes/communication/11-error-control-coding]] 码距 | [[vault-notes/math/linear-algebra/10-applications|线性代数的应用]] | 最小码距 = 码字集合中"最稀疏"的两点距离 → **最小距离问题**；纠错译码 = 找最近码字（最优化） |
-| [[vault-notes/communication/09-optimal-reception]] | [[vault-notes/math/linear-algebra/10-applications|线性代数的应用]] | **最小欧氏距离判决**即最小二乘拟合；匹配滤波器是施瓦茨不等式取等条件 |
-| [[vault-notes/communication/11-error-control-coding]] 卷积码 | [[vault-notes/math/linear-algebra/06-eigenvalues-eigenvectors|特征值与特征向量]] | 状态图/网格图就是**状态转移矩阵**的图形化；状态数 $2^{N-1}$ 与矩阵维数对应 |
-| [[vault-notes/communication/12-orthogonal-codes-pn-sequences]] | [[vault-notes/math/linear-algebra/02-solving-linear-systems|线性方程组求解]] | **哈达玛矩阵** $H_nH_n^T=nI$ 是正交矩阵；沃尔什函数系 = 正交基 |
-| [[vault-notes/communication/06-digital-baseband]] 时域均衡 | [[vault-notes/math/linear-algebra/11-numerical-linear-algebra|数值线性代数]] | 迫零均衡**解线性方程组**求抽头系数；系数矩阵病态→需正则化（MMSE 的代数解释） |
-| [[vault-notes/communication/11-error-control-coding]] 维特比译码 | [[vault-notes/math/linear-algebra/11-numerical-linear-algebra|数值线性代数]] | 网格图上的**动态规划**（加-比-选），与最短路径算法同源 |
+| [[vault-notes/communication/11-error-control-coding]] 线性分组码 | [[vault-notes/math/linear-algebra/02-solving-linear-systems\|线性方程组求解]] | **监督矩阵 $H$、生成矩阵 $G$、伴随式 $S=RH^T$**——整章就是模 2 域上的矩阵运算；$G=[I_k\vert Q]$、$H=[P\vert I_r]$ 是分块矩阵 |
+| [[vault-notes/communication/11-error-control-coding]] 码距 | [[vault-notes/math/linear-algebra/10-applications\|线性代数的应用]] | 最小码距 = 码字集合中"最稀疏"的两点距离 → **最小距离问题**；纠错译码 = 找最近码字（最优化） |
+| [[vault-notes/communication/09-optimal-reception]] | [[vault-notes/math/linear-algebra/10-applications\|线性代数的应用]] | **最小欧氏距离判决**即最小二乘拟合；匹配滤波器是施瓦茨不等式取等条件 |
+| [[vault-notes/communication/11-error-control-coding]] 卷积码 | [[vault-notes/math/linear-algebra/06-eigenvalues-eigenvectors\|特征值与特征向量]] | 状态图/网格图就是**状态转移矩阵**的图形化；状态数 $2^{N-1}$ 与矩阵维数对应 |
+| [[vault-notes/communication/12-orthogonal-codes-pn-sequences]] | [[vault-notes/math/linear-algebra/02-solving-linear-systems\|线性方程组求解]] | **哈达玛矩阵** $H_nH_n^T=nI$ 是正交矩阵；沃尔什函数系 = 正交基 |
+| [[vault-notes/communication/06-digital-baseband]] 时域均衡 | [[vault-notes/math/linear-algebra/11-numerical-linear-algebra\|数值线性代数]] | 迫零均衡**解线性方程组**求抽头系数；系数矩阵病态→需正则化（MMSE 的代数解释） |
+| [[vault-notes/communication/11-error-control-coding]] 维特比译码 | [[vault-notes/math/linear-algebra/11-numerical-linear-algebra\|数值线性代数]] | 网格图上的**动态规划**（加-比-选），与最短路径算法同源 |
 
 > [!note] 一句话对应
 > **线性分组码 = 模 2 线性代数**：$H$ 定义"合法码字的子空间"，伴随式 $S$ 是"投影到校验空间的残差"。
@@ -63,7 +63,7 @@ related: []
 
 | 通信原理 | 数字调制笔记 | 具体接口 |
 | --- | --- | --- |
-| [[vault-notes/communication/01-introduction]] 数字通信系统模型 | [[vault-notes/digital-modulation/01-digital-communication-system|数字通信系统的基本组成部分]] | 该笔记的 mermaid 流程图与绪论 §2.3 数字通信系统模型**同一张图**；它把"信源编码/信道编码"分工讲得更工程化 |
+| [[vault-notes/communication/01-introduction]] 数字通信系统模型 | [[vault-notes/digital-modulation/01-digital-communication-system\|数字通信系统的基本组成部分]] | 该笔记的 mermaid 流程图与绪论 §2.3 数字通信系统模型**同一张图**；它把"信源编码/信道编码"分工讲得更工程化 |
 | [[vault-notes/communication/10-source-coding]] | 同上 | 笔记中"信源编码 = 压缩/去冗余"→ 对应抽样/量化/PCM/霍夫曼的完整实现 |
 | [[vault-notes/communication/11-error-control-coding]] | 同上 | 笔记中"信道编码 = 加受控冗余"→ 对应汉明码/循环码/卷积码/Turbo/LDPC |
 

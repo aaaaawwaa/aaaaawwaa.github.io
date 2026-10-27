@@ -106,7 +106,7 @@ $$
 
 与 [[vault-notes/communication/09-optimal-reception]] 对照，本笔记只是把它的结论落到 BPSK 的一条具体链路上；[[vault-notes/random-signals/08-matched-filter-detection]] 则从波形检测的角度给出了同一套相关/匹配滤波结构。
 
-| 主题 | [[vault-notes/communication/09-optimal-reception|数字信号的最佳接收]] | 本笔记 |
+| 主题 | [[vault-notes/communication/09-optimal-reception\|数字信号的最佳接收]] | 本笔记 |
 | --- | --- | --- |
 | 准则 | 最大似然、最小错误概率 | 同一准则，落到 BPSK |
 | 结构 | 相关器或匹配滤波器 | 给出完整链路与抽样时刻 |

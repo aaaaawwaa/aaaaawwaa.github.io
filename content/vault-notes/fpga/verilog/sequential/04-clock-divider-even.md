@@ -95,7 +95,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/04-clock-divider-even/fig-01.svg|800]]
+![800](vault-notes/assets/04-clock-divider-even/fig-01.svg)
 
 - **翻转时刻**：`cnt` 从 0 计到 `DIV/2 - 1 = 4` 时，`clk_out` 翻转一次；`cnt` 归零后继续。
 - **频率与占空比**：输出频率 = 输入频率 / DIV；本例 DIV = 10，输入 50MHz，输出 5MHz，周期 200ns，占空比 50%。

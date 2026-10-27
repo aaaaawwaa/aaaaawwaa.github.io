@@ -84,7 +84,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/01-registers/fig-01.svg|800]]
+![800](vault-notes/assets/01-registers/fig-01.svg)
 
 - **采样时刻**：`data_out` 只在 `clk` 上升沿更新；`data_in` 变为 `0xA5` 后，`data_out` 在下一个采样沿才跟着变化，因此晚一拍。
 - **复位**：`rst_n` 低电平有效，属于异步复位；复位期间 `data_out` 被强制为 `0`，不等待时钟沿。

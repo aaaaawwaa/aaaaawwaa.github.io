@@ -128,7 +128,7 @@ graph TD
 | 🧮 [[vault-notes/communication/a-formula-cheatsheet]] | 全书公式按章汇总 + **Top10 必背公式**，考前冲刺用 |
 | 🗺️ 知识图谱 Canvas | 13 章可视化导图（含三大矛盾与跨库枢纽），Canvas 视图打开 |
 | 🔗 [[vault-notes/communication/b-cross-library-links]] | 与**概率论 / 线性代数 / 5G / FPGA / Matlab** 文件夹的知识接口 + 三条跨库复习路线 |
-| 🎲 [[vault-notes/random-signals/00-knowledge-map|随机信号处理子库]] | 概率 → 随机过程 → 时域/频域 → 估计/检测 → MATLAB 实验 |
+| 🎲 [[vault-notes/random-signals/00-knowledge-map\|随机信号处理子库]] | 概率 → 随机过程 → 时域/频域 → 估计/检测 → MATLAB 实验 |
 
 > [!tip] 三种打开方式
 > - 想**系统学**：从 [[vault-notes/communication/01-introduction]] 顺着每章末尾的"下一章"逐章推进

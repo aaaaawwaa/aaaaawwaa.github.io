@@ -107,7 +107,7 @@ $$
 
 与 [[vault-notes/communication/07-digital-bandpass]] 的公式对照如下。那里的 $r=a^2/(2\sigma_n^2)$ 在匹配滤波、最佳抽样下就等于 $E_b/N_0$，所以 $\frac12\operatorname{erfc}(\sqrt r)$ 与 $Q(\sqrt{2E_b/N_0})$ 是同一个数。
 
-| 项目 | [[vault-notes/communication/07-digital-bandpass|数字带通传输系统]] | 本笔记 |
+| 项目 | [[vault-notes/communication/07-digital-bandpass\|数字带通传输系统]] | 本笔记 |
 | --- | --- | --- |
 | 信噪比变量 | $r=a^2/(2\sigma_n^2)$ | $E_b/N_0$ |
 | 2PSK 误码率 | $\frac12\operatorname{erfc}(\sqrt r)$ | $Q(\sqrt{2E_b/N_0})$ |

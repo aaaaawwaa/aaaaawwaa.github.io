@@ -248,7 +248,7 @@ $$\boxed{\text{假同步概率 }P_2=\frac{\sum_{i=0}^{m}C_n^i}{2^n}}\quad(\text{
 | 载波同步、相位模糊 | [[vault-notes/communication/07-digital-bandpass]] 的 2PSK 倒 π；[[vault-notes/communication/09-optimal-reception]] 的相干接收 |
 | 位同步、定时误差 | [[vault-notes/communication/06-digital-baseband]] 的眼图与定时灵敏度 |
 | 群同步、巴克码 | [[vault-notes/communication/10-source-coding]] 的 E1 帧同步码 0011011 |
-| 漏同步/假同步 | [[vault-notes/math/probability/01-basic-concepts|1. 概率论的基本概念]] 的二项分布 |
+| 漏同步/假同步 | [[vault-notes/math/probability/01-basic-concepts\|1. 概率论的基本概念]] 的二项分布 |
 | 网同步 | [[vault-notes/5g/phy/04-physical-channels-signals]] 的授时与同步信号 |
 
 **通信方向应用**：

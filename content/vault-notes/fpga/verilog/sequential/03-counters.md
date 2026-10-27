@@ -91,7 +91,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/03-counters/fig-01.svg|800]]
+![800](vault-notes/assets/03-counters/fig-01.svg)
 
 - **计数条件**：`en = 1` 时，每个 `clk` 上升沿 `cnt` 加一；`en = 0` 时保持原值。
 - **归零**：`cnt` 计到 `CNT_MAX = 9` 后回到 0；图中只画到 6，剩余过程按同样规律继续。

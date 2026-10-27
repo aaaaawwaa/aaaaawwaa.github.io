@@ -88,7 +88,7 @@ $$P_e=Q\left(\frac{E}{\sqrt{N_0E/2}}\right)=Q\left(\sqrt{\frac{2E_b}{N_0}}\right
 > [!example] 与通信原理的记号换算
 > 通信原理用单边谱密度 $n_0$ 表示，误码率写作 $P_e=\frac{1}{2}\mathrm{erfc}\sqrt{E_b/n_0}$。利用 $Q(x)=\frac{1}{2}\mathrm{erfc}(x/\sqrt{2})$，两种写法完全一致。若 $E_b/N_0=9.6$ dB（约 9.12），则 $\sqrt{2E_b/N_0}\approx4.27$，$P_e\approx10^{-5}$。
 
-| 项目 | 本库（统计检测） | [[vault-notes/communication/09-optimal-reception|最佳接收]] |
+| 项目 | 本库（统计检测） | [[vault-notes/communication/09-optimal-reception\|最佳接收]] |
 | --- | --- | --- |
 | 噪声记号 | $N_0$ 为单边谱密度 | $n_0$ 为单边谱密度 |
 | 判决准则 | NP / Bayes / 最大似然 | 最小差错概率 / MAP / ML |

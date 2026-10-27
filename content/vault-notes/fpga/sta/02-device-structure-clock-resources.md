@@ -151,7 +151,7 @@ CLKFB ────────────────────────�
 
 ### 5.1 时序图
 
-![[vault-notes/assets/02-device-structure-clock-resources/fig-01.svg|1100]]
+![1100](vault-notes/assets/02-device-structure-clock-resources/fig-01.svg)
 
 ### 5.2 频率换算
 

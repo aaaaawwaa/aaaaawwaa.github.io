@@ -126,7 +126,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/06-key-debounce/fig-01.svg|800]]
+![800](vault-notes/assets/06-key-debounce/fig-01.svg)
 
 - **抖动过滤**：`key_in` 在按下/松开时快速跳变，只要不能连续保持 20ms，`key_reg` 就不更新。
 - **稳定更新**：`key_in` 连续保持 20ms（图中 4 格）后，`key_reg` 才跟随；本例先确认按下，再确认松开。

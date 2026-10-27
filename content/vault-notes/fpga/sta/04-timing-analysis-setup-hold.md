@@ -107,7 +107,7 @@ flowchart LR
 
 ### 3.2 时序图
 
-![[vault-notes/assets/04-timing-analysis-setup-hold/fig-01.svg|1100]]
+![1100](vault-notes/assets/04-timing-analysis-setup-hold/fig-01.svg)
 
 ### 3.3 关键时间节点
 
@@ -140,7 +140,7 @@ flowchart LR
 | **Setup check** | 发起沿 → **下一周期**的捕获沿 | 数据在一个周期内必须传到并稳定 |
 | **Hold check** | 同周期的发起沿 → 捕获沿 | 数据不能在新数据到来前"冲掉"旧数据 |
 
-![[vault-notes/assets/04-timing-analysis-setup-hold/fig-02.svg|1100]]
+![1100](vault-notes/assets/04-timing-analysis-setup-hold/fig-02.svg)
 
 ### 4.1 时钟偏斜（skew）如何进入
 
@@ -197,7 +197,7 @@ $$T_{period}=T_{cko}+T_{logic}+T_{net}+T_{setup}-T_{clk\_skew},\qquad T_{clk\_sk
 
 ### 6.2 时序图：一条 reg-to-reg 路径的分解
 
-![[vault-notes/assets/04-timing-analysis-setup-hold/fig-03.svg|1000]]
+![1000](vault-notes/assets/04-timing-analysis-setup-hold/fig-03.svg)
 
 | 时间点 | 事件 | 数值（示意） |
 | --- | --- | --- |

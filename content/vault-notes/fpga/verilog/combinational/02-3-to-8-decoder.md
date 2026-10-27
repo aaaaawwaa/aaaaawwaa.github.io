@@ -87,7 +87,7 @@ end
 
 # 时序分析
 
-![[vault-notes/assets/02-3-to-8-decoder/fig-01.svg|800]]
+![800](vault-notes/assets/02-3-to-8-decoder/fig-01.svg)
 
 - **译码关系**：`in1/in2/in3` 从 `000` 递增到 `111`，`out[7:0]` 对应只有一位为 1（one-hot）；图中 `out` 用十六进制简写（0x01、0x02、…、0x80）。
 - **传播延迟**：输入变化后，`out` 经过 `Tpd` 才稳定；8 个输出位的路径延迟可能略有差异。

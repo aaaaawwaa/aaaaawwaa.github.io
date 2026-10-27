@@ -98,7 +98,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/08-running-led/fig-01.svg|800]]
+![800](vault-notes/assets/08-running-led/fig-01.svg)
 
 - **移位节拍**：`cnt` 每计满 `TIME_500MS` 产生一次 `timer_tick`，`led` 在此时循环左移一位。
 - **循环关系**：`{led[2:0], led[3]}` 把最高位移到最低位，所以 `1000` 之后回到 `0001`，不会移出有效位。

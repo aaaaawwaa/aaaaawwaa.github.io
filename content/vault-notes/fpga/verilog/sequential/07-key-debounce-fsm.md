@@ -159,7 +159,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/07-key-debounce-fsm/fig-01.svg|800]]
+![800](vault-notes/assets/07-key-debounce-fsm/fig-01.svg)
 
 - **状态流转**：`IDLE → PRESS → HOLD → RELEASE → IDLE`；按下和松开各自需要连续稳定 20ms 才确认。
 - **抖动处理**：`PRESS` 或 `RELEASE` 期间只要输入回到原状态，就退回上一稳定状态并清零计时。

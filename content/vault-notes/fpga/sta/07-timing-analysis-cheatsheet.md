@@ -104,15 +104,15 @@ created: 2026-10-27
 
 | 图文件 | 讲什么 | 所在笔记 |
 | --- | --- | --- |
-| [[vault-notes/assets/01-design-implementation-flow/fig-01.svg|inverter-propagation-delay]] | 反相器 $t_{pHL}$/$t_{pLH}$ 定义 | [[vault-notes/fpga/sta/01-design-implementation-flow]] |
-| [[vault-notes/assets/02-device-structure-clock-resources/fig-01.svg|mmcm-output-phase]] | MMCM 输出频率/相位关系 | [[vault-notes/fpga/sta/02-device-structure-clock-resources]] |
-| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-01.svg|setup-hold-window]] | $t_{su}$ / $t_{hold}$ 定义 | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
-| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-02.svg|setup-hold-check]] | 发起沿/捕获沿与 skew | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
-| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-03.svg|reg-to-reg-period]] | 周期约束路径分解 | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
-| [[vault-notes/assets/05-timing-constraints-period-offset/fig-01.svg|inverted-clock-half-period]] | 反相时钟只剩半周期 | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
-| [[vault-notes/assets/05-timing-constraints-period-offset/fig-02.svg|input-offset]] | 输入偏移（12ns AFTER / 8ns BEFORE） | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
-| [[vault-notes/assets/05-timing-constraints-period-offset/fig-03.svg|output-offset]] | 输出偏移（13ns BEFORE / 7ns AFTER） | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
-| [[vault-notes/assets/06-timing-exceptions-priority/fig-01.svg|multicycle-path]] | 预定标计数器多周期路径 | [[vault-notes/fpga/sta/06-timing-exceptions-priority]] |
+| [[vault-notes/assets/01-design-implementation-flow/fig-01.svg\|inverter-propagation-delay]] | 反相器 $t_{pHL}$/$t_{pLH}$ 定义 | [[vault-notes/fpga/sta/01-design-implementation-flow]] |
+| [[vault-notes/assets/02-device-structure-clock-resources/fig-01.svg\|mmcm-output-phase]] | MMCM 输出频率/相位关系 | [[vault-notes/fpga/sta/02-device-structure-clock-resources]] |
+| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-01.svg\|setup-hold-window]] | $t_{su}$ / $t_{hold}$ 定义 | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
+| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-02.svg\|setup-hold-check]] | 发起沿/捕获沿与 skew | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
+| [[vault-notes/assets/04-timing-analysis-setup-hold/fig-03.svg\|reg-to-reg-period]] | 周期约束路径分解 | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] |
+| [[vault-notes/assets/05-timing-constraints-period-offset/fig-01.svg\|inverted-clock-half-period]] | 反相时钟只剩半周期 | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
+| [[vault-notes/assets/05-timing-constraints-period-offset/fig-02.svg\|input-offset]] | 输入偏移（12ns AFTER / 8ns BEFORE） | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
+| [[vault-notes/assets/05-timing-constraints-period-offset/fig-03.svg\|output-offset]] | 输出偏移（13ns BEFORE / 7ns AFTER） | [[vault-notes/fpga/sta/05-timing-constraints-period-offset]] |
+| [[vault-notes/assets/06-timing-exceptions-priority/fig-01.svg\|multicycle-path]] | 预定标计数器多周期路径 | [[vault-notes/fpga/sta/06-timing-exceptions-priority]] |
 
 ## 七、自检十问（考前/上板前）
 

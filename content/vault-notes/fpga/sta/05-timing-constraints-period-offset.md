@@ -89,7 +89,7 @@ create_clock -period 10.000 -waveform {0.000 4.000} [get_ports SYS_CLK]
 
 课件第 31 页的例子：FF1 用 CLK 上升沿触发，同一 CLK 经非门后接到 FF2 的时钟端（下降沿触发）。**PERIOD 约束会自动处理时钟端反相问题：相邻同步元件时钟相位相反时，其间延迟被默认限制为周期的一半。**
 
-![[vault-notes/assets/05-timing-constraints-period-offset/fig-01.svg|1000]]
+![1000](vault-notes/assets/05-timing-constraints-period-offset/fig-01.svg)
 
 ### 1.5 关键时间节点与说明
 
@@ -163,7 +163,7 @@ NET DATA_IN OFFSET=IN 12ns AFTER CLK;    # 数据在时钟沿后 12 ns 到达
 NET DATA_IN OFFSET=IN 8ns BEFORE CLK;    # 等价写法：时钟沿前 8 ns 已就绪（20-12=8）
 ```
 
-![[vault-notes/assets/05-timing-constraints-period-offset/fig-02.svg|1050]]
+![1050](vault-notes/assets/05-timing-constraints-period-offset/fig-02.svg)
 
 ### 2.5 输出侧：要求的数据稳定时间
 
@@ -187,7 +187,7 @@ NET DATA_OUT OFFSET=OUT 13ns BEFORE CLK;  # 输出须在下一时钟沿前 13 ns
 NET DATA_OUT OFFSET=OUT 7ns AFTER CLK;    # 等价写法：时钟沿后 7 ns 稳定（20-13=7）
 ```
 
-![[vault-notes/assets/05-timing-constraints-period-offset/fig-03.svg|1050]]
+![1050](vault-notes/assets/05-timing-constraints-period-offset/fig-03.svg)
 
 ### 2.7 关键时间节点与信号变化（两图对照）
 
@@ -245,7 +245,7 @@ NET DATA_OUT OFFSET=OUT 7ns AFTER CLK;    # 等价写法：时钟沿后 7 ns 稳
 | --- | --- | --- |
 | 28 | 周期约束（覆盖/不覆盖的路径） | 1.1 |
 | 29 | 周期约束（概念、松紧取舍） | 1.2 |
-| 30 | 周期约束的计算（$T_{period}$ 公式） | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold#六、周期约束的计算（核心公式）|04 第六节]] |
+| 30 | 周期约束的计算（$T_{period}$ 公式） | [[vault-notes/fpga/sta/04-timing-analysis-setup-hold#六、周期约束的计算（核心公式）\|04 第六节]] |
 | 31 | 周期约束命令 + 反相时钟例 | 1.3、1.4 |
 | 32 | 偏移约束（定义、只用于 PAD） | 2.1 |
 | 33 | 偏移约束（OFFSET IN/OUT 优化的路径） | 2.1 |

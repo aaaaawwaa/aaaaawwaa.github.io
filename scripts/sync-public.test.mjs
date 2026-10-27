@@ -81,7 +81,7 @@ test('explicit images are copied and embedded references are rewritten', async t
   await writeFile(path.join(f.vault,'assets/图.svg'),'<svg xmlns="http://www.w3.org/2000/svg"></svg>');
   await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}],[{source:'assets/图.svg',destination:'vault-notes/assets/diagram.svg'}]);
   const result=run(f,true); assert.equal(result.status,0,result.stderr);
-  assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/!\[\[vault-notes\/assets\/diagram.svg\|600\]\]/);
+  assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/!\[[^\]]*\]\(vault-notes\/assets\/diagram\.svg\)/, 'SVG 嵌入改为站点内图片路径');
 });
 test('unresolvedPolicy text converts unpublished links to readable text and allows apply', async t => {
   const f=await fixture(t);
@@ -106,4 +106,28 @@ test('plain wikilinks to explicit assets are rewritten to asset destinations', a
   await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}],[{source:'assets/x.svg',destination:'vault-notes/assets/x.svg'}]);
   const result=run(f,true); assert.equal(result.status,0,result.stderr);
   assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/\[\[vault-notes\/assets\/x\.svg\|示意图\]\]/);
+});
+test('escaped pipe inside table wikilinks is preserved', async t => {
+  const f=await fixture(t); await mkdir(path.join(f.vault,'assets'));
+  await writeFile(path.join(f.vault,'a.md'),'| 图 | 说明 |\n| --- | --- |\n| [[assets/x.svg\\|示意图]] | 说明 |\n');
+  await writeFile(path.join(f.vault,'assets/x.svg'),'<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}],[{source:'assets/x.svg',destination:'vault-notes/assets/x.svg'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.match(out,/\[\[vault-notes\/assets\/x\.svg\\\|示意图\]\]/, '表格中的转义竖线必须保留');
+});
+
+test('svg embeds become markdown images; png embeds stay wikilink embeds', async t => {
+  const f=await fixture(t); await mkdir(path.join(f.vault,'assets'));
+  await writeFile(path.join(f.vault,'a.md'),'![[assets/x.svg|600]]\n\n![[assets/y.png|400]]\n');
+  await writeFile(path.join(f.vault,'assets/x.svg'),'<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  await writeFile(path.join(f.vault,'assets/y.png'),'png');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}],[
+    {source:'assets/x.svg',destination:'vault-notes/assets/x.svg'},
+    {source:'assets/y.png',destination:'vault-notes/assets/y.png'},
+  ]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.match(out,/!\[[^\]]*\]\(vault-notes\/assets\/x\.svg\)/, 'SVG 应渲染为站点内图片路径');
+  assert.match(out,/!\[\[vault-notes\/assets\/y\.png\|400\]\]/, 'PNG 仍用 wikilink 嵌入');
 });

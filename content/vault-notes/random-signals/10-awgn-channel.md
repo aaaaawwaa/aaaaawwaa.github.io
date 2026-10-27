@@ -104,7 +104,7 @@ $$
 
 [[vault-notes/communication/04-channel]] 从物理传播讲到信道容量，本笔记只保留它最常用的一层抽象。两者的对应关系如下。
 
-| 维度 | [[vault-notes/communication/04-channel|信道]] | 本笔记的 AWGN |
+| 维度 | [[vault-notes/communication/04-channel\|信道]] | 本笔记的 AWGN |
 | --- | --- | --- |
 | 噪声来源 | 起伏噪声（热噪声、散粒噪声） | 抽象为零均值高斯白噪声 |
 | 频谱 | 关心频带内近似平坦 | 全频带平坦，双边 $N_0/2$ |

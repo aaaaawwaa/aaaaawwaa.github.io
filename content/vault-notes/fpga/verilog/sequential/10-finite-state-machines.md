@@ -129,7 +129,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/10-finite-state-machines/fig-01.svg|800]]
+![800](vault-notes/assets/10-finite-state-machines/fig-01.svg)
 
 - **三段式结构**：状态寄存器（时序）、次态逻辑（组合）、输出逻辑（时序）分开编写。
 - **状态转换**：每个 `en` 脉冲到来时 `S0 → S1 → S2 → S0` 循环；`en` 由 500ms 定时器产生，实际只持续一个时钟周期。

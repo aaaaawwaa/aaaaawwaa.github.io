@@ -131,7 +131,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/02-blocking-vs-nonblocking-assignment/fig-01.svg|800]]
+![800](vault-notes/assets/02-blocking-vs-nonblocking-assignment/fig-01.svg)
 
 - **非阻塞 `<=`**：`out1_nb` 和 `out2_nb` 在同一个时钟沿同时更新，`out2_nb` 采到的是上一拍的 `out1_nb`，形成两级寄存器。
 - **阻塞 `=`**：语句按顺序执行，`out2_b` 立即拿到本拍更新后的 `out1_b`，第二级寄存器被合并，`out2_b` 与 `out1_b` 同拍变化。

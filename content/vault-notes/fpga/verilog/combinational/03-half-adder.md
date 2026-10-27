@@ -77,7 +77,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/03-half-adder/fig-01.svg|800]]
+![800](vault-notes/assets/03-half-adder/fig-01.svg)
 
 - **逻辑关系**：`sum = in1 ^ in2`，`cout = in1 & in2`；真值表为 `00→00`、`01/10→10`、`11→01`（依次为 `cout sum`）。
 - **无时钟**：半加器是纯组合逻辑，输出在输入变化后经过 `Tpd` 更新，图中延后 1 格示意。

@@ -90,7 +90,7 @@ set_propety IOSTANDARD "LVCMOS33" [get_ports led[0]]
 
 # 时序分析
 
-![[vault-notes/assets/01-multiplexer/fig-01.svg|800]]
+![800](vault-notes/assets/01-multiplexer/fig-01.svg)
 
 - **选择关系**：`sel = 1` 时 `out = in1`，`sel = 0` 时 `out = in2`；`out` 始终等于被选中的那一路输入。
 - **传播延迟**：组合逻辑没有时钟沿，`sel` 或数据变化后，`out` 经过一段 `Tpd` 才稳定；图中用延迟 1 个时间格（约 5ns）示意。

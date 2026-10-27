@@ -104,7 +104,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/04-full-adder/fig-01.svg|800]]
+![800](vault-notes/assets/04-full-adder/fig-01.svg)
 
 - **逻辑关系**：`sum = in1 ^ in2 ^ cin`；`cout` 为三输入多数（至少两个输入为 1）。
 - **延迟累加**：代码用两个半加器级联，第二级要等第一级的 `sum0` 和 `cout0` 稳定，整体 `Tpd` 大于单个半加器。

@@ -57,7 +57,7 @@ flowchart LR
 
 | 模块 | 核心问题 | 关键笔记 |
 | --- | --- | --- |
-| 系统组成 | 各模块如何分工？ | [[vault-notes/communication/01-introduction]]、[[vault-notes/digital-modulation/01-digital-communication-system|数字通信系统组成]] |
+| 系统组成 | 各模块如何分工？ | [[vault-notes/communication/01-introduction]]、[[vault-notes/digital-modulation/01-digital-communication-system\|数字通信系统组成]] |
 | 信源编码 | 如何压缩、去冗余？ | [[vault-notes/communication/10-source-coding]]、[[vault-notes/random-signals/10-adc-sampling-quantization-noise]] |
 | 信道编码 | 如何加受控冗余、纠错？ | [[vault-notes/communication/11-error-control-coding]] |
 | 数字基带 | 码型、ISI、眼图、均衡 | [[vault-notes/communication/06-digital-baseband]] |

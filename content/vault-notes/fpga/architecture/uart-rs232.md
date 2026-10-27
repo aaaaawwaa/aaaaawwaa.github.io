@@ -136,7 +136,7 @@ UART 一帧由以下部分组成：
 
 ## 4.1 8N1 帧时序
 
-![[vault-notes/assets/uart-rs232/fig-03.svg|800]]
+![800](vault-notes/assets/uart-rs232/fig-03.svg)
 
 以发送 0xA5、115200 baud 为例：
 
@@ -205,7 +205,7 @@ N = f_clk / baud          // 取整数部分
 5. **停止位检查**：采样停止位，若为 0 则报帧错误。
 6. **回到空闲**：等待下一个起始位；连续帧时停止位后紧接下一帧起始位。
 
-![[vault-notes/assets/uart-rs232/fig-04.svg|700]]
+![700](vault-notes/assets/uart-rs232/fig-04.svg)
 
 > [!tip] 为什么要在中点采样
 > 起始位下降沿和每位边界附近最容易受到边沿抖动、上升/下降时间的影响。位中点离两侧边沿最远，采样最稳。

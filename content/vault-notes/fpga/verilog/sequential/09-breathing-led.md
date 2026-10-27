@@ -149,7 +149,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/09-breathing-led/fig-01.svg|800]]
+![800](vault-notes/assets/09-breathing-led/fig-01.svg)
 
 - **PWM 原理**：`cnt_1ms` 在 0~999 循环，`led = (cnt_1ms < duty)`；`duty` 越大，高电平占比越大，LED 越亮。
 - **示例占空比**：图中把 1000 级缩略为 10 级，`duty = 3` 表示 30% 的高电平时间。

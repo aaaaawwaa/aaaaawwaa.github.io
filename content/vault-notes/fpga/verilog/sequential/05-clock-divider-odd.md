@@ -123,7 +123,7 @@ endmodule
 
 # 时序分析
 
-![[vault-notes/assets/05-clock-divider-odd/fig-01.svg|800]]
+![800](vault-notes/assets/05-clock-divider-odd/fig-01.svg)
 
 - **双沿结构**：`clk_p` 在上升沿域产生，`clk_n` 在下降沿域产生；`clk_n` 比 `clk_p` 滞后半个输入周期。
 - **合成结果**：两路相或后，高电平持续 `DIV/2` 个输入周期，得到 50% 占空比；本例 DIV = 5，输出周期 100ns。

@@ -78,6 +78,7 @@ async function main() {
       if (/^\s*(```|~~~)/.test(line)) {inFence=!inFence;return line;} if(inFence) return line;
       const saved=[]; line=line.replace(/`[^`]*`/g,m=>{saved.push(m);return `@@WIKICODE${saved.length-1}@@`;});
       line=line.replace(/(!?)\[\[([^\]]+)\]\]/g,(all,embed,inner)=>{
+        const escapedPipe=inner.includes('\\|');
         const [raw,...labels]=inner.split('|'), target=raw.replace(/\\$/,'').trim();
         if(target.startsWith('#')) return all;
         const base=target.split('#')[0], kind=embed?'asset':'note', match=find(base,x,kind);
@@ -86,7 +87,8 @@ async function main() {
           const linkedAsset=find(base,x,'asset');
           if(linkedAsset) {
             const anchorPart=target.includes('#')?'#'+target.split('#').slice(1).join('#'):'';
-            const label=labels.length?'|'+labels.join('|'):'';
+            const sep=escapedPipe?'\\|':'|';
+            const label=labels.length?sep+labels.join(sep):'';
             return '[['+linkedAsset.destination+anchorPart+label+']]';
           }
         }
@@ -99,11 +101,21 @@ async function main() {
         }
         const anchor=target.includes('#')?'#'+target.split('#').slice(1).join('#'):'';
         const out=kind==='note'?match.destination.replace(/\.md$/,''):match.destination;
-        const label=labels.length?'|'+labels.join('|'):'';
+        // Quartz 对 ![[x.svg]] 会渲染成 <object data="...">，而链接改写只处理 img src，
+        // 因此 SVG 嵌入改用 Markdown 图片语法，浏览器会得到正确的相对路径。
+        if(embed && kind==='asset' && out.toLowerCase().endsWith('.svg')) {
+          const alt=labels.length?labels.join('|'):path.posix.basename(out,'.svg');
+          return `![${alt}](${out})`;
+        }
+        const sep=escapedPipe?'\\|':'|';
+        const label=labels.length?sep+labels.join(sep):'';
         return `${embed}[[${out}${anchor}${label}]]`;
       });
       line=line.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,(all,alt,url)=>{
         if(/^(?:https?:|data:)/i.test(url)) return all;
+        // 已是站点内目标路径的图片（如由 SVG 嵌入改写的 ![](vault-notes/assets/x.svg)）
+        // 不再二次改写，交由 Quartz 统一计算相对地址
+        if(/^vault-notes\//i.test(url)) return all;
         let target=url; try { target=decodeURIComponent(url); } catch {}
         const match=find(target,x,'asset');
         if(!match){

@@ -118,7 +118,7 @@ set_clock_groups -asynchronous -group {clkA} -group {clkB}
 >
 > 可见：小计数器寄存器可能每个 CLK 翻转 1 次 → 寄存器之间最大延时 **1 个 CLK**；而大计数器寄存器每 4 个 CLK 才可能翻转一次 → 低位到高位的路径最大延时可放宽到 **4 个 CLK**。
 
-![[vault-notes/assets/06-timing-exceptions-priority/fig-01.svg|1000]]
+![1000](vault-notes/assets/06-timing-exceptions-priority/fig-01.svg)
 
 ### 4.2 关键时间节点
 
@@ -219,7 +219,7 @@ $$N\cdot T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})$$
 | 课件页 | 主题 | 本笔记位置 |
 | --- | --- | --- |
 | 40 | False Paths（不可敏化路径） | 三 |
-| 41 | 偏移约束 100 MHz 提问 | [[vault-notes/fpga/sta/05-timing-constraints-period-offset#2.8 例题推演：100 MHz 系统怎么填约束（课件第 41 页）|05 第 2.8 节]] |
+| 41 | 偏移约束 100 MHz 提问 | [[vault-notes/fpga/sta/05-timing-constraints-period-offset#2.8 例题推演：100 MHz 系统怎么填约束（课件第 41 页）\|05 第 2.8 节]] |
 | 42 | Path-Specific Timing Constraints（全局约束的局限） | 一 |
 | 43 | Path-Specific Timing Constraints（适用场景） | 二 |
 | 44 | 一条路径也可单独优化 | 一、二 |
