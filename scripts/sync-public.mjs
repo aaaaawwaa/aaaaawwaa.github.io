@@ -30,6 +30,11 @@ async function noSymlinks(root, rel, allowMissing=false) {
 async function main() {
   if (!options.vault||!options.site||!options.manifest) throw new Error('用法：node sync-public.mjs --vault <Vault> --site <Wiki> --manifest <清单> [--apply]');
   const vault=await fs.realpath(options.vault), site=await fs.realpath(options.site), content=await fs.realpath(path.join(site,'content'));
+  function inside(root, target) {
+    const relative=path.relative(root,target);
+    return relative==='' || (relative!=='..' && !relative.startsWith('..'+path.sep) && !path.isAbsolute(relative));
+  }
+  if (inside(vault,site) || inside(site,vault)) throw new Error('Vault 与 Wiki 项目目录不能相同或嵌套');
   const config=JSON.parse(await fs.readFile(options.manifest,'utf8'));
   if (config.version!==1||!Array.isArray(config.files)||!Array.isArray(config.assets)) throw new Error('清单必须包含 version=1、files 和 assets 数组');
   const entries=[...config.files.map(x=>({...x,kind:'note'})),...config.assets.map(x=>({...x,kind:'asset'}))];
@@ -51,7 +56,8 @@ async function main() {
     let raw=norm(target).split('#')[0].trim();
     if (!raw) return null;
     const relative=path.posix.normalize(path.posix.join(path.posix.dirname(current.source),raw));
-    const keys=[raw.toLowerCase(),relative.toLowerCase()];
+    const key=value=>kind==='note'?value.toLowerCase().replace(/\.md$/i,''):value.toLowerCase();
+    const keys=[key(raw),key(relative)];
     let matches=entries.filter(x=>x.kind===kind && keys.includes(x.source.toLowerCase().replace(kind==='note'?/\.md$/i:/$^/,'')));
     if (!matches.length) matches=(byName.get(path.posix.basename(raw).replace(/\.md$/i,'').toLowerCase())||[]).filter(x=>x.kind===kind);
     return matches.length===1 ? matches[0] : null;

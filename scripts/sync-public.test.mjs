@@ -60,6 +60,22 @@ test('manual edits to a previously synced file block a later update', async t =>
   assert.equal(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),'manual edit');
 });
 
+test('refuses to write when the site content directory is inside the original vault', async t => {
+  const f=await fixture(t); await mkdir(path.join(f.vault,'content')); await writeFile(path.join(f.vault,'a.md'),'one');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]); f.site=f.vault;
+  const result=run(f,true); assert.notEqual(result.status,0);
+  await assert.rejects(access(path.join(f.vault,'content/vault-notes/a.md')));
+});
+
+test('matches an explicit full path with .md even when basenames are duplicated', async t => {
+  const f=await fixture(t); await mkdir(path.join(f.vault,'left')); await mkdir(path.join(f.vault,'right'));
+  await writeFile(path.join(f.vault,'a.md'),'[[left/same.md|具体笔记]]');
+  await writeFile(path.join(f.vault,'left/same.md'),'left'); await writeFile(path.join(f.vault,'right/same.md'),'right');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'},{source:'left/same.md',destination:'vault-notes/left.md'},{source:'right/same.md',destination:'vault-notes/right.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  assert.match(await readFile(path.join(f.content,'vault-notes/a.md'),'utf8'),/\[\[vault-notes\/left\|具体笔记\]\]/);
+});
+
 test('explicit images are copied and embedded references are rewritten', async t => {
   const f=await fixture(t); await mkdir(path.join(f.vault,'assets')); await writeFile(path.join(f.vault,'a.md'),'![[图.svg|600]]');
   await writeFile(path.join(f.vault,'assets/图.svg'),'<svg xmlns="http://www.w3.org/2000/svg"></svg>');
