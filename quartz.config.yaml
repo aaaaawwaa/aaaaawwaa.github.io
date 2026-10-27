@@ -11,6 +11,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: zh-CN
+  defaultDateType: modified
   baseUrl: aaaaawwaa.github.io
   ignorePatterns:
     - private
@@ -106,7 +107,7 @@ plugins:
   - source: "github:quartz-community/roam"
     enabled: false
     order: 92
-  - source: "github:quartz-community/quartz-fonts"
+  - source: "github:quartz-community/fonts"
     enabled: true
   - source: "github:quartz-community/remove-draft"
     enabled: true

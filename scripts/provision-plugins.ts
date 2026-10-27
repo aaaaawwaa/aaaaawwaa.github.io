@@ -31,6 +31,8 @@ const ROOT = process.cwd()
 const PLUGINS_DIR = path.join(ROOT, ".quartz", "plugins")
 const CONFIG_PATH = path.join(ROOT, "quartz.config.yaml")
 const PREFIX = "github:quartz-community/"
+// 少数插件的仓库名与 npm 包名不一致（仓库用短名，npm 包带 quartz- 前缀）
+const NPM_ALIASES: Record<string, string> = { fonts: "@quartz-community/quartz-fonts" }
 const force = process.argv.includes("--force")
 
 interface PluginEntry {
@@ -75,7 +77,7 @@ function provision(name: string) {
 
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-plugin-"))
   try {
-    const spec = `@quartz-community/${name}@latest`
+    const spec = `${NPM_ALIASES[name] ?? `@quartz-community/${name}`}@latest`
     const packed = execSync(`npm pack ${spec} --pack-destination "${tmp}" --silent`, {
       cwd: ROOT,
       encoding: "utf-8",
