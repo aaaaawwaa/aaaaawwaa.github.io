@@ -27,6 +27,10 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Test publishing safeguards
+        run: npm run test:public
+      - name: Check public content
+        run: npm run check:public
       - name: Check content links (case-sensitive)
         run: node scripts/check-links-source.mjs
       - name: Install Quartz plugins

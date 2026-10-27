@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "files": [
+    {"source":"数字信号处理/1. 离散时间信号与系统.md","destination":"vault-notes/discrete-time-systems.md","title":"离散时间信号与系统"},
+    {"source":"数字信号处理/2. Z变换与离散时间傅里叶变换(DTFT).md","destination":"vault-notes/z-transform-and-dtft.md","title":"Z 变换与离散时间傅里叶变换"},
+    {"source":"数字信号处理/3. 离散傅里叶变换(DFT).md","destination":"vault-notes/discrete-fourier-transform.md","title":"离散傅里叶变换"},
+    {"source":"数字信号处理/4. 快速傅里叶变换(FFT).md","destination":"vault-notes/fast-fourier-transform.md","title":"快速傅里叶变换"},
+    {"source":"数字信号处理/5. 数字滤波器的基本结构.md","destination":"vault-notes/digital-filter-structures.md","title":"数字滤波器的基本结构"},
+    {"source":"通信原理/1. 绪论.md","destination":"vault-notes/communication-introduction.md","title":"通信原理绪论"},
+    {"source":"通信原理/2. 确知信号.md","destination":"vault-notes/deterministic-signals.md","title":"确知信号"},
+    {"source":"通信原理/3. 随机过程.md","destination":"vault-notes/random-process.md","title":"随机过程"},
+    {"source":"通信原理/4. 信道.md","destination":"vault-notes/communication-channel.md","title":"信道"},
+    {"source":"通信原理/13. 同步原理.md","destination":"vault-notes/synchronization-principles.md","title":"同步原理"}
+  ],
+  "assets": [
+    {"source":"Assets/Attachments/Pasted image 20261024192436.png","destination":"vault-notes/assets/sampling-time-frequency.png"},
+    {"source":"Assets/Attachments/Pasted image 20261024193148.png","destination":"vault-notes/assets/nyquist-critical-sampling.png"},
+    {"source":"Assets/Attachments/Pasted image 20261024203029.png","destination":"vault-notes/assets/z-transform-convergence.png"}
+  ]
+}
