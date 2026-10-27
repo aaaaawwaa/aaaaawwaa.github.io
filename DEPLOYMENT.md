@@ -3,6 +3,20 @@
 > 目标：把 `content/` 的 Markdown 构建成静态站点并通过 HTTPS 对外访问。
 > 站点是**纯静态**产物（`public/`），不需要服务器、数据库或后端运行时。
 
+## 0. 当前状态（2026-10-27）
+
+| 项 | 值 |
+| --- | --- |
+| 线上地址 | <https://aaaaawwaa.github.io/> ✅ |
+| 仓库 | `aaaaawwaa/aaaaawwaa.github.io`（公开） |
+| 托管方式 | GitHub Pages + GitHub Actions（`build_type=workflow`） |
+| 自动构建 | 推送到 `main` 触发，单次约 14 分钟（大头是 44 个插件的安装与构建） |
+| 发布流程 | 本文件第 6 节 |
+
+> 之所以用 `<用户名>.github.io` 这种「用户站」仓库而不是普通项目仓库：Quartz 5.0.0 的搜索插件把
+> 索引地址与结果链接写成根绝对路径（`/static/contentIndex.json`、`"/" + slug`），部署在
+> `https://<user>.github.io/<repo>/` 这类**子路径**下搜索会整体失效。用户站部署在根路径，不受影响。
+
 ---
 
 ## 0. 前置条件

@@ -2,7 +2,8 @@
 
 > 测试时间：2026-10-27（Asia/Shanghai）
 > 测试对象：LumenTrace Wiki（Quartz v5.0.0）
-> 结论：**Phase 1 最小可运行站点已在本机跑通**；Phase 2–5 待实施（远程部署尚未执行，未做任何对外发布）。
+> 结论：**站点已部署上线**（GitHub Pages，HTTPS）：<https://aaaaawwaa.github.io/>
+> Phase 2–4 的工具链已就绪，真实 Vault 笔记的批量发布仍需人工确认清单。
 
 ---
 
@@ -52,7 +53,7 @@
 | 12 | 响应式（电脑/平板/移动） | ✅ | 1440px / 390px 截图验证，无横向溢出 |
 | 13 | Mermaid 渲染 | ✅ | 14 处 mermaid 容器；实测知识网络图渲染成功（依赖 cdnjs 运行时） |
 | 14 | 反向链接 / 目录 | ✅ | 文章页右侧展示「反向链接」「目录」，数据来自内容索引 |
-| 15 | 远程部署与 HTTPS | ❌ 未执行 | 按约定需先获得授权；详见 DEPLOYMENT.md |
+| 15 | 远程部署与 HTTPS | ✅ | 已部署到 GitHub Pages：<https://aaaaawwaa.github.io/>；2026-10-27 21:20 构建成功（build 14m17s + deploy 11s），线上实测见 §3.3 |
 
 ### 3.1 `npm run audit` 实际输出（节选）
 
@@ -142,3 +143,41 @@ npm run dev                 # http://localhost:8080
 ## 2026-10-27 视觉升级复验
 
 本轮 npm run verify 退出码为 0，66 个 HTML 页面、1825 个站内链接、0 断链。已验证桌面与手机明暗主题、全文搜索和公式排版。详细记录见 notes/dsh-review-and-visual-upgrade.md。本轮未对外部署。
+---
+
+## 8. Phase 5 部署记录（2026-10-27 完成）
+
+### 8.1 部署结果
+
+| 项目 | 值 |
+| --- | --- |
+| 站点地址 | <https://aaaaawwaa.github.io/> |
+| 仓库 | `aaaaawwaa/aaaaawwaa.github.io`（公开，main 分支） |
+| 托管 | GitHub Pages（Source = GitHub Actions，`build_type=workflow`） |
+| 证书 | HTTPS 已启用（`https_enforced: true`） |
+| 工作流 | `.github/workflows/deploy.yml`：源码链接检查 → npm ci → 安装插件 → 构建 → 产物自检 → 上传 → 部署 |
+| 单次构建耗时 | 成功一次 14 分 17 秒（其中插件安装约 11–12 分钟，站点构建约 1 分钟） |
+| 产物 | 142 个文件 / 66 个 HTML 页面 |
+
+### 8.2 线上实测（无头 Chrome，2026-10-27 21:2x）
+
+| 检查 | 实测 |
+| --- | --- |
+| 首页 HTTP | 200（32.8 KB） |
+| 文章页 `/signal-processing/dft-and-fft` | 200（74 KB），KaTeX 渲染 22 处 |
+| 搜索索引 `/static/contentIndex.json` | 200（50.2 KB） |
+| RSS / sitemap | 200 / 200 |
+| 首页正文内链抽样 15 条 | **全部 200**（无大小写 404） |
+| 搜索「傅里叶」 | 8 条结果，首条「傅里叶级数实验」 |
+| Mermaid（知识网络页） | 渲染出 SVG |
+| 移动端 390×844 | 文档宽度 390 = 视口宽度，无横向滚动 |
+
+### 8.3 只在 CI（Linux）暴露、本地（Windows）无法复现的问题
+
+这三个问题是本次部署最大的工程风险，均已修复并留下自动化防护：
+
+| # | 现象 | 根因 | 修复 |
+| --- | --- | --- | --- |
+| 1 | 构建期 `Failed to install plugin: quartz-fonts · HTTP 401` | 仓库名是 `quartz-community/fonts`，npm 包名才是 `@quartz-community/quartz-fonts`；config 按 npm 名写错仓库 | config 改为 `github:quartz-community/fonts`，脚本加 npm 包名别名 |
+| 2 | `Unknown file extension ".ts"` / `defaultDateType was not set` | 两个插件不在 `quartz.lock.json`：CI 只按 lockfile 安装，构建期临时克隆后直接 import 未编译源码；`configuration.defaultDateType` 缺失时本地 npm 预构建版有兜底、源码版没有 | 补齐 lockfile 条目；在 `configuration` 段补 `defaultDateType: modified` |
+| 3 | 自检报 150 个断链 | 站点链接生成器在不同插件版本下行为不同：本地版把 slug 转小写，CI 源码版保持原大小写；而内容双链目标仍写 PascalCase | 内容双链统一小写；新增 `scripts/check-links-source.mjs`（源码级、大小写敏感）并接入 `npm run verify` 与 CI |
