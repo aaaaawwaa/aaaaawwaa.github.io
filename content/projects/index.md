@@ -14,13 +14,13 @@ tags:
 
 ## 本分类文章
 
-- [[Projects/UART-Loopback-Project|UART 回环项目]]：UART 帧格式、波特率误差、发送模块 Verilog 实现与 PC 侧验证脚本。
+- [[projects/uart-loopback-project|UART 回环项目]]：UART 帧格式、波特率误差、发送模块 Verilog 实现与 PC 侧验证脚本。
 
 ## 跨学科关联
 
-- [[Digital-Systems/FSM-Design|有限状态机设计]]：UART 接收模块的核心是一个按位推进的状态机。
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]：波特率计数器与异步复位同步释放直接影响通信是否稳定。
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]：PC 侧用 Python 完成自动化收发与误码统计，效率远高于手动点串口助手。
+- [[digital-systems/fsm-design|有限状态机设计]]：UART 接收模块的核心是一个按位推进的状态机。
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]：波特率计数器与异步复位同步释放直接影响通信是否稳定。
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]：PC 侧用 Python 完成自动化收发与误码统计，效率远高于手动点串口助手。
 
 > [!note] 记录项目的三个习惯
 > 1. 先写验收标准，再写实现；
@@ -29,6 +29,6 @@ tags:
 
 ## 相关阅读
 
-- [[Projects/UART-Loopback-Project|UART 回环项目]]
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
-- [[Maps/Learning-Path|推荐学习路径]]
+- [[projects/uart-loopback-project|UART 回环项目]]
+- [[digital-systems/fsm-design|有限状态机设计]]
+- [[maps/learning-path|推荐学习路径]]

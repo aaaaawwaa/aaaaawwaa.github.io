@@ -95,6 +95,6 @@ endmodule
 
 ## 相关阅读
 
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
-- [[Projects/UART-Loopback-Project|UART 回环项目]]
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]
+- [[digital-systems/fsm-design|有限状态机设计]]
+- [[projects/uart-loopback-project|UART 回环项目]]
+- [[programming/c-pointer-and-memory|C 指针与内存]]

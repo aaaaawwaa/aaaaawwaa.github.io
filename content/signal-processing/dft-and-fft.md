@@ -98,6 +98,6 @@ $$
 
 ## 相关阅读
 
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]
-- [[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
+- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]

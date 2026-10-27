@@ -77,6 +77,6 @@ $$
 
 ## 相关阅读
 
-- [[Communication/Digital-Modulation-QPSK|数字调制 QPSK]]
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
-- [[Mathematics/Probability-Overview|概率论概览]]
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
+- [[mathematics/probability-overview|概率论概览]]

@@ -27,26 +27,26 @@ graph TD
 ### 阶段 1：数学与工具
 
 - 核心内容：矩阵乘法与特征分解、随机变量与高斯分布、Python 基础语法。
-- 对应文章：[[Mathematics/Linear-Algebra-Basics|线性代数基础]]、[[Mathematics/Probability-Overview|概率论概览]]。
+- 对应文章：[[mathematics/linear-algebra-basics|线性代数基础]]、[[mathematics/probability-overview|概率论概览]]。
 - 交付成果：能用 NumPy 完成矩阵运算与简单蒙特卡洛仿真。
 
 ### 阶段 2：信号与系统
 
 - 核心内容：LTI 系统与卷积、傅里叶变换、采样定理、DFT 与 FFT。
-- 对应文章：[[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]、[[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]、[[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]。
-- 并行建议：同时推进 [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]，做到"公式能写、代码能跑"。
+- 对应文章：[[signal-processing/signals-and-systems-intro|信号与系统导论]]、[[signal-processing/dft-and-fft|DFT 与 FFT]]、[[interactive-labs/fourier-series-lab|傅里叶级数实验]]。
+- 并行建议：同时推进 [[programming/python-numpy-dsp|Python NumPy 与 DSP]]，做到"公式能写、代码能跑"。
 - 交付成果：给定一段信号，能画出正确的单边幅度谱并解释频率分辨率。
 
 ### 阶段 3：数字系统与 RTL
 
 - 核心内容：组合与时序逻辑、非阻塞赋值、复位策略、FSM 三段式写法。
-- 对应文章：[[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]、[[Digital-Systems/FSM-Design|有限状态机设计]]。
+- 对应文章：[[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]、[[digital-systems/fsm-design|有限状态机设计]]。
 - 交付成果：独立写出带异步复位同步释放与状态机的模块，通过仿真并上板验证。
 
 ### 阶段 4：通信系统与项目
 
 - 核心内容：调制的频谱搬移、AM 的调制度与解调、QPSK 的 I/Q 表示与误码率。
-- 对应文章：[[Communication/Analog-Modulation-AM|模拟调制 AM]]、[[Communication/Digital-Modulation-QPSK|数字调制 QPSK]]、[[Projects/UART-Loopback-Project|UART 回环项目]]。
+- 对应文章：[[communication/analog-modulation-am|模拟调制 AM]]、[[communication/digital-modulation-qpsk|数字调制 QPSK]]、[[projects/uart-loopback-project|UART 回环项目]]。
 - 交付成果：能解释"为什么 QPSK 在同样带宽下传输两倍比特"，并完成一个可上板验证的接口项目。
 
 ## 阶段检查点
@@ -63,6 +63,6 @@ graph TD
 
 ## 相关阅读
 
-- [[Maps/Knowledge-Network|跨学科知识网络]]
-- [[Maps/index|导航总览]]
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
+- [[maps/knowledge-network|跨学科知识网络]]
+- [[maps/index|导航总览]]
+- [[digital-systems/fsm-design|有限状态机设计]]

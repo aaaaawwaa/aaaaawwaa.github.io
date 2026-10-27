@@ -17,21 +17,21 @@ tags:
 
 ## 本分类文章
 
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]：LTI 系统、卷积、采样定理与混叠。
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]：离散频谱的定义、频率分辨率与 FFT 实现。
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：LTI 系统、卷积、采样定理与混叠。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：离散频谱的定义、频率分辨率与 FFT 实现。
 
 ## 跨学科关联
 
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]：DFT 是一组正交基上的投影，用酉矩阵语言描述最清晰。
-- [[Communication/Analog-Modulation-AM|模拟调制 AM]]：调制本质上是频谱搬移，理解频谱才能理解 AM 与频分复用。
-- [[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]：用可运行的脚本观察方波的部分和逼近。
+- [[mathematics/linear-algebra-basics|线性代数基础]]：DFT 是一组正交基上的投影，用酉矩阵语言描述最清晰。
+- [[communication/analog-modulation-am|模拟调制 AM]]：调制本质上是频谱搬移，理解频谱才能理解 AM 与频分复用。
+- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]：用可运行的脚本观察方波的部分和逼近。
 
 ## 软硬件结合
 
-信号处理算法的落地方式有两种：在 CPU/GPU 上用 [[Programming/Python-NumPy-DSP|Python NumPy]] 验证，或在 FPGA 上用 [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]] 实现实时流水线。前者关注数值与精度，后者关注时钟、面积与吞吐率。
+信号处理算法的落地方式有两种：在 CPU/GPU 上用 [[programming/python-numpy-dsp|Python NumPy]] 验证，或在 FPGA 上用 [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]] 实现实时流水线。前者关注数值与精度，后者关注时钟、面积与吞吐率。
 
 ## 相关阅读
 
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
-- [[Maps/Knowledge-Network|跨学科知识网络]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]
+- [[maps/knowledge-network|跨学科知识网络]]

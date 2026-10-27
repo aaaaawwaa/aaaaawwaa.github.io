@@ -73,6 +73,6 @@ graph LR
 
 ## 相关阅读
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
-- [[Mathematics/Probability-Overview|概率论概览]]
-- [[Communication/Analog-Modulation-AM|模拟调制 AM]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]
+- [[mathematics/probability-overview|概率论概览]]
+- [[communication/analog-modulation-am|模拟调制 AM]]

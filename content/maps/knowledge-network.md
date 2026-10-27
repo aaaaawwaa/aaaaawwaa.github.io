@@ -37,19 +37,19 @@ graph TD
 
 ### 1. 数学 → 频谱 → 代码
 
-[[Mathematics/Linear-Algebra-Basics|线性代数基础]] 提供正交基与酉矩阵的语言，[[Signal-Processing/DFT-and-FFT|DFT 与 FFT]] 是它最重要的工程出口，而 [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]] 负责把公式变成可以观察的结果。这条链的每一环都可以独立验证：写一个 DFT 矩阵，和 `np.fft` 的输出比对即可。
+[[mathematics/linear-algebra-basics|线性代数基础]] 提供正交基与酉矩阵的语言，[[signal-processing/dft-and-fft|DFT 与 FFT]] 是它最重要的工程出口，而 [[programming/python-numpy-dsp|Python NumPy 与 DSP]] 负责把公式变成可以观察的结果。这条链的每一环都可以独立验证：写一个 DFT 矩阵，和 `np.fft` 的输出比对即可。
 
 ### 2. 概率 → 噪声 → 误码率
 
-[[Mathematics/Probability-Overview|概率论概览]] 给出高斯分布与 Q 函数；[[Communication/Digital-Modulation-QPSK|数字调制 QPSK]] 的误码率公式 $P_b=Q(\sqrt{2E_b/N_0})$ 正是二者的直积。[[Communication/Analog-Modulation-AM|模拟调制 AM]] 则从另一侧说明：为什么把信息放在幅度上的调制方式抗噪能力更差。
+[[mathematics/probability-overview|概率论概览]] 给出高斯分布与 Q 函数；[[communication/digital-modulation-qpsk|数字调制 QPSK]] 的误码率公式 $P_b=Q(\sqrt{2E_b/N_0})$ 正是二者的直积。[[communication/analog-modulation-am|模拟调制 AM]] 则从另一侧说明：为什么把信息放在幅度上的调制方式抗噪能力更差。
 
 ### 3. 时序 → 状态机 → 接口
 
-[[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]] 解决"如何用时钟保存状态"，[[Digital-Systems/FSM-Design|有限状态机设计]] 解决"如何组织多步流程"，[[Projects/UART-Loopback-Project|UART 回环项目]] 把两者组合成能上板验证的接口。这条链是唯一必须"动手才算学会"的路径。
+[[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]] 解决"如何用时钟保存状态"，[[digital-systems/fsm-design|有限状态机设计]] 解决"如何组织多步流程"，[[projects/uart-loopback-project|UART 回环项目]] 把两者组合成能上板验证的接口。这条链是唯一必须"动手才算学会"的路径。
 
 ### 4. 工具 → 效率
 
-[[AI-Agents/AI-Tools-Overview|AI 工具概览]] 横跨上面三条链：生成仿真脚本、解释报错、整理数据手册。它不改变知识结构，只加速实现环节。放在 [[Maps/Learning-Path|推荐学习路径]] 的末端，是因为没有基础时很难判断生成的代码是否正确。
+[[ai-agents/ai-tools-overview|AI 工具概览]] 横跨上面三条链：生成仿真脚本、解释报错、整理数据手册。它不改变知识结构，只加速实现环节。放在 [[maps/learning-path|推荐学习路径]] 的末端，是因为没有基础时很难判断生成的代码是否正确。
 
 ## 如何用网络复习
 
@@ -62,6 +62,6 @@ graph TD
 
 ## 相关阅读
 
-- [[Maps/Learning-Path|推荐学习路径]]
-- [[Maps/index|导航总览]]
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
+- [[maps/learning-path|推荐学习路径]]
+- [[maps/index|导航总览]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]

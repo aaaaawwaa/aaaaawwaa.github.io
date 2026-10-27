@@ -77,6 +77,8 @@ tags 用小写英文短横线；不要新增未使用的 tag。
 ### 3.3 链接
 
 - 双链：`[[dft-and-fft|DFT 与 FFT]]`；跨目录写全路径：`[[signal-processing/index|信号处理]]`
+- **双链目标必须与磁盘文件名逐字符一致（全小写）**：`[[signal-processing/dft-and-fft]]`，
+  不要写 `[[Signal-Processing/DFT-and-FFT]]`。原因见下方说明，并由 `scripts/check-links-source.mjs` 强制检查。
 - 不要链接不存在的文件；`npm run audit` 会暴露断链
 - 同一 Vault 中重名文件会让 `shortest` 解析退化，**全站文件名保持唯一**
 
@@ -170,6 +172,7 @@ chore: 升级 Quartz 到 vX.Y.Z
 | 错误做法 | 正确做法 |
 | --- | --- |
 | 在 `quartz.config.yaml` 写 `@quartz-community/explorer` | 写 `github:quartz-community/explorer` |
+| 双链写 `[[Signal-Processing/DFT-and-FFT]]` | 写 `[[signal-processing/dft-and-fft]]`（大小写必须与文件一致） |
 | 内容文件用 `Signals-and-Systems.md` | 用 `signals-and-systems.md` |
 | 直接改 `quartz/` 里的组件做样式 | 优先写 `quartz/styles/custom.scss` |
 | 把整个 Vault 复制进 `content/` | 白名单挑目录 + 附件 |

@@ -58,6 +58,6 @@ graph TD
 
 ## 相关阅读
 
-- [[AI-Agents/index|AI 工具分类总览]]
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]
-- [[Maps/Learning-Path|推荐学习路径]]
+- [[ai-agents/index|AI 工具分类总览]]
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
+- [[maps/learning-path|推荐学习路径]]

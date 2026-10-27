@@ -78,6 +78,6 @@ OQPSK（offset QPSK）把 $Q$ 路延迟半个符号周期，使 $I$、$Q$ 不会
 
 ## 相关阅读
 
-- [[Communication/Analog-Modulation-AM|模拟调制 AM]]
-- [[Mathematics/Probability-Overview|概率论概览]]
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
+- [[communication/analog-modulation-am|模拟调制 AM]]
+- [[mathematics/probability-overview|概率论概览]]
+- [[digital-systems/fsm-design|有限状态机设计]]

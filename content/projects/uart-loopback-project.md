@@ -139,6 +139,6 @@ with serial.Serial("COM3", 115200, timeout=1.0) as port:
 
 ## 相关阅读
 
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]
+- [[digital-systems/fsm-design|有限状态机设计]]
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]
+- [[programming/c-pointer-and-memory|C 指针与内存]]

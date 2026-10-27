@@ -14,19 +14,19 @@ tags:
 
 ## 本分类文章
 
-- [[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]：方波的部分和逼近、吉布斯过冲与三次谐波的影响。
+- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]：方波的部分和逼近、吉布斯过冲与三次谐波的影响。
 
 ## 跨学科关联
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]：实验中的级数截断，与 FFT 中的加窗截断是同一类问题。
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]：傅里叶级数的系数就是信号在一组正交基上的投影。
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]：实验脚本使用的都是 NumPy 的向量化写法。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：实验中的级数截断，与 FFT 中的加窗截断是同一类问题。
+- [[mathematics/linear-algebra-basics|线性代数基础]]：傅里叶级数的系数就是信号在一组正交基上的投影。
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]：实验脚本使用的都是 NumPy 的向量化写法。
 
 > [!tip] 做实验的方法
 > 每次只改一个参数，先预测结果再运行。预测错误时最有价值——那正是理解有偏差的地方。
 
 ## 相关阅读
 
-- [[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
-- [[Maps/Learning-Path|推荐学习路径]]
+- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
+- [[maps/learning-path|推荐学习路径]]

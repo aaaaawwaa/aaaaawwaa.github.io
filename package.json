@@ -25,7 +25,7 @@
     "plugins:install": "npx quartz plugin install",
     "plugins:offline": "npx tsx scripts/provision-plugins.ts",
     "audit": "node scripts/audit-site.mjs",
-    "verify": "npm run build:site && npm run audit"
+    "verify": "node scripts/check-links-source.mjs && npm run build:site && npm run audit"
   },
   "engines": {
     "npm": ">=10.9.2",

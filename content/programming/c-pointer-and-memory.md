@@ -79,6 +79,6 @@ void led_off(void) { GPIOA_ODR |=  (1UL << 1); }
 
 ## 相关阅读
 
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]
-- [[Projects/UART-Loopback-Project|UART 回环项目]]
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]
+- [[projects/uart-loopback-project|UART 回环项目]]

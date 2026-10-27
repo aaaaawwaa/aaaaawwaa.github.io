@@ -14,19 +14,19 @@ tags:
 
 ## 本分类文章
 
-- [[AI-Agents/AI-Tools-Overview|AI 工具概览]]：三类工具的定位、RAG 与 Agent 的工作机制、使用原则。
+- [[ai-agents/ai-tools-overview|AI 工具概览]]：三类工具的定位、RAG 与 Agent 的工作机制、使用原则。
 
 ## 跨学科关联
 
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]：AI 最擅长的任务之一是生成可运行的验证脚本，但结果必须自己复核。
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]：底层代码中的未定义行为，模型往往"看起来正确"却暗藏错误。
-- [[Maps/Learning-Path|推荐学习路径]]：建议先建立领域基础，再用 AI 加速实现，而不是反过来。
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]：AI 最擅长的任务之一是生成可运行的验证脚本，但结果必须自己复核。
+- [[programming/c-pointer-and-memory|C 指针与内存]]：底层代码中的未定义行为，模型往往"看起来正确"却暗藏错误。
+- [[maps/learning-path|推荐学习路径]]：建议先建立领域基础，再用 AI 加速实现，而不是反过来。
 
 > [!warning] 验证优先
 > 任何由 AI 生成的**公式、寄存器地址、时序参数、器件型号**都必须回原始手册或标准文档核对。把 AI 当作"检索与起草助手"，不要当作"事实来源"。
 
 ## 相关阅读
 
-- [[AI-Agents/AI-Tools-Overview|AI 工具概览]]
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]
-- [[Maps/Knowledge-Network|跨学科知识网络]]
+- [[ai-agents/ai-tools-overview|AI 工具概览]]
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
+- [[maps/knowledge-network|跨学科知识网络]]

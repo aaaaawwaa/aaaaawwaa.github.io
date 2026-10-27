@@ -27,6 +27,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Check content links (case-sensitive)
+        run: node scripts/check-links-source.mjs
       - name: Install Quartz plugins
         run: npx quartz plugin install
       - name: Build site

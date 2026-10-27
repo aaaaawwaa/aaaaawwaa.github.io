@@ -16,20 +16,20 @@ tags:
 
 ## 本分类文章
 
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]：非阻塞赋值、复位策略与建立保持时间。
-- [[Digital-Systems/FSM-Design|有限状态机设计]]：Moore/Mealy 对比、三段式写法与状态编码。
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]：非阻塞赋值、复位策略与建立保持时间。
+- [[digital-systems/fsm-design|有限状态机设计]]：Moore/Mealy 对比、三段式写法与状态编码。
 
 ## 跨学科关联
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]：FFT 的硬件实现是典型的流水线与时序设计问题，运算单元必须按时钟节拍复用。
-- [[Projects/UART-Loopback-Project|UART 回环项目]]：把时序逻辑与状态机组合成可上板验证的完整接口。
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]：寄存器映射与 volatile 语义是软硬件交界处必须理解的部分。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：FFT 的硬件实现是典型的流水线与时序设计问题，运算单元必须按时钟节拍复用。
+- [[projects/uart-loopback-project|UART 回环项目]]：把时序逻辑与状态机组合成可上板验证的完整接口。
+- [[programming/c-pointer-and-memory|C 指针与内存]]：寄存器映射与 volatile 语义是软硬件交界处必须理解的部分。
 
 > [!tip] 上板前的自检清单
 > 复位极性是否正确、时钟域是否只有一条、跨时钟域是否做了同步、组合逻辑是否存在锁存器、输出是否寄存。这五项能挡掉绝大多数初学者的 bug。
 
 ## 相关阅读
 
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]
-- [[Digital-Systems/FSM-Design|有限状态机设计]]
-- [[Maps/Knowledge-Network|跨学科知识网络]]
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]
+- [[digital-systems/fsm-design|有限状态机设计]]
+- [[maps/knowledge-network|跨学科知识网络]]

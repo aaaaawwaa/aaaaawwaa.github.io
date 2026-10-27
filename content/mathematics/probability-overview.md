@@ -45,7 +45,7 @@ $$
 P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)
 $$
 
-这个结果由「高斯尾部概率」直接给出，是后续学习 [[Communication/Digital-Modulation-QPSK|QPSK]] 与高阶调制的基础。
+这个结果由「高斯尾部概率」直接给出，是后续学习 [[communication/digital-modulation-qpsk|QPSK]] 与高阶调制的基础。
 
 ## 仿真验证
 
@@ -72,6 +72,6 @@ for eb_n0_db in (0, 4, 8):
 
 ## 相关阅读
 
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]
-- [[Communication/Digital-Modulation-QPSK|数字调制 QPSK]]
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
+- [[mathematics/linear-algebra-basics|线性代数基础]]
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]

@@ -75,6 +75,6 @@ plt.show()
 
 ## 相关阅读
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
+- [[mathematics/linear-algebra-basics|线性代数基础]]

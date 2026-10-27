@@ -86,10 +86,10 @@ graph LR
 
 ## 验证思路
 
-上板之前至少验证三件事：复位后进入 S0 且输出为 0；连续输入 `1011` 时 `hit` 恰好有效一个周期；重叠序列 `1011011` 能被识别两次。这些用例在 [[Projects/UART-Loopback-Project|UART 回环项目]] 的接收状态机里同样适用。
+上板之前至少验证三件事：复位后进入 S0 且输出为 0；连续输入 `1011` 时 `hit` 恰好有效一个周期；重叠序列 `1011011` 能被识别两次。这些用例在 [[projects/uart-loopback-project|UART 回环项目]] 的接收状态机里同样适用。
 
 ## 相关阅读
 
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]
-- [[Projects/UART-Loopback-Project|UART 回环项目]]
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]
+- [[projects/uart-loopback-project|UART 回环项目]]
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]

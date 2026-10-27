@@ -16,20 +16,20 @@ Python 部分关注 NumPy 的数组模型与向量化写法，以及 SciPy 的�
 
 ## 本分类文章
 
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]：指针算术、数组与指针的关系、栈堆区别、寄存器映射。
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]：向量化、FFT 频谱分析、FIR 滤波器设计与定点化。
+- [[programming/c-pointer-and-memory|C 指针与内存]]：指针算术、数组与指针的关系、栈堆区别、寄存器映射。
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]：向量化、FFT 频谱分析、FIR 滤波器设计与定点化。
 
 ## 跨学科关联
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]：Python 脚本是验证频谱分析结论最快的工具。
-- [[Digital-Systems/Verilog-Sequential-Logic|Verilog 时序逻辑]]：C 语言描述行为，RTL 描述时序；两者的思维方式需要来回切换。
-- [[Projects/UART-Loopback-Project|UART 回环项目]]：PC 侧用 Python 收发串口数据，是调试硬件接口的第一步。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：Python 脚本是验证频谱分析结论最快的工具。
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]：C 语言描述行为，RTL 描述时序；两者的思维方式需要来回切换。
+- [[projects/uart-loopback-project|UART 回环项目]]：PC 侧用 Python 收发串口数据，是调试硬件接口的第一步。
 
 > [!note] 代码组织建议
 > 仿真脚本按"生成信号 → 处理 → 画图/打印指标"三段式组织，每段独立可替换。这样换一个滤波器或调制方式时不必重写整个脚本。
 
 ## 相关阅读
 
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]
-- [[Programming/Python-NumPy-DSP|Python NumPy 与 DSP]]
-- [[AI-Agents/AI-Tools-Overview|AI 工具概览]]
+- [[programming/c-pointer-and-memory|C 指针与内存]]
+- [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
+- [[ai-agents/ai-tools-overview|AI 工具概览]]

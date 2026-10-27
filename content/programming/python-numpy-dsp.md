@@ -84,7 +84,7 @@ $$
 - `np.fft.fft` 输出的是完整双边谱，实信号请用 `rfft` 节省一半计算。
 
 > [!tip] 仿真到硬件的过渡
-> 先在浮点域验证算法，再按 Q 格式（如 Q1.15）定点化，最后在 [[Digital-Systems/Verilog-Sequential-Logic|Verilog]] 中实现。每一步都用同一组测试向量对比输出，避免"算法对但硬件错"。
+> 先在浮点域验证算法，再按 Q 格式（如 Q1.15）定点化，最后在 [[digital-systems/verilog-sequential-logic|Verilog]] 中实现。每一步都用同一组测试向量对比输出，避免"算法对但硬件错"。
 
 ## 一条可复用的验证流程
 
@@ -94,6 +94,6 @@ $$
 
 ## 相关阅读
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
-- [[Interactive-Labs/Fourier-Series-Lab|傅里叶级数实验]]
-- [[Programming/C-Pointer-and-Memory|C 指针与内存]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]
+- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]
+- [[programming/c-pointer-and-memory|C 指针与内存]]

@@ -71,6 +71,6 @@ print("奇异值:", np.round(S, 3))
 
 ## 相关阅读
 
-- [[Mathematics/Probability-Overview|概率论概览]]
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]
-- [[Communication/Digital-Modulation-QPSK|数字调制 QPSK]]
+- [[mathematics/probability-overview|概率论概览]]
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]

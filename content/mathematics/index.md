@@ -14,20 +14,20 @@ tags:
 
 ## 本分类文章
 
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]：向量、矩阵、特征分解，以及 DFT 矩阵与信道的 SVD 分解。
-- [[Mathematics/Probability-Overview|概率论概览]]：随机变量、期望方差、高斯分布与 AWGN 信道模型。
+- [[mathematics/linear-algebra-basics|线性代数基础]]：向量、矩阵、特征分解，以及 DFT 矩阵与信道的 SVD 分解。
+- [[mathematics/probability-overview|概率论概览]]：随机变量、期望方差、高斯分布与 AWGN 信道模型。
 
 ## 跨学科关联
 
-- [[Signal-Processing/DFT-and-FFT|DFT 与 FFT]]：DFT 本质上是取一组正交基上的投影，核函数 $e^{-j2\pi kn/N}$ 构成酉矩阵。
-- [[Communication/Digital-Modulation-QPSK|数字调制 QPSK]]：星座图是二维实向量空间中的点，误码率由高斯分布与 Q 函数给出。
-- [[Signal-Processing/Signals-and-Systems-Intro|信号与系统导论]]：卷积与频域分析的每一步都依赖线性代数与复数的运算规则。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：DFT 本质上是取一组正交基上的投影，核函数 $e^{-j2\pi kn/N}$ 构成酉矩阵。
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]：星座图是二维实向量空间中的点，误码率由高斯分布与 Q 函数给出。
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：卷积与频域分析的每一步都依赖线性代数与复数的运算规则。
 
 > [!note] 学数学的优先级
 > 对电子信息工程而言，**会用**比**会证**更重要。公式的适用条件（连续还是离散、实信号还是复信号、是否满足绝对可和）必须记清楚，因为条件不满足时结论会失效。
 
 ## 相关阅读
 
-- [[Mathematics/Linear-Algebra-Basics|线性代数基础]]
-- [[Mathematics/Probability-Overview|概率论概览]]
-- [[Maps/Learning-Path|推荐学习路径]]
+- [[mathematics/linear-algebra-basics|线性代数基础]]
+- [[mathematics/probability-overview|概率论概览]]
+- [[maps/learning-path|推荐学习路径]]
