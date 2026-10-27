@@ -1,20 +1,1028 @@
 {
   "version": 1,
+  "unresolvedPolicy": "text",
   "files": [
-    {"source":"数字信号处理/1. 离散时间信号与系统.md","destination":"vault-notes/discrete-time-systems.md","title":"离散时间信号与系统"},
-    {"source":"数字信号处理/2. Z变换与离散时间傅里叶变换(DTFT).md","destination":"vault-notes/z-transform-and-dtft.md","title":"Z 变换与离散时间傅里叶变换"},
-    {"source":"数字信号处理/3. 离散傅里叶变换(DFT).md","destination":"vault-notes/discrete-fourier-transform.md","title":"离散傅里叶变换"},
-    {"source":"数字信号处理/4. 快速傅里叶变换(FFT).md","destination":"vault-notes/fast-fourier-transform.md","title":"快速傅里叶变换"},
-    {"source":"数字信号处理/5. 数字滤波器的基本结构.md","destination":"vault-notes/digital-filter-structures.md","title":"数字滤波器的基本结构"},
-    {"source":"通信原理/1. 绪论.md","destination":"vault-notes/communication-introduction.md","title":"通信原理绪论"},
-    {"source":"通信原理/2. 确知信号.md","destination":"vault-notes/deterministic-signals.md","title":"确知信号"},
-    {"source":"通信原理/3. 随机过程.md","destination":"vault-notes/random-process.md","title":"随机过程"},
-    {"source":"通信原理/4. 信道.md","destination":"vault-notes/communication-channel.md","title":"信道"},
-    {"source":"通信原理/13. 同步原理.md","destination":"vault-notes/synchronization-principles.md","title":"同步原理"}
+    {
+      "source": "通信原理/0. 通信原理知识库总导读.md",
+      "destination": "vault-notes/communication/00-guide.md"
+    },
+    {
+      "source": "通信原理/1. 绪论.md",
+      "destination": "vault-notes/communication/01-introduction.md"
+    },
+    {
+      "source": "通信原理/2. 确知信号.md",
+      "destination": "vault-notes/communication/02-deterministic-signals.md"
+    },
+    {
+      "source": "通信原理/3. 随机过程.md",
+      "destination": "vault-notes/communication/03-random-processes.md"
+    },
+    {
+      "source": "通信原理/4. 信道.md",
+      "destination": "vault-notes/communication/04-channel.md"
+    },
+    {
+      "source": "通信原理/5. 模拟调制系统.md",
+      "destination": "vault-notes/communication/05-analog-modulation.md"
+    },
+    {
+      "source": "通信原理/6. 数字基带传输系统.md",
+      "destination": "vault-notes/communication/06-digital-baseband.md"
+    },
+    {
+      "source": "通信原理/7. 数字带通传输系统.md",
+      "destination": "vault-notes/communication/07-digital-bandpass.md"
+    },
+    {
+      "source": "通信原理/8. 新型数字带通调制技术.md",
+      "destination": "vault-notes/communication/08-advanced-digital-modulation.md"
+    },
+    {
+      "source": "通信原理/9. 数字信号的最佳接收.md",
+      "destination": "vault-notes/communication/09-optimal-reception.md"
+    },
+    {
+      "source": "通信原理/10. 信源编码.md",
+      "destination": "vault-notes/communication/10-source-coding.md"
+    },
+    {
+      "source": "通信原理/11. 差错控制编码.md",
+      "destination": "vault-notes/communication/11-error-control-coding.md"
+    },
+    {
+      "source": "通信原理/12. 正交编码与伪随机序列.md",
+      "destination": "vault-notes/communication/12-orthogonal-codes-pn-sequences.md"
+    },
+    {
+      "source": "通信原理/13. 同步原理.md",
+      "destination": "vault-notes/communication/13-synchronization.md"
+    },
+    {
+      "source": "通信原理/A. 通信原理公式速查表.md",
+      "destination": "vault-notes/communication/a-formula-cheatsheet.md"
+    },
+    {
+      "source": "通信原理/B. 跨库知识关联.md",
+      "destination": "vault-notes/communication/b-cross-library-links.md"
+    },
+    {
+      "source": "数字信号处理/1. 离散时间信号与系统.md",
+      "destination": "vault-notes/dsp/01-discrete-time-systems.md"
+    },
+    {
+      "source": "数字信号处理/2. Z变换与离散时间傅里叶变换(DTFT).md",
+      "destination": "vault-notes/dsp/02-z-transform-and-dtft.md"
+    },
+    {
+      "source": "数字信号处理/3. 离散傅里叶变换(DFT).md",
+      "destination": "vault-notes/dsp/03-discrete-fourier-transform.md"
+    },
+    {
+      "source": "数字信号处理/4. 快速傅里叶变换(FFT).md",
+      "destination": "vault-notes/dsp/04-fast-fourier-transform.md"
+    },
+    {
+      "source": "数字信号处理/5. 数字滤波器的基本结构.md",
+      "destination": "vault-notes/dsp/05-filter-structures.md"
+    },
+    {
+      "source": "数字信号处理/6. 无限长单位冲激响应数字滤波器(IIR)设计方法.md",
+      "destination": "vault-notes/dsp/06-iir-filter-design.md"
+    },
+    {
+      "source": "数字信号处理/7. 有限长单位冲激响应数字滤波器(FIR)设计方法.md",
+      "destination": "vault-notes/dsp/07-fir-filter-design.md"
+    },
+    {
+      "source": "数字信号处理/8. 序列的抽取和插值--多抽样率数字信号处理基础.md",
+      "destination": "vault-notes/dsp/08-multirate-sampling.md"
+    },
+    {
+      "source": "数字调制/1.数字通信系统的基本组成部分.md",
+      "destination": "vault-notes/digital-modulation/01-digital-communication-system.md"
+    },
+    {
+      "source": "03-Maps/采样、量化与数字化知识地图.md",
+      "destination": "vault-notes/maps/sampling-quantization-map.md"
+    },
+    {
+      "source": "03-Maps/傅里叶分析知识地图.md",
+      "destination": "vault-notes/maps/fourier-analysis-map.md"
+    },
+    {
+      "source": "03-Maps/数字通信系统知识地图.md",
+      "destination": "vault-notes/maps/digital-communication-map.md"
+    },
+    {
+      "source": "03-Maps/随机信号处理知识地图.md",
+      "destination": "vault-notes/maps/random-signal-processing-map.md"
+    },
+    {
+      "source": "03-Maps/线性系统与滤波知识地图.md",
+      "destination": "vault-notes/maps/linear-systems-filtering-map.md"
+    },
+    {
+      "source": "随机信号处理/00-学习导航/课程与教材索引.md",
+      "destination": "vault-notes/random-signals/00-course-index.md"
+    },
+    {
+      "source": "随机信号处理/00-学习导航/数学符号约定.md",
+      "destination": "vault-notes/random-signals/00-math-symbols.md"
+    },
+    {
+      "source": "随机信号处理/00-学习导航/知识地图.md",
+      "destination": "vault-notes/random-signals/00-knowledge-map.md"
+    },
+    {
+      "source": "随机信号处理/01-数学预备知识/傅里叶变换与线性系统.md",
+      "destination": "vault-notes/random-signals/01-fourier-and-lti.md"
+    },
+    {
+      "source": "随机信号处理/01-数学预备知识/概率论基础.md",
+      "destination": "vault-notes/random-signals/01-probability-basics.md"
+    },
+    {
+      "source": "随机信号处理/01-数学预备知识/随机变量与概率分布.md",
+      "destination": "vault-notes/random-signals/01-random-variables-distributions.md"
+    },
+    {
+      "source": "随机信号处理/01-数学预备知识/条件概率与贝叶斯公式.md",
+      "destination": "vault-notes/random-signals/01-conditional-probability-bayes.md"
+    },
+    {
+      "source": "随机信号处理/01-数学预备知识/线性代数与矩阵运算.md",
+      "destination": "vault-notes/random-signals/01-linear-algebra-matrices.md"
+    },
+    {
+      "source": "随机信号处理/02-随机变量与随机向量/复随机变量.md",
+      "destination": "vault-notes/random-signals/02-complex-random-variables.md"
+    },
+    {
+      "source": "随机信号处理/02-随机变量与随机向量/高斯随机变量与高斯向量.md",
+      "destination": "vault-notes/random-signals/02-gaussian-random-vectors.md"
+    },
+    {
+      "source": "随机信号处理/02-随机变量与随机向量/联合分布与条件分布.md",
+      "destination": "vault-notes/random-signals/02-joint-conditional-distributions.md"
+    },
+    {
+      "source": "随机信号处理/02-随机变量与随机向量/数学期望与方差.md",
+      "destination": "vault-notes/random-signals/02-expectation-variance.md"
+    },
+    {
+      "source": "随机信号处理/02-随机变量与随机向量/协方差与相关系数.md",
+      "destination": "vault-notes/random-signals/02-covariance-correlation.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/高斯过程与白噪声.md",
+      "destination": "vault-notes/random-signals/03-gaussian-process-white-noise.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/各态历经性.md",
+      "destination": "vault-notes/random-signals/03-ergodicity.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/均值函数与相关函数.md",
+      "destination": "vault-notes/random-signals/03-mean-and-correlation-functions.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/泊松过程与马尔可夫过程.md",
+      "destination": "vault-notes/random-signals/03-poisson-markov-processes.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/随机过程的定义与样本函数.md",
+      "destination": "vault-notes/random-signals/03-definition-and-sample-functions.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/循环平稳过程.md",
+      "destination": "vault-notes/random-signals/03-cyclostationary-processes.md"
+    },
+    {
+      "source": "随机信号处理/03-随机过程基础/严平稳与宽平稳.md",
+      "destination": "vault-notes/random-signals/03-strict-vs-wide-sense-stationary.md"
+    },
+    {
+      "source": "随机信号处理/04-随机信号的时域分析/互相关与互协方差.md",
+      "destination": "vault-notes/random-signals/04-cross-correlation-covariance.md"
+    },
+    {
+      "source": "随机信号处理/04-随机信号的时域分析/相关函数的性质.md",
+      "destination": "vault-notes/random-signals/04-correlation-properties.md"
+    },
+    {
+      "source": "随机信号处理/04-随机信号的时域分析/样本相关函数估计.md",
+      "destination": "vault-notes/random-signals/04-sample-correlation-estimation.md"
+    },
+    {
+      "source": "随机信号处理/04-随机信号的时域分析/自相关与自协方差.md",
+      "destination": "vault-notes/random-signals/04-autocorrelation-autocovariance.md"
+    },
+    {
+      "source": "随机信号处理/05-随机信号的频域分析/白噪声与有色噪声频谱.md",
+      "destination": "vault-notes/random-signals/05-white-colored-noise-spectra.md"
+    },
+    {
+      "source": "随机信号处理/05-随机信号的频域分析/功率谱密度PSD.md",
+      "destination": "vault-notes/random-signals/05-power-spectral-density.md"
+    },
+    {
+      "source": "随机信号处理/05-随机信号的频域分析/功率谱数值估计.md",
+      "destination": "vault-notes/random-signals/05-psd-numerical-estimation.md"
+    },
+    {
+      "source": "随机信号处理/05-随机信号的频域分析/互功率谱密度.md",
+      "destination": "vault-notes/random-signals/05-cross-power-spectral-density.md"
+    },
+    {
+      "source": "随机信号处理/05-随机信号的频域分析/维纳辛钦定理.md",
+      "destination": "vault-notes/random-signals/05-wiener-khinchin.md"
+    },
+    {
+      "source": "随机信号处理/06-随机信号通过系统/滤波与噪声功率分析.md",
+      "destination": "vault-notes/random-signals/06-filtering-noise-power.md"
+    },
+    {
+      "source": "随机信号处理/06-随机信号通过系统/输出均值与自相关.md",
+      "destination": "vault-notes/random-signals/06-output-mean-autocorrelation.md"
+    },
+    {
+      "source": "随机信号处理/06-随机信号通过系统/输入输出功率谱关系.md",
+      "destination": "vault-notes/random-signals/06-input-output-psd-relation.md"
+    },
+    {
+      "source": "随机信号处理/06-随机信号通过系统/随机过程与LTI系统.md",
+      "destination": "vault-notes/random-signals/06-random-process-lti-systems.md"
+    },
+    {
+      "source": "随机信号处理/07-统计估计与最优滤波/估计量的偏差和方差.md",
+      "destination": "vault-notes/random-signals/07-estimator-bias-variance.md"
+    },
+    {
+      "source": "随机信号处理/07-统计估计与最优滤波/卡尔曼滤波.md",
+      "destination": "vault-notes/random-signals/07-kalman-filter.md"
+    },
+    {
+      "source": "随机信号处理/07-统计估计与最优滤波/维纳滤波.md",
+      "destination": "vault-notes/random-signals/07-wiener-filter.md"
+    },
+    {
+      "source": "随机信号处理/07-统计估计与最优滤波/最大似然与最小二乘.md",
+      "destination": "vault-notes/random-signals/07-maximum-likelihood-least-squares.md"
+    },
+    {
+      "source": "随机信号处理/07-统计估计与最优滤波/MMSE与LMMSE.md",
+      "destination": "vault-notes/random-signals/07-mmse-lmmse.md"
+    },
+    {
+      "source": "随机信号处理/08-信号检测理论/假设检验.md",
+      "destination": "vault-notes/random-signals/08-hypothesis-testing.md"
+    },
+    {
+      "source": "随机信号处理/08-信号检测理论/匹配滤波检测.md",
+      "destination": "vault-notes/random-signals/08-matched-filter-detection.md"
+    },
+    {
+      "source": "随机信号处理/08-信号检测理论/似然比检验.md",
+      "destination": "vault-notes/random-signals/08-likelihood-ratio-test.md"
+    },
+    {
+      "source": "随机信号处理/08-信号检测理论/Neyman-Pearson准则.md",
+      "destination": "vault-notes/random-signals/08-neyman-pearson.md"
+    },
+    {
+      "source": "随机信号处理/08-信号检测理论/ROC曲线.md",
+      "destination": "vault-notes/random-signals/08-roc-curve.md"
+    },
+    {
+      "source": "随机信号处理/09-进阶统计信号处理/参数化谱估计.md",
+      "destination": "vault-notes/random-signals/09-parametric-spectral-estimation.md"
+    },
+    {
+      "source": "随机信号处理/09-进阶统计信号处理/自适应滤波LMS.md",
+      "destination": "vault-notes/random-signals/09-adaptive-filter-lms.md"
+    },
+    {
+      "source": "随机信号处理/09-进阶统计信号处理/自适应滤波RLS.md",
+      "destination": "vault-notes/random-signals/09-adaptive-filter-rls.md"
+    },
+    {
+      "source": "随机信号处理/09-进阶统计信号处理/AR-MA-ARMA建模.md",
+      "destination": "vault-notes/random-signals/09-ar-ma-arma-modeling.md"
+    },
+    {
+      "source": "随机信号处理/10-通信系统应用/接收机检测.md",
+      "destination": "vault-notes/random-signals/10-receiver-detection.md"
+    },
+    {
+      "source": "随机信号处理/10-通信系统应用/信噪比与噪声带宽.md",
+      "destination": "vault-notes/random-signals/10-snr-noise-bandwidth.md"
+    },
+    {
+      "source": "随机信号处理/10-通信系统应用/ADC采样与量化噪声.md",
+      "destination": "vault-notes/random-signals/10-adc-sampling-quantization-noise.md"
+    },
+    {
+      "source": "随机信号处理/10-通信系统应用/AWGN信道.md",
+      "destination": "vault-notes/random-signals/10-awgn-channel.md"
+    },
+    {
+      "source": "随机信号处理/10-通信系统应用/BPSK-QAM误码率.md",
+      "destination": "vault-notes/random-signals/10-bpsk-qam-ber.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/白噪声通过滤波器.md",
+      "destination": "vault-notes/random-signals/11-white-noise-through-filter.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/高斯噪声生成与分布验证.md",
+      "destination": "vault-notes/random-signals/11-gaussian-noise-distribution.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/功率谱估计实验.md",
+      "destination": "vault-notes/random-signals/11-psd-estimation-experiment.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/维纳滤波实验.md",
+      "destination": "vault-notes/random-signals/11-wiener-filtering-experiment.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/自相关估计实验.md",
+      "destination": "vault-notes/random-signals/11-autocorrelation-estimation-experiment.md"
+    },
+    {
+      "source": "随机信号处理/11-MATLAB实验/AWGN信道误码率实验.md",
+      "destination": "vault-notes/random-signals/11-awgn-ber-experiment.md"
+    },
+    {
+      "source": "随机信号处理/99-附录/常用公式速查.md",
+      "destination": "vault-notes/random-signals/99-formula-cheatsheet.md"
+    },
+    {
+      "source": "随机信号处理/99-附录/错题与问题记录.md",
+      "destination": "vault-notes/random-signals/99-mistakes-and-questions.md"
+    },
+    {
+      "source": "随机信号处理/99-附录/易混淆概念.md",
+      "destination": "vault-notes/random-signals/99-easily-confused-concepts.md"
+    },
+    {
+      "source": "线性代数/1. 向量引论.md",
+      "destination": "vault-notes/math/linear-algebra/01-vector-introduction.md"
+    },
+    {
+      "source": "线性代数/2. 线性方程组的求解.md",
+      "destination": "vault-notes/math/linear-algebra/02-solving-linear-systems.md"
+    },
+    {
+      "source": "线性代数/3. 向量空间与子空间.md",
+      "destination": "vault-notes/math/linear-algebra/03-vector-spaces-subspaces.md"
+    },
+    {
+      "source": "线性代数/4. 正交性.md",
+      "destination": "vault-notes/math/linear-algebra/04-orthogonality.md"
+    },
+    {
+      "source": "线性代数/5. 行列式.md",
+      "destination": "vault-notes/math/linear-algebra/05-determinants.md"
+    },
+    {
+      "source": "线性代数/6. 特征值与特征向量.md",
+      "destination": "vault-notes/math/linear-algebra/06-eigenvalues-eigenvectors.md"
+    },
+    {
+      "source": "线性代数/7. 奇异值分解.md",
+      "destination": "vault-notes/math/linear-algebra/07-singular-value-decomposition.md"
+    },
+    {
+      "source": "线性代数/8. 线性变换.md",
+      "destination": "vault-notes/math/linear-algebra/08-linear-transformations.md"
+    },
+    {
+      "source": "线性代数/9. 复向量和复矩阵.md",
+      "destination": "vault-notes/math/linear-algebra/09-complex-vectors-matrices.md"
+    },
+    {
+      "source": "线性代数/10. 线性代数的应用.md",
+      "destination": "vault-notes/math/linear-algebra/10-applications.md"
+    },
+    {
+      "source": "线性代数/11. 数值线性代数.md",
+      "destination": "vault-notes/math/linear-algebra/11-numerical-linear-algebra.md"
+    },
+    {
+      "source": "线性代数/12. 概率统计中的线性代数.md",
+      "destination": "vault-notes/math/linear-algebra/12-linear-algebra-in-probability-statistics.md"
+    },
+    {
+      "source": "概率论与数理统计/0. 概率论与数理统计知识库总导读.md",
+      "destination": "vault-notes/math/probability/00-guide.md"
+    },
+    {
+      "source": "概率论与数理统计/1. 概率论的基本概念.md",
+      "destination": "vault-notes/math/probability/01-basic-concepts.md"
+    },
+    {
+      "source": "概率论与数理统计/2. 条件概率与事件的独立性.md",
+      "destination": "vault-notes/math/probability/02-conditional-probability-independence.md"
+    },
+    {
+      "source": "概率论与数理统计/3. 随机变量及其分布.md",
+      "destination": "vault-notes/math/probability/03-random-variables-distributions.md"
+    },
+    {
+      "source": "概率论与数理统计/4. 多维随机变量及其分布.md",
+      "destination": "vault-notes/math/probability/04-multivariate-random-variables.md"
+    },
+    {
+      "source": "概率论与数理统计/5. 随机变量的数字特征.md",
+      "destination": "vault-notes/math/probability/05-numerical-characteristics.md"
+    },
+    {
+      "source": "概率论与数理统计/6. 大数定律与中心极限定理.md",
+      "destination": "vault-notes/math/probability/06-law-of-large-numbers-clt.md"
+    },
+    {
+      "source": "概率论与数理统计/7. 样本及抽样分布.md",
+      "destination": "vault-notes/math/probability/07-samples-sampling-distributions.md"
+    },
+    {
+      "source": "概率论与数理统计/8. 参数估计.md",
+      "destination": "vault-notes/math/probability/08-parameter-estimation.md"
+    },
+    {
+      "source": "概率论与数理统计/9. 假设检验.md",
+      "destination": "vault-notes/math/probability/09-hypothesis-testing.md"
+    },
+    {
+      "source": "概率论与数理统计/10. 方差分析与回归分析.md",
+      "destination": "vault-notes/math/probability/10-anova-regression.md"
+    },
+    {
+      "source": "概率论与数理统计/附录. 随机变量函数与随机数生成.md",
+      "destination": "vault-notes/math/probability/appendix-random-variable-functions.md"
+    },
+    {
+      "source": "复变函数与场论/0. 复变函数与场论知识库总导读.md",
+      "destination": "vault-notes/math/complex-analysis/00-guide.md"
+    },
+    {
+      "source": "复变函数与场论/1. 复数与复变函数.md",
+      "destination": "vault-notes/math/complex-analysis/01-complex-numbers-functions.md"
+    },
+    {
+      "source": "复变函数与场论/2. 解析函数.md",
+      "destination": "vault-notes/math/complex-analysis/02-analytic-functions.md"
+    },
+    {
+      "source": "复变函数与场论/3. 复变函数的积分.md",
+      "destination": "vault-notes/math/complex-analysis/03-complex-integration.md"
+    },
+    {
+      "source": "复变函数与场论/4. 解析函数的级数表示.md",
+      "destination": "vault-notes/math/complex-analysis/04-series-representation.md"
+    },
+    {
+      "source": "复变函数与场论/5. 留数及其应用.md",
+      "destination": "vault-notes/math/complex-analysis/05-residues-applications.md"
+    },
+    {
+      "source": "复变函数与场论/6. 保角映射.md",
+      "destination": "vault-notes/math/complex-analysis/06-conformal-mapping.md"
+    },
+    {
+      "source": "复变函数与场论/7. 傅里叶变换.md",
+      "destination": "vault-notes/math/complex-analysis/07-fourier-transform.md"
+    },
+    {
+      "source": "复变函数与场论/8. 拉普拉斯变换.md",
+      "destination": "vault-notes/math/complex-analysis/08-laplace-transform.md"
+    },
+    {
+      "source": "复变函数与场论/9. 场论基础.md",
+      "destination": "vault-notes/math/complex-analysis/09-field-theory-basics.md"
+    },
+    {
+      "source": "复变函数与场论/10. 场论的积分定理与边值问题.md",
+      "destination": "vault-notes/math/complex-analysis/10-field-integral-theorems-boundary-value.md"
+    },
+    {
+      "source": "Matlab/Matlab.md",
+      "destination": "vault-notes/matlab/matlab-notes.md"
+    },
+    {
+      "source": "Matlab/project/实验六 数字信号与系统产生软件设计与实现.md",
+      "destination": "vault-notes/matlab/experiment-06-dsp-design.md"
+    },
+    {
+      "source": "FPGA/00_FPGA知识库导读.md",
+      "destination": "vault-notes/fpga/00-guide.md"
+    },
+    {
+      "source": "FPGA/AD9361/AD9361内部结构.md",
+      "destination": "vault-notes/fpga/ad9361/ad9361-architecture.md"
+    },
+    {
+      "source": "FPGA/AD9361/AD9361数字接口.md",
+      "destination": "vault-notes/fpga/ad9361/ad9361-digital-interface.md"
+    },
+    {
+      "source": "FPGA/AD9361/IQ信号.md",
+      "destination": "vault-notes/fpga/ad9361/iq-signals.md"
+    },
+    {
+      "source": "FPGA/AD9361/IQ信号实验实战（Matlab+RTL）.md",
+      "destination": "vault-notes/fpga/ad9361/iq-signals-lab-matlab-rtl.md"
+    },
+    {
+      "source": "FPGA/FPGA结构/串口-UART(RS232).md",
+      "destination": "vault-notes/fpga/architecture/uart-rs232.md"
+    },
+    {
+      "source": "FPGA/FPGA结构/FIFO核.md",
+      "destination": "vault-notes/fpga/architecture/fifo-ip-core.md"
+    },
+    {
+      "source": "FPGA/FPGA结构/PLL IP核的调用.md",
+      "destination": "vault-notes/fpga/architecture/pll-ip-core.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/1. 寄存器.md",
+      "destination": "vault-notes/fpga/verilog/sequential/01-registers.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/2. 阻塞赋值和非阻塞赋值.md",
+      "destination": "vault-notes/fpga/verilog/sequential/02-blocking-vs-nonblocking-assignment.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/3. 计数器.md",
+      "destination": "vault-notes/fpga/verilog/sequential/03-counters.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/4. 分频器1- 偶分频.md",
+      "destination": "vault-notes/fpga/verilog/sequential/04-clock-divider-even.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/5. 分频器2 - 奇分频.md",
+      "destination": "vault-notes/fpga/verilog/sequential/05-clock-divider-odd.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/6. 按键消抖.md",
+      "destination": "vault-notes/fpga/verilog/sequential/06-key-debounce.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/7. 按键消抖.md",
+      "destination": "vault-notes/fpga/verilog/sequential/07-key-debounce-fsm.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/8. 流水灯.md",
+      "destination": "vault-notes/fpga/verilog/sequential/08-running-led.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/9. 呼吸灯.md",
+      "destination": "vault-notes/fpga/verilog/sequential/09-breathing-led.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/时序逻辑/10. 状态机.md",
+      "destination": "vault-notes/fpga/verilog/sequential/10-finite-state-machines.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/组合逻辑/1. 简单时序逻辑--多路选择器.md",
+      "destination": "vault-notes/fpga/verilog/combinational/01-multiplexer.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/组合逻辑/2. 3-8译码器.md",
+      "destination": "vault-notes/fpga/verilog/combinational/02-3-to-8-decoder.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/组合逻辑/3. 半加器.md",
+      "destination": "vault-notes/fpga/verilog/combinational/03-half-adder.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/组合逻辑/4. 全加器.md",
+      "destination": "vault-notes/fpga/verilog/combinational/04-full-adder.md"
+    },
+    {
+      "source": "FPGA/Verilog基础语法/组合逻辑/5. 避免Latch(锁存器)的产生.md",
+      "destination": "vault-notes/fpga/verilog/combinational/05-avoiding-latches.md"
+    },
+    {
+      "source": "FPGA/vivado开发/Flow Nevigator功能指导.md",
+      "destination": "vault-notes/fpga/vivado/flow-navigator-guide.md"
+    },
+    {
+      "source": "FPGA/vivado开发/README.md",
+      "destination": "vault-notes/fpga/vivado/readme.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/01-设计主线与Project-Mode.md",
+      "destination": "vault-notes/fpga/vivado/base/01-design-flow-project-mode.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/02-目标器件-Source-Top.md",
+      "destination": "vault-notes/fpga/vivado/base/02-target-device-source-top.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/03-RTL-硬件思维.md",
+      "destination": "vault-notes/fpga/vivado/base/03-rtl-hardware-thinking.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/04-RTL-Analysis-Elaboration.md",
+      "destination": "vault-notes/fpga/vivado/base/04-rtl-analysis-elaboration.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/05-Behavioral-Simulation.md",
+      "destination": "vault-notes/fpga/vivado/base/05-behavioral-simulation.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/06-XDC-引脚-时钟.md",
+      "destination": "vault-notes/fpga/vivado/base/06-xdc-pins-clocks.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/07-Synthesis-综合网表.md",
+      "destination": "vault-notes/fpga/vivado/base/07-synthesis-netlist.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/08-Implementation-布局布线.md",
+      "destination": "vault-notes/fpga/vivado/base/08-implementation-place-route.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/09-Reports-与时序判定.md",
+      "destination": "vault-notes/fpga/vivado/base/09-reports-timing-verdict.md"
+    },
+    {
+      "source": "FPGA/vivado开发/BASE/10-Bitstream-Hardware-Manager.md",
+      "destination": "vault-notes/fpga/vivado/base/10-bitstream-hardware-manager.md"
+    },
+    {
+      "source": "FPGA/分析理论/00_分析理论导读.md",
+      "destination": "vault-notes/fpga/sta/00-guide.md"
+    },
+    {
+      "source": "FPGA/分析理论/01_数字系统设计与实现流程.md",
+      "destination": "vault-notes/fpga/sta/01-design-implementation-flow.md"
+    },
+    {
+      "source": "FPGA/分析理论/02_FPGA器件结构与时钟资源.md",
+      "destination": "vault-notes/fpga/sta/02-device-structure-clock-resources.md"
+    },
+    {
+      "source": "FPGA/分析理论/03_综合基础与综合属性.md",
+      "destination": "vault-notes/fpga/sta/03-synthesis-basics-attributes.md"
+    },
+    {
+      "source": "FPGA/分析理论/04_时序分析基础-路径模型与建立保持时间.md",
+      "destination": "vault-notes/fpga/sta/04-timing-analysis-setup-hold.md"
+    },
+    {
+      "source": "FPGA/分析理论/05_时序约束-周期约束与偏移约束.md",
+      "destination": "vault-notes/fpga/sta/05-timing-constraints-period-offset.md"
+    },
+    {
+      "source": "FPGA/分析理论/06_时序例外约束与约束优先级.md",
+      "destination": "vault-notes/fpga/sta/06-timing-exceptions-priority.md"
+    },
+    {
+      "source": "FPGA/分析理论/07_时序分析速查卡.md",
+      "destination": "vault-notes/fpga/sta/07-timing-analysis-cheatsheet.md"
+    },
+    {
+      "source": "FPGA/基础概念/01.EDA技术概述.md",
+      "destination": "vault-notes/fpga/basics/01-eda-technology-overview.md"
+    },
+    {
+      "source": "FPGA/基础概念/02.FPGA&CPLD元件概述.md",
+      "destination": "vault-notes/fpga/basics/02-fpga-cpld-overview.md"
+    },
+    {
+      "source": "5G/00_5G知识库全局导读.md",
+      "destination": "vault-notes/5g/00-guide.md"
+    },
+    {
+      "source": "5G/HARQ技术.md",
+      "destination": "vault-notes/5g/harq.md"
+    },
+    {
+      "source": "5G/5G基础与框架/4G至5G演进知识点.md",
+      "destination": "vault-notes/5g/fundamentals/01-4g-to-5g-evolution.md"
+    },
+    {
+      "source": "5G/5G基础与框架/5G历史概览及应用.md",
+      "destination": "vault-notes/5g/fundamentals/02-5g-history-applications.md"
+    },
+    {
+      "source": "5G/5G基础与框架/5G内容学习指南.md",
+      "destination": "vault-notes/5g/fundamentals/03-5g-learning-guide.md"
+    },
+    {
+      "source": "5G/5G工程仿真/5G工程实践仿真-5G工程实践仿真.md",
+      "destination": "vault-notes/5g/engineering-simulation/01-engineering-simulation.md"
+    },
+    {
+      "source": "5G/5G工程仿真/5G工程实践仿真-工程实践(信号塔).md",
+      "destination": "vault-notes/5g/engineering-simulation/02-signal-tower-practice.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/5G分层总览.md",
+      "destination": "vault-notes/5g/architecture/01-layering-overview.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/5G网分类/5G核心网(5GC)架构.md",
+      "destination": "vault-notes/5g/architecture/02-5gc-architecture.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/5G网分类/5G无线接入网(NG-RAN)架构.md",
+      "destination": "vault-notes/5g/architecture/03-ng-ran-architecture.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/OSI分类/5G无线承载协议(Bearer) (L1+L2).md",
+      "destination": "vault-notes/5g/protocols/01-bearer-l1-l2.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/OSI分类/传输层(L4)/5G传输层与隧道协议.md",
+      "destination": "vault-notes/5g/protocols/02-transport-layer-tunnels.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/OSI分类/数据链路层(L2)/5G数据链路层协议(L2).md",
+      "destination": "vault-notes/5g/protocols/03-data-link-layer-l2.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/OSI分类/物理层(L1)/5G_NR标准规范.md",
+      "destination": "vault-notes/5g/protocols/04-nr-standard-specifications.md"
+    },
+    {
+      "source": "5G/5G核心架构与规范/OSI分类/网络层(L3)/5G承载网.md",
+      "destination": "vault-notes/5g/protocols/05-transport-network.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G_NR小区搜索过程.md",
+      "destination": "vault-notes/5g/phy/01-cell-search.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G核心测量与移动性.md",
+      "destination": "vault-notes/5g/phy/02-measurements-mobility.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G随机接入过程(RACH).md",
+      "destination": "vault-notes/5g/phy/03-random-access-rach.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G物理层信道与信号.md",
+      "destination": "vault-notes/5g/phy/04-physical-channels-signals.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G空口技术/5G空口技术图解解析.md",
+      "destination": "vault-notes/5g/phy/05-air-interface-illustrated.md"
+    },
+    {
+      "source": "5G/5G物理层与底层技术/5G空口技术/5GUE接入核心网的全流程.md",
+      "destination": "vault-notes/5g/phy/06-ue-access-core-network-flow.md"
+    },
+    {
+      "source": "5G/6G网络架构/6G架构.md",
+      "destination": "vault-notes/5g/6g/01-6g-architecture.md"
+    }
   ],
   "assets": [
-    {"source":"Assets/Attachments/Pasted image 20261024192436.png","destination":"vault-notes/assets/sampling-time-frequency.png"},
-    {"source":"Assets/Attachments/Pasted image 20261024193148.png","destination":"vault-notes/assets/nyquist-critical-sampling.png"},
-    {"source":"Assets/Attachments/Pasted image 20261024203029.png","destination":"vault-notes/assets/z-transform-convergence.png"}
+    {
+      "source": "Assets/Attachments/Pasted image 20261024192436.png",
+      "destination": "vault-notes/assets/01-discrete-time-systems/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261024193148.png",
+      "destination": "vault-notes/assets/01-discrete-time-systems/fig-02.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261024203029.png",
+      "destination": "vault-notes/assets/02-z-transform-and-dtft/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261017173638.png",
+      "destination": "vault-notes/assets/01-vector-introduction/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261027094103.png",
+      "destination": "vault-notes/assets/experiment-06-dsp-design/fig-01.png"
+    },
+    {
+      "source": "FPGA/AD9361/IQ星座图_典型调制与失真.png",
+      "destination": "vault-notes/assets/iq-signals/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025180745.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025181518.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-02.png"
+    },
+    {
+      "source": "Assets/TimingDiagrams/UART/uart-frame-8n1.svg",
+      "destination": "vault-notes/assets/uart-rs232/fig-03.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/UART/uart-rx-midbit-sampling.svg",
+      "destination": "vault-notes/assets/uart-rs232/fig-04.svg"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025184709.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-05.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025185053.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-06.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025185216.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-07.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025185822.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-08.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025190922.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-09.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025192809.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-10.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025202300.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-11.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025203118.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-12.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025203335.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-13.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261025203520.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-14.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261026191024.png",
+      "destination": "vault-notes/assets/uart-rs232/fig-15.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022164000.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022164448.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-02.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022165352.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-03.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022170006.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-04.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022182806.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-05.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022185238.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-06.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022192204.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-07.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022192651.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-08.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261022194347.png",
+      "destination": "vault-notes/assets/fifo-ip-core/fig-09.png"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/register-sampling.svg",
+      "destination": "vault-notes/assets/01-registers/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/blocking-vs-nonblocking.svg",
+      "destination": "vault-notes/assets/02-blocking-vs-nonblocking-assignment/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/counter-enable.svg",
+      "destination": "vault-notes/assets/03-counters/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/divider-even.svg",
+      "destination": "vault-notes/assets/04-clock-divider-even/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/divider-odd.svg",
+      "destination": "vault-notes/assets/05-clock-divider-odd/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/key-debounce-counter.svg",
+      "destination": "vault-notes/assets/06-key-debounce/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/key-debounce-fsm.svg",
+      "destination": "vault-notes/assets/07-key-debounce-fsm/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/led-flow-shift.svg",
+      "destination": "vault-notes/assets/08-running-led/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/breath-led-pwm.svg",
+      "destination": "vault-notes/assets/09-breathing-led/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Sequential/fsm-state-transition.svg",
+      "destination": "vault-notes/assets/10-finite-state-machines/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/mux2-1-propagation.svg",
+      "destination": "vault-notes/assets/01-multiplexer/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/decoder-3to8-propagation.svg",
+      "destination": "vault-notes/assets/02-3-to-8-decoder/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/half-adder-propagation.svg",
+      "destination": "vault-notes/assets/03-half-adder/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/full-adder-propagation.svg",
+      "destination": "vault-notes/assets/04-full-adder/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/latch-hold-compare.svg",
+      "destination": "vault-notes/assets/05-avoiding-latches/fig-01.svg"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090238.png",
+      "destination": "vault-notes/assets/04-rtl-analysis-elaboration/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090442.png",
+      "destination": "vault-notes/assets/05-behavioral-simulation/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090549.png",
+      "destination": "vault-notes/assets/07-synthesis-netlist/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090625.png",
+      "destination": "vault-notes/assets/08-implementation-place-route/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090641.png",
+      "destination": "vault-notes/assets/09-reports-timing-verdict/fig-01.png"
+    },
+    {
+      "source": "Assets/Attachments/Pasted image 20261023090730.png",
+      "destination": "vault-notes/assets/10-bitstream-hardware-manager/fig-01.png"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Combinational/inverter-propagation-delay.svg",
+      "destination": "vault-notes/assets/01-design-implementation-flow/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/Clock/mmcm-output-phase.svg",
+      "destination": "vault-notes/assets/02-device-structure-clock-resources/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/setup-hold-window.svg",
+      "destination": "vault-notes/assets/04-timing-analysis-setup-hold/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/setup-hold-check.svg",
+      "destination": "vault-notes/assets/04-timing-analysis-setup-hold/fig-02.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/reg-to-reg-period.svg",
+      "destination": "vault-notes/assets/04-timing-analysis-setup-hold/fig-03.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/inverted-clock-half-period.svg",
+      "destination": "vault-notes/assets/05-timing-constraints-period-offset/fig-01.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/input-offset.svg",
+      "destination": "vault-notes/assets/05-timing-constraints-period-offset/fig-02.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/output-offset.svg",
+      "destination": "vault-notes/assets/05-timing-constraints-period-offset/fig-03.svg"
+    },
+    {
+      "source": "Assets/TimingDiagrams/STA/multicycle-path.svg",
+      "destination": "vault-notes/assets/06-timing-exceptions-priority/fig-01.svg"
+    }
   ]
 }
