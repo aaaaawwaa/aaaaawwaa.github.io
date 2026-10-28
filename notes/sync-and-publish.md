@@ -69,7 +69,7 @@ npm run verify         # 内容扫描 + 源码级链接检查 + Quartz 构建 + 
 2. 在 `public-notes.json` 的 `files` 中增加 `{"source": "<Vault 相对路径>", "destination": "vault-notes/<学科>/<小写英文短横线>.md"}`；
 3. 若笔记引用了新的图片，在 `assets` 中增加对应条目（只允许 png/jpg/gif/webp/svg，目的路径须在 `vault-notes/assets/` 下）；
 4. `npm run sync:preview` 检查输出，确认没有意外的 `converted` 或 `secretFindings`；
-5. `npm run sync:apply` → `npm run verify`；
+5. `npm run sync:apply` → `npm run folders:build`（新目录需同步补 `folder-titles.json`）→ `npm run verify`；
 6. 提交并推送，等待 GitHub Actions 部署完成后在线抽查。
 
 > 附件命名建议沿用 `vault-notes/assets/<笔记 slug>/fig-NN.<ext>`，与现有 60 个附件一致。

@@ -40,15 +40,18 @@ LumenTrace-Wiki/
 ├── quartz.config.yaml            # ★ 站点配置（标题、主题、插件、布局）
 ├── quartz.lock.json              # 插件版本锁
 ├── public-notes.json             # ★ 发布白名单：Vault 笔记 → 站点路径映射
+├── folder-titles.json            # ★ 目录中文显示名映射（URL/slug 不变，见 notes/folder-localization.md）
 ├── scripts/
 │   ├── sync-public.mjs           # 单向同步器（预览 / 写入）
 │   ├── check-public.mjs          # 公开内容扫描（凭据、草稿标记、文件类型）
 │   ├── check-links-source.mjs    # 源码级、大小写敏感的链接检查
 │   ├── audit-site.mjs            # 构建产物自检（断链 / 索引 / 富内容）
+│   ├── build-folder-indexes.mjs  # 生成/校验各目录的中文 index.md（目录树、面包屑、目录页）
 │   ├── provision-plugins.ts      # 受限网络下的离线插件安装
 │   └── *.test.mjs                # 同步器、扫描器、交互实验的单元测试
 ├── notes/                        # 工程笔记（同步发布、融合规范与台账）
 │   ├── fusion/                   # 各学科融合规范与明细台账
+│   ├── folder-localization.md    # 目录中文显示名机制与维护方式
 │   └── topic-fusion-ledger.md    # 来源笔记 → 主题文章/章节 → 状态 总台账
 ├── docs/                         # Quartz 官方文档（上游附带）
 ├── AGENTS.md                     # Agent / 协作者修改规则
@@ -87,8 +90,9 @@ npm run verify
 2. 在 `public-notes.json` 的 `files` 中登记「Vault 相对路径 → 小写英文目标路径」，图片登记到 `assets`；
 3. `npm run sync:preview`：只读预演，检查 `unresolved` / `converted` / `secretFindings` / `conflicts`；
 4. `npm run sync:apply`：写入 `content/vault-notes/`；
-5. `npm run verify`：内容扫描 + 源码级链接检查 + 构建 + 产物自检；
-6. 提交并推送，等待 GitHub Actions 部署完成后在线抽查。
+5. `npm run folders:build`：生成各目录的中文 index.md（新增目录需先在 `folder-titles.json` 补映射）；
+6. `npm run verify`：目录/主题检查 + 内容扫描 + 源码级链接检查 + 构建 + 产物自检；
+7. 提交并推送，等待 GitHub Actions 部署完成后在线抽查。
 
 详细规则、排除范围与未解析链接策略见 [notes/sync-and-publish.md](./notes/sync-and-publish.md)。
 
@@ -104,6 +108,17 @@ npm run verify
 - 主题文章是**人工维护文件**，不受同步器覆盖；每个章节在台账中登记来源笔记。
 - 写作约束：全小写英文文件名、中文 `title`、块级 `$$` 独占一行、双链全路径、只引用已存在的 `vault-notes/assets/**` 图片。
 - 新增/修改主题文章后运行 `npm run verify`；同步笔记后运行 `npm run topics:build` 更新索引区块。
+
+---
+
+## 3.2 目录中文显示名（folder localization）
+
+站内目录的 URL 与磁盘 slug 保持英文小写（避免大小写敏感部署下的 404），左侧目录树、目录列表、目录页标题、面包屑和搜索里的显示名改为 Obsidian 源目录的中文名。
+
+- 机制：给每个可见目录生成带中文 `title` 的 `index.md`。Quartz 的 Explorer（读 contentIndex）、folder-page（目录列表）、breadcrumbs（面包屑）与搜索都优先读取目录 index 的 title，因此四处同时生效，URL 不变。
+- 映射：仓库根目录 [folder-titles.json](./folder-titles.json)（`title`/`source`/`description`，`manual: true` 表示人工入口页）；生成器 [scripts/build-folder-indexes.mjs](./scripts/build-folder-indexes.mjs)。
+- 命令：`npm run folders:build` 生成/更新；`npm run folders:check` 只校验（`npm run verify` 与 CI 都会执行）。生成页带固定标记，人工 `index.md` 会被拒绝覆盖。
+- 细节与新增目录流程：[notes/folder-localization.md](./notes/folder-localization.md)。
 
 ---
 
@@ -147,6 +162,7 @@ npm run verify
 | `npm run sync:preview` / `sync:apply` | 同步预演 / 写入 |
 | `npm run check:public` | 公开内容敏感项扫描 |
 | `npm run topics:build` / `topics:build --check` | 生成 / 校验主题索引区块（195 篇归属） |
+| `npm run folders:build` / `folders:check` | 生成 / 校验目录中文 index 页（目录树、面包屑、目录页标题） |
 | `npm run audit` | 产物自检（断链、索引、Mermaid/KaTeX/代码块、KaTeX 错误节点、RSS/sitemap） |
 | `npm run test:public` | 同步器与扫描器单元测试 |
 | `npm run plugins:install` / `plugins:offline` | 插件安装（在线 / 离线） |
@@ -159,6 +175,7 @@ npm run verify
 - [AGENTS.md](./AGENTS.md)：Agent / 协作者修改规则
 - [TEST-REPORT.md](./TEST-REPORT.md)：测试证据、已知问题、后续计划
 - [notes/sync-and-publish.md](./notes/sync-and-publish.md)：同步发布细则
+- [notes/folder-localization.md](./notes/folder-localization.md)：目录中文显示名机制
 - [notes/fusion/SPEC.md](./notes/fusion/SPEC.md)：内容融合规范
 - [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)：融合总台账（195 篇笔记 → 42 篇文章）
 - [notes/quartz5-capabilities.md](./notes/quartz5-capabilities.md)：Quartz 5 能力调研

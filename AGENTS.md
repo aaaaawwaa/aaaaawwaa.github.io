@@ -73,6 +73,16 @@
 - 双链全路径全小写；块级 `$$` 独占一行；图片只引用已存在的 `vault-notes/assets/**`（新增图片必须先走白名单同步）。
 - 不要把同步命令、私有磁盘路径、开发过程写进公开正文；维护文档放 `notes/`。
 
+### 3.0.2 目录中文显示名（生成目录 index）
+
+`content/vault-notes/` 下各目录的显示名（左侧目录树、目录列表、目录页标题、面包屑、搜索）来自该目录 `index.md` 的中文 frontmatter title，URL 与磁盘 slug 保持英文小写。
+
+- 映射维护在仓库根目录 `folder-titles.json`；生成器为 `scripts/build-folder-indexes.mjs`：`npm run folders:build` 生成/更新，`npm run folders:check` 校验（`npm run verify` 与 CI 都会跑）。
+- 生成页含固定注释标记（folder-index: generated），**不要手工编辑生成页**；要改显示名请改映射后重新生成。
+- 人工入口页（如 `content/vault-notes/index.md`）在映射里标 `manual: true`，生成器只校验标题、不覆盖。
+- 新增目录时：同步笔记 → 在 `folder-titles.json` 为**新目录及其父目录**补 `title`/`source`/`description` → `npm run folders:build` → `npm run verify`。缺少映射会让 `verify` 与 CI 失败。
+- 不要把品牌/技术缩写强行翻译（5G、FPGA、AD9361、BASE、Vivado、Matlab 保持原样）；插件系统文案（Explorer 等）不属于本机制。
+
 ### 3.1 命名（强制）
 
 - 目录名与文件名：**小写英文 + 短横线**，例：`signal-processing/dft-and-fft.md`
