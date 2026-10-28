@@ -31,6 +31,8 @@ jobs:
         run: npm run test:public
       - name: Check public content
         run: npm run check:public
+      - name: Check topic coverage
+        run: node scripts/build-topic-guides.mjs --check
       - name: Check content links (case-sensitive)
         run: node scripts/check-links-source.mjs
       - name: Install Quartz plugins
