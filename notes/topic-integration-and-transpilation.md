@@ -1,14 +1,26 @@
 # 知识主题融合与发布转换
 
-## 当前实现
+## 两层内容
 
-首页通过知识主题进入内容。195 篇公开笔记已显式归属到 8 个主题入口；`scripts/build-topic-guides.mjs` 生成主题页中的知识点索引，保留索引之外的人工编写正文。它检查每篇笔记恰好有一个归属。`npm run topics:build` 更新索引，`npm run verify` 检查索引是否过期。
+| 层 | 位置 | 作用 | 维护方式 |
+| --- | --- | --- | --- |
+| 笔记副本 | `content/vault-notes/`（195 篇 + 60 图） | 可检索、可深入的原始笔记 | `scripts/sync-public.mjs` 从 Vault 单向同步，**不要手改** |
+| 主题正文 | `content/signal-processing/`、`communication/`、`mathematics/`、`digital-systems/`、`programming/`、`maps/` | 可学习的学习路径：解释、条件、推导、例题、代码、图表 | 人工编写/融合，台账见 `notes/topic-fusion-ledger.md` |
 
-信号处理页按离散系统、变换、数字滤波器与多抽样率展开；DFT/FFT 专题已将课程笔记中的 DTFT 采样、圆周卷积、补零条件与 FFT 蝶形思路融入讲解，并链接原始详细推导。其余主题目前完成课程导航与概念概览，尚未逐段融合全部 195 篇正文。
+主题索引区块由 `scripts/build-topic-guides.mjs` 在 `<!-- topic-index:start/end -->` 之间生成，195 篇笔记恰好一个归属；人工正文写在标记之外，不会被脚本覆盖。
+
+## 本轮融合结果（2026-10-28）
+
+- 数字信号处理重整为四阶段 15 篇：信号与系统、Z/DTFT、DFT/FFT、滤波器结构、IIR/FIR 设计、多抽样率，加随机信号的 8 篇（随机过程、相关与功率谱、通过系统、估计滤波、自适应与谱估计、检测、实验、公式速查）。
+- 通信原理 8 篇（信号与信道、AM、数字基带、数字带通、编码、同步、5G/6G、公式速查）。
+- 数学基础 9 篇（线代 4、概率 2、复变 2、速查）+ MATLAB 1 篇。
+- 数字系统 7 篇（Verilog 基础、时序逻辑、FSM、架构与 EDA、Vivado、时序约束、接口与 AD9361）。
+- 知识网络与学习路径按真实文章重画，五张学科知识地图接入导航。
+- 明细台账：`notes/fusion/dsp.md`、`dsp-filters.md`、`random-signals.md`、`communication.md`、`mathematics.md`、`matlab.md`、`fpga.md`、`maps.md`；总表 `notes/topic-fusion-ledger.md`。
 
 ## 内容与自动转换的边界
 
-人工融合负责概念去重、前置知识、推导顺序与交叉引用，不能靠按文件名复制实现。同步器只负责公开副本的格式转换，不回写原始 Vault，也不会覆盖人工编辑过的生成文件。专题文章放在主题目录，原笔记副本保留为详细推导与来源；旧链接继续有效。
+人工融合负责概念去重、前置知识、推导顺序与交叉引用，不能靠按文件名复制实现。同步器只负责公开副本的格式转换，不回写原始 Vault，也不会覆盖人工编辑过的文件。专题文章放在主题目录，原笔记副本保留为详细推导与来源；旧链接继续有效。
 
 ## 已有转换规则
 
@@ -20,8 +32,6 @@
 
 ## 验证与限制
 
-执行 `npm run test:public` 与 `npm run verify`，再检查浏览器中的正文、图表和公式。构建中的 KaTeX 警告仍需逐项审阅，零断链不能证明公式和代码的语义正确。代码样例保持其原语言，发布转换不将 MATLAB/Verilog 自动改成 JavaScript。HTML 实验和 canvas 需要独立适配。
+执行 `npm run test:public` 与 `npm run verify`（后者含主题覆盖检查、公开内容扫描、源链接检查、构建、产物审计与 KaTeX 错误节点检查），再检查浏览器中的正文、图表和公式。构建成功不代表数学结论正确；代码样例保持原语言，发布转换不将 MATLAB/Verilog 自动改成 JavaScript。HTML 实验和 canvas 需要独立适配。
 
-新增或修改来源笔记后：同步预演 → 应用同步 → 更新主题索引 → 构建检查 → 提交并部署。增加来源文件时也要为它设置明确的主题归属。
-
-发布检查新增 scripts/check-math-render.mjs，扫描全部 HTML 的 KaTeX 错误节点；检测到错误即阻止发布。
+新增或修改来源笔记后：同步预演 → 应用同步 → 更新主题索引 → 构建检查 → 提交并部署。新增主题文章时：按 `notes/fusion/SPEC.md` 写作，并在对应学科台账登记来源与状态。

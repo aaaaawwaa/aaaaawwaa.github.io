@@ -63,6 +63,16 @@
 
 同步器要点：`public-notes.json` 是白名单；`unresolvedPolicy: "text"` 会把指向未发布目标的链接转成可读文字并记录；`sync:apply` 会拒绝覆盖被人工修改过的文件（状态见 `.quartz/sync-public-state.json`，该文件不提交）。
 
+### 3.0.1 主题正文与融合台账（人工维护）
+
+`content/signal-processing/`、`communication/`、`mathematics/`、`digital-systems/`、`programming/`、`maps/` 下的主题文章是**人工融合文件**，负责"可学习的正文"；`vault-notes/` 只负责"可深入的原笔记"。
+
+- 新增/改写主题文章前先读 [notes/fusion/SPEC.md](./notes/fusion/SPEC.md)：结构（为什么需要→定义与条件→推导/例题→易错点→前置与下一步）、保留符号与适用条件、文末"来源与延伸阅读"、单篇 8–16 KB。
+- 每篇文章都要在 [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md) 对应学科的明细台账里登记来源笔记、目标章节与状态（正文完成 / 部分融合 / 排除）。
+- 主题页里 `<!-- topic-index:start -->…<!-- topic-index:end -->` 由 `npm run topics:build` 维护，不得手改；人工正文写在标记之外。
+- 双链全路径全小写；块级 `$$` 独占一行；图片只引用已存在的 `vault-notes/assets/**`（新增图片必须先走白名单同步）。
+- 不要把同步命令、私有磁盘路径、开发过程写进公开正文；维护文档放 `notes/`。
+
 ### 3.1 命名（强制）
 
 - 目录名与文件名：**小写英文 + 短横线**，例：`signal-processing/dft-and-fft.md`

@@ -5,7 +5,7 @@
 - **站点框架**：[Quartz v5.0.0](https://quartz.jzhao.xyz/)（面向 Obsidian 的静态站点生成器）
 - **内容格式**：Obsidian Flavored Markdown + LaTeX + Mermaid
 - **线上地址**：<https://aaaaawwaa.github.io/>（GitHub Pages + GitHub Actions，HTTPS）
-- **已发布内容**：195 篇学习笔记 + 60 张图表（`content/vault-notes/`）
+- **已发布内容**：195 篇学习笔记 + 60 张图表（`content/vault-notes/`）+ **52 篇融合后的主题文章**（`content/<主题>/`）
 - **本地运行**：Node.js ≥ 22、npm ≥ 10.9.2
 
 ---
@@ -27,8 +27,13 @@ LumenTrace-Wiki/
 │   │   ├── matlab/               # MATLAB 2 篇
 │   │   ├── maps/                 # 知识地图 5 篇
 │   │   └── assets/               # 同步的 60 张图表（PNG + SVG）
-│   ├── mathematics/ ...          # 站内示例分类（早期内容，保留）
-│   └── maps/                     # 示例跨学科导航
+│   ├── signal-processing/        # 信号处理：DSP 7 篇 + 随机信号 8 篇（融合正文）
+│   ├── communication/            # 通信原理/数字调制/5G：8 篇（融合正文）
+│   ├── mathematics/              # 数学基础：线代 4 + 概率 2 + 复变 2 + 速查
+│   ├── digital-systems/          # 数字系统：Verilog/FSM/时序/Vivado/接口 7 篇
+│   ├── programming/              # 编程实践：MATLAB、Python、C
+│   ├── maps/                     # 知识网络与学习路径（按真实文章重画）
+│   └── interactive-labs/         # 交互式实验
 ├── quartz/                       # Quartz 核心（上游代码，尽量不改）
 │   ├── static/                   # 站点级静态资源 → /static/**（含交互实验 lab/）
 │   └── styles/custom.scss        # ★ 自定义样式（中文排版与视觉设计）
@@ -42,7 +47,9 @@ LumenTrace-Wiki/
 │   ├── audit-site.mjs            # 构建产物自检（断链 / 索引 / 富内容）
 │   ├── provision-plugins.ts      # 受限网络下的离线插件安装
 │   └── *.test.mjs                # 同步器、扫描器、交互实验的单元测试
-├── notes/                        # 工程笔记（同步发布流程、Quartz 5 能力调研）
+├── notes/                        # 工程笔记（同步发布、融合规范与台账）
+│   ├── fusion/                   # 各学科融合规范与明细台账
+│   └── topic-fusion-ledger.md    # 来源笔记 → 主题文章/章节 → 状态 总台账
 ├── docs/                         # Quartz 官方文档（上游附带）
 ├── AGENTS.md                     # Agent / 协作者修改规则
 ├── DEPLOYMENT.md                 # 部署、更新、回滚
@@ -89,6 +96,17 @@ npm run verify
 
 ---
 
+## 3.1 内容融合（笔记 → 主题正文）
+
+`vault-notes/` 是原笔记的公开副本，负责"可检索、可深入"；`content/<主题>/` 下的主题文章负责"可学习"：把笔记里的解释、条件、推导、例题、代码与图表重组为有前置、有顺序、有交叉引用的正文。
+
+- 规范：[notes/fusion/SPEC.md](./notes/fusion/SPEC.md)；总台账：[notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)。
+- 主题文章是**人工维护文件**，不受同步器覆盖；每个章节在台账中登记来源笔记。
+- 写作约束：全小写英文文件名、中文 `title`、块级 `$$` 独占一行、双链全路径、只引用已存在的 `vault-notes/assets/**` 图片。
+- 新增/修改主题文章后运行 `npm run verify`；同步笔记后运行 `npm run topics:build` 更新索引区块。
+
+---
+
 ## 4. 站点配置与设计
 
 主配置：`quartz.config.yaml`
@@ -128,7 +146,8 @@ npm run verify
 | `npm run verify` | 内容扫描 + 链接检查 + 构建 + 产物自检（提交前必跑） |
 | `npm run sync:preview` / `sync:apply` | 同步预演 / 写入 |
 | `npm run check:public` | 公开内容敏感项扫描 |
-| `npm run audit` | 产物自检（断链、索引、Mermaid/KaTeX/代码块、RSS/sitemap） |
+| `npm run topics:build` / `topics:build --check` | 生成 / 校验主题索引区块（195 篇归属） |
+| `npm run audit` | 产物自检（断链、索引、Mermaid/KaTeX/代码块、KaTeX 错误节点、RSS/sitemap） |
 | `npm run test:public` | 同步器与扫描器单元测试 |
 | `npm run plugins:install` / `plugins:offline` | 插件安装（在线 / 离线） |
 
@@ -140,5 +159,7 @@ npm run verify
 - [AGENTS.md](./AGENTS.md)：Agent / 协作者修改规则
 - [TEST-REPORT.md](./TEST-REPORT.md)：测试证据、已知问题、后续计划
 - [notes/sync-and-publish.md](./notes/sync-and-publish.md)：同步发布细则
+- [notes/fusion/SPEC.md](./notes/fusion/SPEC.md)：内容融合规范
+- [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)：融合总台账（195 篇笔记 → 52 篇文章）
 - [notes/quartz5-capabilities.md](./notes/quartz5-capabilities.md)：Quartz 5 能力调研
 - Quartz 官方文档：<https://quartz.jzhao.xyz/>
