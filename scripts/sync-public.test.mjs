@@ -131,3 +131,15 @@ test('svg embeds become markdown images; png embeds stay wikilink embeds', async
   assert.match(out,/!\[[^\]]*\]\(vault-notes\/assets\/x\.svg\)/, 'SVG 应渲染为站点内图片路径');
   assert.match(out,/!\[\[vault-notes\/assets\/y\.png\|400\]\]/, 'PNG 仍用 wikilink 嵌入');
 });
+test('body hashtags with Chinese text are escaped to plain text', async t => {
+  const f=await fixture(t);
+  await writeFile(path.join(f.vault,'a.md'),'# 标题\n\n#概念解析\n\n正文 #标签 结束\n');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.match(out,/\\#概念解析/, '中文正文标签应转义为字面量');
+  assert.match(out,/\\#标签/, '行内中文标签也应转义');
+  assert.equal(out.split('\n').find(line => line.includes('概念解析')), String.fromCharCode(92) + '#概念解析');
+  assert.equal(out.split('\n').find(line => line.includes('\u6982\u5ff5\u89e3\u6790')), String.fromCharCode(92) + '#\u6982\u5ff5\u89e3\u6790');
+  assert.match(out,/# 标题/, 'Markdown 标题不受影响');
+});

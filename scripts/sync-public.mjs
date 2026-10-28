@@ -124,6 +124,9 @@ async function main() {
         }
         return `![${alt}](./${path.posix.relative(path.posix.dirname(x.destination),match.destination)})`;
       });
+      // 正文中的中文标签（如独占一行的 #概念解析）会让 Quartz 生成 tag 链接，
+      // 该路径在 Linux 上触发插件异常（Invalid code point）。转义为字面量文本，保持可读。
+      line=line.replace(/(^|\s)#([\u4e00-\u9fff][^\s#]*)/g,(all,pre,tag)=>pre+'\\#'+tag);
       return line.replace(/@@WIKICODE(\d+)@@/g,(_,i)=>saved[Number(i)]);
     }).join('\n');
     if(!/^---\s*\n/.test(text)) text=`---\ntitle: ${JSON.stringify(x.title||defaultTitle(x.source))}\n---\n\n${text}`;
