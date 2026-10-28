@@ -1,6 +1,6 @@
 ---
 title: 数学基础
-description: 电子信息工程的数学工具箱，覆盖线性代数、矩阵变换、概率论与随机信号分析的基本概念。
+description: 电子信息工程的数学工具箱：线性代数、概率统计、复变函数与场论，以及常用公式速查。
 tags:
   - mathematics
   - index
@@ -8,28 +8,45 @@ tags:
 
 ## 学习范围
 
-本分类覆盖电子信息工程中最常用的数学工具，分三条主线。第一条是线性代数：向量空间、矩阵运算、特征值与奇异值分解，它解释了 DFT 的正交基结构，也是 MIMO 信道分析的语言。第二条是概率论与随机过程：随机变量、常见分布、期望方差、高斯噪声与相关函数，它们是误码率推导和噪声分析的起点。第三条是与变换相关的复变基础，为后续学习傅里叶变换与 Z 变换做准备。
+本分类把电子信息工程最常用的数学工具分成四组。**线性代数**（四篇）从向量、矩阵、消元与行列式讲到正交投影、最小二乘、特征分解、SVD 与数值稳定性，它解释了 DFT 的正交基结构，也是 MIMO 信道与 PCA 的语言。**概率论与数理统计**（两篇）从公理、条件概率与随机变量讲到抽样分布、参数估计、假设检验与回归，是噪声建模、误码率推导与仿真结果分析的起点。**复变函数与场论**（两篇）提供 s 域/z 域、留数、保角映射与静电场边值问题的数学基础。**公式速查**把最常用的结论集中在一页，方便复习与查阅。
 
-学习目标是「读懂公式、用对条件、能写成代码」：先掌握矩阵乘法与特征值，再进入概率论，最后回到具体问题中检验。
+学习目标是"读懂公式、用对条件、能写成代码"：先掌握矩阵运算与特征值，再进入概率论，最后用复变与变换工具解决具体问题。每篇文章都保留关键推导与适用条件，并在文末链接到课程笔记的完整推导。
 
 ## 本分类文章
 
-- [[mathematics/linear-algebra-basics|线性代数基础]]：向量、矩阵、特征分解，以及 DFT 矩阵与信道的 SVD 分解。
-- [[mathematics/probability-overview|概率论概览]]：随机变量、期望方差、高斯分布与 AWGN 信道模型。
+- [[mathematics/linear-algebra-basics|线性代数基础]]：向量、矩阵、高斯消元与 LU、向量空间与秩、行列式。
+- [[mathematics/orthogonality-least-squares|正交性与最小二乘]]：投影、法方程、QR 分解、Gram–Schmidt 与最小二乘拟合。
+- [[mathematics/eigenvalues-svd|特征值、SVD 与低秩近似]]：对角化条件、谱定理、SVD、PCA、多维高斯与 MIMO 并行子信道。
+- [[mathematics/linear-transformations-numerics|线性变换与数值稳定性]]：换基与相似、Hermitian/酉矩阵、FFT 矩阵分解、条件数与迭代法。
+- [[mathematics/probability-overview|概率论概览]]：概率公理、条件概率与贝叶斯、随机变量与分布、数字特征、大数定律与 CLT。
+- [[mathematics/statistics-inference|数理统计与推断]]：抽样分布、参数估计、假设检验、方差分析、回归与随机数生成。
+- [[mathematics/complex-analysis|复变函数基础]]：复数、解析函数与 C-R 方程、复积分、级数、留数、保角映射。
+- [[mathematics/complex-transforms-and-fields|复变变换与场论]]：傅里叶级数/变换、拉普拉斯变换、麦克斯韦方程与边值问题。
+- [[mathematics/formula-sheet|数学公式速查]]：线性代数、概率统计、复变与变换的常用公式一页速查。
 
 ## 跨学科关联
 
-- [[signal-processing/dft-and-fft|DFT 与 FFT]]：DFT 本质上是取一组正交基上的投影，核函数 $e^{-j2\pi kn/N}$ 构成酉矩阵。
-- [[communication/digital-modulation-qpsk|数字调制 QPSK]]：星座图是二维实向量空间中的点，误码率由高斯分布与 Q 函数给出。
-- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：卷积与频域分析的每一步都依赖线性代数与复数的运算规则。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：DFT 是正交基上的投影，FFT 的分解来自矩阵分块。
+- [[signal-processing/random-processes|随机信号、估计与检测]]：相关函数、功率谱、MMSE 与检测都建立在概率论与线性代数上。
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：卷积、s 域与频率响应依赖复变函数与拉普拉斯变换。
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]：误码率由高斯分布与 Q 函数给出。
+- [[communication/mobile-networks|移动通信网络]]：MIMO 预编码来自信道矩阵的 SVD。
+- [[programming/matlab-for-dsp|MATLAB 与 DSP 仿真]]：用 MATLAB 验证公式与算法。
 
 > [!note] 学数学的优先级
-> 对电子信息工程而言，**会用**比**会证**更重要。公式的适用条件（连续还是离散、实信号还是复信号、是否满足绝对可和）必须记清楚，因为条件不满足时结论会失效。
+> 对电子信息工程而言，**会用**比**会证**更重要。但"会用"包括记住适用条件：连续还是离散、实信号还是复信号、是否满足绝对可和、方差是否有限、矩阵是否满秩。条件不满足时，公式给出的结论会失效。
 
 ## 相关阅读
 
 - [[mathematics/linear-algebra-basics|线性代数基础]]
+- [[mathematics/orthogonality-least-squares|正交性与最小二乘]]
+- [[mathematics/eigenvalues-svd|特征值、SVD 与低秩近似]]
+- [[mathematics/linear-transformations-numerics|线性变换与数值稳定性]]
 - [[mathematics/probability-overview|概率论概览]]
+- [[mathematics/statistics-inference|数理统计与推断]]
+- [[mathematics/complex-analysis|复变函数基础]]
+- [[mathematics/complex-transforms-and-fields|复变变换与场论]]
+- [[mathematics/formula-sheet|数学公式速查]]
 - [[maps/learning-path|推荐学习路径]]
 
 <!-- topic-index:start -->
