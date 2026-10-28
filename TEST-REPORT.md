@@ -281,3 +281,42 @@ npm run dev                 # http://localhost:8080
 | 搜索索引 | `/static/contentIndex.json` 682 条，包含 `signal-processing/z-transform-and-dtft`、`communication/digital-modulation-qpsk`、`mathematics/eigenvalues-svd` |
 
 已知差异：线上插件 UI 文案为英文（本地构建为中文），正文与标题不受影响；推测为 CI 按锁文件源码构建插件时 i18n 资源与本地 npm 预构建包不同，未在本轮验证修复。
+
+---
+
+## 11. 目录中文显示名与学习笔记库入口（2026-10-28）
+
+### 11.1 结果
+
+| 项 | 值 |
+| --- | --- |
+| 映射目录 | **28 个**（根入口 + 12 个一级 + 15 个二级/深层；math 为网站聚合层，maps 来源为 03-Maps） |
+| 生成目录页 | **27 个** `content/vault-notes/**/index.md`（带生成标记，人工入口页不动） |
+| 入口表格 | 学科入口 9 行、**19 个可点击链接**，无 `[[…]]` 原文残留 |
+| 显示名覆盖 | 左侧目录树、目录列表、目录页标题、面包屑、搜索标题、页面 title 全部为中文 |
+| URL/slug | 全部保持不变（如 `/vault-notes/dsp/`） |
+
+### 11.2 实现
+
+- `folder-titles.json`：显式映射（title/source/description，manual 标记人工入口页）。
+- `scripts/build-folder-indexes.mjs`：发现公开可见目录 → 校验「目录全覆盖、父目录链完整、映射项存在、人工页标题一致、生成页不脱管」→ 生成/更新目录 index；`--check` 接入 `npm run verify` 与 CI。
+- `scripts/folder-indexes.test.mjs`：4 项测试（缺失映射、生成幂等与过期检测、人工页保护、人工标题校验）。
+- 根因：Quartz 的 Explorer 读 contentIndex 的 title、folder-page 用目录节点 displayName、breadcrumbs 用目录 index 的 frontmatter title，因此给目录生成带中文 title 的 index.md 即可同时覆盖四处，无需改插件或构建产物。
+- `quartz.config.yaml`：breadcrumbs rootName 改为「首页」，使面包屑全链路中文。
+
+### 11.3 验证
+
+| 检查 | 结果 |
+| --- | --- |
+| `npm run test:public` | 28 项通过（含新增 4 项） |
+| `npm run folders:check` / `topics:build --check` | 通过（28 目录、27 页最新；195/195 归属） |
+| `npm run verify` | 773 页、0 断链、0 KaTeX 错误、818 表格 |
+| 浏览器（桌面 1440 / 手机 390） | 目录树全中文；表格入口可点击（点击「数字信号处理」→ `/vault-notes/dsp/`）；面包屑中文；无横向溢出 |
+| Actions | 运行 40673466581：build + deploy 均 success（提交 d1a8306） |
+| 线上核对 | `/vault-notes/`、`/vault-notes/dsp/`、`/vault-notes/fpga/verilog/sequential/`、`/vault-notes/math/linear-algebra/` 均 200；contentIndex 标题中文 |
+
+### 11.4 已知边界
+
+- 插件系统文案（Explorer / Graph View / Table of Contents）仍为英文：属 CI 源码构建插件的 i18n 资源问题，与目录映射是两类问题，本轮未改。
+- 目录显示名只影响展示；已发布笔记 slug 与外部链接不变。
+- `vault-notes/assets` 不含 Markdown，不进入索引，因此不作为课程目录显示。
