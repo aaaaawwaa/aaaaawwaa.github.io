@@ -269,3 +269,15 @@ npm run dev                 # http://localhost:8080
 - 文中 MATLAB/Python/RTL 代码为示例，CI 不执行；数值结论标注为预期结果，不是实测记录。
 - “部分融合”的 18 篇笔记（导航/地图/实验入口/只含 frontmatter 的 PLL 笔记等）已在台账注明原因。
 - 4 篇源笔记存在技术口径差异（如“直接型 I/II 互为转置”、窗函数估阶公式、脉冲响应不变法的 1/T 约定），已在正文更正并在台账记录。
+
+### 10.4 部署与线上验证
+
+| 项 | 结果 |
+| --- | --- |
+| 推送提交 | `437a482`（六个主题提交合并后） |
+| Actions 运行 | [40659262571](https://github.com/aaaaawwaa/aaaaawwaa.github.io/actions/runs/40659262571)：build ✓ / deploy ✓ |
+| 线上首页 | <https://aaaaawwaa.github.io/> 显示"195 篇已融合为 52 篇" |
+| 线上正文抽查 | Z 变换（173 KaTeX、0 错误节点、6 表）、QPSK（127 公式、Mermaid）、时序约束（4 图 0 失败）、特征值/SVD、知识网络 |
+| 搜索索引 | `/static/contentIndex.json` 682 条，包含 `signal-processing/z-transform-and-dtft`、`communication/digital-modulation-qpsk`、`mathematics/eigenvalues-svd` |
+
+已知差异：线上插件 UI 文案为英文（本地构建为中文），正文与标题不受影响；推测为 CI 按锁文件源码构建插件时 i18n 资源与本地 npm 预构建包不同，未在本轮验证修复。

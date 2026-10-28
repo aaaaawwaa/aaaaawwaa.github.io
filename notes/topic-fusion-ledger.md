@@ -27,14 +27,21 @@
 - 数字系统扩为 7 篇：Verilog 基础、时序逻辑与 FSM 重写、FPGA 架构与 EDA、Vivado 流程、时序分析与约束、接口与 AD9361。
 - 知识网络与学习路径按真实文章重画，五张学科地图接入。
 
-## 验证记录
+## 验证与部署记录（2026-10-28）
 
 | 项 | 结果 |
 | --- | --- |
 | `npm run topics:build --check` | 195/195 归属，索引不陈旧 |
-| `node scripts/check-links-source.mjs` | 253 个 md / 3500 条链接 / 0 问题 |
-| `npm run test:public` | 16 项通过 |
-| `npm run verify` | 773 页、0 断链、0 KaTeX 错误节点、108 Mermaid、817 表格、243 代码块 |
+| `node scripts/check-links-source.mjs` | 253 个 md / 3542 条链接 / 0 问题 |
+| `npm run test:public` | 24 项通过 |
+| `npm run verify`（本地提交树） | 773 页、0 断链、0 KaTeX 错误节点、108 Mermaid、817 表格、243 代码块、22911 KaTeX 标记 |
+| 提交 | `437a482`（docs 记录提交前为 6 个主题提交：b7155e4、1c7084a、66186f3、817c7c7、665f032、437a482） |
+| GitHub Actions | 运行 [40659262571](https://github.com/aaaaawwaa/aaaaawwaa.github.io/actions/runs/40659262571)：build 与 deploy 均 success |
+| 线上抽查（HTTPS） | 首页显示"195 篇已融合为 52 篇"；`/signal-processing/` 列出 15 篇；Z 变换页 173 处 KaTeX、0 错误节点、6 张表；QPSK 页 127 公式 + Mermaid；时序页 4 张 SVG/PNG 图 0 加载失败；contentIndex 682 条且含新文章 slug |
+
+### 已知差异（待核验）
+
+- **线上 UI 文案为英文**（Explorer / Graph View / Table of Contents / Backlinks），本地构建为中文。页面正文、标题、目录条目均正常中文。推测原因：CI 用 `npx quartz plugin install` 按 `quartz.lock.json` 的 commit 安装插件（源码构建），与本地 npm 预构建插件包的 i18n 资源版本不同，部分插件的 zh-CN 文案未被打包；本轮未修改部署流水线，未验证该假设。
 
 ## 待办
 
