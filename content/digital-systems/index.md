@@ -1,6 +1,6 @@
 ---
 title: 数字系统
-description: 数字逻辑与可综合 RTL 的学习范围，覆盖 Verilog 时序建模、复位策略与有限状态机设计。
+description: 从组合/时序逻辑与 Verilog 建模语义出发，覆盖 FPGA 器件结构、Vivado 流程、静态时序分析与约束，再到 UART/FIFO/AD9361 等系统接口的学习路径。
 tags:
   - digital-systems
   - index
@@ -10,28 +10,40 @@ tags:
 
 数字系统研究如何用逻辑门、触发器与时钟构建可靠的功能电路。落点是「可综合的 RTL」：代码要能映射成真实触发器与查找表，并在时序约束下稳定工作。
 
-内容分两条主线。第一条是 Verilog 的建模语义：组合逻辑与时序逻辑的区别、`always` 块与阻塞/非阻塞赋值、异步复位与同步释放、建立与保持时间。第二条是有限状态机（FSM）：Moore 与 Mealy 的区别、三段式写法、状态编码与输出寄存化抗毛刺。
+内容分四条主线。第一条是 Verilog 的建模语义：组合逻辑与时序逻辑的区别、`assign` 与 `always`、阻塞/非阻塞赋值、锁存器推断、复位策略。第二条是时序电路与状态机：寄存器、计数器、奇偶分频、按键消抖、PWM 与 Moore/Mealy 三段式状态机。第三条是器件与工具链：LUT/FF/BRAM/DSP48 资源、I/O Bank 与 MMCM/PLL 时钟资源、Vivado 从 RTL 到比特流的完整流程、建立/保持时间与周期/偏移/例外约束。第四条是系统接口：UART 帧格式与中点采样、同步/异步 FIFO、AD9361 零中频收发链与 IQ 信号、MATLAB 黄金模型与 RTL 逐点比对。
 
-学习顺序：先写寄存器与计数器，再写状态机，最后组合成完整接口模块（如 UART、SPI）。每个模块都用仿真波形检查复位后第一个周期与边界条件。
+学习顺序建议：先读 [[digital-systems/verilog-basics|数字设计与 Verilog 基础]] 建立组合/时序直觉，再写 [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]] 中的寄存器、计数器与消抖，随后进入 [[digital-systems/fsm-design|有限状态机设计]]；工具侧按 [[digital-systems/fpga-architecture-and-eda|FPGA 结构与 EDA 流程]] → [[digital-systems/vivado-design-flow|Vivado 设计流程]] → [[digital-systems/timing-analysis-and-constraints|静态时序分析与约束]] 的顺序，把「代码能跑」推进到「在指定频率下能稳定跑」；最后用 [[digital-systems/fpga-interfaces-and-ad9361|外设与射频接口]] 把模块组合成完整系统。
 
 ## 本分类文章
 
-- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]：非阻塞赋值、复位策略与建立保持时间。
-- [[digital-systems/fsm-design|有限状态机设计]]：Moore/Mealy 对比、三段式写法与状态编码。
+- [[digital-systems/verilog-basics|数字设计与 Verilog 基础]]：组合/时序逻辑、模块与端口、assign/always、阻塞与非阻塞赋值、MUX/译码器/加法器、Latch 的产生与消除。
+- [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]：寄存器采样时刻、同步/异步复位、计数器与 tick、奇偶分频（含占空比条件）、按键消抖、流水灯与 PWM 呼吸灯。
+- [[digital-systems/fsm-design|有限状态机设计]]：Moore/Mealy 时序差别、状态编码、三段式写法、序列检测器与按键消抖状态机、输出毛刺与常见错误。
+- [[digital-systems/fpga-architecture-and-eda|FPGA 结构与 EDA 流程]]：CPLD 乘积项与 FPGA 查找表、I/O Bank、CMT 与 MMCM/PLL 频率相位关系、EDA 三阶段与 ASIC/FPGA 差异。
+- [[digital-systems/vivado-design-flow|Vivado 设计流程]]：Project Mode 与 Flow Navigator、Sources/Top、Elaboration、行为仿真、XDC、综合、实现、时序报告与比特流下载。
+- [[digital-systems/timing-analysis-and-constraints|静态时序分析与约束]]：四类时序路径、建立/保持方程与 skew、周期约束与偏移约束、伪路径/多周期与优先级、报告判读与 CDC 风险。
+- [[digital-systems/fpga-interfaces-and-ad9361|外设与射频接口]]：UART/RS232 帧格式与中点采样、FIFO 缓冲、PLL 调用、AD9361 收发链与数字接口、IQ 失衡与 EVM、黄金模型验证。
 
 ## 跨学科关联
 
-- [[signal-processing/dft-and-fft|DFT 与 FFT]]：FFT 的硬件实现是典型的流水线与时序设计问题，运算单元必须按时钟节拍复用。
+- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：离散时间、采样与混叠是理解寄存器采样、UART 过采样与 ADC 接口的前提。
+- [[signal-processing/dft-and-fft|DFT 与 FFT]]：FFT 的硬件实现是典型的流水线与运算单元复用问题，DSP48 与 BRAM 的使用率直接决定能否实时。
+- [[communication/digital-modulation-qpsk|数字调制 QPSK]]：星座图、I/Q 正交表示与 EVM 与本文的 IQ 信号、AD9361 射频链路一一对应。
 - [[projects/uart-loopback-project|UART 回环项目]]：把时序逻辑与状态机组合成可上板验证的完整接口。
-- [[programming/c-pointer-and-memory|C 指针与内存]]：寄存器映射与 volatile 语义是软硬件交界处必须理解的部分。
+- [[programming/c-pointer-and-memory|C 指针与内存]]：寄存器映射与 `volatile` 语义是软硬件交界处必须理解的部分。
 
 > [!tip] 上板前的自检清单
 > 复位极性是否正确、时钟域是否只有一条、跨时钟域是否做了同步、组合逻辑是否存在锁存器、输出是否寄存。这五项能挡掉绝大多数初学者的 bug。
 
 ## 相关阅读
 
+- [[digital-systems/verilog-basics|数字设计与 Verilog 基础]]
 - [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]]
 - [[digital-systems/fsm-design|有限状态机设计]]
+- [[digital-systems/fpga-architecture-and-eda|FPGA 结构与 EDA 流程]]
+- [[digital-systems/vivado-design-flow|Vivado 设计流程]]
+- [[digital-systems/timing-analysis-and-constraints|静态时序分析与约束]]
+- [[digital-systems/fpga-interfaces-and-ad9361|外设与射频接口]]
 - [[maps/knowledge-network|跨学科知识网络]]
 
 <!-- topic-index:start -->
