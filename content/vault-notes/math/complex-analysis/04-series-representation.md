@@ -38,7 +38,9 @@ related: []
 
 > [!info] Def 1 复数项级数
 > 设 $\{z_n\}$ 是复数列，称
-> $$\sum_{n=1}^\infty z_n=z_1+z_2+\cdots$$
+> $$
+> \sum_{n=1}^\infty z_n=z_1+z_2+\cdots
+> $$
 > 为**复数项级数**。若部分和 $S_N=\sum_{n=1}^N z_n$ 有极限 $S$，则称级数收敛，$S$ 为和。
 
 **收敛的等价条件**：$\sum z_n$ 收敛 ⇔ $\sum\operatorname{Re}z_n$ 与 $\sum\operatorname{Im}z_n$ 都收敛。
@@ -49,7 +51,9 @@ related: []
 
 > [!info] Def 2 幂级数
 > 形如
-> $$\sum_{n=0}^\infty a_n(z-z_0)^n=a_0+a_1(z-z_0)+a_2(z-z_0)^2+\cdots$$
+> $$
+> \sum_{n=0}^\infty a_n(z-z_0)^n=a_0+a_1(z-z_0)+a_2(z-z_0)^2+\cdots
+> $$
 > 的级数称为**幂级数**（power series），$a_n$ 为系数，$z_0$ 为中心。
 
 > [!info] Def 3 收敛半径
@@ -57,7 +61,9 @@ related: []
 
 **收敛半径的求法**：
 
-$$R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\qquad\text{或}\qquad R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|$$
+$$
+R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\qquad\text{或}\qquad R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|
+$$
 
 （后者当极限存在时使用。）
 
@@ -66,14 +72,18 @@ $$R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\qquad\text{或}\qquad R=\lim_{n\to
 > **推论**：幂级数在收敛圆内可以逐项求导、逐项积分，收敛半径不变。
 
 > [!example] 几何级数
-> $$\sum_{n=0}^\infty z^n=\frac{1}{1-z},\qquad |z|<1$$
+> $$
+> \sum_{n=0}^\infty z^n=\frac{1}{1-z},\qquad |z|<1
+> $$
 > 收敛半径 $R=1$，奇点 $z=1$ 在收敛圆上。
 
 # 2. 泰勒级数
 
 > [!info] Def 4 泰勒级数
 > 设 $f(z)$ 在圆盘 $|z-z_0|<R$ 内解析，则
-> $$f(z)=\sum_{n=0}^\infty c_n(z-z_0)^n,\qquad c_n=\frac{f^{(n)}(z_0)}{n!}$$
+> $$
+> f(z)=\sum_{n=0}^\infty c_n(z-z_0)^n,\qquad c_n=\frac{f^{(n)}(z_0)}{n!}
+> $$
 > 称为 $f$ 在 $z_0$ 的**泰勒级数**（Taylor series）。展开唯一。
 
 > [!important] 解析 ⇔ 可展开为幂级数
@@ -82,21 +92,35 @@ $$R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\qquad\text{或}\qquad R=\lim_{n\to
 
 **收敛半径的几何意义**：
 
-$$R=\text{从 }z_0\text{ 到 }f\text{ 的最近奇点的距离}$$
+$$
+R=\text{从 }z_0\text{ 到 }f\text{ 的最近奇点的距离}
+$$
 
 - 若 $f$ 是整函数，则 $R=\infty$
 - 若 $f$ 在 $z_0$ 附近有奇点，则收敛圆恰好碰到最近奇点
 
 > [!example] 常用泰勒展开
-> $$e^z=\sum_{n=0}^\infty\frac{z^n}{n!},\qquad R=\infty$$
-> $$\sin z=\sum_{n=0}^\infty\frac{(-1)^nz^{2n+1}}{(2n+1)!},\qquad R=\infty$$
-> $$\cos z=\sum_{n=0}^\infty\frac{(-1)^nz^{2n}}{(2n)!},\qquad R=\infty$$
-> $$\frac{1}{1-z}=\sum_{n=0}^\infty z^n,\qquad R=1$$
-> $$\ln(1+z)=\sum_{n=1}^\infty\frac{(-1)^{n-1}z^n}{n},\qquad R=1$$
+> $$
+> e^z=\sum_{n=0}^\infty\frac{z^n}{n!},\qquad R=\infty
+> $$
+> $$
+> \sin z=\sum_{n=0}^\infty\frac{(-1)^nz^{2n+1}}{(2n+1)!},\qquad R=\infty
+> $$
+> $$
+> \cos z=\sum_{n=0}^\infty\frac{(-1)^nz^{2n}}{(2n)!},\qquad R=\infty
+> $$
+> $$
+> \frac{1}{1-z}=\sum_{n=0}^\infty z^n,\qquad R=1
+> $$
+> $$
+> \ln(1+z)=\sum_{n=1}^\infty\frac{(-1)^{n-1}z^n}{n},\qquad R=1
+> $$
 
 > [!example] 在非零点展开
 > 把 $f(z)=1/z$ 在 $z_0=1$ 展开。
-> $$\frac{1}{z}=\frac{1}{1+(z-1)}=\sum_{n=0}^\infty(-1)^n(z-1)^n,\qquad |z-1|<1$$
+> $$
+> \frac{1}{z}=\frac{1}{1+(z-1)}=\sum_{n=0}^\infty(-1)^n(z-1)^n,\qquad |z-1|<1
+> $$
 > 收敛半径 $R=1$，正好是 $z_0=1$ 到奇点 $z=0$ 的距离。
 
 > [!warning] 泰勒展开的唯一性
@@ -106,9 +130,13 @@ $$R=\text{从 }z_0\text{ 到 }f\text{ 的最近奇点的距离}$$
 
 > [!info] Def 5 洛朗级数
 > 设 $f(z)$ 在环域 $r<|z-z_0|<R$ 内解析，则
-> $$f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n$$
+> $$
+> f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
+> $$
 > 其中
-> $$c_n=\frac{1}{2\pi i}\oint_C\frac{f(\zeta)}{(\zeta-z_0)^{n+1}}\,\mathrm{d}\zeta$$
+> $$
+> c_n=\frac{1}{2\pi i}\oint_C\frac{f(\zeta)}{(\zeta-z_0)^{n+1}}\,\mathrm{d}\zeta
+> $$
 > $C$ 是环域内绕 $z_0$ 的任意简单闭曲线。称为**洛朗级数**（Laurent series）。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 440" width="100%" style="max-width:460px" font-family="inherit">
@@ -126,7 +154,9 @@ $$R=\text{从 }z_0\text{ 到 }f\text{ 的最近奇点的距离}$$
 
 **结构**：
 
-$$f(z)=\underbrace{\sum_{n=0}^\infty c_n(z-z_0)^n}_{\text{解析部分}}+\underbrace{\sum_{n=1}^\infty c_{-n}(z-z_0)^{-n}}_{\text{主要部分}}$$
+$$
+f(z)=\underbrace{\sum_{n=0}^\infty c_n(z-z_0)^n}_{\text{解析部分}}+\underbrace{\sum_{n=1}^\infty c_{-n}(z-z_0)^{-n}}_{\text{主要部分}}
+$$
 
 - 解析部分在 $|z-z_0|<R$ 内收敛
 - 主要部分在 $|z-z_0|>r$ 内收敛
@@ -140,9 +170,13 @@ $$f(z)=\underbrace{\sum_{n=0}^\infty c_n(z-z_0)^n}_{\text{解析部分}}+\underb
 > [!example] 洛朗展开：两个环域
 > 把 $f(z)=\dfrac{1}{z(z-1)}$ 在 $z_0=0$ 展开。
 > **环域 $0<|z|<1$**：
-> $$\frac{1}{z(z-1)}=-\frac1z\cdot\frac{1}{1-z}=-\frac1z\sum_{n=0}^\infty z^n=-\sum_{n=-1}^\infty z^n$$
+> $$
+> \frac{1}{z(z-1)}=-\frac1z\cdot\frac{1}{1-z}=-\frac1z\sum_{n=0}^\infty z^n=-\sum_{n=-1}^\infty z^n
+> $$
 > **环域 $|z|>1$**：
-> $$\frac{1}{z(z-1)}=\frac{1}{z^2}\cdot\frac{1}{1-1/z}=\frac{1}{z^2}\sum_{n=0}^\infty z^{-n}=\sum_{n=2}^\infty z^{-n}$$
+> $$
+> \frac{1}{z(z-1)}=\frac{1}{z^2}\cdot\frac{1}{1-1/z}=\frac{1}{z^2}\sum_{n=0}^\infty z^{-n}=\sum_{n=2}^\infty z^{-n}
+> $$
 > 两个展开式不同，但都在各自的环域内成立。
 
 # 4. 孤立奇点的分类
@@ -195,14 +229,22 @@ $$f(z)=\underbrace{\sum_{n=0}^\infty c_n(z-z_0)^n}_{\text{解析部分}}+\underb
 > [!example] 例 1：泰勒展开
 > 把 $f(z)=\dfrac{1}{(z-1)(z-2)}$ 在 $z=0$ 展开。
 > 部分分式：$\dfrac{1}{(z-1)(z-2)}=\dfrac{1}{z-2}-\dfrac{1}{z-1}$。
-> $$\frac{1}{z-2}=-\frac12\cdot\frac{1}{1-z/2}=-\frac12\sum_{n=0}^\infty\left(\frac z2\right)^n,\qquad |z|<2$$
-> $$\frac{1}{z-1}=-\frac{1}{1-z}=-\sum_{n=0}^\infty z^n,\qquad |z|<1$$
+> $$
+> \frac{1}{z-2}=-\frac12\cdot\frac{1}{1-z/2}=-\frac12\sum_{n=0}^\infty\left(\frac z2\right)^n,\qquad |z|<2
+> $$
+> $$
+> \frac{1}{z-1}=-\frac{1}{1-z}=-\sum_{n=0}^\infty z^n,\qquad |z|<1
+> $$
 > 故在 $|z|<1$（最近奇点 $z=1$）：
-> $$f(z)=\sum_{n=0}^\infty\left(1-\frac{1}{2^{n+1}}\right)z^n$$
+> $$
+> f(z)=\sum_{n=0}^\infty\left(1-\frac{1}{2^{n+1}}\right)z^n
+> $$
 
 > [!example] 例 2：洛朗展开
 > 把 $f(z)=e^{1/z}$ 在 $0<|z|<\infty$ 展开。
-> $$e^{1/z}=\sum_{n=0}^\infty\frac{1}{n!\,z^n}=1+\frac1z+\frac{1}{2!z^2}+\cdots$$
+> $$
+> e^{1/z}=\sum_{n=0}^\infty\frac{1}{n!\,z^n}=1+\frac1z+\frac{1}{2!z^2}+\cdots
+> $$
 > 无穷负幂，故 $z=0$ 是**本性奇点**。
 
 > [!example] 例 3：奇点分类
@@ -213,13 +255,19 @@ $$f(z)=\underbrace{\sum_{n=0}^\infty c_n(z-z_0)^n}_{\text{解析部分}}+\underb
 
 > [!example] 例 4：可去奇点
 > $f(z)=\dfrac{1-\cos z}{z^2}$。
-> $$\cos z=1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots$$
-> $$f(z)=\frac{1}{2!}-\frac{z^2}{4!}+\cdots$$
+> $$
+> \cos z=1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots
+> $$
+> $$
+> f(z)=\frac{1}{2!}-\frac{z^2}{4!}+\cdots
+> $$
 > 无负幂，$z=0$ 是可去奇点；补充 $f(0)=1/2$ 后解析。
 
 > [!example] 例 5：环域展开
 > 把 $f(z)=\dfrac{1}{z^2-1}$ 在 $1<|z|<\infty$ 展开。
-> $$\frac{1}{z^2-1}=\frac{1}{z^2}\cdot\frac{1}{1-1/z^2}=\sum_{n=1}^\infty z^{-2n}$$
+> $$
+> \frac{1}{z^2-1}=\frac{1}{z^2}\cdot\frac{1}{1-1/z^2}=\sum_{n=1}^\infty z^{-2n}
+> $$
 > 只有负幂，收敛于 $|z|>1$。
 
 > [!tip] 本章收官

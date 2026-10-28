@@ -28,7 +28,9 @@ related: []
 
 > [!info] 定义 1 共轭对称
 > 对 WSS 过程，
-> $$R_X(-\tau)=R_X^*(\tau),\qquad C_X(-\tau)=C_X^*(\tau)$$
+> $$
+> R_X(-\tau)=R_X^*(\tau),\qquad C_X(-\tau)=C_X^*(\tau)
+> $$
 > 实过程的相关函数为偶函数：$R_X(-\tau)=R_X(\tau)$。
 
 对称性来自平稳性：把两个时刻同时平移后，相关值不变，于是 $R_X(-\tau)=E[X(t-\tau)X^*(t)]=E[X(t)X^*(t+\tau)]=R_X^*(\tau)$。最后一步用了共轭。对互相关，对称性变成 $R_{XY}(-\tau)=R_{YX}(\tau)$，不再有偶对称。
@@ -40,18 +42,24 @@ related: []
 
 > [!info] 定义 2 非负定
 > 若对任意 $n$、任意实数 $\tau_1,\dots,\tau_n$ 与任意复数 $a_1,\dots,a_n$，都有
-> $$\sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_j^*R_X(\tau_i-\tau_j)\ge0$$
+> $$
+> \sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_j^*R_X(\tau_i-\tau_j)\ge0
+> $$
 > 则称 $R_X(\tau)$ 为**非负定函数**。
 
 非负定直接来自
 
-$$\sum_i\sum_j a_ia_j^*R_X(\tau_i-\tau_j)=E\left[\left\lvert\sum_i a_iX(t+\tau_i)\right\rvert^2\right]\ge0$$
+$$
+\sum_i\sum_j a_ia_j^*R_X(\tau_i-\tau_j)=E\left[\left\lvert\sum_i a_iX(t+\tau_i)\right\rvert^2\right]\ge0
+$$
 
 取 $n=2$、$a_1=a_2=1$ 与 $a_1=1,a_2=-1$，分别得到 $\mathrm{Re}\,R_X(\tau)\ge-R_X(0)$ 与 $\mathrm{Re}\,R_X(\tau)\le R_X(0)$，合并得 $\lvert\mathrm{Re}\,R_X(\tau)\rvert\le R_X(0)$；对复过程再乘相位因子，即得 $\lvert R_X(\tau)\rvert\le R_X(0)$。所以“原点最大”只是非负定的一个推论。
 
 > [!info] 定义 3 Bochner 定理
 > 连续函数 $R(\tau)$ 是非负定的，当且仅当它的傅里叶变换 $S(\omega)$ 存在且处处非负：
-> $$S(\omega)=\int_{-\infty}^{\infty}R(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau\ge0$$
+> $$
+> S(\omega)=\int_{-\infty}^{\infty}R(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau\ge0
+> $$
 
 | 等价说法 | 时域表述 | 频域表述 |
 | --- | --- | --- |
@@ -63,7 +71,9 @@ $$\sum_i\sum_j a_ia_j^*R_X(\tau_i-\tau_j)=E\left[\left\lvert\sum_i a_iX(t+\tau_i
 
 > [!info] 定义 4 均方连续
 > 若 $\lim_{h\to0}E\big[\lvert X(t+h)-X(t)\rvert^2\big]=0$，则称过程在 $t$ 处**均方连续**。对 WSS 过程，
-> $$E\big[\lvert X(t+h)-X(t)\rvert^2\big]=2\big[R_X(0)-\mathrm{Re}\,R_X(h)\big]$$
+> $$
+> E\big[\lvert X(t+h)-X(t)\rvert^2\big]=2\big[R_X(0)-\mathrm{Re}\,R_X(h)\big]
+> $$
 > 因此均方连续 $\Longleftrightarrow$ $R_X$ 在 $0$ 处连续。
 
 若 $R_X$ 在 $0$ 处连续，则它在任意 $\tau$ 处连续，且连续是均匀的。由柯西–施瓦茨有 $\lvert R_X(\tau+h)-R_X(\tau)\rvert^2\le2R_X(0)[R_X(0)-\mathrm{Re}\,R_X(h)]$，右端只与 $h$ 有关，与 $\tau$ 无关，故均匀连续。
@@ -80,13 +90,19 @@ $$\sum_i\sum_j a_ia_j^*R_X(\tau_i-\tau_j)=E\left[\left\lvert\sum_i a_iX(t+\tau_i
 
 > [!info] 定义 6 周期分量
 > 若相关函数含周期项
-> $$R_X(\tau)=\sum_k P_k e^{j\omega_k\tau}+R_c(\tau),\qquad P_k\ge0$$
+> $$
+> R_X(\tau)=\sum_k P_k e^{j\omega_k\tau}+R_c(\tau),\qquad P_k\ge0
+> $$
 > 则功率谱含冲激：
-> $$S_X(\omega)=2\pi\sum_k P_k\delta(\omega-\omega_k)+S_c(\omega)$$
+> $$
+> S_X(\omega)=2\pi\sum_k P_k\delta(\omega-\omega_k)+S_c(\omega)
+> $$
 
 随机相位正弦是典型例子：$R_X(\tau)=\frac{A^2}{2}\cos\omega_0\tau$，对应
 
-$$S_X(\omega)=\frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\big]$$
+$$
+S_X(\omega)=\frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\big]
+$$
 
 平均功率 $R_X(0)=A^2/2$ 全部集中在两根谱线上。相关函数中的周期项越强，谱线越突出；反之，相关函数衰减越快，谱越宽。
 
@@ -95,7 +111,9 @@ $$S_X(\omega)=\frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega
 
 “物理可实现性”还有另一层含义：给定功率谱 $S(\omega)$，是否存在因果、稳定的白化滤波器 $H(\omega)=1/\sqrt{S(\omega)}$。这要求 Paley–Wiener 条件
 
-$$\int_{-\infty}^{\infty}\frac{\lvert\ln S(\omega)\rvert}{1+\omega^2}\,\mathrm{d}\omega<\infty$$
+$$
+\int_{-\infty}^{\infty}\frac{\lvert\ln S(\omega)\rvert}{1+\omega^2}\,\mathrm{d}\omega<\infty
+$$
 
 它限制谱零点不能“太深、太宽”。这与“$R$ 是否是合法自相关”是两个不同层次的问题，考试与工程中要分开回答。
 

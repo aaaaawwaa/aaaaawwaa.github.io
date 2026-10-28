@@ -38,7 +38,9 @@ related: []
 
 > [!info] Def 1 正交编码
 > **正交编码**（orthogonal code）：两码字 $x,y$ 的互相关为零，即
-> $$R(x,y)=\sum_{i=1}^{n}x_iy_i=0\quad(\text{模 2 加后"1"的个数}=0)$$
+> $$
+> R(x,y)=\sum_{i=1}^{n}x_iy_i=0\quad(\text{模 2 加后"1"的个数}=0)
+> $$
 > 若一组码中任意两码字正交，则称正交码组；码字数 = 码长（$n$ 个长 $n$ 码字）时构成**完备正交集**。
 
 正交码组：任意两码字正交；码字数 = 码长（$n$ 个长 $n$ 码字）时可构成**完备正交集**——用于**码分多址 CDMA**（不同用户乘不同正交码互不干扰）。
@@ -47,11 +49,15 @@ related: []
 
 > [!info] Def 2 哈达玛矩阵
 > **哈达玛矩阵**（Hadamard matrix）$H_n$ 是元素为 $\pm1$ 的 $n$ 阶方阵，**任意两行（列）正交**，满足 $H_nH_n^T=nI$。递推构造：
-> $$H_1=[+1],\qquad H_{2n}=\begin{bmatrix}H_n&H_n\\H_n&-H_n\end{bmatrix}$$
+> $$
+> H_1=[+1],\qquad H_{2n}=\begin{bmatrix}H_n&H_n\\H_n&-H_n\end{bmatrix}
+> $$
 
 例：
 
-$$H_2=\begin{bmatrix}+1&+1\\+1&-1\end{bmatrix},\qquad H_4=\begin{bmatrix}+&+&+&+\\+&-&+&-\\+&+&-&-\\+&-&-&+\end{bmatrix}$$
+$$
+H_2=\begin{bmatrix}+1&+1\\+1&-1\end{bmatrix},\qquad H_4=\begin{bmatrix}+&+&+&+\\+&-&+&-\\+&+&-&-\\+&-&-&+\end{bmatrix}
+$$
 
 - 性质：$H_nH_n^T=nI$（行向量两两正交且等长）
 - 若 $n=4u$ 存在，称**正规哈达玛矩阵**（猜想对所有 4 的倍数存在）
@@ -87,16 +93,22 @@ $$H_2=\begin{bmatrix}+1&+1\\+1&-1\end{bmatrix},\qquad H_4=\begin{bmatrix}+&+&+&+
 
 > [!info] Def 5 m 序列
 > **m 序列**（maximal-length sequence）是 $n$ 级线性反馈移存器能产生的**最长周期序列**，周期
-> $$p=2^n-1$$
+> $$
+> p=2^n-1
+> $$
 > 产生条件是特征多项式为本原多项式。
 
 **结构**：$n$ 级 D 触发器移存器 + 模 2 加反馈线。反馈方程（**递推方程**）：
 
-$$a_k=\sum_{i=1}^{n}c_ia_{k-i}\pmod2$$
+$$
+a_k=\sum_{i=1}^{n}c_ia_{k-i}\pmod2
+$$
 
 **特征方程**（反馈连接多项式）：
 
-$$f(x)=\sum_{i=0}^{n}c_ix^i=1+c_1x+\cdots+c_nx^n$$
+$$
+f(x)=\sum_{i=0}^{n}c_ix^i=1+c_1x+\cdots+c_nx^n
+$$
 
 > [!info] Def 6 本原多项式
 > **本原多项式**（primitive polynomial）$f(x)$ 是 $\mathrm{GF}(2)$ 上满足"不可约且是 $x^{2^n-1}+1$ 的因子、但不是更低次 $x^e+1$ 的因子"的多项式；它是 $n$ 级移存器产生 m 序列的充要条件。
@@ -116,7 +128,9 @@ $$f(x)=\sum_{i=0}^{n}c_ix^i=1+c_1x+\cdots+c_nx^n$$
 3. **移位相加特性**：m 序列与其**任意移位序列模 2 加后仍是该 m 序列的某移位**（封闭性）
 4. **自相关特性（双值）**：
 
-$$R(j)=\begin{cases}1,&j=0\\-\dfrac{1}{p},&j\ne0\end{cases}\quad(\text{归一化双值自相关})$$
+$$
+R(j)=\begin{cases}1,&j=0\\-\dfrac{1}{p},&j\ne0\end{cases}\quad(\text{归一化双值自相关})
+$$
 
 > [!important] 双值自相关 = m 序列的"DNA"
 > 自相关尖峰极窄（宽度 1 码片）、负值极小 → m 序列**"对准自己异常敏锐、对别人（移位/其他序列）近乎零"**——这正是扩频码分、测距、同步捕获的理论基础（[[vault-notes/communication/13-synchronization]] 扩频同步）。
@@ -139,20 +153,30 @@ $$R(j)=\begin{cases}1,&j=0\\-\dfrac{1}{p},&j\ne0\end{cases}\quad(\text{归一化
 
 **思想**：用**远高于信息带宽**的伪随机码扩展信号频谱：
 
-$$\text{信息}\to\times\text{PN 码}\to\text{宽带发送}\to\text{信道}\to\times\text{相同同步 PN 码（解扩）}\to\text{窄带恢复}$$
+$$
+\text{信息}\to\times\text{PN 码}\to\text{宽带发送}\to\text{信道}\to\times\text{相同同步 PN 码（解扩）}\to\text{窄带恢复}
+$$
 
-$$\text{扩频码速率 }R_c\gg\text{信息速率 }R_b\qquad G_p=\frac{B_{SS}}{B_{data}}=\frac{R_c}{R_b}$$
+$$
+\text{扩频码速率 }R_c\gg\text{信息速率 }R_b\qquad G_p=\frac{B_{SS}}{B_{data}}=\frac{R_c}{R_b}
+$$
 
 ## 处理增益与抗噪能力
 
 > [!info] Def 9 处理增益
 > **处理增益**（processing gain）$G_p$ 是扩频后带宽与信息带宽之比：
-> $$G_p=\frac{B_{SS}}{B_{data}}=\frac{R_c}{R_b}$$
+> $$
+> G_p=\frac{B_{SS}}{B_{data}}=\frac{R_c}{R_b}
+> $$
 
 > [!important] 处理增益（必考）
-> $$G_p=\dfrac{\text{扩频后带宽}}{\text{信息带宽}}=\dfrac{R_c}{R_b}$$
+> $$
+> G_p=\dfrac{\text{扩频后带宽}}{\text{信息带宽}}=\dfrac{R_c}{R_b}
+> $$
 > **解扩把有用信号功率谱压缩 $G_p$ 倍回去，而把窄带干扰/噪声展宽**——输出信噪比改善 $G_p$ 倍：
-> $$\left(\frac{S}{N}\right)_{out}=G_p\left(\frac{S}{N}\right)_{in}$$
+> $$
+> \left(\frac{S}{N}\right)_{out}=G_p\left(\frac{S}{N}\right)_{in}
+> $$
 
 ## 三大优点（简答必背）
 

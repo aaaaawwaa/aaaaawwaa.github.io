@@ -36,7 +36,9 @@ related: []
 
 > [!info] Def 1 线性变换
 > 映射 $T:\ V\to W$ 称为**线性变换**（linear transformation），若对任意 $\mathbf{v},\mathbf{w}\in V$ 与任意数 $c,d$：
-> $$\boxed{\ T(c\mathbf{v}+d\mathbf{w})=c\,T(\mathbf{v})+d\,T(\mathbf{w})\ }$$
+> $$
+> \boxed{\ T(c\mathbf{v}+d\mathbf{w})=c\,T(\mathbf{v})+d\,T(\mathbf{w})\ }
+> $$
 > 等价的两条（合起来就是上面这条）：
 > 1. **可加**：$T(\mathbf{v}+\mathbf{w})=T(\mathbf{v})+T(\mathbf{w})$；
 > 2. **齐次**：$T(c\mathbf{v})=c\,T(\mathbf{v})$。
@@ -63,7 +65,9 @@ related: []
 
 > [!tip] 定理 基决定一切
 > 若 $\mathbf{v}=x_1\mathbf{v}_1+\cdots+x_n\mathbf{v}_n$（$x_i$ 是 $\mathbf{v}$ 在基 $\mathbf{v}_1,\dots,\mathbf{v}_n$ 下的坐标），则
-> $$T(\mathbf{v})=x_1T(\mathbf{v}_1)+x_2T(\mathbf{v}_2)+\cdots+x_nT(\mathbf{v}_n)$$
+> $$
+> T(\mathbf{v})=x_1T(\mathbf{v}_1)+x_2T(\mathbf{v}_2)+\cdots+x_nT(\mathbf{v}_n)
+> $$
 > **只要知道每个基向量被送到哪里，整个变换就被唯一确定**——这就是 8.2"变换有矩阵"的全部依据。
 > 换句话说：**线性变换的"全部信息量"就是 $n$ 张照片**（$n$ 个基向量的像）。
 
@@ -74,7 +78,9 @@ related: []
 
 > [!tip] 定理 秩-零化度定理（第 3 章的抽象版）
 > **秩-零化度定理**（rank-nullity theorem）：
-> $$\dim\ker(T)+\dim\operatorname{im}(T)=\dim V=n$$
+> $$
+> \dim\ker(T)+\dim\operatorname{im}(T)=\dim V=n
+> $$
 > 并且：
 > - **单射**（injective，一对一）$\iff\ker(T)=\{\mathbf{0}\}$；
 > - **满射**（surjective，映满）$\iff\operatorname{im}(T)=W$；
@@ -185,9 +191,13 @@ $2\times2$ 矩阵是观察线性变换最好的窗口。四种典型几何动作
 
 > [!info] Def 3 线性变换的矩阵
 > 取定义域的基 $\mathbf{v}_1,\dots,\mathbf{v}_n$ 与值域的基 $\mathbf{w}_1,\dots,\mathbf{w}_m$。变换 $T$ 的**矩阵** $A$ 的第 $j$ 列，就是 $T(\mathbf{v}_j)$ 在 $\mathbf{w}$ 这组基下的坐标：
-> $$T(\mathbf{v}_j)=a_{1j}\mathbf{w}_1+a_{2j}\mathbf{w}_2+\cdots+a_{mj}\mathbf{w}_m$$
+> $$
+> T(\mathbf{v}_j)=a_{1j}\mathbf{w}_1+a_{2j}\mathbf{w}_2+\cdots+a_{mj}\mathbf{w}_m
+> $$
 > 于是坐标的对应关系是干净的乘法：
-> $$\mathbf{v}\ \text{的坐标}\ \mathbf{x}\ \longrightarrow\ T(\mathbf{v})\ \text{的坐标}\ \mathbf{y}=A\mathbf{x}$$
+> $$
+> \mathbf{v}\ \text{的坐标}\ \mathbf{x}\ \longrightarrow\ T(\mathbf{v})\ \text{的坐标}\ \mathbf{y}=A\mathbf{x}
+> $$
 > 若两组基都取标准基，$A$ 的第 $j$ 列就是 $T(\mathbf{e}_j)$——**"矩阵的列 = 基向量的像"**。
 
 > [!tip] 定理 线性变换 $\iff$ 矩阵
@@ -204,7 +214,9 @@ $2\times2$ 矩阵是观察线性变换最好的窗口。四种典型几何动作
 > 设新基 $\mathbf{u}_1,\dots,\mathbf{u}_n$ 在旧基下的坐标排成矩阵 $M$ 的列（$M$ 就是**换基矩阵**）：
 > - **坐标**：同一个向量的新旧坐标满足 $\mathbf{x}_{\text{旧}}=M\mathbf{x}_{\text{新}}$，即 $\mathbf{x}_{\text{新}}=M^{-1}\mathbf{x}_{\text{旧}}$；
 > - **矩阵**：同一个变换在新基下的矩阵是
->   $$\boxed{\ B=M^{-1}AM\ }$$
+>   $$
+>   \boxed{\ B=M^{-1}AM\ }
+>   $$
 > ——**这正是第 6 章的"相似矩阵"！**"相似"这个名词到这里才彻底说清：**它们是同一个变换的两份记录。**
 
 **例（关于 $y=x$ 的反射）**：标准基下 $A=\begin{bmatrix}0&1\\1&0\end{bmatrix}$；取特征向量作新基 $\mathbf{u}_1=\frac{1}{\sqrt2}(1,1)$、$\mathbf{u}_2=\frac{1}{\sqrt2}(1,-1)$，则 $M=\frac{1}{\sqrt2}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$（正交矩阵，$M^{-1}=M^{T}$）：
@@ -260,7 +272,9 @@ $$
 
 > [!warning] 观念转变：矩阵不是变换
 > 初学者会把"矩阵"和"变换"当成一个东西，于是觉得"两个不同的矩阵怎么可能相等"。正确的图景是：
-> $$\text{变换 }T\ \xrightarrow{\ \text{选定两组基}\ }\ \text{矩阵 }A$$
+> $$
+> \text{变换 }T\ \xrightarrow{\ \text{选定两组基}\ }\ \text{矩阵 }A
+> $$
 > 换基不改变变换，只改变**记录方式**。所以"相似矩阵"不是"两个不同的东西碰巧像"，而是"**同一个东西的两种写法**"——就像同一个向量在不同坐标系里的两组坐标。
 
 ## 变换矩阵的构造
@@ -357,7 +371,9 @@ $$
 
 > [!tip] 定理 复合 = 乘积
 > 若 $S$ 的矩阵是 $B$、$T$ 的矩阵是 $A$（同一组基），则复合"先 $S$ 后 $T$"的矩阵是
-> $$TS\ \longleftrightarrow\ AB$$
+> $$
+> TS\ \longleftrightarrow\ AB
+> $$
 > **一行说明**：乘积 $AB$ 的第 $j$ 列 $=A\cdot(B\ \text{的第}\ j\ \text{列})=A\cdot(S(\mathbf{v}_j)\ \text{的坐标})=T(S(\mathbf{v}_j))$ 的坐标 ✓
 > **注意顺序**：写在左边的先作用在**结果**上——"先穿袜子后穿鞋"对应"先乘 $B$ 再乘 $A$"（第 2 章的穿脱鞋序）。
 
@@ -373,7 +389,9 @@ $$
 
 > [!tip] 幂零变换：$T^2=0$ 但 $T\ne0$
 > **幂零变换**（nilpotent transformation）：最简的例子是 $S(x,y)=(0,x)$，即 $S=\begin{bmatrix}0&0\\1&0\end{bmatrix}$：
-> $$S^2=0,\qquad \lambda=0,0,\qquad \ker S=\operatorname{span}\{(0,1)\}$$
+> $$
+> S^2=0,\qquad \lambda=0,0,\qquad \ker S=\operatorname{span}\{(0,1)\}
+> $$
 > 它把整个平面"压"到 $y$ 轴，再压一次就什么都没了。**它只有一条特征方向、特征值全为 0、不能对角化**——这就是 8.3"若尔当形"的最简样本 ✓
 
 ## 选取最佳基
@@ -438,7 +456,9 @@ $$
 > [!warning] 若尔当形"存在但不可算"
 > 若尔当形**对元素的微小扰动极其敏感**：$\begin{bmatrix}\lambda&\varepsilon\\0&\lambda\end{bmatrix}$ 里的 $\varepsilon$ 从 $0$ 变成 $10^{-15}$，若尔当形就从"一个 $2\times2$ 块"变成"两个 $1\times1$ 块"——**结构突变**。
 > 所以数值线性代数**不用若尔当形**，而用**舒尔分解**（Schur decomposition）：任何方阵都**酉相似**（unitary similarity，即取 $Q^{-1}=Q^{H}$ 的相似）于上三角矩阵
-> $$A=QTQ^{H}\quad(Q\ \text{酉},\ T\ \text{上三角})$$
+> $$
+> A=QTQ^{H}\quad(Q\ \text{酉},\ T\ \text{上三角})
+> $$
 > $T$ 的对角线就是特征值，而且 $Q$ 正交/酉 ⇒ **数值稳定**（条件数不放大，第 4 章的老朋友）。
 > 一句话：**数学上用若尔当形，计算上用舒尔形。**
 
@@ -484,7 +504,9 @@ $$
 > 在 $[-1,1]$ 上算 $\int_{-1}^{1}x\cdot x^{3}\,\mathrm{d}x=\frac25\ne0$——**幂基之间根本不正交**。更糟的是它的**Gram 矩阵**（Gram matrix，由 $\langle\phi_i,\phi_j\rangle$ 拼成的矩阵）：
 > - 在 $[-1,1]$ 上，$4\times4$ 的 Gram 矩阵条件数约 $68$；
 > - 在 $[0,1]$ 上它就是**希尔伯特矩阵**（Hilbert matrix）$H_{ij}=\frac{1}{i+j-1}$：
->   $$\operatorname{cond}(H_3)\approx524,\quad \operatorname{cond}(H_5)\approx4.8\times10^{5},\quad \operatorname{cond}(H_8)\approx1.5\times10^{10},\quad \operatorname{cond}(H_{10})\approx1.6\times10^{13}$$
+>   $$
+>   \operatorname{cond}(H_3)\approx524,\quad \operatorname{cond}(H_5)\approx4.8\times10^{5},\quad \operatorname{cond}(H_8)\approx1.5\times10^{10},\quad \operatorname{cond}(H_{10})\approx1.6\times10^{13}
+>   $$
 > 「用幂基做高阶逼近」等于在第 4 章说的"条件数平方"上再雪上加霜——**数值上不可行**。
 > 出路：**对幂基做 Gram-Schmidt**（第 4 章的正交化！），就得到正交多项式 ✓
 

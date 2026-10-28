@@ -29,9 +29,13 @@ related: []
 
 > [!info] 定义 1 维纳-辛钦定理（连续时间）
 > 设 $X(t)$ 是宽平稳过程，自相关函数 $R_X(\tau)=E[X(t+\tau)X^*(t)]$。若 $R_X$ 绝对可积，即 $\int_{-\infty}^{\infty}\lvert R_X(\tau)\rvert\,\mathrm{d}\tau<\infty$，则
-> $$S_X(\omega)=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau$$
+> $$
+> S_X(\omega)=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau
+> $$
 > 并且 $S_X(\omega)$ 就是 $X(t)$ 的功率谱密度；反变换为
-> $$R_X(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_X(\omega)e^{j\omega\tau}\,\mathrm{d}\omega$$
+> $$
+> R_X(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_X(\omega)e^{j\omega\tau}\,\mathrm{d}\omega
+> $$
 
 定理的名字来自 Norbert Wiener 与 Aleksandr Khinchin。它说明 [[vault-notes/random-signals/05-power-spectral-density]] 的截断定义与相关函数定义等价：**自相关函数与功率谱密度是同一信息的两种排列**。
 
@@ -45,15 +49,21 @@ related: []
 1. **截断**：令 $X_T(t)=X(t)$（$\lvert t\rvert\le T$），其余为零，$X_T(\omega)=\int_{-T}^{T}X(t)e^{-j\omega t}\,\mathrm{d}t$。
 2. **算模平方的期望**：
 
-$$E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-T}^{T}\int_{-T}^{T}R_X(t-s)e^{-j\omega(t-s)}\,\mathrm{d}t\,\mathrm{d}s$$
+$$
+E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-T}^{T}\int_{-T}^{T}R_X(t-s)e^{-j\omega(t-s)}\,\mathrm{d}t\,\mathrm{d}s
+$$
 
 3. **换元**：令 $\tau=t-s$，对固定 $\tau$，$t$ 的有效长度为 $2T-\lvert\tau\rvert$，于是
 
-$$E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-2T}^{2T}(2T-\lvert\tau\rvert)R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau$$
+$$
+E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-2T}^{2T}(2T-\lvert\tau\rvert)R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau
+$$
 
 4. **归一化并取极限**：两边除以 $2T$，得
 
-$$\frac{1}{2T}E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-2T}^{2T}\left(1-\frac{\lvert\tau\rvert}{2T}\right)R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau$$
+$$
+\frac{1}{2T}E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-2T}^{2T}\left(1-\frac{\lvert\tau\rvert}{2T}\right)R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau
+$$
 
 当 $T\to\infty$ 时，因子 $1-\lvert\tau\rvert/(2T)\to 1$。若 $R_X$ 绝对可积，由控制收敛定理，右边趋于 $\int R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau$；左边正是截断定义，故两者相等。
 
@@ -70,11 +80,15 @@ $$\frac{1}{2T}E\left[\lvert X_T(\omega)\rvert^2\right]=\int_{-2T}^{2T}\left(1-\f
 
 此时傅里叶变换要写成
 
-$$S_X(\omega)=2\pi\mu_X^2\delta(\omega)+S_C(\omega)$$
+$$
+S_X(\omega)=2\pi\mu_X^2\delta(\omega)+S_C(\omega)
+$$
 
 以及
 
-$$\frac{A^2}{2}\cos\omega_0\tau\ \longleftrightarrow\ \frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\big]$$
+$$
+\frac{A^2}{2}\cos\omega_0\tau\ \longleftrightarrow\ \frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\big]
+$$
 
 | 情形 | 对 $R_X$ 的要求 | $S_X$ 的样子 | 例子 |
 | --- | --- | --- | --- |
@@ -89,7 +103,9 @@ $$\frac{A^2}{2}\cos\omega_0\tau\ \longleftrightarrow\ \frac{\pi A^2}{2}\big[\del
 
 > [!info] 定义 2 离散时间维纳-辛钦定理
 > 对宽平稳序列 $X[n]$，若 $\sum_{m=-\infty}^{\infty}\lvert R_X[m]\rvert<\infty$，则
-> $$S_X(e^{j\omega})=\sum_{m=-\infty}^{\infty}R_X[m]e^{-j\omega m},\qquad R_X[m]=\frac{1}{2\pi}\int_{-\pi}^{\pi}S_X(e^{j\omega})e^{j\omega m}\,\mathrm{d}\omega$$
+> $$
+> S_X(e^{j\omega})=\sum_{m=-\infty}^{\infty}R_X[m]e^{-j\omega m},\qquad R_X[m]=\frac{1}{2\pi}\int_{-\pi}^{\pi}S_X(e^{j\omega})e^{j\omega m}\,\mathrm{d}\omega
+> $$
 > $S_X(e^{j\omega})$ 以 $2\pi$ 为周期，平均功率为 $R_X[0]=\frac{1}{2\pi}\int_{-\pi}^{\pi}S_X(e^{j\omega})\,\mathrm{d}\omega$。
 
 离散形式是 DFT/FFT 谱估计的出发点：把 $\omega$ 取在 $2\pi k/N$ 上，积分变成求和，就得到周期图的频域采样。
@@ -99,7 +115,9 @@ $$\frac{A^2}{2}\cos\omega_0\tau\ \longleftrightarrow\ \frac{\pi A^2}{2}\big[\del
 
 > [!example] 例 2 一阶自回归 AR(1)
 > $X[n]=aX[n-1]+W[n]$，$\lvert a\rvert<1$，$W[n]$ 为方差 $\sigma_W^2$ 的白噪声，则
-> $$R_X[m]=\frac{\sigma_W^2}{1-a^2}a^{\lvert m\rvert},\qquad S_X(e^{j\omega})=\frac{\sigma_W^2}{1-2a\cos\omega+a^2}$$
+> $$
+> R_X[m]=\frac{\sigma_W^2}{1-a^2}a^{\lvert m\rvert},\qquad S_X(e^{j\omega})=\frac{\sigma_W^2}{1-2a\cos\omega+a^2}
+> $$
 > $0<a<1$ 时能量集中在低频，$\lvert a\rvert\to 1$ 时谱峰变尖，相关时间变长。这正是"有色噪声"的最简模型，详见 [[vault-notes/random-signals/05-white-colored-noise-spectra]]。
 
 | 用法 | 操作 | 注意 |

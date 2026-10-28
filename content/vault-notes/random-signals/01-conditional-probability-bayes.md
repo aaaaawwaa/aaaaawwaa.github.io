@@ -29,28 +29,40 @@ related: []
 
 > [!info] 定义 3.1 条件概率
 > 设 $P(B)>0$，在事件 $B$ 发生的条件下，事件 $A$ 的**条件概率**定义为
-> $$P(A\mid B)=\frac{P(AB)}{P(B)}$$
+> $$
+> P(A\mid B)=\frac{P(AB)}{P(B)}
+> $$
 
 由定义直接得到**乘法公式**与链式法则：
 
-$$P(AB)=P(A\mid B)P(B)=P(B\mid A)P(A)$$
+$$
+P(AB)=P(A\mid B)P(B)=P(B\mid A)P(A)
+$$
 
-$$P(A_1A_2\cdots A_n)=P(A_1)P(A_2\mid A_1)\cdots P(A_n\mid A_1\cdots A_{n-1})$$
+$$
+P(A_1A_2\cdots A_n)=P(A_1)P(A_2\mid A_1)\cdots P(A_n\mid A_1\cdots A_{n-1})
+$$
 
 > [!warning] $P(A\mid B)$ 与 $P(B\mid A)$ 完全不同
 > 二者分母不同，数值可以相差几个数量级。发病率 $0.1\%$、检测灵敏度 $99\%$、虚警率 $1\%$ 时，阳性者真正患病的概率约为
-> $$P(\text{病}\mid\text{阳})=\frac{0.99\times0.001}{0.99\times0.001+0.01\times0.999}\approx 9\%$$
+> $$
+> P(\text{病}\mid\text{阳})=\frac{0.99\times0.001}{0.99\times0.001+0.01\times0.999}\approx 9\%
+> $$
 > 把这两个方向混为一谈，就是所谓的"检察官谬误"。工程上对应的是：接收端虚警多，不代表发射端真的发了信号。
 
 ## 二、全概率公式
 
 > [!info] 定义 3.2 全概率公式
 > 若 $A_1,\dots,A_n$ 构成样本空间的一个划分，且 $P(A_i)>0$，则对任意事件 $B$
-> $$P(B)=\sum_{i=1}^{n}P(B\mid A_i)P(A_i)$$
+> $$
+> P(B)=\sum_{i=1}^{n}P(B\mid A_i)P(A_i)
+> $$
 
 连续情形有对应版本：若 $Y$ 的密度为 $f_Y(y)$，则 $X$ 的边缘密度可写成
 
-$$f_X(x)=\int_{-\infty}^{\infty}f_{X\mid Y}(x\mid y)f_Y(y)\,\mathrm{d}y$$
+$$
+f_X(x)=\int_{-\infty}^{\infty}f_{X\mid Y}(x\mid y)f_Y(y)\,\mathrm{d}y
+$$
 
 > [!tip] 直觉：分情况加权
 > 全概率公式就是"按原因把样本空间切块，每块内算条件概率，再按块的大小加权求和"。
@@ -60,9 +72,13 @@ $$f_X(x)=\int_{-\infty}^{\infty}f_{X\mid Y}(x\mid y)f_Y(y)\,\mathrm{d}y$$
 
 > [!info] 定义 3.3 贝叶斯公式
 > 在 $P(B)>0$、$P(A_i)>0$ 的条件下
-> $$P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{\sum_{k=1}^{n}P(B\mid A_k)P(A_k)}$$
+> $$
+> P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{\sum_{k=1}^{n}P(B\mid A_k)P(A_k)}
+> $$
 > 密度形式为
-> $$f_{X\mid Y}(x\mid y)=\frac{f_{Y\mid X}(y\mid x)f_X(x)}{f_Y(y)}$$
+> $$
+> f_{X\mid Y}(x\mid y)=\frac{f_{Y\mid X}(y\mid x)f_X(x)}{f_Y(y)}
+> $$
 
 四个组成部分的分工必须分清：
 
@@ -84,7 +100,9 @@ $$f_X(x)=\int_{-\infty}^{\infty}f_{X\mid Y}(x\mid y)f_Y(y)\,\mathrm{d}y$$
 
 条件期望有两条核心性质，后面估计与滤波会反复使用：
 
-$$E[X]=E\big[E[X\mid Y]\big],\qquad E\big[g(Y)X\mid Y\big]=g(Y)E[X\mid Y]$$
+$$
+E[X]=E\big[E[X\mid Y]\big],\qquad E\big[g(Y)X\mid Y\big]=g(Y)E[X\mid Y]
+$$
 
 第一条称为**全期望公式**（重期望公式），第二条称为"已知量可提出"。直观上，$E[X\mid Y]$ 是"用 $Y$ 能解释的那部分 $X$"，剩下的 $X-E[X\mid Y]$ 与 $Y$ 不相关。
 
@@ -95,9 +113,13 @@ $$E[X]=E\big[E[X\mid Y]\big],\qquad E\big[g(Y)X\mid Y\big]=g(Y)E[X\mid Y]$$
 
 > [!info] 定义 3.5 MAP 与 ML
 > **最大后验（MAP）**判决选择使后验最大的假设：
-> $$\hat{H}=\arg\max_{H_i}P(H_i\mid y)=\arg\max_{H_i}f_{Y\mid H_i}(y\mid H_i)P(H_i)$$
+> $$
+> \hat{H}=\arg\max_{H_i}P(H_i\mid y)=\arg\max_{H_i}f_{Y\mid H_i}(y\mid H_i)P(H_i)
+> $$
 > **最大似然（ML）**判决只最大化似然：
-> $$\hat{H}_{\mathrm{ML}}=\arg\max_{H_i}f_{Y\mid H_i}(y\mid H_i)$$
+> $$
+> \hat{H}_{\mathrm{ML}}=\arg\max_{H_i}f_{Y\mid H_i}(y\mid H_i)
+> $$
 > 当各假设先验相等时，MAP 退化为 ML。
 
 | 对比项 | MAP | ML |
@@ -110,7 +132,9 @@ $$E[X]=E\big[E[X\mid Y]\big],\qquad E\big[g(Y)X\mid Y\big]=g(Y)E[X\mid Y]$$
 > [!example] 双极性信号的判决门限
 > 设 $H_0:X=-1$，$H_1:X=+1$，观测 $Y=X+N$，$N\sim N(0,1)$，先验 $P(H_0)=0.7$、$P(H_1)=0.3$。
 > MAP 比较 $0.3f(y\mid H_1)$ 与 $0.7f(y\mid H_0)$，取对数后得到门限（$y>\gamma$ 判 $H_1$，否则判 $H_0$）
-> $$\gamma=\frac{\sigma^2}{2}\ln\frac{P(H_0)}{P(H_1)}=\frac{1}{2}\ln\frac{0.7}{0.3}\approx0.424$$
+> $$
+> \gamma=\frac{\sigma^2}{2}\ln\frac{P(H_0)}{P(H_1)}=\frac{1}{2}\ln\frac{0.7}{0.3}\approx0.424
+> $$
 > 门限从 0 向右移到 $0.424$：因为 $H_0$ 更常见，需要更强的证据才判 $H_1$。
 > 若先验相等，门限回到 0，MAP 与 ML 完全一致。这条"先验拉偏门限"的结论在 [[vault-notes/math/probability/09-hypothesis-testing]] 中会以似然比检验的形式再次出现。
 
@@ -128,19 +152,27 @@ $$E[X]=E\big[E[X\mid Y]\big],\qquad E\big[g(Y)X\mid Y\big]=g(Y)E[X\mid Y]$$
 
 第一步，用乘法公式由条件概率还原交事件的概率：
 
-$$P(AB)=P(B\mid A)P(A)=0.5\times0.3=0.15$$
+$$
+P(AB)=P(B\mid A)P(A)=0.5\times0.3=0.15
+$$
 
 第二步，用加法公式求并事件，注意减去交集：
 
-$$P(A\cup B)=P(A)+P(B)-P(AB)=0.3+0.5-0.15=0.65$$
+$$
+P(A\cup B)=P(A)+P(B)-P(AB)=0.3+0.5-0.15=0.65
+$$
 
 第三步，判定独立性。题目给出的条件本身已经是判据：
 
-$$P(B\mid A)=0.5=P(B)$$
+$$
+P(B\mid A)=0.5=P(B)
+$$
 
 在 $P(A)>0$ 时，$P(B\mid A)=P(B)$ 与 $P(AB)=P(A)P(B)$ 等价，故 $A$ 与 $B$ 相互独立。再用定义验算一次：
 
-$$P(A)P(B)=0.3\times0.5=0.15=P(AB)$$
+$$
+P(A)P(B)=0.3\times0.5=0.15=P(AB)
+$$
 
 两个判据结论一致。顺便可得 $P(A\mid B)=P(AB)/P(B)=0.15/0.5=0.3=P(A)$，方向反过来同样独立。
 

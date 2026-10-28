@@ -174,7 +174,9 @@ flowchart LR
 
 > [!info] Def 8 信息量
 > 消息 $x$ 出现概率为 $P(x)$ 时，其**信息量**（amount of information）定义为
-> $$I=\log_a\frac{1}{P(x)}=-\log_a P(x)$$
+> $$
+> I=\log_a\frac{1}{P(x)}=-\log_a P(x)
+> $$
 > 其中对数底 $a$ 决定信息量单位。
 
 三条性质（定义的出发点）：
@@ -195,7 +197,9 @@ flowchart LR
 
 $M$ 个波形等概率发送（$P=1/M$）、相互独立（无记忆），传送其中一个的信息量：
 
-$$I=\log_2\frac{1}{P}=\log_2 M\quad(\text{b})$$
+$$
+I=\log_2\frac{1}{P}=\log_2 M\quad(\text{b})
+$$
 
 - 二进制（$M=2$）：$I=1$ b ——"1 个二进制码元含 1 比特信息"
 - 四进制（$M=4$）：$I=2$ b
@@ -207,7 +211,9 @@ $$I=\log_2\frac{1}{P}=\log_2 M\quad(\text{b})$$
 
 > [!info] Def 9 熵
 > 离散信源的**平均信息量**称为**熵**（entropy）：
-> $$H(x)=-\sum_{i=1}^{M}P(x_i)\log_2 P(x_i)\quad(\text{b/符号})$$
+> $$
+> H(x)=-\sum_{i=1}^{M}P(x_i)\log_2 P(x_i)\quad(\text{b/符号})
+> $$
 
 > [!tip] 熵的最大值
 > 当且仅当**等概率**（$P(x_i)=1/M$）时，熵最大：$H_{\max}=\log_2 M$。
@@ -231,7 +237,9 @@ $$I=\log_2\frac{1}{P}=\log_2 M\quad(\text{b})$$
 
 **数字系统**：**频带利用率**
 
-$$\eta=\frac{R_B}{B}\quad(\text{Baud/Hz})\qquad \eta_b=\frac{R_b}{B}\quad(\text{b/(s·Hz)})$$
+$$
+\eta=\frac{R_B}{B}\quad(\text{Baud/Hz})\qquad \eta_b=\frac{R_b}{B}\quad(\text{b/(s·Hz)})
+$$
 
 > [!info] Def 10 码元速率与信息速率
 > - **码元速率**（symbol rate / baud rate）$R_B$：每秒传输的**码元**数目，单位 Baud。
@@ -242,7 +250,9 @@ $$\eta=\frac{R_B}{B}\quad(\text{Baud/Hz})\qquad \eta_b=\frac{R_b}{B}\quad(\text{
 | **码元速率 $R_B$**（传码率/波特率） | 每秒传输的**码元**数目 | 波特 (Baud) |
 | **信息速率 $R_b$**（传信率/比特率） | 每秒传输的**平均信息量** | 比特/秒 (b/s) |
 
-$$R_b=R_B\log_2 M\quad(\text{b/s})$$
+$$
+R_b=R_B\log_2 M\quad(\text{b/s})
+$$
 
 > [!warning] 易错点
 > 1. **Baud 与 b/s 不能直接画等号**，仅当 $M=2$（二进制）时 $R_b=R_B$ 数值相等。
@@ -259,7 +269,9 @@ $$R_b=R_B\log_2 M\quad(\text{b/s})$$
 > - **误码率**（symbol error rate）$P_e$：错误接收的码元数占总码元数的比例。
 > - **误信率**（bit error rate）$P_b$：错误接收的比特数占总比特数的比例。
 
-$$P_e=\frac{\text{错误接收码元数}}{\text{传输总码元数}}\qquad P_b=\frac{\text{错误接收比特数}}{\text{传输总比特数}}$$
+$$
+P_e=\frac{\text{错误接收码元数}}{\text{传输总码元数}}\qquad P_b=\frac{\text{错误接收比特数}}{\text{传输总比特数}}
+$$
 
 - 二进制中 $P_b=P_e$；多进制中一般 $P_b<P_e$
 

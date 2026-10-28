@@ -33,13 +33,19 @@ related: []
 
 AR(1) 过程满足 $X[n]=aX[n-1]+W[n]$，$W[n]$ 为零均值白噪声，方差 $\sigma_w^2$。当 $|a|<1$ 时过程宽平稳，且
 
-$$R_X[k]=E[X[n+k]X[n]]=\frac{\sigma_w^2}{1-a^2}a^{|k|},\qquad R_X[0]=\frac{\sigma_w^2}{1-a^2}$$
+$$
+R_X[k]=E[X[n+k]X[n]]=\frac{\sigma_w^2}{1-a^2}a^{|k|},\qquad R_X[0]=\frac{\sigma_w^2}{1-a^2}
+$$
 
 两种常用估计量为
 
-$$\hat R_X^{b}[k]=\frac{1}{N}\sum_{n=0}^{N-1-|k|}x[n+|k|]x[n]$$
+$$
+\hat R_X^{b}[k]=\frac{1}{N}\sum_{n=0}^{N-1-|k|}x[n+|k|]x[n]
+$$
 
-$$\hat R_X^{u}[k]=\frac{1}{N-|k|}\sum_{n=0}^{N-1-|k|}x[n+|k|]x[n]$$
+$$
+\hat R_X^{u}[k]=\frac{1}{N-|k|}\sum_{n=0}^{N-1-|k|}x[n+|k|]x[n]
+$$
 
 对零均值过程，$E[\hat R_X^{b}[k]]=\frac{N-|k|}{N}R_X[k]$，而 $E[\hat R_X^{u}[k]]=R_X[k]$。biased 估计的偏差随 $|k|/N$ 增大；unbiased 在 $|k|\to N$ 时分母趋于零，方差会爆炸。三种归一化中，`biased` 除 $N$、`unbiased` 除 $N-|k|$、`coeff` 除 $\hat R_X[0]$。
 

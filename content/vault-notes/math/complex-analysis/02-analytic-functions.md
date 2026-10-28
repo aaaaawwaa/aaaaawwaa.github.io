@@ -39,7 +39,9 @@ related: []
 
 > [!info] Def 1 复变函数的导数
 > 设 $f(z)$ 在 $z_0$ 的某邻域内有定义。若极限
-> $$f'(z_0)=\lim_{\Delta z\to0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}$$
+> $$
+> f'(z_0)=\lim_{\Delta z\to0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}
+> $$
 > 存在（且与 $\Delta z\to0$ 的路径无关），则称 $f$ 在 $z_0$ **可导**（differentiable），该极限为 $f$ 在 $z_0$ 的**导数**。
 
 > [!important] 复可导比实可导强得多
@@ -51,8 +53,12 @@ related: []
 
 与实函数形式上完全相同：
 
-$$(f\pm g)'=f'\pm g',\qquad (fg)'=f'g+fg',\qquad \left(\frac fg\right)'=\frac{f'g-fg'}{g^2}$$
-$$(f\circ g)'(z)=f'(g(z))\,g'(z)$$
+$$
+(f\pm g)'=f'\pm g',\qquad (fg)'=f'g+fg',\qquad \left(\frac fg\right)'=\frac{f'g-fg'}{g^2}
+$$
+$$
+(f\circ g)'(z)=f'(g(z))\,g'(z)
+$$
 
 **基本初等函数的导数**：
 
@@ -67,12 +73,16 @@ $$(f\circ g)'(z)=f'(g(z))\,g'(z)$$
 
 > [!example] 用定义求导
 > $f(z)=z^2$：
-> $$\frac{(z+\Delta z)^2-z^2}{\Delta z}=\frac{2z\Delta z+(\Delta z)^2}{\Delta z}=2z+\Delta z\to2z$$
+> $$
+> \frac{(z+\Delta z)^2-z^2}{\Delta z}=\frac{2z\Delta z+(\Delta z)^2}{\Delta z}=2z+\Delta z\to2z
+> $$
 > 与路径无关，故 $f'(z)=2z$。
 
 > [!example] 一个处处不可导的例子
 > $f(z)=\bar z$：
-> $$\frac{\overline{z+\Delta z}-\bar z}{\Delta z}=\frac{\overline{\Delta z}}{\Delta z}$$
+> $$
+> \frac{\overline{z+\Delta z}-\bar z}{\Delta z}=\frac{\overline{\Delta z}}{\Delta z}
+> $$
 > 若 $\Delta z=\Delta x$（沿实轴），商为 $1$；若 $\Delta z=i\Delta y$（沿虚轴），商为 $-1$。极限不存在，故 $\bar z$ 处处不可导。
 
 # 2. 柯西–黎曼方程
@@ -83,10 +93,14 @@ $$(f\circ g)'(z)=f'(g(z))\,g'(z)$$
 > 设 $f(z)=u(x,y)+iv(x,y)$ 在 $z_0=x_0+iy_0$ 的某邻域内有定义。则 $f$ 在 $z_0$ 可导的**充要条件**是：
 > 1. $u,v$ 在 $(x_0,y_0)$ 可微；
 > 2. 满足**柯西–黎曼方程**（Cauchy–Riemann equations，简称 C-R 方程）
-> $$u_x=v_y,\qquad u_y=-v_x$$
+> $$
+> u_x=v_y,\qquad u_y=-v_x
+> $$
 >
 > 此时
-> $$f'(z_0)=u_x+iv_x=v_y-iu_y=u_x-iu_y=v_y+iv_x$$
+> $$
+> f'(z_0)=u_x+iv_x=v_y-iu_y=u_x-iu_y=v_y+iv_x
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="100%" style="max-width:720px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -108,11 +122,15 @@ $$(f\circ g)'(z)=f'(g(z))\,g'(z)$$
 
 沿实轴逼近（$\Delta z=\Delta x$）：
 
-$$f'(z)=\frac{\partial f}{\partial x}=u_x+iv_x$$
+$$
+f'(z)=\frac{\partial f}{\partial x}=u_x+iv_x
+$$
 
 沿虚轴逼近（$\Delta z=i\Delta y$）：
 
-$$f'(z)=\frac{1}{i}\frac{\partial f}{\partial y}=-i(u_y+iv_y)=v_y-iu_y$$
+$$
+f'(z)=\frac{1}{i}\frac{\partial f}{\partial y}=-i(u_y+iv_y)=v_y-iu_y
+$$
 
 两者必须相等，比较实部/虚部即得 C-R 方程。
 
@@ -124,11 +142,15 @@ $$f'(z)=\frac{1}{i}\frac{\partial f}{\partial y}=-i(u_y+iv_y)=v_y-iu_y$$
 
 设 $z=re^{i\theta}$，$f=u(r,\theta)+iv(r,\theta)$，则 C-R 方程为
 
-$$u_r=\frac1r v_\theta,\qquad v_r=-\frac1r u_\theta$$
+$$
+u_r=\frac1r v_\theta,\qquad v_r=-\frac1r u_\theta
+$$
 
 导数：
 
-$$f'(z)=e^{-i\theta}(u_r+iv_r)=\frac{1}{z}(v_\theta-iu_\theta)$$
+$$
+f'(z)=e^{-i\theta}(u_r+iv_r)=\frac{1}{z}(v_\theta-iu_\theta)
+$$
 
 极坐标形式在圆域、角域问题中更方便。
 
@@ -140,7 +162,9 @@ $$f'(z)=e^{-i\theta}(u_r+iv_r)=\frac{1}{z}(v_\theta-iu_\theta)$$
 > [!example] 指数函数
 > $e^z=e^x\cos y+ie^x\sin y$。
 > $u=e^x\cos y$，$v=e^x\sin y$。
-> $$u_x=e^x\cos y=v_y,\qquad u_y=-e^x\sin y=-v_x$$
+> $$
+> u_x=e^x\cos y=v_y,\qquad u_y=-e^x\sin y=-v_x
+> $$
 > C-R 处处成立，且 $u,v$ 可微，故 $e^z$ 处处解析，$(e^z)'=u_x+iv_x=e^x\cos y+ie^x\sin y=e^z$。
 
 # 3. 解析函数
@@ -193,24 +217,32 @@ $$f'(z)=e^{-i\theta}(u_r+iv_r)=\frac{1}{z}(v_\theta-iu_\theta)$$
 
 > [!info] Def 5 调和函数
 > 若实函数 $u(x,y)$ 在区域 $D$ 内有二阶连续偏导，且满足**拉普拉斯方程**
-> $$\nabla^2u=u_{xx}+u_{yy}=0$$
+> $$
+> \nabla^2u=u_{xx}+u_{yy}=0
+> $$
 > 则称 $u$ 为 $D$ 上的**调和函数**（harmonic function）。
 
 > [!info] Def 6 共轭调和函数
 > 若 $u,v$ 满足 C-R 方程
-> $$u_x=v_y,\qquad u_y=-v_x$$
+> $$
+> u_x=v_y,\qquad u_y=-v_x
+> $$
 > 则称 $v$ 为 $u$ 的**共轭调和函数**（conjugate harmonic function）。此时 $f=u+iv$ 解析。
 
 ## 解析函数与调和函数
 
 > [!important] 核心定理
 > 若 $f(z)=u+iv$ 在区域 $D$ 内解析，则 $u$ 与 $v$ 都是 $D$ 上的调和函数：
-> $$\nabla^2u=0,\qquad \nabla^2v=0$$
+> $$
+> \nabla^2u=0,\qquad \nabla^2v=0
+> $$
 > 反之，若 $u$ 是单连通区域 $D$ 上的调和函数，则存在 $v$（相差一个常数），使 $f=u+iv$ 在 $D$ 内解析。
 
 **证明**（$u$ 的调和性）：由 C-R，$u_x=v_y$，$u_y=-v_x$。再求导：
 
-$$u_{xx}=v_{yx},\qquad u_{yy}=-v_{xy}$$
+$$
+u_{xx}=v_{yx},\qquad u_{yy}=-v_{xy}
+$$
 
 若 $v$ 二阶偏导连续，$v_{yx}=v_{xy}$，故 $u_{xx}+u_{yy}=0$。
 
@@ -224,7 +256,9 @@ $$u_{xx}=v_{yx},\qquad u_{yy}=-v_{xy}$$
 
 **方法二（曲线积分）**：
 
-$$v(x,y)=\int_{(x_0,y_0)}^{(x,y)}-u_y\,\mathrm{d}x+u_x\,\mathrm{d}y+C$$
+$$
+v(x,y)=\int_{(x_0,y_0)}^{(x,y)}-u_y\,\mathrm{d}x+u_x\,\mathrm{d}y+C
+$$
 
 在单连通区域内与路径无关。
 
@@ -233,7 +267,9 @@ $$v(x,y)=\int_{(x_0,y_0)}^{(x,y)}-u_y\,\mathrm{d}x+u_x\,\mathrm{d}y+C$$
 > $u_x=2x$，$u_y=-2y$。
 > 由 $v_y=u_x=2x$，对 $y$ 积分：$v=2xy+\phi(x)$。
 > 由 $v_x=-u_y=2y$，得 $2y+\phi'(x)=2y$，故 $\phi'(x)=0$，$\phi=C$。
-> $$v=2xy+C,\qquad f(z)=x^2-y^2+i(2xy+C)=z^2+iC$$
+> $$
+> v=2xy+C,\qquad f(z)=x^2-y^2+i(2xy+C)=z^2+iC
+> $$
 > 验证：$z^2=(x+iy)^2=x^2-y^2+2ixy$。
 
 > [!warning] "共轭"不是复共轭
@@ -241,7 +277,9 @@ $$v(x,y)=\int_{(x_0,y_0)}^{(x,y)}-u_y\,\mathrm{d}x+u_x\,\mathrm{d}y+C$$
 
 ## 极坐标下的调和函数
 
-$$\nabla^2u=\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right)+\frac{1}{r^2}\frac{\partial^2u}{\partial\theta^2}=0$$
+$$
+\nabla^2u=\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right)+\frac{1}{r^2}\frac{\partial^2u}{\partial\theta^2}=0
+$$
 
 **常用调和函数**：$r^n\cos n\theta$、$r^n\sin n\theta$、$\ln r$、$\theta$（在多连通区域）。它们正是分离变量法解拉普拉斯方程的基本解（第 10 章）。
 
@@ -253,7 +291,9 @@ $$\nabla^2u=\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial u}{\part
 > $u_x=2x$，$v_y=2x$ → 相等；
 > $u_y=2y$，$-v_x=-2y$ → 相等。
 > C-R 处处成立，且 $u,v$ 可微，故 $f$ 处处解析。
-> $$f'(z)=u_x+iv_x=2x+i2y=2z$$
+> $$
+> f'(z)=u_x+iv_x=2x+i2y=2z
+> $$
 > 事实上 $f(z)=(x+iy)^2=z^2$。
 
 > [!example] 例 2：判断可导点
@@ -272,13 +312,21 @@ $$\nabla^2u=\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial u}{\part
 > $u_x=e^x\cos y$，$u_y=-e^x\sin y$。
 > $v_y=u_x=e^x\cos y$ → $v=e^x\sin y+\phi(x)$。
 > $v_x=e^x\sin y+\phi'(x)=-u_y=e^x\sin y$ → $\phi'=0$，$\phi=C$。
-> $$v=e^x\sin y+C,\qquad f=e^x(\cos y+i\sin y)+iC=e^z+iC$$
+> $$
+> v=e^x\sin y+C,\qquad f=e^x(\cos y+i\sin y)+iC=e^z+iC
+> $$
 
 > [!example] 例 5：验证调和性
 > $u=\ln r=\frac12\ln(x^2+y^2)$。验证 $\nabla^2u=0$。
-> $$u_x=\frac{x}{x^2+y^2},\qquad u_{xx}=\frac{y^2-x^2}{(x^2+y^2)^2}$$
-> $$u_y=\frac{y}{x^2+y^2},\qquad u_{yy}=\frac{x^2-y^2}{(x^2+y^2)^2}$$
-> $$u_{xx}+u_{yy}=0$$
+> $$
+> u_x=\frac{x}{x^2+y^2},\qquad u_{xx}=\frac{y^2-x^2}{(x^2+y^2)^2}
+> $$
+> $$
+> u_y=\frac{y}{x^2+y^2},\qquad u_{yy}=\frac{x^2-y^2}{(x^2+y^2)^2}
+> $$
+> $$
+> u_{xx}+u_{yy}=0
+> $$
 > 故 $\ln r$ 在 $\mathbb{C}\setminus\{0\}$ 上调和；其共轭调和函数为 $\theta=\operatorname{Arg}z$，对应 $f=\ln z$。
 
 > [!tip] 本章收官

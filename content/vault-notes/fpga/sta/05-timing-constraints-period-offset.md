@@ -140,9 +140,13 @@ create_clock -period 10.000 -waveform {0.000 4.000} [get_ports SYS_CLK]
 
 课件第 35 页（跨器件数据交换）：
 
-$$T_{arrival}=T_{cko}+T_{output}+T_{logic}$$
+$$
+T_{arrival}=T_{cko}+T_{output}+T_{logic}
+$$
 
-$$T_{arrival}+T_{input}+T_{setup}<T_{period}$$
+$$
+T_{arrival}+T_{input}+T_{setup}<T_{period}
+$$
 
 | 符号 | 含义 |
 | --- | --- |
@@ -156,7 +160,9 @@ $$T_{arrival}+T_{input}+T_{setup}<T_{period}$$
 
 已知 $T_{period}=20$ ns，$T_{cko}=1$ ns，$T_{output}=3$ ns，$T_{logic}=8$ ns，求偏移约束。
 
-$$T_{arrival}=1+3+8=12\ \text{ns}$$
+$$
+T_{arrival}=1+3+8=12\ \text{ns}
+$$
 
 ```tcl
 NET DATA_IN OFFSET=IN 12ns AFTER CLK;    # 数据在时钟沿后 12 ns 到达
@@ -169,9 +175,13 @@ NET DATA_IN OFFSET=IN 8ns BEFORE CLK;    # 等价写法：时钟沿前 8 ns 已�
 
 课件第 38 页：
 
-$$T_{stable}=T_{logic}+T_{input}+T_{setup}$$
+$$
+T_{stable}=T_{logic}+T_{input}+T_{setup}
+$$
 
-$$T_{cko}+T_{output}+T_{stable}<T_{period}$$
+$$
+T_{cko}+T_{output}+T_{stable}<T_{period}
+$$
 
 > 只要当前设计输出端的数据比时钟上升沿**提前 $T_{stable}$** 稳定下来，下一级就可以正确采样。
 > 注意这里 $T_{input}$、$T_{setup}$ 都是**下一级**器件的参数。
@@ -180,7 +190,9 @@ $$T_{cko}+T_{output}+T_{stable}<T_{period}$$
 
 已知 $T_{period}=20$ ns，$T_{input}=4$ ns，$T_{setup}=1$ ns，$T_{logic}=8$ ns：
 
-$$T_{stable}=8+4+1=13\ \text{ns}$$
+$$
+T_{stable}=8+4+1=13\ \text{ns}
+$$
 
 ```tcl
 NET DATA_OUT OFFSET=OUT 13ns BEFORE CLK;  # 输出须在下一时钟沿前 13 ns 稳定

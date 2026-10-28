@@ -43,7 +43,9 @@ related: []
 > [!info] Def 1 二维随机变量
 > 设随机试验的样本空间为 $\Omega$。若对每个样本点 $\omega\in\Omega$，都有**一对有序实数** $(X(\omega),Y(\omega))$ 与之对应，则称 $(X,Y)$ 为**二维随机变量**（two-dimensional random variable），也称**二维随机向量**。
 > 用映射的语言：
-> $$(X,Y):\ \Omega\longrightarrow\mathbb{R}^2,\qquad \omega\mapsto(X(\omega),Y(\omega))$$
+> $$
+> (X,Y):\ \Omega\longrightarrow\mathbb{R}^2,\qquad \omega\mapsto(X(\omega),Y(\omega))
+> $$
 
 - $X,Y$ 各自是一维随机变量；$(X,Y)$ 的取值是一个平面点
 - 二维随机变量不是"两个一维随机变量的简单拼接"——**联合分布**包含了两者之间的关联信息
@@ -52,7 +54,9 @@ related: []
 
 > [!info] Def 2 联合分布函数
 > 对任意实数 $x,y$，称
-> $$F(x,y)=P(X\le x,\ Y\le y)$$
+> $$
+> F(x,y)=P(X\le x,\ Y\le y)
+> $$
 > 为 $(X,Y)$ 的**联合分布函数**（joint cumulative distribution function，简称联合 CDF）。
 
 几何意义：$F(x,y)$ 是随机点 $(X,Y)$ 落在**左下无穷矩形** $(-\infty,x]\times(-\infty,y]$ 内的概率。
@@ -63,7 +67,9 @@ related: []
 2. **规范性**：$F(-\infty,y)=F(x,-\infty)=0$，$F(+\infty,+\infty)=1$
 3. **右连续**：对每个变量右连续
 4. **矩形概率非负**：对 $x_1<x_2$、$y_1<y_2$，
-   $$P(x_1<X\le x_2,\ y_1<Y\le y_2)=F(x_2,y_2)-F(x_2,y_1)-F(x_1,y_2)+F(x_1,y_1)\ge0$$
+   $$
+   P(x_1<X\le x_2,\ y_1<Y\le y_2)=F(x_2,y_2)-F(x_2,y_1)-F(x_1,y_2)+F(x_1,y_1)\ge0
+   $$
 
 > [!warning] 联合 CDF 不能由两个边缘 CDF 唯一确定
 > 知道 $F_X(x)$ 和 $F_Y(y)$ **不能**还原 $F(x,y)$——它们只描述各自的一维行为，丢失了"$X$ 与 $Y$ 如何一起变"的信息。这正是本章要引入联合分布的原因。
@@ -72,7 +78,9 @@ related: []
 
 > [!info] Def 3 联合分布律
 > 若 $(X,Y)$ 只取有限或可列个点 $(x_i,y_j)$，则称
-> $$p_{ij}=P(X=x_i,\ Y=y_j),\qquad i,j=1,2,\dots$$
+> $$
+> p_{ij}=P(X=x_i,\ Y=y_j),\qquad i,j=1,2,\dots
+> $$
 > 为 $(X,Y)$ 的**联合分布律**（joint probability mass function）。
 
 **两条基本性质**：
@@ -92,7 +100,9 @@ related: []
 
 > [!info] Def 4 联合概率密度
 > 若存在非负可积函数 $f(x,y)$，使得对任意 $x,y$ 都有
-> $$F(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f(u,v)\,\mathrm{d}v\,\mathrm{d}u$$
+> $$
+> F(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f(u,v)\,\mathrm{d}v\,\mathrm{d}u
+> $$
 > 则称 $(X,Y)$ 为**连续型二维随机变量**，$f(x,y)$ 为**联合概率密度函数**（joint probability density function）。
 
 **两条基本性质**：
@@ -102,14 +112,18 @@ related: []
 
 **用密度求概率**：对平面区域 $D$，
 
-$$P\big((X,Y)\in D\big)=\iint_D f(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
+$$
+P\big((X,Y)\in D\big)=\iint_D f(x,y)\,\mathrm{d}x\,\mathrm{d}y
+$$
 
 即**密度曲面下、区域 $D$ 上的体积**。
 
 > [!example] 区域上的均匀分布
 > 设 $(X,Y)$ 在三角形区域 $D=\{(x,y):x\ge0,\ y\ge0,\ x+y\le1\}$ 上服从均匀分布。
 > 区域面积 $S=\frac12$，故
-> $$f(x,y)=\begin{cases}2,&(x,y)\in D\\0,&\text{其他}\end{cases}$$
+> $$
+> f(x,y)=\begin{cases}2,&(x,y)\in D\\0,&\text{其他}\end{cases}
+> $$
 > 求 $P(X+Y\le 1/2)$：该子区域是边长为 $1/2$ 的等腰直角三角形，面积 $\frac18$，故概率 $=2\times\frac18=\frac14$。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">
@@ -161,7 +175,9 @@ $$P\big((X,Y)\in D\big)=\iint_D f(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
 
 > [!example] 三角形区域上的边缘密度
 > 承上例，$f(x,y)=2$ 在 $D$ 上。求 $f_X(x)$：
-> $$f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\,\mathrm{d}y=\int_0^{1-x}2\,\mathrm{d}y=2(1-x),\qquad 0<x<1$$
+> $$
+> f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\,\mathrm{d}y=\int_0^{1-x}2\,\mathrm{d}y=2(1-x),\qquad 0<x<1
+> $$
 > 同理 $f_Y(y)=2(1-y)$，$0<y<1$。
 > 注意：$f_X(x)f_Y(y)=4(1-x)(1-y)\ne2=f(x,y)$——**边缘分布不能还原联合分布**。
 
@@ -169,22 +185,30 @@ $$P\big((X,Y)\in D\big)=\iint_D f(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
 
 > [!info] Def 6 条件分布
 > 在 $Y=y_j$（$p_{\cdot j}>0$）的条件下，$X$ 的**条件分布律**为
-> $$P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{p_{\cdot j}}$$
+> $$
+> P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{p_{\cdot j}}
+> $$
 > 在 $f_Y(y)>0$ 的条件下，$X$ 的**条件概率密度**为
-> $$f_{X\mid Y}(x\mid y)=\frac{f(x,y)}{f_Y(y)}$$
+> $$
+> f_{X\mid Y}(x\mid y)=\frac{f(x,y)}{f_Y(y)}
+> $$
 
 条件分布就是第 2 章条件概率的"随机变量版本"：**把联合分布限制在一条线/一个点上，再重新归一化**。
 
 > [!example] 条件分布的计算
 > 承上例，$f(x,y)=2$（$x,y\ge0,x+y\le1$），$f_Y(y)=2(1-y)$。
-> $$f_{X\mid Y}(x\mid y)=\frac{2}{2(1-y)}=\frac{1}{1-y},\qquad 0<x<1-y$$
+> $$
+> f_{X\mid Y}(x\mid y)=\frac{2}{2(1-y)}=\frac{1}{1-y},\qquad 0<x<1-y
+> $$
 > 即给定 $Y=y$ 后，$X$ 在 $(0,1-y)$ 上均匀分布。
 
 # 4. 独立性
 
 > [!info] Def 7 随机变量的独立性
 > 若对任意 $x,y$ 都有
-> $$F(x,y)=F_X(x)F_Y(y)$$
+> $$
+> F(x,y)=F_X(x)F_Y(y)
+> $$
 > 则称 $X$ 与 $Y$ **相互独立**（independent）。
 > 等价条件：
 > - 离散型：$p_{ij}=p_{i\cdot}p_{\cdot j}$ 对所有 $i,j$ 成立
@@ -210,7 +234,9 @@ $$P\big((X,Y)\in D\big)=\iint_D f(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
 
 若 $(X,Y)$ 在矩形 $[a,b]\times[c,d]$ 上均匀分布：
 
-$$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他}\end{cases}$$
+$$
+f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他}\end{cases}
+$$
 
 此时 $X\sim U(a,b)$、$Y\sim U(c,d)$，且 $X,Y$ **相互独立**。
 
@@ -218,7 +244,9 @@ $$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他
 
 > [!info] Def 8 二维正态分布
 > 若 $(X,Y)$ 的联合密度为
-> $$f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}$$
+> $$
+> f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}
+> $$
 > 则称 $(X,Y)$ 服从**二维正态分布**，记作 $N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)$。
 
 **五条重要性质**：
@@ -233,7 +261,9 @@ $$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他
 
 > [!info] Def 9 多项分布
 > 在 $n$ 次独立试验中，每次有 $r$ 种可能结果，第 $i$ 种结果出现概率为 $p_i$（$\sum p_i=1$），则各结果出现次数 $(X_1,\dots,X_r)$ 的联合分布为
-> $$P(X_1=k_1,\dots,X_r=k_r)=\frac{n!}{k_1!\cdots k_r!}p_1^{k_1}\cdots p_r^{k_r},\qquad \sum k_i=n$$
+> $$
+> P(X_1=k_1,\dots,X_r=k_r)=\frac{n!}{k_1!\cdots k_r!}p_1^{k_1}\cdots p_r^{k_r},\qquad \sum k_i=n
+> $$
 > 称为**多项分布**（multinomial distribution）。
 
 - $r=2$ 时退化为二项分布
@@ -245,9 +275,13 @@ $$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他
 
 > [!info] Def 10 卷积公式
 > 若 $(X,Y)$ 的联合密度为 $f(x,y)$，则 $Z=X+Y$ 的密度为
-> $$f_Z(z)=\int_{-\infty}^{+\infty}f(x,z-x)\,\mathrm{d}x=\int_{-\infty}^{+\infty}f(z-y,y)\,\mathrm{d}y$$
+> $$
+> f_Z(z)=\int_{-\infty}^{+\infty}f(x,z-x)\,\mathrm{d}x=\int_{-\infty}^{+\infty}f(z-y,y)\,\mathrm{d}y
+> $$
 > 当 $X,Y$ **独立**时，$f(x,y)=f_X(x)f_Y(y)$，上式变成**卷积**：
-> $$f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x=f_X(z)*f_Y(z)$$
+> $$
+> f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x=f_X(z)*f_Y(z)
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="100%" style="max-width:760px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -274,7 +308,9 @@ $$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他
 
 > [!example] 两个均匀分布之和
 > 设 $X,Y$ 独立且都服从 $U(0,1)$。则
-> $$f_Z(z)=\int_0^1 f_X(x)f_Y(z-x)\,\mathrm{d}x$$
+> $$
+> f_Z(z)=\int_0^1 f_X(x)f_Y(z-x)\,\mathrm{d}x
+> $$
 > 被积函数非零要求 $0<x<1$ 且 $0<z-x<1$，即 $\max(0,z-1)<x<\min(1,z)$。
 > - $0<z<1$：$f_Z(z)=\int_0^z1\,\mathrm{d}x=z$
 > - $1\le z<2$：$f_Z(z)=\int_{z-1}^1 1\,\mathrm{d}x=2-z$
@@ -286,15 +322,23 @@ $$f(x,y)=\begin{cases}\dfrac{1}{(b-a)(d-c)},&a<x<b,\ c<y<d\\[2mm]0,&\text{其他
 
 设 $X,Y$ 独立，分布函数分别为 $F_X,F_Y$：
 
-$$F_{\max}(z)=P(\max(X,Y)\le z)=P(X\le z,Y\le z)=F_X(z)F_Y(z)$$
+$$
+F_{\max}(z)=P(\max(X,Y)\le z)=P(X\le z,Y\le z)=F_X(z)F_Y(z)
+$$
 
-$$F_{\min}(z)=P(\min(X,Y)\le z)=1-P(X>z,Y>z)=1-[1-F_X(z)][1-F_Y(z)]$$
+$$
+F_{\min}(z)=P(\min(X,Y)\le z)=1-P(X>z,Y>z)=1-[1-F_X(z)][1-F_Y(z)]
+$$
 
 密度（若存在）：
 
-$$f_{\max}(z)=f_X(z)F_Y(z)+F_X(z)f_Y(z)$$
+$$
+f_{\max}(z)=f_X(z)F_Y(z)+F_X(z)f_Y(z)
+$$
 
-$$f_{\min}(z)=f_X(z)[1-F_Y(z)]+[1-F_X(z)]f_Y(z)$$
+$$
+f_{\min}(z)=f_X(z)[1-F_Y(z)]+[1-F_X(z)]f_Y(z)
+$$
 
 > [!example] 系统可靠性
 > 串联系统寿命 $=\min(X_1,\dots,X_n)$，并联系统寿命 $=\max(X_1,\dots,X_n)$。
@@ -305,19 +349,31 @@ $$f_{\min}(z)=f_X(z)[1-F_Y(z)]+[1-F_X(z)]f_Y(z)$$
 
 > [!info] Def 11 雅可比变换
 > 设 $(X,Y)$ 的联合密度为 $f_{XY}(x,y)$，变换
-> $$Z=g_1(X,Y),\qquad W=g_2(X,Y)$$
+> $$
+> Z=g_1(X,Y),\qquad W=g_2(X,Y)
+> $$
 > 存在唯一的反变换 $x=h_1(z,w)$、$y=h_2(z,w)$，且雅可比行列式
-> $$J=\frac{\partial(x,y)}{\partial(z,w)}=\begin{vmatrix}\dfrac{\partial x}{\partial z}&\dfrac{\partial x}{\partial w}\\[2mm]\dfrac{\partial y}{\partial z}&\dfrac{\partial y}{\partial w}\end{vmatrix}\ne0$$
+> $$
+> J=\frac{\partial(x,y)}{\partial(z,w)}=\begin{vmatrix}\dfrac{\partial x}{\partial z}&\dfrac{\partial x}{\partial w}\\[2mm]\dfrac{\partial y}{\partial z}&\dfrac{\partial y}{\partial w}\end{vmatrix}\ne0
+> $$
 > 则
-> $$f_{ZW}(z,w)=f_{XY}\big(h_1(z,w),h_2(z,w)\big)\,|J|$$
+> $$
+> f_{ZW}(z,w)=f_{XY}\big(h_1(z,w),h_2(z,w)\big)\,|J|
+> $$
 
 > [!example] 瑞利分布的来源
 > 设 $X,Y$ 独立同分布 $N(0,\sigma^2)$。令
-> $$R=\sqrt{X^2+Y^2},\qquad \Theta=\arctan\frac{Y}{X}$$
+> $$
+> R=\sqrt{X^2+Y^2},\qquad \Theta=\arctan\frac{Y}{X}
+> $$
 > 反变换 $x=r\cos\theta$、$y=r\sin\theta$，雅可比 $|J|=r$。于是
-> $$f_{R\Theta}(r,\theta)=f_X(r\cos\theta)f_Y(r\sin\theta)\cdot r=\frac{r}{2\pi\sigma^2}e^{-r^2/(2\sigma^2)}$$
+> $$
+> f_{R\Theta}(r,\theta)=f_X(r\cos\theta)f_Y(r\sin\theta)\cdot r=\frac{r}{2\pi\sigma^2}e^{-r^2/(2\sigma^2)}
+> $$
 > 对 $\theta$ 积分得
-> $$f_R(r)=\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)},\qquad r\ge0$$
+> $$
+> f_R(r)=\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)},\qquad r\ge0
+> $$
 > 正是第 3 章的**瑞利分布**。这解释了"瑞利 = 两个独立同方差高斯的模"。
 
 ## MATLAB
@@ -377,7 +433,9 @@ r = 0:0.01:4; plot(r, r.*exp(-r.^2/2));
 > [!example] 例 6：雅可比法
 > 设 $X,Y$ 独立同分布 $N(0,1)$，求 $Z=X+Y$ 与 $W=X-Y$ 的联合密度，并判断独立性。
 > 反变换 $x=(z+w)/2$、$y=(z-w)/2$，$|J|=1/2$。
-> $$f_{ZW}(z,w)=\frac{1}{2}\cdot\frac{1}{2\pi}e^{-[(z+w)^2+(z-w)^2]/4}=\frac{1}{4\pi}e^{-(z^2+w^2)/4}$$
+> $$
+> f_{ZW}(z,w)=\frac{1}{2}\cdot\frac{1}{2\pi}e^{-[(z+w)^2+(z-w)^2]/4}=\frac{1}{4\pi}e^{-(z^2+w^2)/4}
+> $$
 > 可分解为 $f_Z(z)f_W(w)$，故 $Z,W$ 独立，且都服从 $N(0,2)$。
 > 这个结论在通信中很重要：**和与差（即 I/Q 两路）是独立的高斯**，这正是复高斯噪声模型的基础。
 

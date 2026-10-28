@@ -28,8 +28,12 @@ related: []
 
 > [!info] 定义 1 时间平均
 > 对一条样本函数 $x(t)$，定义
-> $$\langle x(t)\rangle=\lim_{T\to\infty}\frac{1}{T}\int_{0}^{T}x(t)\,\mathrm{d}t$$
-> $$\langle x(t+\tau)x^*(t)\rangle=\lim_{T\to\infty}\frac{1}{T}\int_{0}^{T}x(t+\tau)x^*(t)\,\mathrm{d}t$$
+> $$
+> \langle x(t)\rangle=\lim_{T\to\infty}\frac{1}{T}\int_{0}^{T}x(t)\,\mathrm{d}t
+> $$
+> $$
+> \langle x(t+\tau)x^*(t)\rangle=\lim_{T\to\infty}\frac{1}{T}\int_{0}^{T}x(t+\tau)x^*(t)\,\mathrm{d}t
+> $$
 > 分别称为**时间均值**与**时间自相关**。离散序列把积分换成 $\frac{1}{N}\sum_{n=0}^{N-1}$。
 
 | 平均方式 | 对谁平均 | 需要什么 | 典型代价 |
@@ -45,7 +49,9 @@ related: []
 
 > [!info] 定义 2 均值各态历经
 > 若平稳过程 $X(t)$ 满足
-> $$\langle X(t)\rangle=\mu_X\quad\text{（均方意义或几乎必然）}$$
+> $$
+> \langle X(t)\rangle=\mu_X\quad\text{（均方意义或几乎必然）}
+> $$
 > 则称其**均值各态历经**，也称均值遍历。
 
 有限时长估计量为 $\bar X_T=\frac{1}{T}\int_0^T X(t)\,\mathrm{d}t$。它显然是无偏的：$E[\bar X_T]=\mu_X$。关键在于方差：
@@ -56,7 +62,9 @@ $$\mathrm{Var}(\bar X_T)=\frac{1}{T^2}\int_0^T\int_0^T C_X(t_2-t_1)\,\mathrm{d}t
 > [!info] 定义 3 均值遍历的充分条件
 > 若 $C_X(\tau)=R_X(\tau)-\lvert\mu_X\rvert^2\to0$（$\tau\to\infty$），则 $\mathrm{Var}(\bar X_T)\to0$，从而 $\bar X_T\to\mu_X$（均方），过程均值各态历经。
 > 更弱的条件是
-> $$\frac{1}{T}\int_0^T C_X(\tau)\,\mathrm{d}\tau\longrightarrow0\quad(T\to\infty)$$
+> $$
+> \frac{1}{T}\int_0^T C_X(\tau)\,\mathrm{d}\tau\longrightarrow0\quad(T\to\infty)
+> $$
 
 直观上，$C_X(\tau)\to0$ 表示相隔足够远的两段波形几乎不相关，长记录中的有效独立样本数随 $T$ 增长，平均的随机波动被抵消。
 
@@ -67,12 +75,16 @@ $$\mathrm{Var}(\bar X_T)=\frac{1}{T^2}\int_0^T\int_0^T C_X(t_2-t_1)\,\mathrm{d}t
 
 > [!info] 定义 4 相关函数各态历经
 > 若对每个 $\tau$，时间自相关满足
-> $$\langle X(t+\tau)X^*(t)\rangle=R_X(\tau)$$
+> $$
+> \langle X(t+\tau)X^*(t)\rangle=R_X(\tau)
+> $$
 > 则称过程**相关函数各态历经**，也称相关遍历。
 
 相关遍历需要四阶矩存在。对零均值实高斯过程，一个常用充分条件是
 
-$$\int_{-\infty}^{\infty}\lvert R_X(u)\rvert^2\,\mathrm{d}u<\infty$$
+$$
+\int_{-\infty}^{\infty}\lvert R_X(u)\rvert^2\,\mathrm{d}u<\infty
+$$
 
 它保证 $X(t+\tau)X(t)$ 的时间平均方差趋于零。
 

@@ -42,7 +42,9 @@ related: []
 
 **原理**：载波振幅随"0/1"通断。
 
-$$e_{2ASK}(t)=s(t)\cos\omega_c t,\qquad s(t)=\sum_n a_n g(t-nT_B),\ a_n=0/1$$
+$$
+e_{2ASK}(t)=s(t)\cos\omega_c t,\qquad s(t)=\sum_n a_n g(t-nT_B),\ a_n=0/1
+$$
 
 （即单极性基带 × 载波。）
 
@@ -57,7 +59,9 @@ $$e_{2ASK}(t)=s(t)\cos\omega_c t,\qquad s(t)=\sum_n a_n g(t-nT_B),\ a_n=0/1$$
 
 **原理**：两个不同频率 $f_1/f_2$ 分别表示 0/1。
 
-$$e_{2FSK}(t)=\begin{cases}A\cos\omega_1 t&\text{发"1"}\\A\cos\omega_2 t&\text{发"0"}\end{cases}$$
+$$
+e_{2FSK}(t)=\begin{cases}A\cos\omega_1 t&\text{发"1"}\\A\cos\omega_2 t&\text{发"0"}\end{cases}
+$$
 
 - **产生**：键控法（两个独立振荡器切换）/ 调频法
 - **解调**：非相干（双支路包络 + 比较）/ 相干 / 过零检测 / 差分检波
@@ -70,7 +74,9 @@ $$e_{2FSK}(t)=\begin{cases}A\cos\omega_1 t&\text{发"1"}\\A\cos\omega_2 t&\text{
 
 **原理**：用载波**绝对相位** $0/\pi$ 表示 0/1。
 
-$$e_{2PSK}(t)=s(t)\cos\omega_c t,\quad s(t)\text{ 为双极性 }(+1/-1)$$
+$$
+e_{2PSK}(t)=s(t)\cos\omega_c t,\quad s(t)\text{ 为双极性 }(+1/-1)
+$$
 
 （即**双极性**基带 × 载波——与 2ASK 唯一区别是基带极性！）
 
@@ -89,7 +95,9 @@ $$e_{2PSK}(t)=s(t)\cos\omega_c t,\quad s(t)\text{ 为双极性 }(+1/-1)$$
 
 **原理**：用**相邻码元载波相位的相对变化**（相位差 $\Delta\varphi$）表示信息：
 
-$$\Delta\varphi=\begin{cases}0&\text{发"0"}\\\pi&\text{发"1"}\end{cases}\quad(\text{或相反约定})$$
+$$
+\Delta\varphi=\begin{cases}0&\text{发"0"}\\\pi&\text{发"1"}\end{cases}\quad(\text{或相反约定})
+$$
 
 **编码（发端）**：绝对码 $a_n$ → 差分码（相对码）$b_n$：$b_n=a_n\oplus b_{n-1}$（模 2），再对 $b_n$ 做 2PSK。
 
@@ -135,7 +143,9 @@ $$\Delta\varphi=\begin{cases}0&\text{发"0"}\\\pi&\text{发"1"}\end{cases}\quad(
 
 ## 误码率（抗噪性能）
 
-$$P_{e,2PSK}<P_{e,2FSK}<P_{e,2ASK}$$
+$$
+P_{e,2PSK}<P_{e,2FSK}<P_{e,2ASK}
+$$
 
 - **同一误码率下所需信噪比：2ASK 比 2FSK 高 3 dB，2FSK 比 2PSK 高 3 dB，2ASK 比 2PSK 高 6 dB**
 - 同一解调方式下：**相干 < 非相干**（相干总优于非相干，大信噪比时趋同）
@@ -143,7 +153,9 @@ $$P_{e,2PSK}<P_{e,2FSK}<P_{e,2ASK}$$
 
 ## 频带宽度（有效性）
 
-$$B_{2FSK}>B_{2ASK}=B_{2PSK}=2f_B$$
+$$
+B_{2FSK}>B_{2ASK}=B_{2PSK}=2f_B
+$$
 
 - 单位带宽速率（有效性）：**2ASK/2PSK 相同且优于 2FSK**
 
@@ -171,7 +183,9 @@ $$B_{2FSK}>B_{2ASK}=B_{2PSK}=2f_B$$
 
 > [!info] Def 5 多进制调制
 > **多进制调制**（M-ary modulation）让一个码元取 $M$ 个可能状态，从而携带 $\log_2M$ 个比特：
-> $$R_b=R_B\log_2M,\qquad \eta_b=\log_2M\ \text{b/(s·Hz)}\ (\text{矩形谱})$$
+> $$
+> R_b=R_B\log_2M,\qquad \eta_b=\log_2M\ \text{b/(s·Hz)}\ (\text{矩形谱})
+> $$
 
 **核心动机**：在**带宽不变**时，一个码元携带 $\log_2M$ bit → **提高频带利用率（有效性）**；代价：信号状态变密 → **噪声容限减小、误码率上升（可靠性下降）**——又一对有效性/可靠性矛盾（呼应 [[vault-notes/communication/01-introduction]]）。
 

@@ -41,7 +41,9 @@ related: []
 
 > [!info] Def 1 低通抽样定理
 > **低通抽样定理**（low-pass sampling theorem，也称奈奎斯特抽样定理）：最高频率为 $f_H$ 的低通模拟信号 $m(t)$，以
-> $$f_s\ge2f_H$$
+> $$
+> f_s\ge2f_H
+> $$
 > 的速率**等间隔抽样**，则样值包含原信号全部信息，可通过**理想低通（截止 $f_H$）**无失真恢复 $m(t)$。
 
 > [!important] 定理要点
@@ -57,7 +59,9 @@ related: []
 
 > [!info] Def 2 带通抽样定理
 > 中心 $f_0$、带宽 $B$（$f_H=f_0+B/2$）的带通信号，可按
-> $$f_s\ge2B\left(1+\frac{k}{n}\right)\le2f_H\quad\left(n=\left\lfloor\frac{f_H}{B}\right\rfloor,\ k=\frac{f_H}{B}-n\right)$$
+> $$
+> f_s\ge2B\left(1+\frac{k}{n}\right)\le2f_H\quad\left(n=\left\lfloor\frac{f_H}{B}\right\rfloor,\ k=\frac{f_H}{B}-n\right)
+> $$
 > 抽样（比 $2f_H$ 低得多——**带通信号只需 2 倍带宽上界的抽样率**，$k=0$ 时即 $2B$）。
 
 这是无线中频数字化的基础。
@@ -75,7 +79,9 @@ related: []
 
 > [!info] Def 4 均匀量化与量化噪声
 > **均匀量化**（uniform quantization）的量化间隔 $\Delta=\dfrac{2a}{M}$（$M$ 为电平数，$a$ 为信号最大值），量化噪声功率
-> $$\sigma_q^2=\frac{\Delta^2}{12}$$
+> $$
+> \sigma_q^2=\frac{\Delta^2}{12}
+> $$
 > **与信号大小无关**。
 
 **均匀量化的缺陷**：$\sigma_q^2$ 固定 → **小信号量化信噪比差**（大信号时好、小信号时坏），语音动态范围大（40+ dB）→ 需要**非均匀量化**。
@@ -101,7 +107,9 @@ related: []
 
 **A 律定义**（归一化 $x\in[0,1]$，$A=87.6$）：
 
-$$y=\begin{cases}\dfrac{Ax}{1+\ln A},&0\le x\le\dfrac{1}{A}\quad(\text{直线段})\\[2mm]\dfrac{1+\ln Ax}{1+\ln A},&\dfrac{1}{A}<x\le1\quad(\text{对数段})\end{cases}$$
+$$
+y=\begin{cases}\dfrac{Ax}{1+\ln A},&0\le x\le\dfrac{1}{A}\quad(\text{直线段})\\[2mm]\dfrac{1+\ln Ax}{1+\ln A},&\dfrac{1}{A}<x\le1\quad(\text{对数段})\end{cases}
+$$
 
 **13 折线近似**：
 
@@ -128,7 +136,9 @@ $$y=\begin{cases}\dfrac{Ax}{1+\ln A},&0\le x\le\dfrac{1}{A}\quad(\text{直线段
 
 **电话标准**（A 律）：$f_s=8000$ Hz，每样值编码位数 $n=8$（256 电平）：
 
-$$f_{PCM}=8000\times8=64\ \text{kb/s（一路 PCM 数字电话）}$$
+$$
+f_{PCM}=8000\times8=64\ \text{kb/s（一路 PCM 数字电话）}
+$$
 
 ## A 律 PCM 编码规则（折叠二进制码）
 
@@ -155,13 +165,17 @@ $$f_{PCM}=8000\times8=64\ \text{kb/s（一路 PCM 数字电话）}$$
 
 **带宽**（升余弦 $\alpha$ 滚降、理想低通时 $\alpha=0$）：
 
-$$B_{PCM}=nf_s\ (\text{理想}\ \alpha=0)\ \sim\ (1+\alpha)nf_s$$
+$$
+B_{PCM}=nf_s\ (\text{理想}\ \alpha=0)\ \sim\ (1+\alpha)nf_s
+$$
 
 比较：单路语音 $B=8\times8\text{k}=64$ kHz（理想）——**比模拟 SSB（4 kHz）宽得多**（数字通信"带宽大"缺点的量化体现）。
 
 **量化信噪比**（均匀量化、双极性满幅正弦）：
 
-$$\left(\frac{S}{N_q}\right)_{dB}\approx6n+1.76+c\quad\text{（工程口诀：每加 1 位码改善 6 dB）}$$
+$$
+\left(\frac{S}{N_q}\right)_{dB}\approx6n+1.76+c\quad\text{（工程口诀：每加 1 位码改善 6 dB）}
+$$
 
 - **$n$ 增加 1 位 → SQNR +6 dB**（最常考结论）
 - A 律 13 折线对**小信号**改善约 24 dB（上面斜率 16 的功劳）；大信号与均匀量化相近。
@@ -185,7 +199,9 @@ $$\left(\frac{S}{N_q}\right)_{dB}\approx6n+1.76+c\quad\text{（工程口诀：�
 
 预测器（通常一阶：前样值）+ 差值量化 + 预测累加恢复：
 
-$$e_k=m_k-\hat{m}_k\quad(\text{传量化后的 }e_k)$$
+$$
+e_k=m_k-\hat{m}_k\quad(\text{传量化后的 }e_k)
+$$
 
 **ADPCM**（自适应 DPCM）：预测器 + 量化阶自适应——32 kb/s 达到 64 kb/s PCM 话音质量（G.721）。
 
@@ -196,11 +212,15 @@ $$e_k=m_k-\hat{m}_k\quad(\text{传量化后的 }e_k)$$
 
 **本地量化阶梯信号**：
 
-$$v(nT_s)=v((n-1)T_s)\pm\Delta$$
+$$
+v(nT_s)=v((n-1)T_s)\pm\Delta
+$$
 
 **不过载条件（关键公式）**：斜率不超跟踪能力，对信号最大斜率要求：
 
-$$\left|\frac{dm(t)}{dt}\right|_{\max}\le\frac{\Delta}{T_s}=\Delta f_s\quad\left(\text{单音 }A\omega_m\le\Delta f_s\Rightarrow A\le\frac{\Delta f_s}{\omega_m}\right)$$
+$$
+\left|\frac{dm(t)}{dt}\right|_{\max}\le\frac{\Delta}{T_s}=\Delta f_s\quad\left(\text{单音 }A\omega_m\le\Delta f_s\Rightarrow A\le\frac{\Delta f_s}{\omega_m}\right)
+$$
 
 - **斜率过载** → 大信号失真（模拟滤波器恢复为失真的三角波形）
 - **不过载前提下的振幅条件**（量化噪声功率 $\sigma_q^2=\frac{\Delta^2}{3}$）与**临界斜率条件**取最佳 $\Delta$
@@ -226,7 +246,9 @@ $$\left|\frac{dm(t)}{dt}\right|_{\max}\le\frac{\Delta}{T_s}=\Delta f_s\quad\left
 
 **原理**：抽样后样值占空 < 帧长 → 多路样值**在时间上错开**插在同一信道传输（每路占固定时隙，帧循环）。
 
-$$\text{帧长 }T_f=\frac{1}{f_s}\ (\text{语音 }125\ \mu s),\quad\text{每时隙}=n\ \text{位}$$
+$$
+\text{帧长 }T_f=\frac{1}{f_s}\ (\text{语音 }125\ \mu s),\quad\text{每时隙}=n\ \text{位}
+$$
 
 > [!note] TDM vs FDM（简答必考）
 > - **FDM 频域划分**（第 5 章、模拟、防护频带、互调干扰）；**TDM 时域划分**（数字、时隙同步）

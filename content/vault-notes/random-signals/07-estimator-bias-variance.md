@@ -30,7 +30,9 @@ related: []
 
 估计误差定义为
 
-$$\tilde{\theta}=\hat{\theta}-\theta$$
+$$
+\tilde{\theta}=\hat{\theta}-\theta
+$$
 
 这里默认经典统计视角：$\theta$ 是未知常数，随机性完全来自观测 $\mathbf{x}$。在贝叶斯视角下 $\theta$ 本身是随机变量，误差的期望要对 $\theta$ 的先验再取一次，这一点在 [[vault-notes/random-signals/07-mmse-lmmse]] 中会反复用到。
 
@@ -43,7 +45,9 @@ $$\tilde{\theta}=\hat{\theta}-\theta$$
 
 把误差拆成“围绕均值的波动”和“均值到真值的偏移”两部分：
 
-$$\mathrm{MSE}(\hat{\theta})=E\left[(\hat{\theta}-E[\hat{\theta}]+E[\hat{\theta}]-\theta)^2\right]=\mathrm{Var}(\hat{\theta})+\mathrm{bias}^2(\hat{\theta})$$
+$$
+\mathrm{MSE}(\hat{\theta})=E\left[(\hat{\theta}-E[\hat{\theta}]+E[\hat{\theta}]-\theta)^2\right]=\mathrm{Var}(\hat{\theta})+\mathrm{bias}^2(\hat{\theta})
+$$
 
 交叉项为零，因为 $E[\hat{\theta}-E\hat{\theta}]=0$。这条分解是全节的核心：**方差小不等于误差小，偏差大同样会推高 MSE**。
 
@@ -78,7 +82,9 @@ Fisher 信息度量数据对参数变化的敏感程度：似然函数在真值�
 
 对有偏估计，方差下界换成
 
-$$\mathrm{Var}(\hat{\theta})\ge\frac{(1+b'(\theta))^2}{I(\theta)},\qquad b(\theta)=E[\hat{\theta}]-\theta$$
+$$
+\mathrm{Var}(\hat{\theta})\ge\frac{(1+b'(\theta))^2}{I(\theta)},\qquad b(\theta)=E[\hat{\theta}]-\theta
+$$
 
 > [!warning] CRLB 的使用边界
 > CRLB 只对满足正则条件的分布族成立：支撑集不能依赖 $\theta$，对数似然要对 $\theta$ 二阶可导。均匀分布 $U(0,\theta)$ 的支撑集随 $\theta$ 移动，属于非正则情形，此时不能拿形式上的 CRLB 做结论。
@@ -87,11 +93,15 @@ $$\mathrm{Var}(\hat{\theta})\ge\frac{(1+b'(\theta))^2}{I(\theta)},\qquad b(\thet
 
 设 $x_n\sim\mathcal{N}(\mu,\sigma^2)$ 独立同分布，$\sigma^2$ 已知，估计 $\mu$。对数似然为
 
-$$\ell(\mu)=-\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\sum_{n=1}^N(x_n-\mu)^2$$
+$$
+\ell(\mu)=-\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\sum_{n=1}^N(x_n-\mu)^2
+$$
 
 得分函数与 Fisher 信息分别为
 
-$$\frac{\partial\ell}{\partial\mu}=\frac{1}{\sigma^2}\sum_{n=1}^N(x_n-\mu),\qquad I(\mu)=\frac{N}{\sigma^2}$$
+$$
+\frac{\partial\ell}{\partial\mu}=\frac{1}{\sigma^2}\sum_{n=1}^N(x_n-\mu),\qquad I(\mu)=\frac{N}{\sigma^2}
+$$
 
 样本均值 $\hat{\mu}=\bar{x}$ 无偏，方差为 $\sigma^2/N$，恰好等于 $1/I(\mu)$，因此它是有效估计，也是 MVUE。
 

@@ -40,10 +40,14 @@ related: []
 
 > [!info] Def 1 数学期望
 > - **离散型**：$P(X=x_k)=p_k$，若 $\sum_k|x_k|p_k<\infty$，则称
->   $$E(X)=\sum_{k}x_kp_k$$
+>   $$
+>   E(X)=\sum_{k}x_kp_k
+>   $$
 >   为 $X$ 的**数学期望**（mathematical expectation）。
 > - **连续型**：密度为 $f(x)$，若 $\int_{-\infty}^{+\infty}|x|f(x)\,\mathrm{d}x<\infty$，则称
->   $$E(X)=\int_{-\infty}^{+\infty}xf(x)\,\mathrm{d}x$$
+>   $$
+>   E(X)=\int_{-\infty}^{+\infty}xf(x)\,\mathrm{d}x
+>   $$
 >   为 $X$ 的数学期望。
 
 **直观**：期望是"以概率为权的加权平均"，是随机变量取值的**重心**。它不一定等于某个可能取值（如骰子的期望是 3.5）。
@@ -72,17 +76,23 @@ related: []
 > [!important] 第 3 条与第 4 条的区别
 > **加法无条件成立**：$E(X+Y)=E(X)+E(Y)$ 对任意 $X,Y$ 都成立。
 > **乘法需要独立**：$E(XY)=E(X)E(Y)$ 一般只在独立时成立；不独立时差一个协方差项：
-> $$E(XY)=E(X)E(Y)+\mathrm{Cov}(X,Y)$$
+> $$
+> E(XY)=E(X)E(Y)+\mathrm{Cov}(X,Y)
+> $$
 
 ## 条件期望
 
 > [!info] Def 3 条件期望
 > 在 $Y=y$ 的条件下，$X$ 的**条件期望**为
-> $$E(X\mid Y=y)=\begin{cases}\sum_i x_i\,P(X=x_i\mid Y=y),&\text{离散}\\ \int_{-\infty}^{+\infty}x\,f_{X\mid Y}(x\mid y)\,\mathrm{d}x,&\text{连续}\end{cases}$$
+> $$
+> E(X\mid Y=y)=\begin{cases}\sum_i x_i\,P(X=x_i\mid Y=y),&\text{离散}\\ \int_{-\infty}^{+\infty}x\,f_{X\mid Y}(x\mid y)\,\mathrm{d}x,&\text{连续}\end{cases}
+> $$
 
 **全期望公式**：
 
-$$E(X)=E\big[E(X\mid Y)\big]$$
+$$
+E(X)=E\big[E(X\mid Y)\big]
+$$
 
 即"先按 $Y$ 分组求平均，再对 $Y$ 求平均"。这是贝叶斯思想在期望上的体现，也是条件期望最重要的性质。
 
@@ -92,12 +102,16 @@ $$E(X)=E\big[E(X\mid Y)\big]$$
 
 > [!info] Def 4 方差
 > 称
-> $$D(X)=E\left[(X-E(X))^2\right]$$
+> $$
+> D(X)=E\left[(X-E(X))^2\right]
+> $$
 > 为 $X$ 的**方差**（variance），$\sigma_X=\sqrt{D(X)}$ 为**标准差**（standard deviation）。
 
 **最常用的计算公式**：
 
-$$D(X)=E(X^2)-[E(X)]^2$$
+$$
+D(X)=E(X^2)-[E(X)]^2
+$$
 
 推导：$E[(X-\mu)^2]=E(X^2-2\mu X+\mu^2)=E(X^2)-2\mu^2+\mu^2=E(X^2)-\mu^2$。
 
@@ -120,7 +134,9 @@ $$D(X)=E(X^2)-[E(X)]^2$$
 
 若 $X$ 的期望为 $\mu$、方差为 $\sigma^2>0$，则
 
-$$Z=\frac{X-\mu}{\sigma}$$
+$$
+Z=\frac{X-\mu}{\sigma}
+$$
 
 满足 $E(Z)=0$、$D(Z)=1$，称为 $X$ 的**标准化变量**。第 3 章的正态标准化就是它的特例。
 
@@ -130,12 +146,16 @@ $$Z=\frac{X-\mu}{\sigma}$$
 
 > [!info] Def 5 协方差
 > 称
-> $$\mathrm{Cov}(X,Y)=E\big[(X-E(X))(Y-E(Y))\big]$$
+> $$
+> \mathrm{Cov}(X,Y)=E\big[(X-E(X))(Y-E(Y))\big]
+> $$
 > 为 $X$ 与 $Y$ 的**协方差**（covariance）。
 
 **计算公式**：
 
-$$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
+$$
+\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)
+$$
 
 **性质**：
 
@@ -149,7 +169,9 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 
 > [!info] Def 6 相关系数
 > 若 $D(X)>0$、$D(Y)>0$，称
-> $$\rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}$$
+> $$
+> \rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+> $$
 > 为 $X$ 与 $Y$ 的**相关系数**（correlation coefficient）。
 
 **核心性质**：
@@ -182,7 +204,9 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 > [!warning] 不相关 ≠ 独立
 > **独立 ⇒ 不相关**，但**不相关 ⇏ 独立**。
 > 经典反例：$X\sim U(-1,1)$，$Y=X^2$。显然 $Y$ 完全由 $X$ 决定，两者不独立；但
-> $$E(XY)=E(X^3)=0,\quad E(X)=0,\quad E(Y)=E(X^2)=1/3$$
+> $$
+> E(XY)=E(X^3)=0,\quad E(X)=0,\quad E(Y)=E(X^2)=1/3
+> $$
 > 故 $\mathrm{Cov}(X,Y)=0$，即**不相关**。
 > 唯一例外：**二维正态**中，不相关 ⇔ 独立（第 4 章）。
 
@@ -199,7 +223,9 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 
 > [!info] Def 9 协方差矩阵
 > 对随机向量 $\mathbf{X}=(X_1,\dots,X_n)^T$，称
-> $$\boldsymbol{\Sigma}=\big[\mathrm{Cov}(X_i,X_j)\big]_{n\times n}$$
+> $$
+> \boldsymbol{\Sigma}=\big[\mathrm{Cov}(X_i,X_j)\big]_{n\times n}
+> $$
 > 为 $\mathbf{X}$ 的**协方差矩阵**（covariance matrix）。
 
 **性质**：
@@ -208,7 +234,9 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 2. $\boldsymbol{\Sigma}$ 半正定：对任意常向量 $\mathbf{a}$，$\mathbf{a}^T\boldsymbol{\Sigma}\mathbf{a}=D(\mathbf{a}^T\mathbf{X})\ge0$
 3. 若各分量两两不相关，则 $\boldsymbol{\Sigma}$ 为对角矩阵
 4. 对线性变换 $\mathbf{Y}=A\mathbf{X}+\mathbf{b}$，有
-   $$\boldsymbol{\Sigma}_Y=A\boldsymbol{\Sigma}_XA^T$$
+   $$
+   \boldsymbol{\Sigma}_Y=A\boldsymbol{\Sigma}_XA^T
+   $$
 
 > [!tip] 为什么通信里天天见协方差矩阵
 > MIMO 信道的空间相关性、阵列天线的接收协方差、卡尔曼滤波的误差协方差、主成分分析（PCA）的协方差矩阵——全部是这一个对象。**协方差矩阵的对角线是各分量方差，非对角线是两两协方差。**
@@ -236,27 +264,45 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 
 > [!example] 二项分布的期望与方差
 > 设 $X\sim B(n,p)$，令 $X_i$ 为第 $i$ 次试验是否成功（$B(1,p)$），则 $X=\sum_{i=1}^nX_i$，且 $X_i$ 独立。
-> $$E(X)=\sum E(X_i)=np,\qquad D(X)=\sum D(X_i)=np(1-p)$$
+> $$
+> E(X)=\sum E(X_i)=np,\qquad D(X)=\sum D(X_i)=np(1-p)
+> $$
 > 这里用了"独立时方差可加"——比直接对二项分布求和简单得多。
 
 > [!example] 瑞利分布的期望与方差
-> $$E(R)=\int_0^\infty r\cdot\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}\,\mathrm{d}r=\sigma\sqrt{\frac{\pi}{2}}$$
-> $$E(R^2)=\int_0^\infty r^2\cdot\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}\,\mathrm{d}r=2\sigma^2$$
-> $$D(R)=E(R^2)-[E(R)]^2=\left(2-\frac{\pi}{2}\right)\sigma^2$$
+> $$
+> E(R)=\int_0^\infty r\cdot\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}\,\mathrm{d}r=\sigma\sqrt{\frac{\pi}{2}}
+> $$
+> $$
+> E(R^2)=\int_0^\infty r^2\cdot\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}\,\mathrm{d}r=2\sigma^2
+> $$
+> $$
+> D(R)=E(R^2)-[E(R)]^2=\left(2-\frac{\pi}{2}\right)\sigma^2
+> $$
 > 这两个结果在第 3 章已经用过，现在可以用期望/方差的语言重新表述。
 
 # 6. 例题
 
 > [!example] 例 1：离散型期望与方差
 > 设 $X$ 的分布律为 $P(X=-1)=0.2$、$P(X=0)=0.3$、$P(X=1)=0.5$。
-> $$E(X)=(-1)(0.2)+0(0.3)+1(0.5)=0.3$$
-> $$E(X^2)=1(0.2)+0(0.3)+1(0.5)=0.7$$
-> $$D(X)=0.7-0.3^2=0.61$$
+> $$
+> E(X)=(-1)(0.2)+0(0.3)+1(0.5)=0.3
+> $$
+> $$
+> E(X^2)=1(0.2)+0(0.3)+1(0.5)=0.7
+> $$
+> $$
+> D(X)=0.7-0.3^2=0.61
+> $$
 
 > [!example] 例 2：连续型函数的期望
 > 设 $X\sim U(0,1)$，求 $E(X^2)$ 与 $D(X)$。
-> $$E(X)=\frac12,\qquad E(X^2)=\int_0^1x^2\,\mathrm{d}x=\frac13$$
-> $$D(X)=\frac13-\frac14=\frac1{12}$$
+> $$
+> E(X)=\frac12,\qquad E(X^2)=\int_0^1x^2\,\mathrm{d}x=\frac13
+> $$
+> $$
+> D(X)=\frac13-\frac14=\frac1{12}
+> $$
 > 与均匀分布公式 $\frac{(b-a)^2}{12}=\frac1{12}$ 一致。
 
 > [!example] 例 3：协方差与相关系数
@@ -269,21 +315,31 @@ $$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$$
 >
 > 求 $\mathrm{Cov}(X,Y)$ 与 $\rho_{XY}$。
 > $E(X)=0.5$，$E(Y)=0.5$，$E(XY)=1\times0.2=0.2$。
-> $$\mathrm{Cov}(X,Y)=0.2-0.5\times0.5=-0.05$$
+> $$
+> \mathrm{Cov}(X,Y)=0.2-0.5\times0.5=-0.05
+> $$
 > $D(X)=0.5-0.25=0.25$，$D(Y)=0.25$，故
-> $$\rho_{XY}=\frac{-0.05}{0.5\times0.5}=-0.2$$
+> $$
+> \rho_{XY}=\frac{-0.05}{0.5\times0.5}=-0.2
+> $$
 > 负相关：$X$ 大时 $Y$ 倾向于小。
 
 > [!example] 例 4：投资组合的方差
 > 两项资产收益率 $X,Y$，$D(X)=0.04$、$D(Y)=0.09$、$\rho=0.3$。组合 $Z=0.6X+0.4Y$，求 $D(Z)$。
-> $$D(Z)=0.6^2(0.04)+0.4^2(0.09)+2(0.6)(0.4)(0.3)(0.2)(0.3)$$
+> $$
+> D(Z)=0.6^2(0.04)+0.4^2(0.09)+2(0.6)(0.4)(0.3)(0.2)(0.3)
+> $$
 > 其中 $\mathrm{Cov}(X,Y)=\rho\sigma_X\sigma_Y=0.3\times0.2\times0.3=0.018$。
-> $$D(Z)=0.0144+0.0144+0.00864=0.03744$$
+> $$
+> D(Z)=0.0144+0.0144+0.00864=0.03744
+> $$
 > 组合方差小于两项方差的加权平均（$0.6^2\cdot0.04+0.4^2\cdot0.09=0.0288$ 再加协方差项）——**分散化降低风险**的数学表述。
 
 > [!example] 例 5：二维正态的条件期望
 > 设 $(X,Y)\sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)$，则
-> $$E(X\mid Y=y)=\mu_1+\rho\frac{\sigma_1}{\sigma_2}(y-\mu_2)$$
+> $$
+> E(X\mid Y=y)=\mu_1+\rho\frac{\sigma_1}{\sigma_2}(y-\mu_2)
+> $$
 > 这是 $y$ 的线性函数；$\rho=0$ 时条件期望恒为 $\mu_1$，即 $Y$ 不提供关于 $X$ 的任何线性信息。
 
 > [!tip] 本章收官

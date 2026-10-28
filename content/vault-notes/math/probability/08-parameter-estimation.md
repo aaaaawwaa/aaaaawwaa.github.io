@@ -54,11 +54,17 @@ related: []
 
 > [!example] 矩估计：正态总体
 > $X\sim N(\mu,\sigma^2)$，$\mu,\sigma^2$ 未知。
-> $$E(X)=\mu,\qquad E(X^2)=\mu^2+\sigma^2$$
+> $$
+> E(X)=\mu,\qquad E(X^2)=\mu^2+\sigma^2
+> $$
 > 令
-> $$\mu=\bar X,\qquad \mu^2+\sigma^2=\frac1n\sum X_i^2$$
+> $$
+> \mu=\bar X,\qquad \mu^2+\sigma^2=\frac1n\sum X_i^2
+> $$
 > 解得
-> $$\hat\mu=\bar X,\qquad \hat\sigma^2=\frac1n\sum(X_i-\bar X)^2$$
+> $$
+> \hat\mu=\bar X,\qquad \hat\sigma^2=\frac1n\sum(X_i-\bar X)^2
+> $$
 > 注意：矩估计的方差是除以 $n$，**不是无偏的**（除以 $n-1$ 才无偏）。
 
 > [!example] 矩估计：均匀分布
@@ -69,12 +75,16 @@ related: []
 
 > [!info] Def 2 似然函数
 > 设总体 $X$ 的密度（或分布律）为 $f(x;\theta)$，$x_1,\dots,x_n$ 是样本观测值。称
-> $$L(\theta)=\prod_{i=1}^n f(x_i;\theta)$$
+> $$
+> L(\theta)=\prod_{i=1}^n f(x_i;\theta)
+> $$
 > 为**似然函数**（likelihood function）。它表示"参数取 $\theta$ 时，观察到这组数据的概率/密度"。
 
 > [!info] Def 3 极大似然估计
 > 若 $\hat\theta$ 使似然函数最大：
-> $$\hat\theta_{\mathrm{MLE}}=\arg\max_{\theta}L(\theta)$$
+> $$
+> \hat\theta_{\mathrm{MLE}}=\arg\max_{\theta}L(\theta)
+> $$
 > 则称 $\hat\theta_{\mathrm{MLE}}$ 为 $\theta$ 的**极大似然估计**（maximum likelihood estimate，简称 MLE）。
 
 **求解步骤**：
@@ -86,18 +96,28 @@ related: []
 
 > [!example] MLE：二项分布
 > $X\sim B(1,p)$，样本 $x_1,\dots,x_n\in\{0,1\}$，其中 $k=\sum x_i$ 个 1。
-> $$L(p)=p^k(1-p)^{n-k},\qquad \ell(p)=k\ln p+(n-k)\ln(1-p)$$
-> $$\frac{\mathrm{d}\ell}{\mathrm{d}p}=\frac{k}{p}-\frac{n-k}{1-p}=0\ \Longrightarrow\ \hat p=\frac{k}{n}=\bar X$$
+> $$
+> L(p)=p^k(1-p)^{n-k},\qquad \ell(p)=k\ln p+(n-k)\ln(1-p)
+> $$
+> $$
+> \frac{\mathrm{d}\ell}{\mathrm{d}p}=\frac{k}{p}-\frac{n-k}{1-p}=0\ \Longrightarrow\ \hat p=\frac{k}{n}=\bar X
+> $$
 > 即 MLE 就是样本均值（频率）。
 
 > [!example] MLE：泊松分布
 > $X\sim P(\lambda)$，$L(\lambda)=\prod\dfrac{\lambda^{x_i}e^{-\lambda}}{x_i!}$。
-> $$\ell(\lambda)=\left(\sum x_i\right)\ln\lambda-n\lambda-\sum\ln(x_i!)$$
-> $$\frac{\mathrm{d}\ell}{\mathrm{d}\lambda}=\frac{\sum x_i}{\lambda}-n=0\ \Longrightarrow\ \hat\lambda=\bar X$$
+> $$
+> \ell(\lambda)=\left(\sum x_i\right)\ln\lambda-n\lambda-\sum\ln(x_i!)
+> $$
+> $$
+> \frac{\mathrm{d}\ell}{\mathrm{d}\lambda}=\frac{\sum x_i}{\lambda}-n=0\ \Longrightarrow\ \hat\lambda=\bar X
+> $$
 
 > [!example] MLE：正态分布
 > $X\sim N(\mu,\sigma^2)$。
-> $$\ell(\mu,\sigma^2)=-\frac n2\ln(2\pi)-\frac n2\ln\sigma^2-\frac{1}{2\sigma^2}\sum(x_i-\mu)^2$$
+> $$
+> \ell(\mu,\sigma^2)=-\frac n2\ln(2\pi)-\frac n2\ln\sigma^2-\frac{1}{2\sigma^2}\sum(x_i-\mu)^2
+> $$
 > 对 $\mu$ 求偏导令 0：$\hat\mu=\bar X$。
 > 对 $\sigma^2$ 求偏导令 0：$\hat\sigma^2=\frac1n\sum(x_i-\bar X)^2$。
 > 注意：MLE 的方差估计也是除以 $n$，**有偏**（期望为 $\frac{n-1}{n}\sigma^2$）。
@@ -105,7 +125,9 @@ related: []
 > [!example] MLE：均匀分布（非正则情形）
 > $X\sim U(0,\theta)$，$L(\theta)=\theta^{-n}$（要求所有 $x_i\le\theta$）。
 > $L$ 随 $\theta$ 增大而减小，故 $\theta$ 应取尽可能小，但必须 $\ge\max x_i$。因此
-> $$\hat\theta_{\mathrm{MLE}}=\max(X_1,\dots,X_n)=X_{(n)}$$
+> $$
+> \hat\theta_{\mathrm{MLE}}=\max(X_1,\dots,X_n)=X_{(n)}
+> $$
 > 这是"参数边界"情形：不能靠求导，要看约束。$X_{(n)}$ 的期望是 $\frac{n}{n+1}\theta$，**有偏**；乘以 $\frac{n+1}{n}$ 可得无偏估计。
 
 > [!tip] 矩估计 vs MLE
@@ -123,7 +145,9 @@ related: []
 
 > [!info] Def 4 无偏估计
 > 若
-> $$E(\hat\theta)=\theta$$
+> $$
+> E(\hat\theta)=\theta
+> $$
 > 则称 $\hat\theta$ 为 $\theta$ 的**无偏估计量**（unbiased estimator）。
 
 - $\bar X$ 是 $\mu$ 的无偏估计：$E(\bar X)=\mu$
@@ -137,28 +161,36 @@ related: []
 
 > [!info] Def 5 有效估计
 > 若 $\hat\theta_1,\hat\theta_2$ 都是 $\theta$ 的无偏估计，且
-> $$D(\hat\theta_1)<D(\hat\theta_2)$$
+> $$
+> D(\hat\theta_1)<D(\hat\theta_2)
+> $$
 > 则称 $\hat\theta_1$ 比 $\hat\theta_2$ **更有效**（more efficient）。
 
 在无偏估计中，方差越小越好。**最小方差无偏估计**（MVUE）是理论上的最优目标。
 
 > [!example] 均值的两个无偏估计
 > $X_1,X_2$ 是来自均值 $\mu$ 的样本。
-> $$\hat\mu_1=\frac{X_1+X_2}{2},\qquad \hat\mu_2=\frac{1}{3}X_1+\frac{2}{3}X_2$$
+> $$
+> \hat\mu_1=\frac{X_1+X_2}{2},\qquad \hat\mu_2=\frac{1}{3}X_1+\frac{2}{3}X_2
+> $$
 > 两者都无偏，但 $D(\hat\mu_1)=\sigma^2/2$，$D(\hat\mu_2)=\frac{5}{9}\sigma^2>\sigma^2/2$，故 $\hat\mu_1$ 更有效。
 
 ## 相合性（一致性）
 
 > [!info] Def 6 相合估计
 > 若当 $n\to\infty$ 时
-> $$\hat\theta_n\xrightarrow{P}\theta$$
+> $$
+> \hat\theta_n\xrightarrow{P}\theta
+> $$
 > 则称 $\hat\theta_n$ 为 $\theta$ 的**相合估计**（consistent estimator）。
 
 相合性是大样本性质：样本越多，估计越准。矩估计和 MLE 在正则条件下通常都是相合的。
 
 ## 均方误差
 
-$$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]=D(\hat\theta)+[E(\hat\theta)-\theta]^2$$
+$$
+MSE(\hat\theta)=E[(\hat\theta-\theta)^2]=D(\hat\theta)+[E(\hat\theta)-\theta]^2
+$$
 
 即 **MSE = 方差 + 偏差²**。它同时惩罚"波动大"和"系统偏"，是比无偏性更全面的指标。
 
@@ -166,7 +198,9 @@ $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]=D(\hat\theta)+[E(\hat\theta)-\theta]^
 
 > [!info] Def 7 置信区间
 > 设 $\theta$ 是未知参数，若由样本确定的两个统计量 $\hat\theta_L,\hat\theta_U$ 满足
-> $$P(\hat\theta_L\le\theta\le\hat\theta_U)=1-\alpha$$
+> $$
+> P(\hat\theta_L\le\theta\le\hat\theta_U)=1-\alpha
+> $$
 > 则称 $[\hat\theta_L,\hat\theta_U]$ 为 $\theta$ 的**置信水平 $1-\alpha$ 的置信区间**（confidence interval），$1-\alpha$ 为**置信度**。
 
 > [!warning] 置信区间的正确解读
@@ -178,7 +212,9 @@ $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]=D(\hat\theta)+[E(\hat\theta)-\theta]^
 
 > [!info] Def 8 枢轴量
 > 若 $G=G(X_1,\dots,X_n;\theta)$ 的分布**已知且不含未知参数**，则称 $G$ 为**枢轴量**（pivotal quantity）。由
-> $$P(g_{1-\alpha/2}\le G\le g_{\alpha/2})=1-\alpha$$
+> $$
+> P(g_{1-\alpha/2}\le G\le g_{\alpha/2})=1-\alpha
+> $$
 > 反解出 $\theta$ 的范围，即得置信区间。
 
 **通用步骤**：
@@ -248,36 +284,50 @@ $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]=D(\hat\theta)+[E(\hat\theta)-\theta]^
 
 枢轴量
 
-$$Z=\frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)$$
+$$
+Z=\frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)
+$$
 
 置信区间：
 
-$$\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},\ \bar X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right]$$
+$$
+\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},\ \bar X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right]
+$$
 
 ### 方差未知：t 区间
 
 枢轴量
 
-$$T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)$$
+$$
+T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)
+$$
 
 置信区间：
 
-$$\left[\bar X-t_{\alpha/2}(n-1)\frac{S}{\sqrt n},\ \bar X+t_{\alpha/2}(n-1)\frac{S}{\sqrt n}\right]$$
+$$
+\left[\bar X-t_{\alpha/2}(n-1)\frac{S}{\sqrt n},\ \bar X+t_{\alpha/2}(n-1)\frac{S}{\sqrt n}\right]
+$$
 
 > [!example] 均值的 95% 置信区间
 > 某测量值 $X\sim N(\mu,\sigma^2)$，抽 $n=16$，$\bar x=10$，$s=2$。求 $\mu$ 的 95% 置信区间。
 > $\sigma$ 未知，用 $t(15)$：$t_{0.025}(15)=2.131$。
-> $$\left[10-2.131\times\frac{2}{\sqrt{16}},\ 10+2.131\times\frac{2}{\sqrt{16}}\right]=[10-1.066,\ 10+1.066]=[8.934,\ 11.066]$$
+> $$
+> \left[10-2.131\times\frac{2}{\sqrt{16}},\ 10+2.131\times\frac{2}{\sqrt{16}}\right]=[10-1.066,\ 10+1.066]=[8.934,\ 11.066]
+> $$
 
 ## 单正态总体方差的置信区间
 
 枢轴量
 
-$$\chi^2=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$$
+$$
+\chi^2=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
+$$
 
 置信区间：
 
-$$\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\ \frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}\right]$$
+$$
+\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\ \frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}\right]
+$$
 
 > [!warning] 方差区间的非对称性
 > $\chi^2$ 分布不对称，所以方差置信区间**不是**关于 $S^2$ 对称的。不要把 $\pm$ 的写法套到方差上。
@@ -294,13 +344,17 @@ $$\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\ \frac{(n-1)S^2}{\chi^2_{1-\alp
 
 由均值区间长度 $2z_{\alpha/2}\frac{\sigma}{\sqrt n}$ 可得：给定允许误差 $E$，
 
-$$n=\left(\frac{z_{\alpha/2}\sigma}{E}\right)^2$$
+$$
+n=\left(\frac{z_{\alpha/2}\sigma}{E}\right)^2
+$$
 
 若 $\sigma$ 未知，先用小样本估计或做预试验。
 
 > [!example] 样本量
 > 要求 $\mu$ 的 95% 置信区间半宽不超过 $0.5$，已知 $\sigma=2$。
-> $$n=\left(\frac{1.96\times2}{0.5}\right)^2=61.5\ \Longrightarrow\ n=62$$
+> $$
+> n=\left(\frac{1.96\times2}{0.5}\right)^2=61.5\ \Longrightarrow\ n=62
+> $$
 
 # 4. 例题
 
@@ -308,7 +362,9 @@ $$n=\left(\frac{z_{\alpha/2}\sigma}{E}\right)^2$$
 > 设 $X\sim E(\lambda)$，密度 $f(x)=\lambda e^{-\lambda x}$（$x>0$）。
 > **矩估计**：$E(X)=1/\lambda$，令 $1/\lambda=\bar X$，得 $\hat\lambda_{\mathrm{MM}}=1/\bar X$。
 > **MLE**：$L(\lambda)=\lambda^n e^{-\lambda\sum x_i}$，$\ell=n\ln\lambda-\lambda\sum x_i$。
-> $$\frac{\mathrm{d}\ell}{\mathrm{d}\lambda}=\frac n\lambda-\sum x_i=0\ \Longrightarrow\ \hat\lambda_{\mathrm{MLE}}=\frac{1}{\bar X}$$
+> $$
+> \frac{\mathrm{d}\ell}{\mathrm{d}\lambda}=\frac n\lambda-\sum x_i=0\ \Longrightarrow\ \hat\lambda_{\mathrm{MLE}}=\frac{1}{\bar X}
+> $$
 > 两者相同。
 
 > [!example] 例 2：无偏性判断
@@ -320,14 +376,22 @@ $$n=\left(\frac{z_{\alpha/2}\sigma}{E}\right)^2$$
 > [!example] 例 3：方差的置信区间
 > 某正态总体抽 $n=10$，$s^2=4$。求 $\sigma^2$ 的 95% 置信区间。
 > $\chi^2_{0.025}(9)=19.023$，$\chi^2_{0.975}(9)=2.700$。
-> $$\left[\frac{9\times4}{19.023},\ \frac{9\times4}{2.700}\right]=[1.893,\ 13.333]$$
+> $$
+> \left[\frac{9\times4}{19.023},\ \frac{9\times4}{2.700}\right]=[1.893,\ 13.333]
+> $$
 > 区间很宽——因为样本量小，方差估计的不确定性大。
 
 > [!example] 例 4：两均值差的置信区间
 > 两正态总体，$n_1=n_2=10$，$\bar x_1=5$、$\bar x_2=4$，$s_1^2=1$、$s_2^2=1.5$，方差未知但相等。求 $\mu_1-\mu_2$ 的 95% 置信区间。
-> $$S_p^2=\frac{9\times1+9\times1.5}{18}=1.25,\qquad S_p=1.118$$
-> $$t_{0.025}(18)=2.101$$
-> $$(5-4)\pm2.101\times1.118\times\sqrt{\frac1{10}+\frac1{10}}=1\pm1.051=[-0.051,\ 2.051]$$
+> $$
+> S_p^2=\frac{9\times1+9\times1.5}{18}=1.25,\qquad S_p=1.118
+> $$
+> $$
+> t_{0.025}(18)=2.101
+> $$
+> $$
+> (5-4)\pm2.101\times1.118\times\sqrt{\frac1{10}+\frac1{10}}=1\pm1.051=[-0.051,\ 2.051]
+> $$
 > 区间包含 0，不能断言 $\mu_1>\mu_2$（这与第 9 章的假设检验结论一致）。
 
 > [!tip] 本章收官

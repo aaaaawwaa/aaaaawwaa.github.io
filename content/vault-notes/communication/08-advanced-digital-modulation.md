@@ -39,7 +39,9 @@ related: []
 > [!info] Def 1 正交振幅调制
 > **正交振幅调制**（quadrature amplitude modulation，简称 QAM）是振幅与相位**联合**调制：用两个**正交**载波 $\cos\omega_c t$ 与 $\sin\omega_c t$ 分别做 ASK，每码元取一对振幅 $(A_m,B_m)$。
 
-$$s_{QAM}(t)=A_m\cos\omega_c t+B_m\sin\omega_c t\quad\text{（每码元取一对 }(A_m,B_m)\text{）}$$
+$$
+s_{QAM}(t)=A_m\cos\omega_c t+B_m\sin\omega_c t\quad\text{（每码元取一对 }(A_m,B_m)\text{）}
+$$
 
 - 星座图：$(A_m,B_m)$ 平面上的点阵（同相 I + 正交 Q）
 - **每码元 $\log_2M$ bit**（$M$ = 星座点数）
@@ -96,7 +98,9 @@ flowchart LR
 > [!info] Def 2 最小频移键控
 > **最小频移键控**（minimum-shift keying，简称 MSK）是调制指数 $h=0.5$、频率间隔 $\Delta f=1/(2T_B)$ 的**恒包络、相位连续、严格正交**的 2FSK。
 
-$$s_{MSK}(t)=\cos\!\left(\omega_c t+\frac{a_n\pi t}{T_B}+\varphi_n\right)$$
+$$
+s_{MSK}(t)=\cos\!\left(\omega_c t+\frac{a_n\pi t}{T_B}+\varphi_n\right)
+$$
 
 （$a_n=\pm1$；频率间隔 $\Delta f=\frac{1}{2T_B}$，即 $f_1=f_c-\frac{1}{4T_B}$，$f_2=f_c+\frac{1}{4T_B}$，调制指数 **$h=0.5$**。）
 
@@ -134,7 +138,9 @@ MSK 相位路径虽连续但**转折仍陡** → 频谱旁瓣仍不够低。GMSK
 > [!info] Def 4 正交频分复用
 > **正交频分复用**（orthogonal frequency-division multiplexing，简称 OFDM）是用一组**相互正交**的子载波并行传输低速数据流的多载波调制技术；子载波间隔 $\Delta f=1/T_s$（$T_s$ 为 OFDM 符号长度）。
 
-$$\int_0^{T_s}e^{j2\pi f_i t}e^{-j2\pi f_k t}\,dt=0\quad(f_i\ne f_k,\ f_i-f_k=m/T_s)$$
+$$
+\int_0^{T_s}e^{j2\pi f_i t}e^{-j2\pi f_k t}\,dt=0\quad(f_i\ne f_k,\ f_i-f_k=m/T_s)
+$$
 
 - 子载波频谱相互重叠但在抽样时刻**严格正交** → 频带利用率极高（对比传统 FDM 需保护带）
 - 频谱交叠"火车厢"状，是**最佳频谱效率**的多载波方案

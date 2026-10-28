@@ -50,7 +50,9 @@ related: []
 
 用映射的语言说:
 
-$$X:\ \Omega \longrightarrow \mathbb{R},\qquad \omega \mapsto X(\omega)$$
+$$
+X:\ \Omega \longrightarrow \mathbb{R},\qquad \omega \mapsto X(\omega)
+$$
 
 **三个要点**:
 
@@ -178,7 +180,9 @@ $$X:\ \Omega \longrightarrow \mathbb{R},\qquad \omega \mapsto X(\omega)$$
 
 > [!info] Def 2 分布律
 > 设离散型随机变量 $X$ 的全部可能取值为 $x_1,x_2,\dots$，则称
-> $$P(X=x_k)=p_k,\qquad k=1,2,\dots$$
+> $$
+> P(X=x_k)=p_k,\qquad k=1,2,\dots
+> $$
 > 为 $X$ 的**分布律**（probability distribution），也可写成表格：
 
 | $X$ | $x_1$ | $x_2$ | $\cdots$ | $x_k$ | $\cdots$ |
@@ -207,7 +211,9 @@ $$X:\ \Omega \longrightarrow \mathbb{R},\qquad \omega \mapsto X(\omega)$$
 
 > [!info] Def 3 分布函数
 > 设 $X$ 是一个随机变量，$x$ 是任意实数，称
-> $$F(x)=P(X\le x),\qquad -\infty<x<+\infty$$
+> $$
+> F(x)=P(X\le x),\qquad -\infty<x<+\infty
+> $$
 > 为 $X$ 的**分布函数**（cumulative distribution function，简称 CDF）。
 
 **关键意义**:$F(x)$ 把**离散型和连续型统一**了。无论 $X$ 是哪一类,$F$ 都有定义,都可以用来算概率。
@@ -228,11 +234,17 @@ $$X:\ \Omega \longrightarrow \mathbb{R},\qquad \omega \mapsto X(\omega)$$
 
 这是 $F(x)$ 最常用的地方:
 
-$$P(a<X\le b)=F(b)-F(a)$$
+$$
+P(a<X\le b)=F(b)-F(a)
+$$
 
-$$P(X>a)=1-F(a)$$
+$$
+P(X>a)=1-F(a)
+$$
 
-$$P(X<a)=F(a-0)\quad(\text{左极限})$$
+$$
+P(X<a)=F(a-0)\quad(\text{左极限})
+$$
 
 > [!warning] 端点要不要取,差别很大
 > $P(a<X\le b)=F(b)-F(a)$ 里,左端点**不取**、右端点**取**。
@@ -246,7 +258,9 @@ $$P(X<a)=F(a-0)\quad(\text{左极限})$$
 
 > [!info] Def 4 概率密度
 > 若存在非负可积函数 $f(x)$，使得对任意实数 $x$ 都有
-> $$F(x)=\int_{-\infty}^{x}f(t)\,\mathrm{d}t$$
+> $$
+> F(x)=\int_{-\infty}^{x}f(t)\,\mathrm{d}t
+> $$
 > 则称 $X$ 为**连续型随机变量**（continuous random variable），$f(x)$ 为 $X$ 的**概率密度函数**（probability density function，简称 PDF）。
 
 上式两边求导(在 $f$ 连续的点处)得 $F'(x)=f(x)$。所以 $f$ 是 $F$ 的导数,$F$ 是 $f$ 的积分。
@@ -258,7 +272,9 @@ $$P(X<a)=F(a-0)\quad(\text{左极限})$$
 
 ## 3. 用密度求概率
 
-$$P(a<X<b)=\int_a^b f(x)\,\mathrm{d}x$$
+$$
+P(a<X<b)=\int_a^b f(x)\,\mathrm{d}x
+$$
 
 即**曲线 $f(x)$ 在 $[a,b]$ 上与 $x$ 轴围成的面积**。上图 (c) 的阴影就是这个面积。
 
@@ -329,21 +345,27 @@ $$P(a<X<b)=\int_a^b f(x)\,\mathrm{d}x$$
 > [!info] Def 5 0-1 分布
 > **0-1 分布**（两点分布）：$X$ 只取 0 和 1。
 
-$$P(X=1)=p,\qquad P(X=0)=1-p,\qquad 0<p<1$$
+$$
+P(X=1)=p,\qquad P(X=0)=1-p,\qquad 0<p<1
+$$
 
 记作 $X\sim B(1,p)$。一次试验的"成功/失败"就是它。
 
 > [!info] Def 6 二项分布
 > **二项分布**（binomial distribution）：$n$ 重伯努利试验中成功的次数。
 
-$$P(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\dots,n$$
+$$
+P(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\dots,n
+$$
 
 记作 $X\sim B(n,p)$。这就是上一章二项概率公式的随机变量版本。
 
 > [!info] Def 7 泊松分布
 > **泊松分布**（Poisson distribution）：
 
-$$P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda},\qquad k=0,1,2,\dots,\quad \lambda>0$$
+$$
+P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda},\qquad k=0,1,2,\dots,\quad \lambda>0
+$$
 
 记作 $X\sim P(\lambda)$。描述"某段时间内稀有事件发生的次数"——呼叫到达、器件失效、放射性衰变。
 
@@ -353,30 +375,40 @@ $$P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda},\qquad k=0,1,2,\dots,\quad \lambda>0$$
 > [!info] Def 8 几何分布
 > **几何分布**（geometric distribution）：首次成功所需的试验次数。
 
-$$P(X=k)=(1-p)^{k-1}p,\qquad k=1,2,\dots$$
+$$
+P(X=k)=(1-p)^{k-1}p,\qquad k=1,2,\dots
+$$
 
 ## 2. 连续型
 
 > [!info] Def 9 均匀分布
 > **均匀分布**（uniform distribution）$X\sim U(a,b)$：
 
-$$f(x)=\begin{cases}\dfrac{1}{b-a}, & a<x<b\\[2mm] 0, & \text{其他}\end{cases}$$
+$$
+f(x)=\begin{cases}\dfrac{1}{b-a}, & a<x<b\\[2mm] 0, & \text{其他}\end{cases}
+$$
 
 > [!info] Def 10 指数分布
 > **指数分布**（exponential distribution）$X\sim E(\lambda)$：
 
-$$f(x)=\begin{cases}\lambda e^{-\lambda x}, & x>0\\ 0, & x\le 0\end{cases},\qquad F(x)=\begin{cases}1-e^{-\lambda x}, & x>0\\ 0, & x\le 0\end{cases}$$
+$$
+f(x)=\begin{cases}\lambda e^{-\lambda x}, & x>0\\ 0, & x\le 0\end{cases},\qquad F(x)=\begin{cases}1-e^{-\lambda x}, & x>0\\ 0, & x\le 0\end{cases}
+$$
 
 描述**寿命、等待时间**。它的独特性质是**无记忆性**:
 
-$$P(X>s+t\mid X>s)=P(X>t)$$
+$$
+P(X>s+t\mid X>s)=P(X>t)
+$$
 
 即"已经用了 $s$ 小时还没坏"不改变"还能再用 $t$ 小时"的概率。
 
 > [!info] Def 11 正态分布
 > **正态分布**（normal distribution）$X\sim N(\mu,\sigma^2)$：
 
-$$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],\qquad -\infty<x<+\infty$$
+$$
+f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],\qquad -\infty<x<+\infty
+$$
 
 其中 $\mu$ 是**位置参数**(决定对称中心),$\sigma$ 是**尺度参数**(决定胖瘦)。$f$ 关于 $x=\mu$ 对称,在 $x=\mu$ 处取最大值。
 
@@ -384,11 +416,15 @@ $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right
 
 **标准化**:若 $X\sim N(\mu,\sigma^2)$,则
 
-$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$
+$$
+Z=\frac{X-\mu}{\sigma}\sim N(0,1)
+$$
 
 于是
 
-$$P(a<X<b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right)$$
+$$
+P(a<X<b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right)
+$$
 
 **为什么正态分布这么重要**:中心极限定理——大量独立同分布的随机变量之和近似服从正态分布。通信中的热噪声、测量误差都是它的典型来源。
 
@@ -400,13 +436,19 @@ $$P(a<X<b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sig
 
 **物理来源**:多径信道中**没有直射路径**(NLOS),接收信号是 $N$ 条散射波的叠加:
 
-$$r(t)=\sum_{i=1}^{N} a_i\cos(\omega_c t+\phi_i)$$
+$$
+r(t)=\sum_{i=1}^{N} a_i\cos(\omega_c t+\phi_i)
+$$
 
 写成复基带形式 $r=X+jY$,由中心极限定理,$X\sim N(0,\sigma^2)$、$Y\sim N(0,\sigma^2)$ 且相互独立。包络 $R=\sqrt{X^2+Y^2}$ 服从**瑞利分布**:
 
-$$f_R(r)=\frac{r}{\sigma^2}\exp\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0$$
+$$
+f_R(r)=\frac{r}{\sigma^2}\exp\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0
+$$
 
-$$F_R(r)=1-\exp\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0$$
+$$
+F_R(r)=1-\exp\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0
+$$
 
 **要点**:
 
@@ -422,19 +464,27 @@ $$F_R(r)=1-\exp\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0$$
 
 **物理来源**:多径之外**还有一条直射路径**(LOS),比如视距通信、卫星链路。此时复包络变成
 
-$$r=A+X+jY$$
+$$
+r=A+X+jY
+$$
 
 其中 $A$ 是直射分量的确定幅度,$X,Y\sim N(0,\sigma^2)$ 独立。包络 $R=|r|$ 服从**莱斯分布**:
 
-$$f_R(r)=\frac{r}{\sigma^2}\exp\left(-\frac{r^2+A^2}{2\sigma^2}\right)I_0\!\left(\frac{Ar}{\sigma^2}\right),\qquad r\ge 0$$
+$$
+f_R(r)=\frac{r}{\sigma^2}\exp\left(-\frac{r^2+A^2}{2\sigma^2}\right)I_0\!\left(\frac{Ar}{\sigma^2}\right),\qquad r\ge 0
+$$
 
 其中 $I_0(\cdot)$ 是**第一类零阶修正贝塞尔函数**:
 
-$$I_0(z)=\frac{1}{2\pi}\int_0^{2\pi}e^{z\cos\theta}\,\mathrm{d}\theta=\sum_{k=0}^{\infty}\frac{1}{(k!)^2}\left(\frac{z}{2}\right)^{2k}$$
+$$
+I_0(z)=\frac{1}{2\pi}\int_0^{2\pi}e^{z\cos\theta}\,\mathrm{d}\theta=\sum_{k=0}^{\infty}\frac{1}{(k!)^2}\left(\frac{z}{2}\right)^{2k}
+$$
 
 **莱斯因子 $K$**——衡量"直射有多强":
 
-$$K=\frac{A^2}{2\sigma^2}=\frac{\text{直射功率}}{\text{散射功率}}$$
+$$
+K=\frac{A^2}{2\sigma^2}=\frac{\text{直射功率}}{\text{散射功率}}
+$$
 
 $K$ 是莱斯分布最重要的参数:
 
@@ -533,11 +583,15 @@ $K$ 是莱斯分布最重要的参数:
 
 设接收功率为 $P$,令 $X=10\lg P$(dB 值),则
 
-$$X\sim N(\mu,\ \sigma^2)$$
+$$
+X\sim N(\mu,\ \sigma^2)
+$$
 
 即**功率的分贝值服从正态分布**,等价地说 $P$ 本身服从对数正态分布:
 
-$$f_P(p)=\frac{1}{p\sigma\sqrt{2\pi}}\exp\left[-\frac{(\ln p-\mu')^2}{2\sigma^2}\right],\qquad p>0$$
+$$
+f_P(p)=\frac{1}{p\sigma\sqrt{2\pi}}\exp\left[-\frac{(\ln p-\mu')^2}{2\sigma^2}\right],\qquad p>0
+$$
 
 其中 $\mu'$ 是 $\ln P$ 的均值。
 
@@ -554,7 +608,9 @@ $$f_P(p)=\frac{1}{p\sigma\sqrt{2\pi}}\exp\left[-\frac{(\ln p-\mu')^2}{2\sigma^2}
 
 **物理来源**:实验拟合多径信道最灵活的模型,涵盖从严重衰落到接近无衰落的各种情形:
 
-$$f_R(r)=\frac{2m^m r^{2m-1}}{\Gamma(m)\,\Omega^m}\exp\left(-\frac{m r^2}{\Omega}\right),\qquad r\ge 0$$
+$$
+f_R(r)=\frac{2m^m r^{2m-1}}{\Gamma(m)\,\Omega^m}\exp\left(-\frac{m r^2}{\Omega}\right),\qquad r\ge 0
+$$
 
 其中 $\Omega=E[R^2]$ 是平均功率,$m\ge 1/2$ 是**衰落指数**,$\Gamma(\cdot)$ 是伽马函数。
 
@@ -571,7 +627,9 @@ $$f_R(r)=\frac{2m^m r^{2m-1}}{\Gamma(m)\,\Omega^m}\exp\left(-\frac{m r^2}{\Omega
 
 ### (3) 韦布尔分布(Weibull)
 
-$$f_R(r)=\frac{k}{\lambda}\left(\frac{r}{\lambda}\right)^{k-1}\exp\left[-\left(\frac{r}{\lambda}\right)^{k}\right],\qquad r\ge 0$$
+$$
+f_R(r)=\frac{k}{\lambda}\left(\frac{r}{\lambda}\right)^{k-1}\exp\left[-\left(\frac{r}{\lambda}\right)^{k}\right],\qquad r\ge 0
+$$
 
 $k$ 是**形状参数**,$\lambda$ 是**尺度参数**。$k=2$ 时退化为瑞利分布。
 
@@ -579,7 +637,9 @@ $k$ 是**形状参数**,$\lambda$ 是**尺度参数**。$k=2$ 时退化为瑞利
 
 ### (4) 伽马分布(Gamma)
 
-$$f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x},\qquad x>0$$
+$$
+f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x},\qquad x>0
+$$
 
 $\alpha$ 为形状参数,$\beta$ 为速率参数。它是**指数分布的推广**($\alpha=1$ 时退化为指数),也是 $n$ 个独立指数变量之和的分布。
 
@@ -593,11 +653,15 @@ $\alpha$ 为形状参数,$\beta$ 为速率参数。它是**指数分布的推广
 
 设 $X_1,\dots,X_n$ 相互独立且都服从 $N(0,1)$,则
 
-$$\chi^2=X_1^2+X_2^2+\cdots+X_n^2\sim\chi^2(n)$$
+$$
+\chi^2=X_1^2+X_2^2+\cdots+X_n^2\sim\chi^2(n)
+$$
 
 $n$ 称为**自由度**。
 
-$$f(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2},\qquad x>0$$
+$$
+f(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2},\qquad x>0
+$$
 
 **通信中的用途**:
 
@@ -607,7 +671,9 @@ $$f(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2},\qquad x>0$$
 
 ### (6) 拉普拉斯分布(Laplace)
 
-$$f(x)=\frac{1}{2b}\exp\left(-\frac{|x-\mu|}{b}\right)$$
+$$
+f(x)=\frac{1}{2b}\exp\left(-\frac{|x-\mu|}{b}\right)
+$$
 
 比正态分布**尖峰厚尾**。用于建模**稀疏信号**(压缩感知中的先验分布),以及某些脉冲噪声环境。
 
@@ -773,13 +839,17 @@ $$f(x)=\frac{1}{2b}\exp\left(-\frac{|x-\mu|}{b}\right)$$
 
 **特例:单调函数**。若 $g$ 严格单调、可导,则
 
-$$f_Y(y)=f_X\big(h(y)\big)\,\big|h'(y)\big|$$
+$$
+f_Y(y)=f_X\big(h(y)\big)\,\big|h'(y)\big|
+$$
 
 其中 $h=g^{-1}$ 是反函数。
 
 **最重要的特例**:若 $X\sim N(\mu,\sigma^2)$,则对任意常数 $a\ne 0$,
 
-$$aX+b\sim N(a\mu+b,\ a^2\sigma^2)$$
+$$
+aX+b\sim N(a\mu+b,\ a^2\sigma^2)
+$$
 
 正态分布在**线性变换下封闭**——这正是它可以被标准化、且在线性系统中处处出现的原因。
 
@@ -804,9 +874,13 @@ P(X=2)=\frac{\binom{3}{2}}{\binom{5}{2}}=\frac{3}{10}$$
 
 $F(x)$ 是阶梯函数:
 
-$$F(x)=\begin{cases}0, & x<0\\ 0.2, & 0\le x<1\\ 0.7, & 1\le x<2\\ 1, & x\ge 2\end{cases}$$
+$$
+F(x)=\begin{cases}0, & x<0\\ 0.2, & 0\le x<1\\ 0.7, & 1\le x<2\\ 1, & x\ge 2\end{cases}
+$$
 
-$$P(0.5<X\le 2)=F(2)-F(0.5)=1-0.2=0.8$$
+$$
+P(0.5<X\le 2)=F(2)-F(0.5)=1-0.2=0.8
+$$
 
 注意 $F$ 在每个取值点处**向上跳跃**,跳跃高度就是该点的概率,如 $P(X=1)=0.7-0.2=0.5$。
 
@@ -814,15 +888,21 @@ $$P(0.5<X\le 2)=F(2)-F(0.5)=1-0.2=0.8$$
 
 设 $X$ 的密度为
 
-$$f(x)=\begin{cases}kx, & 0<x<2\\ 0, & \text{其他}\end{cases}$$
+$$
+f(x)=\begin{cases}kx, & 0<x<2\\ 0, & \text{其他}\end{cases}
+$$
 
 **(1) 求 $k$**——用规范性:
 
-$$\int_0^2 kx\,\mathrm{d}x=\frac{k\cdot 2^2}{2}=2k=1\ \Longrightarrow\ k=\frac{1}{2}$$
+$$
+\int_0^2 kx\,\mathrm{d}x=\frac{k\cdot 2^2}{2}=2k=1\ \Longrightarrow\ k=\frac{1}{2}
+$$
 
 **(2) 求 $P(1<X<2)$**:
 
-$$P(1<X<2)=\int_1^2 \frac{x}{2}\,\mathrm{d}x=\left[\frac{x^2}{4}\right]_1^2=\frac{4-1}{4}=\frac{3}{4}$$
+$$
+P(1<X<2)=\int_1^2 \frac{x}{2}\,\mathrm{d}x=\left[\frac{x^2}{4}\right]_1^2=\frac{4-1}{4}=\frac{3}{4}
+$$
 
 ## 例 4(正态分布标准化:接收信号判决)
 
@@ -830,11 +910,15 @@ $$P(1<X<2)=\int_1^2 \frac{x}{2}\,\mathrm{d}x=\left[\frac{x^2}{4}\right]_1^2=\fra
 
 标准化:$\sigma=2$,
 
-$$P(|X|<3)=P(-3<X<3)=\Phi\!\left(\frac{3}{2}\right)-\Phi\!\left(\frac{-3}{2}\right)=2\Phi(1.5)-1$$
+$$
+P(|X|<3)=P(-3<X<3)=\Phi\!\left(\frac{3}{2}\right)-\Phi\!\left(\frac{-3}{2}\right)=2\Phi(1.5)-1
+$$
 
 查表 $\Phi(1.5)=0.9332$,故
 
-$$P(|X|<3)=2\times0.9332-1=0.8664$$
+$$
+P(|X|<3)=2\times0.9332-1=0.8664
+$$
 
 即约 $86.6\%$ 的概率幅度落在 $\pm3$ V 内。这正是通信中"$3\sigma$ 门限"的由来。
 
@@ -844,7 +928,9 @@ $$P(|X|<3)=2\times0.9332-1=0.8664$$
 
 $X\sim B(10000,10^{-4})$,$\lambda=np=1$。用泊松近似:
 
-$$P(X\ge 1)=1-P(X=0)\approx 1-e^{-1}=0.6321$$
+$$
+P(X\ge 1)=1-P(X=0)\approx 1-e^{-1}=0.6321
+$$
 
 直接算 $1-(1-10^{-4})^{10000}$ 得 $0.6321$——近似效果很好。
 
@@ -854,7 +940,9 @@ $$P(X\ge 1)=1-P(X=0)\approx 1-e^{-1}=0.6321$$
 
 $g(x)=-2\ln x$ 在 $(0,1)$ 上严格单调递减,反函数 $h(y)=e^{-y/2}$,$h'(y)=-\frac{1}{2}e^{-y/2}$。
 
-$$f_Y(y)=f_X(h(y))\cdot|h'(y)|=1\cdot\frac{1}{2}e^{-y/2},\qquad y>0$$
+$$
+f_Y(y)=f_X(h(y))\cdot|h'(y)|=1\cdot\frac{1}{2}e^{-y/2},\qquad y>0
+$$
 
 即 $Y\sim E(1/2)$。这个变换在仿真中很常用——**均匀分布是生成其他分布的原材料**。
 
@@ -864,19 +952,27 @@ $$f_Y(y)=f_X(h(y))\cdot|h'(y)|=1\cdot\frac{1}{2}e^{-y/2},\qquad y>0$$
 
 **(1) 包络小于 $0.5$ V 的概率**——用分布函数:
 
-$$P(R<0.5)=F_R(0.5)=1-\exp\left(-\frac{0.5^2}{2\times1^2}\right)=1-e^{-0.125}\approx 0.1175$$
+$$
+P(R<0.5)=F_R(0.5)=1-\exp\left(-\frac{0.5^2}{2\times1^2}\right)=1-e^{-0.125}\approx 0.1175
+$$
 
 即约 $11.75\%$ 的时间包络低于 $0.5$ V。
 
 **(2) 包络的均值和均方值**:
 
-$$E[R]=\sigma\sqrt{\frac{\pi}{2}}=1\times1.2533=1.2533\ \text{V}$$
+$$
+E[R]=\sigma\sqrt{\frac{\pi}{2}}=1\times1.2533=1.2533\ \text{V}
+$$
 
-$$E[R^2]=2\sigma^2=2\ \text{V}^2$$
+$$
+E[R^2]=2\sigma^2=2\ \text{V}^2
+$$
 
 **(3) 若接收机灵敏度要求包络不低于 $0.3$ V,求中断概率**:
 
-$$P_{\text{out}}=P(R<0.3)=1-e^{-0.045}\approx 0.0440$$
+$$
+P_{\text{out}}=P(R<0.3)=1-e^{-0.045}\approx 0.0440
+$$
 
 即约 $4.4\%$ 的时间处于中断。注意:包络门限从 $0.5$ 降到 $0.3$,中断概率从 $11.75\%$ 降到 $4.4\%$——**瑞利的尾部衰减很快**,这是它的典型特征。
 
@@ -886,7 +982,9 @@ $$P_{\text{out}}=P(R<0.3)=1-e^{-0.045}\approx 0.0440$$
 
 由 $K=\dfrac{A^2}{2\sigma^2}$ 得
 
-$$A^2=K\cdot 2\sigma^2=3.98\times1=3.98\ \Longrightarrow\ A\approx 1.995$$
+$$
+A^2=K\cdot 2\sigma^2=3.98\times1=3.98\ \Longrightarrow\ A\approx 1.995
+$$
 
 平均功率 $E[R^2]=A^2+2\sigma^2=3.98+1=4.98$。
 
@@ -898,15 +996,21 @@ $$A^2=K\cdot 2\sigma^2=3.98\times1=3.98\ \Longrightarrow\ A\approx 1.995$$
 
 设余量为 $M$(dB),即 $\mu=P_{\text{th}}+M$。要求
 
-$$P(X>P_{\text{th}})=0.90$$
+$$
+P(X>P_{\text{th}})=0.90
+$$
 
 标准化:$\dfrac{P_{\text{th}}-\mu}{\sigma}=\dfrac{-M}{8}$,故
 
-$$P\left(Z>\frac{-M}{8}\right)=0.90\ \Longrightarrow\ \Phi\!\left(\frac{M}{8}\right)=0.90$$
+$$
+P\left(Z>\frac{-M}{8}\right)=0.90\ \Longrightarrow\ \Phi\!\left(\frac{M}{8}\right)=0.90
+$$
 
 查表 $\Phi(1.28)=0.8997\approx0.90$,故
 
-$$\frac{M}{8}=1.28\ \Longrightarrow\ M\approx 10.2\ \text{dB}$$
+$$
+\frac{M}{8}=1.28\ \Longrightarrow\ M\approx 10.2\ \text{dB}
+$$
 
 即需要约 **10.2 dB 的阴影余量**。$\sigma$ 越大(遮挡越严重),所需余量越大——这就是为什么 $\sigma=8$ dB 的城市环境比 $\sigma=4$ dB 的郊区要多留近一倍余量。
 
@@ -916,7 +1020,9 @@ $$\frac{M}{8}=1.28\ \Longrightarrow\ M\approx 10.2\ \text{dB}$$
 
 代入 $m=1$、$\Omega=2\sigma^2$:
 
-$$f_R(r)=\frac{2\cdot1^1\cdot r^{2-1}}{\Gamma(1)\,(2\sigma^2)^1}\exp\left(-\frac{1\cdot r^2}{2\sigma^2}\right)=\frac{2r}{2\sigma^2}e^{-r^2/(2\sigma^2)}=\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}$$
+$$
+f_R(r)=\frac{2\cdot1^1\cdot r^{2-1}}{\Gamma(1)\,(2\sigma^2)^1}\exp\left(-\frac{1\cdot r^2}{2\sigma^2}\right)=\frac{2r}{2\sigma^2}e^{-r^2/(2\sigma^2)}=\frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}
+$$
 
 正是瑞利密度($r\ge0$)。用了 $\Gamma(1)=1$。这验证了 $m=1$ 时 Nakagami 与瑞利完全一致。
 
@@ -926,7 +1032,9 @@ $$f_R(r)=\frac{2\cdot1^1\cdot r^{2-1}}{\Gamma(1)\,(2\sigma^2)^1}\exp\left(-\frac
 
 由定义 $T\sim\chi^2(8)$。查卡方分布表,$\chi^2_{0.05}(8)=15.51$,即
 
-$$P(T>15.51)=0.05$$
+$$
+P(T>15.51)=0.05
+$$
 
 **意义**:若把门限设为 $15.51$,则在**无信号**时误判为"有信号"的概率(虚警率)恰为 $5\%$。这正是能量检测器设计门限的标准方法——**由目标虚警率反查卡方分位数**。
 

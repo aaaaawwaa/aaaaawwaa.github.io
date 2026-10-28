@@ -28,7 +28,9 @@ related: []
 
 > [!info] 定义 1 随机过程
 > 设概率空间为 $(\Omega,\mathcal{F},P)$，指标集 $T\subset\mathbb{R}$。若对每个 $t\in T$，$X(t,\cdot)$ 都是同一概率空间上的随机变量，则称随机变量族
-> $$\lbrace X(t,\omega):\ t\in T,\ \omega\in\Omega\rbrace$$
+> $$
+> \lbrace X(t,\omega):\ t\in T,\ \omega\in\Omega\rbrace
+> $$
 > 为**随机过程**，简记 $X(t)$。$T=\mathbb{R}$ 时为连续时间过程，$T=\mathbb{Z}$ 时为离散时间过程，记作 $X[n]$。
 
 理解随机过程的关键是看清“哪个变量被固定”：
@@ -47,7 +49,9 @@ related: []
 
 > [!info] 定义 2 有限维分布
 > 对任意 $n$、任意时刻 $t_1,\dots,t_n$，随机向量 $\big(X(t_1),\dots,X(t_n)\big)$ 的联合分布函数
-> $$F_X(x_1,\dots,x_n;t_1,\dots,t_n)=P\big(X(t_1)\le x_1,\dots,X(t_n)\le x_n\big)$$
+> $$
+> F_X(x_1,\dots,x_n;t_1,\dots,t_n)=P\big(X(t_1)\le x_1,\dots,X(t_n)\le x_n\big)
+> $$
 > 称为过程的 $n$ 维分布。所有有限维分布的集合称为**有限维分布族**。
 
 有限维分布族必须满足两条相容性：交换时刻顺序时分布相应交换变量；对多余变量取边缘时回到低维分布。由 Kolmogorov 扩张定理，满足相容性的分布族可以构造出一个随机过程。
@@ -59,9 +63,15 @@ related: []
 
 > [!info] 定义 3 低阶数字特征
 > 对每个时刻 $t$，定义
-> $$\mu_X(t)=E[X(t)],\qquad \sigma_X^2(t)=\mathrm{Var}\big(X(t)\big)$$
-> $$R_X(t_1,t_2)=E\big[X(t_1)X^*(t_2)\big]$$
-> $$C_X(t_1,t_2)=\mathrm{Cov}\big(X(t_1),X(t_2)\big)=R_X(t_1,t_2)-\mu_X(t_1)\mu_X^*(t_2)$$
+> $$
+> \mu_X(t)=E[X(t)],\qquad \sigma_X^2(t)=\mathrm{Var}\big(X(t)\big)
+> $$
+> $$
+> R_X(t_1,t_2)=E\big[X(t_1)X^*(t_2)\big]
+> $$
+> $$
+> C_X(t_1,t_2)=\mathrm{Cov}\big(X(t_1),X(t_2)\big)=R_X(t_1,t_2)-\mu_X(t_1)\mu_X^*(t_2)
+> $$
 > 分别称为**均值函数**、**方差函数**、**自相关函数**与**自协方差函数**。
 
 三个量都是时间 $t$ 的**确定性函数**，不是随机变量。它们把随机过程压缩成可用微积分处理的普通函数，代价是丢失了高阶与分布形状信息。
@@ -75,18 +85,26 @@ related: []
 
 > [!example] 例 1 随机相位正弦
 > 设 $X(t)=A\cos(\omega_0 t+\Theta)$，$A,\omega_0$ 为常数，$\Theta\sim U[0,2\pi)$。则
-> $$\mu_X(t)=A\,E[\cos(\omega_0 t+\Theta)]=0$$
-> $$R_X(t_1,t_2)=\frac{A^2}{2}\cos\omega_0(t_1-t_2)$$
+> $$
+> \mu_X(t)=A\,E[\cos(\omega_0 t+\Theta)]=0
+> $$
+> $$
+> R_X(t_1,t_2)=\frac{A^2}{2}\cos\omega_0(t_1-t_2)
+> $$
 > 推导时用积化和差，第二项含 $2\Theta$，在一个整周期上平均为零。每条样本函数都是纯正弦，差别只在初相；相关函数只与时间差有关，这是下一节“平稳”的雏形。
 
 > [!example] 例 2 随机游走
 > 设 $X[n]=\sum_{k=1}^{n}W[k]$，$W[k]$ 独立同分布、均值 $0$、方差 $\sigma^2$，且 $X[0]=0$。则
-> $$\mu_X[n]=0,\qquad \mathrm{Var}\big(X[n]\big)=n\sigma^2,\qquad R_X(m,n)=\sigma^2\min(m,n)$$
+> $$
+> \mu_X[n]=0,\qquad \mathrm{Var}\big(X[n]\big)=n\sigma^2,\qquad R_X(m,n)=\sigma^2\min(m,n)
+> $$
 > 方差随 $n$ 增长，相关函数依赖两个绝对时刻，因此随机游走**不是**平稳过程。累积相位误差、时钟抖动和某些排队队长都可近似成这类模型。
 
 > [!example] 例 3 离散白噪声
 > 设 $W[n]$ 独立同分布、均值 $0$、方差 $\sigma^2$，则
-> $$R_W[m]=E\big[W[n+m]W[n]\big]=\sigma^2\delta[m]$$
+> $$
+> R_W[m]=E\big[W[n+m]W[n]\big]=\sigma^2\delta[m]
+> $$
 > 不同时刻的采样值不相关；若进一步服从高斯分布，则不相关等价于独立。它是离散时间系统仿真中最基本的激励源。
 
 ## 五、分类与书写约定
@@ -109,7 +127,9 @@ related: []
 
 > [!example] 题目
 > 某设备故障检测仪对设备进行故障检测，得到的信号是一个随机过程
-> $$X(t)=\begin{cases}\cos(\pi t),&\text{设备无故障}\\ t,&\text{设备有故障}\end{cases}$$
+> $$
+> X(t)=\begin{cases}\cos(\pi t),&\text{设备无故障}\\ t,&\text{设备有故障}\end{cases}
+> $$
 > 假设该设备的故障率为 $0.2$，试求：
 > （1）$X(t)$ 的一维概率分布函数 $F_X(x;1)$、$F_X(x;2)$；
 > （2）$X(t)$ 的二维概率分布函数 $F_X(x_1,x_2;1,2)$。
@@ -119,15 +139,23 @@ related: []
 引入故障指示变量 $I$：无故障 $I=0$、概率 $0.8$；有故障 $I=1$、概率 $0.2$。一次检测中 $I$ 取定后整条样本函数就确定，所以各时刻的取值由同一个 $I$ 驱动，这是本题的全部结构。
 
 （1）固定 $t$ 求一维分布。由全概率公式
-$$F_X(x;t)=P\big(X(t)\le x\big)=\sum_{i=0}^{1}P(I=i)\,\mathbf 1\big\lbrace X(t)\big|_{I=i}\le x\big\rbrace$$
+$$
+F_X(x;t)=P\big(X(t)\le x\big)=\sum_{i=0}^{1}P(I=i)\,\mathbf 1\big\lbrace X(t)\big|_{I=i}\le x\big\rbrace
+$$
 代入 $\cos\pi=-1$、$\cos2\pi=1$：$t=1$ 时 $X(1)$ 以概率 $0.8$ 取 $-1$、以概率 $0.2$ 取 $1$；$t=2$ 时 $X(2)$ 以概率 $0.8$ 取 $1$、以概率 $0.2$ 取 $2$。于是
-$$F_X(x;1)=\begin{cases}0,&x<-1\\ 0.8,&-1\le x<1\\ 1,&x\ge1\end{cases},\qquad F_X(x;2)=\begin{cases}0,&x<1\\ 0.8,&1\le x<2\\ 1,&x\ge2\end{cases}$$
+$$
+F_X(x;1)=\begin{cases}0,&x<-1\\ 0.8,&-1\le x<1\\ 1,&x\ge1\end{cases},\qquad F_X(x;2)=\begin{cases}0,&x<1\\ 0.8,&1\le x<2\\ 1,&x\ge2\end{cases}
+$$
 两条都是二级阶梯，跳变高度分别为 $0.8$ 与 $0.2$。
 
 （2）二维分布必须用同一次试验的同一个 $I$，联合取值只有两个点：
-$$(X(1),X(2))=\begin{cases}(-1,1),&I=0,\ \text{概率 }0.8\\ (1,2),&I=1,\ \text{概率 }0.2\end{cases}$$
+$$
+(X(1),X(2))=\begin{cases}(-1,1),&I=0,\ \text{概率 }0.8\\ (1,2),&I=1,\ \text{概率 }0.2\end{cases}
+$$
 因此
-$$F_X(x_1,x_2;1,2)=0.8\,\mathbf 1\lbrace x_1\ge-1,\,x_2\ge1\rbrace+0.2\,\mathbf 1\lbrace x_1\ge1,\,x_2\ge2\rbrace$$
+$$
+F_X(x_1,x_2;1,2)=0.8\,\mathbf 1\lbrace x_1\ge-1,\,x_2\ge1\rbrace+0.2\,\mathbf 1\lbrace x_1\ge1,\,x_2\ge2\rbrace
+$$
 展开成分段表格：
 
 | $x_1$ 范围 | $x_2<1$ | $1\le x_2<2$ | $x_2\ge2$ |

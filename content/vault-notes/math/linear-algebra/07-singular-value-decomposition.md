@@ -49,13 +49,17 @@ $$
 
 > [!info] Def 1 奇异值分解
 > 任何 $m\times n$ 矩阵都能写成
-> $$\boxed{\ A=U\Sigma V^{T}\ }$$
+> $$
+> \boxed{\ A=U\Sigma V^{T}\ }
+> $$
 > 其中 $U$（$m\times m$）、$V$（$n\times n$）都是**正交矩阵**（$U^{T}U=I$、$V^{T}V=I$），$\Sigma$ 是 $m\times n$ 的**对角**矩阵，对角元 $\sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r>0$，其余为 $0$。
 > 这就是**奇异值分解**（singular value decomposition，简称 **SVD**）——它和第 6 章的 $A=S\Lambda S^{-1}$ 是"同一种思想的两个版本"，但适用面宽得多：**不需要方阵，也不需要可对角化**。
 
 > [!tip] 把 SVD 读成"一叠图层"
 > 展开 $U\Sigma V^{T}$ 就等于把矩阵拆成**若干秩一矩阵之和**：
-> $$A=\sum_{i=1}^{r}\underbrace{\sigma_i\mathbf{u}_i\mathbf{v}_i^{T}}_{\text{第 }i\text{ 层（秩一）}}$$
+> $$
+> A=\sum_{i=1}^{r}\underbrace{\sigma_i\mathbf{u}_i\mathbf{v}_i^{T}}_{\text{第 }i\text{ 层（秩一）}}
+> $$
 > 每一层 $\mathbf{u}_i\mathbf{v}_i^{T}$ 是"**一列图案 × 一行图案**"：$\mathbf{u}_i$ 描述纵向的明暗轮廓、$\mathbf{v}_i$ 描述横向的明暗轮廓，而 $\sigma_i$ 说明这一层"有多强"。
 > - $\sigma_1$ 那一层是图像的**主体明暗**（大面积轮廓）；
 > - 后面的层逐级承载更细的结构与纹理；
@@ -81,7 +85,9 @@ $$
 | $r$ | 非零奇异值个数 = 秩 | 图像真正的"自由度" |
 
 > [!tip] 秩 = 非零奇异值的个数
-> $$\operatorname{rank}(A)=r=\#\{\sigma_i>0\}$$
+> $$
+> \operatorname{rank}(A)=r=\#\{\sigma_i>0\}
+> $$
 > 而且**数值上判秩比行列式可靠得多**：第 5 章警告过"$n$ 阶矩阵算 $\det$ 在数值上不可靠"，工程上判"数值秩"普遍用"数一数有多少个 $\sigma_i$ 大于容差"。（$\lvert\det A\rvert=\sigma_1\sigma_2\cdots\sigma_n$ 对方阵成立——第 5 章"体积缩放"在这里被拆成"每个方向各拉伸 $\sigma_i$ 倍"。）
 
 ## 低秩近似 = 压缩（误差就是下一个奇异值）
@@ -161,9 +167,13 @@ $$
 回忆第 6 章：$A^TA$ 是**对称半正定**的（$\mathbf{x}^TA^TA\mathbf{x}=\|A\mathbf{x}\|^2\ge0$），所以它**一定能正交对角化，且特征值非负**：$A^TA=V\Lambda V^{T}$。把它的特征值开方，就得到了奇异值。
 
 > [!tip] 定理 SVD 与 $A^TA$、$AA^T$ 的关系
-> $$A^TA=V\Sigma^2V^{T},\qquad AA^T=U\Sigma^2U^{T}$$
+> $$
+> A^TA=V\Sigma^2V^{T},\qquad AA^T=U\Sigma^2U^{T}
+> $$
 > 也就是说：
-> $$\boxed{\ \mathbf{v}_i=A^TA\ \text{的特征向量},\qquad \sigma_i=\sqrt{\lambda_i(A^TA)},\qquad \mathbf{u}_i=\frac{A\mathbf{v}_i}{\sigma_i}\ }$$
+> $$
+> \boxed{\ \mathbf{v}_i=A^TA\ \text{的特征向量},\qquad \sigma_i=\sqrt{\lambda_i(A^TA)},\qquad \mathbf{u}_i=\frac{A\mathbf{v}_i}{\sigma_i}\ }
+> $$
 > - $A^TA$（$n\times n$）的特征向量给出 $V$（**右**奇异向量，住在 $\mathbb{R}^n$）；
 > - $AA^T$（$m\times m$）的特征向量给出 $U$（**左**奇异向量，住在 $\mathbb{R}^m$）；
 > - 两者的**非零特征值完全相同**（都是 $\sigma_1^2,\dots,\sigma_r^2$）——这正是第 6 章那条"$AB$ 与 $BA$ 有相同非零特征值"（取 $A\to A^{T}$、$B\to A$）✓
@@ -191,7 +201,9 @@ $$
 
 > [!warning] 算 SVD 时不要真的去组 $A^TA$
 > 手算可以，**代码不行**：第 4 章警告过"$A^TA$ 的条件数是 $A$ 的平方"，而
-> $$\operatorname{cond}(A^TA)=\left(\frac{\sigma_1}{\sigma_r}\right)^2=\operatorname{cond}(A)^2$$
+> $$
+> \operatorname{cond}(A^TA)=\left(\frac{\sigma_1}{\sigma_r}\right)^2=\operatorname{cond}(A)^2
+> $$
 > （验算：上例 $\operatorname{cond}(A)=2\sqrt2/\sqrt2=2$，$\operatorname{cond}(A^TA)=4$ ✓；三阶例子 $2.924^2=8.550$ ✓）
 > 所以工程上算 SVD 用的是 **Golub–Kahan 双对角化**等直接方法（`numpy.linalg.svd`、MATLAB `svd`），既不组 $A^TA$ 也不组 $AA^T$。
 
@@ -259,7 +271,9 @@ $$
 $$
 
 - $A^TA$ 的特征向量 $\mathbf{v}_3$ 是
-  $$\mathbf{v}_3=\frac{1}{\sqrt3}\begin{bmatrix}1\\1\\-1\end{bmatrix}$$
+  $$
+  \mathbf{v}_3=\frac{1}{\sqrt3}\begin{bmatrix}1\\1\\-1\end{bmatrix}
+  $$
   ——**正是第 3、4 章用消元手算出来的那个零空间基** ✓
 - $\mathbf{u}_1,\mathbf{u}_2$ 张成列空间，$\mathbf{u}_3,\mathbf{u}_4$ 张成左零空间；而第 4 章手算的左零空间基 $(1,-2,1,0)$ 与 $\mathbf{u}_1,\mathbf{u}_2$ **正交**、与 $\mathbf{u}_3,\mathbf{u}_4$ 有分量 ✓ 两者张成同一个空间。
 - $\sigma_3=0$ 与"$r=2$、第三个主元为零"完全一致 ✓
@@ -292,7 +306,9 @@ $$
 > $$\operatorname{rank}(A)=\#\{\sigma_i>0\},\qquad
 > \|A\|_2=\sigma_1\ (\text{谱范数，spectral norm}),\qquad
 > \|A\|_F=\sqrt{\sigma_1^2+\cdots+\sigma_r^2}\ (\text{Frobenius 范数})$$
-> $$\operatorname{cond}(A)=\frac{\sigma_1}{\sigma_r}\qquad(\text{条件数，方阵可逆时})$$
+> $$
+> \operatorname{cond}(A)=\frac{\sigma_1}{\sigma_r}\qquad(\text{条件数，方阵可逆时})
+> $$
 > $\|A\|_2=\sigma_1$ 的解释：$\sigma_1=\max\limits_{\mathbf{x}\ne\mathbf{0}}\dfrac{\|A\mathbf{x}\|}{\|\mathbf{x}\|}$——**$\sigma_1$ 是 $A$ 能把向量拉长的最大倍数**（几何见 7.4；它也正是第 6 章 Rayleigh 商 $\mathbf{x}^TA^TA\mathbf{x}/\mathbf{x}^T\mathbf{x}$ 的最大值 $\sqrt{\lambda_{\max}(A^TA)}$）。
 
 条件数的意义在第 4 章已经讲过（数值误差放大倍数、决定最小二乘能不能用 $A^TA$、决定迭代收敛速度）。现在它有了几何身份：**$\operatorname{cond}(A)$ 就是"A 把单位球压成的椭球有多扁"**。$\sigma_r\approx0$ 意味着某个方向几乎被压没了——矩阵**接近奇异**，求逆/解方程都会放大误差。
@@ -309,11 +325,15 @@ $$
 
 > [!info] Def 3 伪逆（Moore–Penrose）
 > **伪逆**（pseudoinverse，Moore–Penrose 伪逆）：把 $\Sigma$ 里的**非零**奇异值取倒数、零保持为零，得到 $\Sigma^{+}$，于是
-> $$A^{+}=V\Sigma^{+}U^{T},\qquad \Sigma^{+}=\operatorname{diag}\!\left(\frac{1}{\sigma_1},\dots,\frac{1}{\sigma_r},0,\dots,0\right)$$
+> $$
+> A^{+}=V\Sigma^{+}U^{T},\qquad \Sigma^{+}=\operatorname{diag}\!\left(\frac{1}{\sigma_1},\dots,\frac{1}{\sigma_r},0,\dots,0\right)
+> $$
 > $A^{+}$ 对**任何**矩阵都有定义（包括非方阵、奇异矩阵）。
 
 > [!tip] 定理 $A^{+}$ 一次解决最小二乘的所有情形
-> $$A\mathbf{x}\approx\mathbf{b}\ \Longrightarrow\ \hat{\mathbf{x}}=A^{+}\mathbf{b}$$
+> $$
+> A\mathbf{x}\approx\mathbf{b}\ \Longrightarrow\ \hat{\mathbf{x}}=A^{+}\mathbf{b}
+> $$
 > - **列满秩**（$r=n$）时，$A^{+}=(A^TA)^{-1}A^T$——就是第 4 章的法方程解；
 > - **秩亏**（$r<n$）时，法方程有无穷多解，而 $A^{+}\mathbf{b}$ 给出其中**范数最小**的那个（**最小范数解**）——因为它落在行空间 $\mathbf{C}(A^T)$ 里（$\hat{\mathbf{x}}$ 是 $\mathbf{v}_1,\dots,\mathbf{v}_r$ 的组合，零空间分量为零）✓
 > - **无解且列相关**（两者同时）时，它也是唯一"最小误差 + 最小范数"的解。
@@ -344,7 +364,9 @@ $$
 
 > [!info] Def 4 去中心化数据
 > 记均值 $\bar{\mathbf{x}}=\frac1n\sum_i\mathbf{x}_i$，则中心化后的数据矩阵为
-> $$X_c=\begin{bmatrix}(\mathbf{x}_1-\bar{\mathbf{x}})^T\\\vdots\\(\mathbf{x}_n-\bar{\mathbf{x}})^T\end{bmatrix}$$
+> $$
+> X_c=\begin{bmatrix}(\mathbf{x}_1-\bar{\mathbf{x}})^T\\\vdots\\(\mathbf{x}_n-\bar{\mathbf{x}})^T\end{bmatrix}
+> $$
 > 之后所有的方差、协方差都只跟 $X_c$ 有关（**有没有减去均值，直接决定主方向算得对不对**）。
 
 **例（本书全程用这 4 个点）**：$\mathbf{x}=(1,1),(2,3),(3,2),(4,4)$，均值 $\bar{\mathbf{x}}=(2.5,2.5)$：
@@ -360,7 +382,9 @@ $$
 
 > [!info] Def 5 协方差矩阵
 > **协方差矩阵**（covariance matrix）：
-> $$S=\frac{1}{n-1}X_c^{T}X_c\qquad(d\times d\ \text{对称矩阵})$$
+> $$
+> S=\frac{1}{n-1}X_c^{T}X_c\qquad(d\times d\ \text{对称矩阵})
+> $$
 > 对角线 $S_{jj}$ 是第 $j$ 个特征的**方差**，非对角 $S_{jk}$ 是两个特征之间的**协方差**（相关性）。$S$ 对称半正定 ✓
 
 **例**：上面那 4 个点，
@@ -375,7 +399,9 @@ $S$ 的特征值：$\lambda=3$ 与 $\frac13$（**各方向上的方差**）；�
 
 > [!tip] 定理 PCA 就是"协方差矩阵的特征分解"
 > $S$ 是对称矩阵（第 6 章！），所以可以正交对角化：
-> $$S=V\frac{\Sigma^2}{n-1}V^{T}$$
+> $$
+> S=V\frac{\Sigma^2}{n-1}V^{T}
+> $$
 > - **主方向**（principal direction）= $S$ 的特征向量 = $X_c$ 的**右奇异向量** $\mathbf{v}_i$；
 > - **该方向上的方差** = $S$ 的特征值 = $\dfrac{\sigma_i^2}{n-1}$；
 > - **总方差** = $\operatorname{tr}(S)=\sum_i\lambda_i=\sum_i\dfrac{\sigma_i^2}{n-1}$（第 6 章"迹 = 特征值之和"）✓
@@ -550,8 +576,12 @@ $$
 - 注意一个"反直觉"的现象：**输入那头的正交方向（斜的）到了输出那头仍是正交方向，但不一定是同一组方向**——$A$ 干的事 = **旋转到 $v$ 坐标 → 沿坐标轴拉伸 → 再旋转到 $u$ 坐标**。
 
 > [!tip] $\sigma_1$ 和 $\sigma_r$ 的两个"极值"身份
-> $$\sigma_1=\max_{\|\mathbf{x}\|=1}\|A\mathbf{x}\|\qquad\text{（最大拉伸，谱范数）}$$
-> $$\sigma_r=\min_{\|\mathbf{x}\|=1}\|A\mathbf{x}\|\qquad\text{（最小拉伸；方阵可逆时才有正的下界）}$$
+> $$
+> \sigma_1=\max_{\|\mathbf{x}\|=1}\|A\mathbf{x}\|\qquad\text{（最大拉伸，谱范数）}
+> $$
+> $$
+> \sigma_r=\min_{\|\mathbf{x}\|=1}\|A\mathbf{x}\|\qquad\text{（最小拉伸；方阵可逆时才有正的下界）}
+> $$
 > 于是 $\operatorname{cond}(A)=\sigma_1/\sigma_r$ 的几何读法非常直白：**椭球最长半轴与最短半轴之比**。$\sigma_r\to0$ 时椭球被压成"薄片"——某个输入方向几乎没有输出，矩阵**接近奇异**，"求逆"就是在放大这个方向的误差（$1/\sigma_r$ 巨大）✓
 
 ## 奇异向量与特征向量的几何对照
@@ -576,7 +606,9 @@ $$
 
 > [!note] 通信方向：为什么 MIMO 离不开 SVD
 > 设信道矩阵 $H$（接收天线 × 发射天线），则 $H=U\Sigma V^{H}$ 有非常直接的物理含义：
-> $$\mathbf{y}=H\mathbf{x}+\mathbf{n}\quad\Longrightarrow\quad \underbrace{U^{H}\mathbf{y}}_{\tilde{\mathbf{y}}}=\Sigma\underbrace{V^{H}\mathbf{x}}_{\tilde{\mathbf{x}}}+\underbrace{U^{H}\mathbf{n}}_{\tilde{\mathbf{n}}}$$
+> $$
+> \mathbf{y}=H\mathbf{x}+\mathbf{n}\quad\Longrightarrow\quad \underbrace{U^{H}\mathbf{y}}_{\tilde{\mathbf{y}}}=\Sigma\underbrace{V^{H}\mathbf{x}}_{\tilde{\mathbf{x}}}+\underbrace{U^{H}\mathbf{n}}_{\tilde{\mathbf{n}}}
+> $$
 > - **发射端沿 $\mathbf{v}_i$ 发射、接收端沿 $\mathbf{u}_i$ 接收**，信道就变成了**若干条互不干扰的并行子信道**，第 $i$ 条的信道增益正是 $\sigma_i$；
 > - **MIMO 容量**因此可以逐条相加：$C=\sum_i\log_2\!\left(1+\frac{\sigma_i^2\rho}{n}\right)$（第 6 章谱分解的连续版）；
 > - **水注算法**（water-filling）：按 $\sigma_i$ 分配发射功率——$\sigma_i$ 大的方向多给功率，真做到了"好信道多分配"，这只有在 SVD 把信道解耦之后才谈得上；

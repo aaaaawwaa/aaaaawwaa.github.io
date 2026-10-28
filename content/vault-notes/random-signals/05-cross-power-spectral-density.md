@@ -29,20 +29,28 @@ related: []
 
 > [!info] 定义 1 互功率谱密度
 > 设 $X(t),Y(t)$ 联合宽平稳，互相关函数取 $R_{XY}(\tau)=E[X(t)Y^*(t+\tau)]$（$\tau$ 为 $Y$ 相对 $X$ 的滞后），则**互功率谱密度**定义为
-> $$S_{XY}(\omega)=\int_{-\infty}^{\infty}R_{XY}(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau$$
+> $$
+> S_{XY}(\omega)=\int_{-\infty}^{\infty}R_{XY}(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau
+> $$
 > 反变换为
-> $$R_{XY}(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_{XY}(\omega)e^{j\omega\tau}\,\mathrm{d}\omega$$
+> $$
+> R_{XY}(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_{XY}(\omega)e^{j\omega\tau}\,\mathrm{d}\omega
+> $$
 
 与自谱不同，$S_{XY}(\omega)$ 一般是**复函数**：模值表示两个频率分量的相关强度，辐角表示它们的平均相位差。交换次序有
 
-$$R_{YX}(\tau)=R_{XY}^*(-\tau),\qquad S_{YX}(\omega)=S_{XY}^*(\omega)$$
+$$
+R_{YX}(\tau)=R_{XY}^*(-\tau),\qquad S_{YX}(\omega)=S_{XY}^*(\omega)
+$$
 
 > [!warning] 约定差异
 > 有的书取 $R_{XY}(\tau)=E[X(t+\tau)Y^*(t)]$ 或 $E[X^*(t)Y(t+\tau)]$，此时 $S_{XY}$ 会取共轭或把 $\omega$ 换成 $-\omega$。本库统一用上面的"$Y$ 滞后"约定；比较不同教材时先对齐定义，再对公式。
 
 离散形式为
 
-$$S_{XY}(e^{j\omega})=\sum_{m=-\infty}^{\infty}R_{XY}[m]e^{-j\omega m}$$
+$$
+S_{XY}(e^{j\omega})=\sum_{m=-\infty}^{\infty}R_{XY}[m]e^{-j\omega m}
+$$
 
 ## 二、性质与互谱不等式
 
@@ -56,7 +64,9 @@ $$S_{XY}(e^{j\omega})=\sum_{m=-\infty}^{\infty}R_{XY}[m]e^{-j\omega m}$$
 
 互谱不等式可以看成频域版本的柯西-施瓦茨不等式。把三个量排成矩阵
 
-$$\mathbf{S}(\omega)=\begin{bmatrix}S_X(\omega) & S_{XY}(\omega)\\ S_{YX}(\omega) & S_Y(\omega)\end{bmatrix}$$
+$$
+\mathbf{S}(\omega)=\begin{bmatrix}S_X(\omega) & S_{XY}(\omega)\\ S_{YX}(\omega) & S_Y(\omega)\end{bmatrix}
+$$
 
 它必须是半正定的，行列式非负就得到 $\lvert S_{XY}\rvert^2\le S_XS_Y$。
 
@@ -74,14 +84,18 @@ $$\mathbf{S}(\omega)=\begin{bmatrix}S_X(\omega) & S_{XY}(\omega)\\ S_{YX}(\omega
 
 > [!info] 定义 3 相干函数
 > 定义**幅值平方相干函数**
-> $$\gamma_{XY}^2(\omega)=\frac{\lvert S_{XY}(\omega)\rvert^2}{S_X(\omega)S_Y(\omega)},\qquad 0\le\gamma_{XY}^2(\omega)\le 1$$
+> $$
+> \gamma_{XY}^2(\omega)=\frac{\lvert S_{XY}(\omega)\rvert^2}{S_X(\omega)S_Y(\omega)},\qquad 0\le\gamma_{XY}^2(\omega)\le 1
+> $$
 > 它度量在频率 $\omega$ 上 $Y$ 中有多少功率可以由 $X$ 的**线性**成分解释。
 
 几个典型值：$\gamma_{XY}^2=1$ 表示 $Y$ 是 $X$ 经过某个 LTI 系统的输出（无独立噪声）；$\gamma_{XY}^2=0$ 表示该频率上无线性相关；$0<\gamma^2<1$ 表示存在独立噪声、非线性或估计偏差。
 
 > [!example] 例 1 输出加噪声
 > 设实过程 $Y(t)=(X*h)(t)+N(t)$，$N$ 与 $X$ 独立，则 $S_{XY}=H S_X$，$S_Y=\lvert H\rvert^2S_X+S_N$，于是
-> $$\gamma_{XY}^2(\omega)=\frac{\lvert H(\omega)\rvert^2S_X(\omega)}{\lvert H(\omega)\rvert^2S_X(\omega)+S_N(\omega)}$$
+> $$
+> \gamma_{XY}^2(\omega)=\frac{\lvert H(\omega)\rvert^2S_X(\omega)}{\lvert H(\omega)\rvert^2S_X(\omega)+S_N(\omega)}
+> $$
 > 信噪比越低，相干函数越小；在 $H$ 很弱的频段，噪声会把相干函数压到接近零。
 
 > [!warning] 相干函数不是"因果性"
@@ -91,15 +105,21 @@ $$\mathbf{S}(\omega)=\begin{bmatrix}S_X(\omega) & S_{XY}(\omega)\\ S_{YX}(\omega
 
 > [!example] 例 2 纯时延
 > 设 $Y(t)=X(t-D)$，则 $R_{XY}(\tau)=R_X(\tau-D)$，取傅里叶变换得
-> $$S_{XY}(\omega)=S_X(\omega)e^{-j\omega D}$$
+> $$
+> S_{XY}(\omega)=S_X(\omega)e^{-j\omega D}
+> $$
 > 互谱的相位是 $\angle S_{XY}(\omega)=-\omega D$（在 $S_X>0$ 的频段内），对 $\omega$ 求斜率就得到时延
-> $$D=-\frac{\mathrm{d}\angle S_{XY}(\omega)}{\mathrm{d}\omega}$$
+> $$
+> D=-\frac{\mathrm{d}\angle S_{XY}(\omega)}{\mathrm{d}\omega}
+> $$
 
 实际中 $S_X$ 的相位和噪声会污染估计，常用 **GCC-PHAT**：先做白化 $S_{XY}/\lvert S_{XY}\rvert$，再反变换找峰。这样只保留相位信息，对混响和有色噪声更稳健。
 
 对 LTI 系统 $Y=X*h$（实过程、实系统），若 $X$ 与 $Y$ 联合宽平稳，则
 
-$$S_{XY}(\omega)=H(\omega)S_X(\omega),\qquad S_{YX}(\omega)=H^*(\omega)S_X(\omega)$$
+$$
+S_{XY}(\omega)=H(\omega)S_X(\omega),\qquad S_{YX}(\omega)=H^*(\omega)S_X(\omega)
+$$
 
 这是 [[vault-notes/random-signals/06-input-output-psd-relation]] 的互谱部分。它也解释了为什么"互谱除以自谱"可以估计频率响应：$\hat H(\omega)=S_{XY}(\omega)/S_X(\omega)$。
 

@@ -39,7 +39,9 @@ related: []
 
 > [!info] Def 1 高斯定理
 > 设 $\mathbf{A}$ 在闭曲面 $S$ 及其内部有连续偏导，则
-> $$\oiint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iiint_V\nabla\cdot\mathbf{A}\,\mathrm{d}V$$
+> $$
+> \oiint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iiint_V\nabla\cdot\mathbf{A}\,\mathrm{d}V
+> $$
 > 即**边界通量 = 内部散度的体积分**。
 
 **应用**：
@@ -49,15 +51,21 @@ related: []
 - 把体积分化为面积分（或反之）
 
 > [!important] 麦克斯韦方程的高斯形式
-> $$\oiint_S\mathbf{D}\cdot\mathrm{d}\mathbf{S}=Q_{\text{free}}\qquad\Longleftrightarrow\qquad\nabla\cdot\mathbf{D}=\rho$$
-> $$\oiint_S\mathbf{B}\cdot\mathrm{d}\mathbf{S}=0\qquad\Longleftrightarrow\qquad\nabla\cdot\mathbf{B}=0$$
+> $$
+> \oiint_S\mathbf{D}\cdot\mathrm{d}\mathbf{S}=Q_{\text{free}}\qquad\Longleftrightarrow\qquad\nabla\cdot\mathbf{D}=\rho
+> $$
+> $$
+> \oiint_S\mathbf{B}\cdot\mathrm{d}\mathbf{S}=0\qquad\Longleftrightarrow\qquad\nabla\cdot\mathbf{B}=0
+> $$
 > 即"电场有源（电荷）、磁场无源"。
 
 ## 斯托克斯定理
 
 > [!info] Def 2 斯托克斯定理
 > 设 $S$ 是以闭曲线 $C$ 为边界的有向曲面，$C$ 的方向与 $S$ 的法向成右手螺旋，则
-> $$\oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}=\iint_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}$$
+> $$
+> \oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}=\iint_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}
+> $$
 > 即**边界环量 = 内部旋度的通量**。
 
 **应用**：
@@ -67,8 +75,12 @@ related: []
 - 把线积分化为面积分（或反之）
 
 > [!important] 麦克斯韦方程的斯托克斯形式
-> $$\oint_C\mathbf{E}\cdot\mathrm{d}\mathbf{l}=-\frac{\mathrm{d}}{\mathrm{d}t}\iint_S\mathbf{B}\cdot\mathrm{d}\mathbf{S}\qquad\Longleftrightarrow\qquad\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t}$$
-> $$\oint_C\mathbf{H}\cdot\mathrm{d}\mathbf{l}=I+\frac{\mathrm{d}}{\mathrm{d}t}\iint_S\mathbf{D}\cdot\mathrm{d}\mathbf{S}\qquad\Longleftrightarrow\qquad\nabla\times\mathbf{H}=\mathbf{J}+\frac{\partial\mathbf{D}}{\partial t}$$
+> $$
+> \oint_C\mathbf{E}\cdot\mathrm{d}\mathbf{l}=-\frac{\mathrm{d}}{\mathrm{d}t}\iint_S\mathbf{B}\cdot\mathrm{d}\mathbf{S}\qquad\Longleftrightarrow\qquad\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t}
+> $$
+> $$
+> \oint_C\mathbf{H}\cdot\mathrm{d}\mathbf{l}=I+\frac{\mathrm{d}}{\mathrm{d}t}\iint_S\mathbf{D}\cdot\mathrm{d}\mathbf{S}\qquad\Longleftrightarrow\qquad\nabla\times\mathbf{H}=\mathbf{J}+\frac{\partial\mathbf{D}}{\partial t}
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" width="100%" style="max-width:720px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -105,7 +117,9 @@ related: []
 
 > [!info] Def 3 亥姆霍兹定理
 > 在有限区域 $V$ 内，任意向量场 $\mathbf{A}$（满足适当光滑性）都可以唯一分解为
-> $$\mathbf{A}=-\nabla\varphi+\nabla\times\mathbf{B}$$
+> $$
+> \mathbf{A}=-\nabla\varphi+\nabla\times\mathbf{B}
+> $$
 > 其中 $\varphi$ 是标量势（无旋部分），$\mathbf{B}$ 是向量势（无散部分）。
 > 若给定 $\nabla\cdot\mathbf{A}$、$\nabla\times\mathbf{A}$ 以及边界条件，则分解唯一。
 
@@ -134,11 +148,15 @@ related: []
 ## 方程
 
 > [!info] Def 4 拉普拉斯方程
-> $$\nabla^2\varphi=0$$
+> $$
+> \nabla^2\varphi=0
+> $$
 > 称为**拉普拉斯方程**（Laplace equation）。其解称为**调和函数**（harmonic function）。
 
 > [!info] Def 5 泊松方程
-> $$\nabla^2\varphi=f$$
+> $$
+> \nabla^2\varphi=f
+> $$
 > 称为**泊松方程**（Poisson equation）。$f$ 是源项。
 
 **物理来源**：
@@ -159,13 +177,17 @@ related: []
 
 三维无界空间的格林函数：
 
-$$\nabla^2\left(\frac{1}{r}\right)=-4\pi\delta(\mathbf{r})$$
+$$
+\nabla^2\left(\frac{1}{r}\right)=-4\pi\delta(\mathbf{r})
+$$
 
 即点电荷的电位 $V=\frac{1}{4\pi\varepsilon_0}\frac{q}{r}$ 满足泊松方程。
 
 二维：
 
-$$\nabla^2(\ln r)=2\pi\delta(\mathbf{r})$$
+$$
+\nabla^2(\ln r)=2\pi\delta(\mathbf{r})
+$$
 
 ## 边界条件
 
@@ -200,41 +222,65 @@ $$\nabla^2(\ln r)=2\pi\delta(\mathbf{r})$$
 
 设 $\varphi(x,y,z)=X(x)Y(y)Z(z)$，代入 $\nabla^2\varphi=0$：
 
-$$\frac{X''}{X}+\frac{Y''}{Y}+\frac{Z''}{Z}=0$$
+$$
+\frac{X''}{X}+\frac{Y''}{Y}+\frac{Z''}{Z}=0
+$$
 
 三项分别只依赖 $x,y,z$，故每项必为常数：
 
-$$\frac{X''}{X}=-\lambda^2,\qquad \frac{Y''}{Y}=-\mu^2,\qquad \frac{Z''}{Z}=\lambda^2+\mu^2$$
+$$
+\frac{X''}{X}=-\lambda^2,\qquad \frac{Y''}{Y}=-\mu^2,\qquad \frac{Z''}{Z}=\lambda^2+\mu^2
+$$
 
 解为三角函数/双曲函数的组合，常数由边界条件确定。
 
 > [!example] 矩形域的狄利克雷问题
 > 求 $\nabla^2\varphi=0$ 在矩形 $0<x<a$、$0<y<b$ 内，边界条件：
-> $$\varphi(0,y)=\varphi(a,y)=\varphi(x,0)=0,\qquad\varphi(x,b)=V_0$$
+> $$
+> \varphi(0,y)=\varphi(a,y)=\varphi(x,0)=0,\qquad\varphi(x,b)=V_0
+> $$
 > 设 $\varphi=X(x)Y(y)$。由 $x$ 方向边界：
-> $$X(0)=X(a)=0\ \Longrightarrow\ X_n(x)=\sin\frac{n\pi x}{a},\qquad \lambda_n=\frac{n\pi}{a}$$
+> $$
+> X(0)=X(a)=0\ \Longrightarrow\ X_n(x)=\sin\frac{n\pi x}{a},\qquad \lambda_n=\frac{n\pi}{a}
+> $$
 > 由 $y$ 方向：
-> $$Y_n(y)=A_n\sinh\frac{n\pi y}{a}+B_n\cosh\frac{n\pi y}{a}$$
+> $$
+> Y_n(y)=A_n\sinh\frac{n\pi y}{a}+B_n\cosh\frac{n\pi y}{a}
+> $$
 > $Y(0)=0$ → $B_n=0$。故
-> $$\varphi(x,y)=\sum_{n=1}^{\infty}A_n\sin\frac{n\pi x}{a}\sinh\frac{n\pi y}{a}$$
+> $$
+> \varphi(x,y)=\sum_{n=1}^{\infty}A_n\sin\frac{n\pi x}{a}\sinh\frac{n\pi y}{a}
+> $$
 > 由 $y=b$ 的边界：
-> $$V_0=\sum_{n=1}^{\infty}A_n\sinh\frac{n\pi b}{a}\sin\frac{n\pi x}{a}$$
+> $$
+> V_0=\sum_{n=1}^{\infty}A_n\sinh\frac{n\pi b}{a}\sin\frac{n\pi x}{a}
+> $$
 > 用正弦级数展开 $V_0$：
-> $$A_n\sinh\frac{n\pi b}{a}=\frac{2}{a}\int_0^aV_0\sin\frac{n\pi x}{a}dx=\frac{2V_0}{n\pi}(1-\cos n\pi)$$
+> $$
+> A_n\sinh\frac{n\pi b}{a}=\frac{2}{a}\int_0^aV_0\sin\frac{n\pi x}{a}dx=\frac{2V_0}{n\pi}(1-\cos n\pi)
+> $$
 > 故
-> $$A_n=\frac{2V_0(1-(-1)^n)}{n\pi\sinh(n\pi b/a)}$$
+> $$
+> A_n=\frac{2V_0(1-(-1)^n)}{n\pi\sinh(n\pi b/a)}
+> $$
 > 只有奇数 $n$ 非零。最终
-> $$\varphi(x,y)=\sum_{n\ \text{odd}}\frac{4V_0}{n\pi\sinh(n\pi b/a)}\sin\frac{n\pi x}{a}\sinh\frac{n\pi y}{a}$$
+> $$
+> \varphi(x,y)=\sum_{n\ \text{odd}}\frac{4V_0}{n\pi\sinh(n\pi b/a)}\sin\frac{n\pi x}{a}\sinh\frac{n\pi y}{a}
+> $$
 
 ## 分离变量法（圆柱坐标）
 
-$$\nabla^2\varphi=\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial\varphi}{\partial r}\right)+\frac1{r^2}\frac{\partial^2\varphi}{\partial\theta^2}+\frac{\partial^2\varphi}{\partial z^2}=0$$
+$$
+\nabla^2\varphi=\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial\varphi}{\partial r}\right)+\frac1{r^2}\frac{\partial^2\varphi}{\partial\theta^2}+\frac{\partial^2\varphi}{\partial z^2}=0
+$$
 
 设 $\varphi=R(r)\Theta(\theta)Z(z)$，得到贝塞尔方程/三角函数的组合。圆域问题常用 $r^n\cos n\theta$、$r^n\sin n\theta$、$\ln r$、$\theta$。
 
 ## 分离变量法（球坐标）
 
-$$\nabla^2\varphi=\frac1{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\varphi}{\partial r}\right)+\frac1{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial\varphi}{\partial\theta}\right)+\frac1{r^2\sin^2\theta}\frac{\partial^2\varphi}{\partial\phi^2}=0$$
+$$
+\nabla^2\varphi=\frac1{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\varphi}{\partial r}\right)+\frac1{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial\varphi}{\partial\theta}\right)+\frac1{r^2\sin^2\theta}\frac{\partial^2\varphi}{\partial\phi^2}=0
+$$
 
 分离后得到**勒让德方程**，解为勒让德多项式 $P_l(\cos\theta)$。球对称问题常用 $1/r$、$r^lP_l(\cos\theta)$、$r^{-(l+1)}P_l(\cos\theta)$。
 
@@ -255,27 +301,39 @@ $$\nabla^2\varphi=\frac1{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\
 > [!example] 例 1：高斯定理求电场
 > 半径 $R$ 的球内均匀电荷密度 $\rho$，求球内外电场。
 > 球对称，$\mathbf{E}=E(r)\mathbf{e}_r$。取半径 $r$ 的球面：
-> $$\oiint\mathbf{E}\cdot d\mathbf{S}=4\pi r^2E(r)=\frac{Q_{\text{enc}}}{\varepsilon_0}$$
+> $$
+> \oiint\mathbf{E}\cdot d\mathbf{S}=4\pi r^2E(r)=\frac{Q_{\text{enc}}}{\varepsilon_0}
+> $$
 > - $r<R$：$Q_{\text{enc}}=\frac43\pi r^3\rho$，$E=\frac{\rho r}{3\varepsilon_0}$
 > - $r>R$：$Q_{\text{enc}}=\frac43\pi R^3\rho=Q$，$E=\frac{Q}{4\pi\varepsilon_0r^2}$
 
 > [!example] 例 2：斯托克斯定理求磁场
 > 无限长直导线电流 $I$，求磁场。
 > 由对称性 $\mathbf{B}=B(r)\mathbf{e}_\phi$。取半径 $r$ 的圆：
-> $$\oint_C\mathbf{B}\cdot d\mathbf{l}=2\pi rB(r)=\mu_0I$$
-> $$B(r)=\frac{\mu_0I}{2\pi r}$$
+> $$
+> \oint_C\mathbf{B}\cdot d\mathbf{l}=2\pi rB(r)=\mu_0I
+> $$
+> $$
+> B(r)=\frac{\mu_0I}{2\pi r}
+> $$
 > 这正是安培环路定理。
 
 > [!example] 例 3：一维拉普拉斯方程
 > 求 $\varphi''(x)=0$ 在 $0<x<d$，$\varphi(0)=0$、$\varphi(d)=V_0$。
-> $$\varphi(x)=Ax+B$$
+> $$
+> \varphi(x)=Ax+B
+> $$
 > 由边界：$B=0$，$A=V_0/d$。
-> $$\varphi(x)=\frac{V_0}{d}x$$
+> $$
+> \varphi(x)=\frac{V_0}{d}x
+> $$
 > 即平行板电容器内部的线性电位分布，电场 $E=-\varphi'=-V_0/d$（均匀）。
 
 > [!example] 例 4：二维边值问题
 > 承第 4 节矩形域例子，若 $a=b=1$、$V_0=1$，求 $\varphi(1/2,1/2)$ 的级数近似。
-> $$\varphi=\sum_{n\ \text{odd}}\frac{4}{n\pi\sinh(n\pi)}\sin\frac{n\pi}{2}\sinh\frac{n\pi}{2}$$
+> $$
+> \varphi=\sum_{n\ \text{odd}}\frac{4}{n\pi\sinh(n\pi)}\sin\frac{n\pi}{2}\sinh\frac{n\pi}{2}
+> $$
 > 取前两项（$n=1,3$）：
 > - $n=1$：$\frac{4}{\pi\sinh\pi}\sin\frac\pi2\sinh\frac\pi2=\frac{4}{\pi}\approx1.273$
 > - $n=3$：$\frac{4}{3\pi\sinh3\pi}\sin\frac{3\pi}{2}\sinh\frac{3\pi}{2}=-\frac{4}{3\pi}\approx-0.424$

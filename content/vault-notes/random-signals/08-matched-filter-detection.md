@@ -28,7 +28,9 @@ related: []
 > [!info] 定义 匹配滤波器
 > 对已知信号 $s(t)$、$0\le t\le T$，匹配滤波器的冲激响应与频率响应为
 >
-> $$h(t)=s(T-t),\qquad H(\omega)=S^*(\omega)e^{-j\omega T}$$
+> $$
+> h(t)=s(T-t),\qquad H(\omega)=S^*(\omega)e^{-j\omega T}
+> $$
 
 $h(t)$ 是 $s(t)$ 的时间反转并平移 $T$，因此只有在 $T$ 大于信号持续时间时才是因果的。$H(\omega)$ 的相位与信号谱共轭抵消，使信号各频率分量在 $t=T$ 时刻同相叠加。
 
@@ -44,15 +46,21 @@ flowchart LR
 
 设输入为 $r(t)=s(t)+n(t)$，$n(t)$ 是双边功率谱为 $N_0/2$ 的白噪声。抽样时刻的信号输出为
 
-$$y_s(T)=\int_{-\infty}^{\infty}s(t)h(T-t)\,dt=\int_0^T s^2(t)\,dt=E$$
+$$
+y_s(T)=\int_{-\infty}^{\infty}s(t)h(T-t)\,dt=\int_0^T s^2(t)\,dt=E
+$$
 
 噪声输出功率为
 
-$$\sigma_n^2=\frac{N_0}{2}\int_{-\infty}^{\infty}h^2(t)\,dt=\frac{N_0}{2}E$$
+$$
+\sigma_n^2=\frac{N_0}{2}\int_{-\infty}^{\infty}h^2(t)\,dt=\frac{N_0}{2}E
+$$
 
 因此输出信噪比为
 
-$$\mathrm{SNR}_{out}=\frac{y_s^2(T)}{\sigma_n^2}=\frac{E^2}{N_0E/2}=\frac{2E}{N_0}$$
+$$
+\mathrm{SNR}_{out}=\frac{y_s^2(T)}{\sigma_n^2}=\frac{E^2}{N_0E/2}=\frac{2E}{N_0}
+$$
 
 > [!info] 定理 匹配滤波的最优性
 > 在所有线性时不变滤波器中，匹配滤波器使 $t=T$ 时刻的输出信噪比最大，最大值为 $2E/N_0$。由柯西-施瓦茨不等式，信号输出满足 $y_s(T)\le\sqrt{E\int\lvert h\rvert^2dt}$，等号在 $h(t)\propto s(T-t)$ 时成立，此时信噪比达到上界。
@@ -66,7 +74,9 @@ $$\mathrm{SNR}_{out}=\frac{y_s^2(T)}{\sigma_n^2}=\frac{E^2}{N_0E/2}=\frac{2E}{N_
 
 匹配滤波的输出在 $t=T$ 时刻可以写成内积：
 
-$$y(T)=\int_0^T r(t)s(t)\,dt$$
+$$
+y(T)=\int_0^T r(t)s(t)\,dt
+$$
 
 这正是“把接收信号与本地模板相乘再积分”的相关接收机。两者数学上完全等价：匹配滤波是卷积实现，相关接收是内积实现；前者适合模拟前端流式处理，后者适合数字信号处理。
 
@@ -83,7 +93,9 @@ BPSK 的两个波形为 $s_1(t)=+s(t)$、$s_0(t)=-s(t)$，每比特能量 $E_b=E
 
 在 $H_1$ 下 $z\sim\mathcal{N}(E,N_0E/2)$，在 $H_0$ 下 $z\sim\mathcal{N}(-E,N_0E/2)$。门限取 0 时，
 
-$$P_e=Q\left(\frac{E}{\sqrt{N_0E/2}}\right)=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)$$
+$$
+P_e=Q\left(\frac{E}{\sqrt{N_0E/2}}\right)=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)
+$$
 
 > [!example] 与通信原理的记号换算
 > 通信原理用单边谱密度 $n_0$ 表示，误码率写作 $P_e=\frac{1}{2}\mathrm{erfc}\sqrt{E_b/n_0}$。利用 $Q(x)=\frac{1}{2}\mathrm{erfc}(x/\sqrt{2})$，两种写法完全一致。若 $E_b/N_0=9.6$ dB（约 9.12），则 $\sqrt{2E_b/N_0}\approx4.27$，$P_e\approx10^{-5}$。

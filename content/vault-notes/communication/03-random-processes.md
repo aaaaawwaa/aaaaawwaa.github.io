@@ -61,7 +61,9 @@ related: []
 
 > [!info] Def 2 严平稳
 > 若随机过程的 $n$ 维分布函数对任意时间平移 $\tau$ 都满足
-> $$f_n(x_1,\dots,x_n;t_1,\dots,t_n)=f_n(x_1,\dots,x_n;t_1+\tau,\dots,t_n+\tau)$$
+> $$
+> f_n(x_1,\dots,x_n;t_1,\dots,t_n)=f_n(x_1,\dots,x_n;t_1+\tau,\dots,t_n+\tau)
+> $$
 > 则称其为**严平稳**（strictly stationary）随机过程，即统计特性不随时间平移而变化。
 
 > [!info] Def 3 广义平稳
@@ -76,8 +78,12 @@ related: []
 
 > [!info] Def 4 各态历经
 > 若一个样本函数的**时间平均**可以替代统计平均，即
-> $$\overline{a}=\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}x(t)\,dt=E[\xi(t)]=a$$
-> $$\overline{R(\tau)}=\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}x(t)x(t+\tau)\,dt=R(\tau)$$
+> $$
+> \overline{a}=\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}x(t)\,dt=E[\xi(t)]=a
+> $$
+> $$
+> \overline{R(\tau)}=\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}x(t)x(t+\tau)\,dt=R(\tau)
+> $$
 > 则称该平稳过程具有**各态历经性**（ergodicity，也称遍历性）。
 
 > [!tip] 一句话记忆
@@ -85,7 +91,9 @@ related: []
 
 ## 平稳过程自相关函数的性质
 
-$$R(\tau)\leftrightarrow P_\xi(\omega)\quad(\text{维纳-辛钦})$$
+$$
+R(\tau)\leftrightarrow P_\xi(\omega)\quad(\text{维纳-辛钦})
+$$
 
 1. $R(0)=E[\xi^2(t)]$ = **总平均功率**（均方值）
 2. $R(\tau)=R(-\tau)$，偶函数
@@ -98,8 +106,12 @@ $$R(\tau)\leftrightarrow P_\xi(\omega)\quad(\text{维纳-辛钦})$$
 
 > [!info] Def 5 功率谱密度
 > 平稳随机过程的**功率谱密度**（power spectral density，简称 PSD）与其自相关函数构成傅里叶变换对：
-> $$P_\xi(\omega)=\int_{-\infty}^{\infty}R(\tau)e^{-j\omega\tau}\,d\tau$$
-> $$R(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}P_\xi(\omega)e^{j\omega\tau}\,d\omega$$
+> $$
+> P_\xi(\omega)=\int_{-\infty}^{\infty}R(\tau)e^{-j\omega\tau}\,d\tau
+> $$
+> $$
+> R(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}P_\xi(\omega)e^{j\omega\tau}\,d\omega
+> $$
 > 总平均功率 $=R(0)=\dfrac{1}{2\pi}\displaystyle\int_{-\infty}^{\infty}P_\xi(\omega)\,d\omega$。
 
 # 3.3 高斯随机过程（正态）
@@ -109,7 +121,9 @@ $$R(\tau)\leftrightarrow P_\xi(\omega)\quad(\text{维纳-辛钦})$$
 > [!info] Def 6 高斯随机过程
 > 若随机过程的任意 $n$ 维分布都服从**正态分布**，则称其为**高斯随机过程**（Gaussian random process）。
 > 一维概率密度为
-> $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-a)^2}{2\sigma^2}\right]$$
+> $$
+> f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-a)^2}{2\sigma^2}\right]
+> $$
 
 ## 重要性质（考研记住前四条）
 
@@ -121,11 +135,17 @@ $$R(\tau)\leftrightarrow P_\xi(\omega)\quad(\text{维纳-辛钦})$$
 
 ## 常用函数（误码率推导的常客）
 
-$$Q(x)=\int_x^{\infty}\frac{1}{\sqrt{2\pi}}e^{-t^2/2}\,dt\qquad \mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}\,dt$$
+$$
+Q(x)=\int_x^{\infty}\frac{1}{\sqrt{2\pi}}e^{-t^2/2}\,dt\qquad \mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}\,dt
+$$
 
-$$\mathrm{erfc}(x)=1-\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_x^{\infty}e^{-t^2}\,dt$$
+$$
+\mathrm{erfc}(x)=1-\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_x^{\infty}e^{-t^2}\,dt
+$$
 
-$$Q(x)=\frac{1}{2}\mathrm{erfc}\left(\frac{x}{\sqrt{2}}\right)$$
+$$
+Q(x)=\frac{1}{2}\mathrm{erfc}\left(\frac{x}{\sqrt{2}}\right)
+$$
 
 > [!tip] 记忆
 > 第 6/7/9 章所有**相干解调**误码率都以 $\frac{1}{2}\mathrm{erfc}(\sqrt{\cdot})$ 形式出现；**非相干解调**以 $e^{-x}$ 形式出现。
@@ -138,7 +158,9 @@ $$Q(x)=\frac{1}{2}\mathrm{erfc}\left(\frac{x}{\sqrt{2}}\right)$$
 2. 输出均值：$a_o=a\cdot H(0)$（直流分量乘直流增益）
 3. **输出功率谱 = 输入功率谱 × 系统增益平方**：
 
-$$P_o(\omega)=|H(\omega)|^2P_i(\omega)$$
+$$
+P_o(\omega)=|H(\omega)|^2P_i(\omega)
+$$
 
 4. 输出自相关：$R_o(\tau)=R_i(\tau)*h(\tau)*h(-\tau)$
 5. 输出功率：$R_o(0)=\dfrac{1}{2\pi}\displaystyle\int |H(\omega)|^2P_i(\omega)\,d\omega$
@@ -153,7 +175,9 @@ $$P_o(\omega)=|H(\omega)|^2P_i(\omega)$$
 > [!info] Def 7 窄带随机过程
 > 若随机过程的谱集中于中心频率 $\omega_c$ 附近，且满足**中心频率远大于带宽**（$\omega_c\gg B$），则称其为**窄带随机过程**（narrowband random process）。
 > 标准表达式为
-> $$\xi(t)=a_\xi(t)\cos[\omega_c t+\varphi_\xi(t)]=\xi_c(t)\cos\omega_c t-\xi_s(t)\sin\omega_c t$$
+> $$
+> \xi(t)=a_\xi(t)\cos[\omega_c t+\varphi_\xi(t)]=\xi_c(t)\cos\omega_c t-\xi_s(t)\sin\omega_c t
+> $$
 > 其中 $a_\xi(t)$ 为**包络**（慢变化），$\varphi_\xi(t)$ 为**相位**（慢变化），$\xi_c(t)$ 为**同相分量**（in-phase component），$\xi_s(t)$ 为**正交分量**（quadrature component）。
 
 ## 零均值平稳高斯窄带过程的统计特性
@@ -169,7 +193,9 @@ $$P_o(\omega)=|H(\omega)|^2P_i(\omega)$$
 > **② 包络与相位**（在任意时刻）
 > - 包络 $a_\xi$ 服从**瑞利分布**（Rayleigh distribution）：
 >
-> $$f(a_\xi)=\frac{a_\xi}{\sigma_n^2}\exp\left[-\frac{a_\xi^2}{2\sigma_n^2}\right],\quad a_\xi\ge0$$
+> $$
+> f(a_\xi)=\frac{a_\xi}{\sigma_n^2}\exp\left[-\frac{a_\xi^2}{2\sigma_n^2}\right],\quad a_\xi\ge0
+> $$
 >
 > - 相位 $\varphi_\xi$ 服从**均匀分布**：$f(\varphi_\xi)=\dfrac{1}{2\pi}$，$0\le\varphi_\xi<2\pi$
 > - 同一时刻上包络与相位**统计独立**
@@ -180,12 +206,16 @@ $$P_o(\omega)=|H(\omega)|^2P_i(\omega)$$
 
 接收信号模型（信号 + 窄带噪声）：
 
-$$r(t)=A\cos(\omega_c t+\theta)+n(t)=\rho(t)\cos[\omega_c t+\varphi(t)]$$
+$$
+r(t)=A\cos(\omega_c t+\theta)+n(t)=\rho(t)\cos[\omega_c t+\varphi(t)]
+$$
 
 > [!important] 必背结论
 > **合成包络 $\rho$ 服从莱斯分布**（Rice distribution，也称广义瑞利分布）：
 >
-> $$f(\rho)=\frac{\rho}{\sigma_n^2}I_0\!\left(\frac{A\rho}{\sigma_n^2}\right)\exp\left[-\frac{\rho^2+A^2}{2\sigma_n^2}\right],\quad \rho\ge0$$
+> $$
+> f(\rho)=\frac{\rho}{\sigma_n^2}I_0\!\left(\frac{A\rho}{\sigma_n^2}\right)\exp\left[-\frac{\rho^2+A^2}{2\sigma_n^2}\right],\quad \rho\ge0
+> $$
 >
 > - $I_0(x)$：第一类零阶修正贝塞尔函数
 > - **大信噪比**（$A\gg\sigma_n$）：莱斯 → **高斯**（中心在 $A$）
@@ -199,12 +229,16 @@ $$r(t)=A\cos(\omega_c t+\theta)+n(t)=\rho(t)\cos[\omega_c t+\varphi(t)]$$
 
 > [!info] Def 8 白噪声
 > **白噪声**（white noise）的功率谱密度在整个频率轴上**均匀**：
-> $$P_n(f)=\frac{n_0}{2}\quad(\text{W/Hz}),\quad -\infty<f<\infty\quad(\text{双边谱})$$
+> $$
+> P_n(f)=\frac{n_0}{2}\quad(\text{W/Hz}),\quad -\infty<f<\infty\quad(\text{双边谱})
+> $$
 > 单边谱为 $n_0$。
 
 自相关函数：
 
-$$R(\tau)=\frac{n_0}{2}\delta(\tau)$$
+$$
+R(\tau)=\frac{n_0}{2}\delta(\tau)
+$$
 
 性质：
 
@@ -216,15 +250,21 @@ $$R(\tau)=\frac{n_0}{2}\delta(\tau)$$
 
 白噪声经过理想低通（截止 $B$）：
 
-$$P_n(f)=\frac{n_0}{2},\ |f|\le B\qquad R(\tau)=n_0B\,\mathrm{Sa}(2\pi B\tau)$$
+$$
+P_n(f)=\frac{n_0}{2},\ |f|\le B\qquad R(\tau)=n_0B\,\mathrm{Sa}(2\pi B\tau)
+$$
 
 - $\tau=k/(2B)$（$k$ 为非零整数）时取样值**不相关**——奈奎斯特抽样间隔 $1/(2B)$ 的另一层意义
 
 白噪声经过理想带通（中心 $f_c$、带宽 $B$）→ **窄带高斯噪声**（3.5 节模型），这就是接收机带通滤波器输出的标准噪声模型：
 
-$$n(t)=n_c(t)\cos\omega_c t-n_s(t)\sin\omega_c t$$
+$$
+n(t)=n_c(t)\cos\omega_c t-n_s(t)\sin\omega_c t
+$$
 
-$$\sigma_n^2=n_0B\quad(\text{噪声功率}=\text{单边谱密度}\times\text{带宽})$$
+$$
+\sigma_n^2=n_0B\quad(\text{噪声功率}=\text{单边谱密度}\times\text{带宽})
+$$
 
 > [!warning] 噪声功率计算易错点
 > $B$ 为**带通滤波器带宽**（Hz）时，$\sigma_n^2=n_0B$（此处 $n_0$ 为单边谱密度）。注意题给的是双边 $\dfrac{n_0}{2}$ 还是单边 $n_0$。

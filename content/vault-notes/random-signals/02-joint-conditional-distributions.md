@@ -33,7 +33,9 @@ related: []
 
 **边缘分布**由联合分布对另一个变量积分（或求和）得到：
 
-$$f_X(x)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,\mathrm{d}y,\qquad f_Y(y)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,\mathrm{d}x$$
+$$
+f_X(x)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,\mathrm{d}y,\qquad f_Y(y)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,\mathrm{d}x
+$$
 
 | 对象 | 连续型 | 离散型 |
 | --- | --- | --- |
@@ -50,12 +52,16 @@ $$f_X(x)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,\mathrm{d}y,\qquad f_Y(y)=\int_{-\i
 
 > [!info] 定义 8.2 条件分布
 > 当 $f_Y(y)>0$ 时，给定 $Y=y$ 下 $X$ 的**条件密度**为
-> $$f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}$$
+> $$
+> f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}
+> $$
 > 条件 CDF 为 $F_{X\mid Y}(x\mid y)=\int_{-\infty}^{x}f_{X\mid Y}(u\mid y)\,\mathrm{d}u$。
 
 独立等价于联合分布可分解：
 
-$$f_{XY}(x,y)=f_X(x)f_Y(y)\quad\Longleftrightarrow\quad F_{XY}(x,y)=F_X(x)F_Y(y)$$
+$$
+f_{XY}(x,y)=f_X(x)f_Y(y)\quad\Longleftrightarrow\quad F_{XY}(x,y)=F_X(x)F_Y(y)
+$$
 
 > [!warning] 支撑集必须是矩形
 > 判断独立时不能只看密度表达式能否拆成两个函数的乘积，还要看**支撑集**。若 $f_{XY}(x,y)=2$ 在 $0<x<y<1$ 上非零，虽然常数可拆，但支撑集是三角形，$X$ 与 $Y$ 并不独立。
@@ -67,15 +73,21 @@ $$f_{XY}(x,y)=f_X(x)f_Y(y)\quad\Longleftrightarrow\quad F_{XY}(x,y)=F_X(x)F_Y(y)
 
 设 $Z=X+Y$，则
 
-$$f_Z(z)=\int_{-\infty}^{\infty}f_{XY}(x,z-x)\,\mathrm{d}x=\int_{-\infty}^{\infty}f_{XY}(z-y,y)\,\mathrm{d}y$$
+$$
+f_Z(z)=\int_{-\infty}^{\infty}f_{XY}(x,z-x)\,\mathrm{d}x=\int_{-\infty}^{\infty}f_{XY}(z-y,y)\,\mathrm{d}y
+$$
 
 当 $X,Y$ 独立时，上式退化为**卷积**：
 
-$$f_Z(z)=f_X(z)*f_Y(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x$$
+$$
+f_Z(z)=f_X(z)*f_Y(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x
+$$
 
 > [!example] 两个独立均匀分布之和
 > 设 $X,Y\sim U(0,1)$ 独立，则 $Z=X+Y$ 的密度是三角形的：
-> $$f_Z(z)=\begin{cases}z,&0\le z<1\\ 2-z,&1\le z\le2\\ 0,&\text{其他}\end{cases}$$
+> $$
+> f_Z(z)=\begin{cases}z,&0\le z<1\\ 2-z,&1\le z\le2\\ 0,&\text{其他}\end{cases}
+> $$
 > 两个矩形脉冲卷积得到三角脉冲，这正是"独立和的分布 = 卷积"的几何版本。
 
 > [!tip] 用特征函数避开卷积
@@ -86,12 +98,16 @@ $$f_Z(z)=f_X(z)*f_Y(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x$$
 
 > [!info] 定义 8.3 二维变量替换
 > 设 $U=g_1(X,Y)$、$V=g_2(X,Y)$ 存在唯一的反变换 $x=h_1(u,v)$、$y=h_2(u,v)$，且偏导连续，则
-> $$f_{UV}(u,v)=f_{XY}\big(h_1(u,v),h_2(u,v)\big)\left|\frac{\partial(x,y)}{\partial(u,v)}\right|$$
+> $$
+> f_{UV}(u,v)=f_{XY}\big(h_1(u,v),h_2(u,v)\big)\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+> $$
 > 其中 $\dfrac{\partial(x,y)}{\partial(u,v)}$ 为雅可比行列式。
 
 > [!example] 极坐标下的瑞利包络
 > 设 $X,Y$ 独立同分布 $N(0,\sigma^2)$，令 $R=\sqrt{X^2+Y^2}$、$\Theta=\operatorname{atan2}(Y,X)$。反变换为 $x=r\cos\theta$、$y=r\sin\theta$，雅可比为 $r$，于是
-> $$f_{R\Theta}(r,\theta)=\frac{r}{2\pi\sigma^2}e^{-\frac{r^2}{2\sigma^2}},\qquad r\ge0,\ 0\le\theta<2\pi$$
+> $$
+> f_{R\Theta}(r,\theta)=\frac{r}{2\pi\sigma^2}e^{-\frac{r^2}{2\sigma^2}},\qquad r\ge0,\ 0\le\theta<2\pi
+> $$
 > 分解得 $f_R(r)=\dfrac{r}{\sigma^2}e^{-\frac{r^2}{2\sigma^2}}$、$f_\Theta(\theta)=\dfrac{1}{2\pi}$，且 $R$ 与 $\Theta$ 独立。
 > 这一步是"两路高斯噪声合成瑞利衰落包络"的标准推导，也是 [[vault-notes/communication/04-channel]] 中模型建立的起点。
 
@@ -103,7 +119,9 @@ $$f_Z(z)=f_X(z)*f_Y(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,\mathrm{d}x$$
 
 条件期望 $E[X\mid Y=y]$ 是 $y$ 的函数，把它中的 $y$ 换回 $Y$，得到随机变量 $E[X\mid Y]$。两条最常用的性质是
 
-$$E[X]=E\big[E[X\mid Y]\big],\qquad \mathrm{Var}(X)=E\big[\mathrm{Var}(X\mid Y)\big]+\mathrm{Var}\big(E[X\mid Y]\big)$$
+$$
+E[X]=E\big[E[X\mid Y]\big],\qquad \mathrm{Var}(X)=E\big[\mathrm{Var}(X\mid Y)\big]+\mathrm{Var}\big(E[X\mid Y]\big)
+$$
 
 > [!tip] 条件期望的三个身份
 > 1. **预测器**：在所有 $Y$ 的函数中，$E[X\mid Y]$ 最小化均方误差；
@@ -121,34 +139,50 @@ $$E[X]=E\big[E[X\mid Y]\big],\qquad \mathrm{Var}(X)=E\big[\mathrm{Var}(X\mid Y)\
 
 > [!example] 题目
 > 设有两个随机变量 $X$ 和 $Y$，它们的联合概率密度函数为 $f_{XY}(x,y)$，试证明
-> $$f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}$$
+> $$
+> f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}
+> $$
 > 提示：先证
-> $$F_{X\mid y<Y\le y+\Delta y}(x\mid y<Y\le y+\Delta y)=\frac{\displaystyle\int_{-\infty}^{x}\!\!\int_{y}^{y+\Delta y}f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u}{F_Y(y+\Delta y)-F_Y(y)}$$
+> $$
+> F_{X\mid y<Y\le y+\Delta y}(x\mid y<Y\le y+\Delta y)=\frac{\displaystyle\int_{-\infty}^{x}\!\!\int_{y}^{y+\Delta y}f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u}{F_Y(y+\Delta y)-F_Y(y)}
+> $$
 > 再对 $x$ 求导得
-> $$f_{X\mid y<Y\le y+\Delta y}(x\mid y<Y\le y+\Delta y)=\frac{\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{F_Y(y+\Delta y)-F_Y(y)}$$
+> $$
+> f_{X\mid y<Y\le y+\Delta y}(x\mid y<Y\le y+\Delta y)=\frac{\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{F_Y(y+\Delta y)-F_Y(y)}
+> $$
 > 最后令 $\Delta y\to0$。
 
 **解**：
 
 条件密度考察的是“$Y=y$”这一零概率事件，不能直接作商，只能先用宽度为 $\Delta y$ 的区间过渡，再取极限。设 $\Delta y>0$，记条件事件 $A=\{y<Y\le y+\Delta y\}$，则
 
-$$P(A)=P(y<Y\le y+\Delta y)=F_Y(y+\Delta y)-F_Y(y)$$
+$$
+P(A)=P(y<Y\le y+\Delta y)=F_Y(y+\Delta y)-F_Y(y)
+$$
 
 当 $P(A)>0$ 时，$X$ 在 $A$ 下的条件分布函数为
 
-$$F_{X\mid A}(x\mid A)=\frac{P(X\le x,\ y<Y\le y+\Delta y)}{P(y<Y\le y+\Delta y)}=\frac{\displaystyle\int_{-\infty}^{x}\!\!\int_{y}^{y+\Delta y}f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u}{F_Y(y+\Delta y)-F_Y(y)}$$
+$$
+F_{X\mid A}(x\mid A)=\frac{P(X\le x,\ y<Y\le y+\Delta y)}{P(y<Y\le y+\Delta y)}=\frac{\displaystyle\int_{-\infty}^{x}\!\!\int_{y}^{y+\Delta y}f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u}{F_Y(y+\Delta y)-F_Y(y)}
+$$
 
 固定 $\Delta y$，右端只有外层积分上限含 $x$。由微积分基本定理对 $x$ 求导，得条件密度
 
-$$f_{X\mid A}(x\mid A)=\frac{\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{F_Y(y+\Delta y)-F_Y(y)}$$
+$$
+f_{X\mid A}(x\mid A)=\frac{\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{F_Y(y+\Delta y)-F_Y(y)}
+$$
 
 分子、分母同除以 $\Delta y$，写成差商：
 
-$$f_{X\mid A}(x\mid A)=\frac{\dfrac{1}{\Delta y}\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{\dfrac{F_Y(y+\Delta y)-F_Y(y)}{\Delta y}}$$
+$$
+f_{X\mid A}(x\mid A)=\frac{\dfrac{1}{\Delta y}\displaystyle\int_{y}^{y+\Delta y}f_{XY}(x,v)\,\mathrm{d}v}{\dfrac{F_Y(y+\Delta y)-F_Y(y)}{\Delta y}}
+$$
 
 令 $\Delta y\to0$。若 $f_{XY}(x,\cdot)$ 在 $y$ 处连续，则分子由积分中值定理趋于 $f_{XY}(x,y)$；若 $F_Y$ 在 $y$ 处可导且 $f_Y(y)>0$，则分母趋于 $F_Y'(y)=f_Y(y)$。于是
 
-$$f_{X\mid Y}(x\mid y)=\lim_{\Delta y\to0}f_{X\mid A}(x\mid A)=\frac{f_{XY}(x,y)}{f_Y(y)}$$
+$$
+f_{X\mid Y}(x\mid y)=\lim_{\Delta y\to0}f_{X\mid A}(x\mid A)=\frac{f_{XY}(x,y)}{f_Y(y)}
+$$
 
 式子的含义是把联合分布的信息按 $Y$ 的边缘密度重新分摊：对固定的 $y$，$f_{X\mid Y}(\cdot\mid y)$ 是切片 $f_{XY}(\cdot,y)$ 的 $1/f_Y(y)$ 倍，因而积分为 $1$。反过来把 $f_{XY}=f_Xf_{Y\mid X}$ 与上式联立，即得密度形式的 Bayes 公式。
 
@@ -166,36 +200,50 @@ $$f_{X\mid Y}(x\mid y)=\lim_{\Delta y\to0}f_{X\mid A}(x\mid A)=\frac{f_{XY}(x,y)
 
 > [!example] 题目
 > 设随机变量 $X$、$Y$ 的联合概率密度函数为
-> $$f_{XY}(x,y)=\begin{cases}0.5(x+y)e^{-(x+y)},&x>0,\ y>0\\0,&\text{其他}\end{cases}$$
+> $$
+> f_{XY}(x,y)=\begin{cases}0.5(x+y)e^{-(x+y)},&x>0,\ y>0\\0,&\text{其他}\end{cases}
+> $$
 > 试问 $X$、$Y$ 是否独立？请说明判断理由。
 
 **解**：
 
 独立的判据只有一条：$f_{XY}(x,y)=f_X(x)f_Y(y)$ 几乎处处成立，因此先求两个边缘密度。固定 $x>0$，对 $y$ 从 $0$ 积到 $\infty$：
 
-$$f_X(x)=\int_{0}^{\infty}0.5(x+y)e^{-(x+y)}\,\mathrm{d}y=0.5e^{-x}\int_{0}^{\infty}(x+y)e^{-y}\,\mathrm{d}y$$
+$$
+f_X(x)=\int_{0}^{\infty}0.5(x+y)e^{-(x+y)}\,\mathrm{d}y=0.5e^{-x}\int_{0}^{\infty}(x+y)e^{-y}\,\mathrm{d}y
+$$
 
 利用 $\int_{0}^{\infty}e^{-y}\,\mathrm{d}y=1$ 与 $\int_{0}^{\infty}ye^{-y}\,\mathrm{d}y=1$，得
 
-$$f_X(x)=0.5(x+1)e^{-x},\qquad x>0$$
+$$
+f_X(x)=0.5(x+1)e^{-x},\qquad x>0
+$$
 
 联合密度关于 $x$、$y$ 对称，交换记号立得
 
-$$f_Y(y)=0.5(y+1)e^{-y},\qquad y>0$$
+$$
+f_Y(y)=0.5(y+1)e^{-y},\qquad y>0
+$$
 
 两者的乘积为
 
-$$f_X(x)f_Y(y)=0.25(x+1)(y+1)e^{-(x+y)}$$
+$$
+f_X(x)f_Y(y)=0.25(x+1)(y+1)e^{-(x+y)}
+$$
 
 与联合密度作比值：
 
-$$\frac{f_X(x)f_Y(y)}{f_{XY}(x,y)}=\frac{(x+1)(y+1)}{2(x+y)}$$
+$$
+\frac{f_X(x)f_Y(y)}{f_{XY}(x,y)}=\frac{(x+1)(y+1)}{2(x+y)}
+$$
 
 它不恒等于 $1$。例如取 $x=y=2$，有 $f_{XY}(2,2)=2e^{-4}$、$f_X(2)f_Y(2)=2.25e^{-4}$，相差 $12.5\%$，因此 $X$ 与 $Y$ 不独立。
 
 也可用条件密度复核。由正文定义 8.2，
 
-$$f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}=\frac{(x+y)e^{-x}}{y+1}$$
+$$
+f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}=\frac{(x+y)e^{-x}}{y+1}
+$$
 
 它依赖 $y$：$f_{X\mid Y}(0.5\mid0.5)\approx0.404$，而 $f_{X\mid Y}(0.5\mid3)\approx0.531$。“给定 $Y$ 后 $X$ 的分布随 $Y$ 变化”，正是不独立的另一种表述。
 
@@ -210,7 +258,9 @@ $$f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}=\frac{(x+y)e^{-x}}{y+1}$$
 
 > [!example] 题目
 > 设两个随机变量 $X$、$Y$ 的联合概率密度函数为
-> $$f_{XY}(x,y)=\begin{cases}\dfrac{1}{2}e^{-y},&y>\lvert x\rvert,\ -\infty<x<\infty\\0,&\text{其他}\end{cases}$$
+> $$
+> f_{XY}(x,y)=\begin{cases}\dfrac{1}{2}e^{-y},&y>\lvert x\rvert,\ -\infty<x<\infty\\0,&\text{其他}\end{cases}
+> $$
 > 试求边缘概率密度 $f_X(x)$、$f_Y(y)$，期望 $E(X)$、$E(Y)$ 和条件期望 $E(Y\mid X)$。
 
 **解**：
@@ -219,31 +269,43 @@ $$f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}=\frac{(x+y)e^{-x}}{y+1}$$
 
 （1）固定 $x$，$y$ 的范围是 $\lvert x\rvert<y<\infty$，于是
 
-$$f_X(x)=\int_{\lvert x\rvert}^{\infty}\frac{1}{2}e^{-y}\,\mathrm{d}y=\frac{1}{2}e^{-\lvert x\rvert},\qquad -\infty<x<\infty$$
+$$
+f_X(x)=\int_{\lvert x\rvert}^{\infty}\frac{1}{2}e^{-y}\,\mathrm{d}y=\frac{1}{2}e^{-\lvert x\rvert},\qquad -\infty<x<\infty
+$$
 
 这是拉普拉斯（双指数）密度，且 $\int_{-\infty}^{\infty}\frac{1}{2}e^{-\lvert x\rvert}\,\mathrm{d}x=1$。
 
 （2）固定 $y>0$，$x$ 的范围是 $-y<x<y$，于是
 
-$$f_Y(y)=\int_{-y}^{y}\frac{1}{2}e^{-y}\,\mathrm{d}x=ye^{-y},\qquad y>0$$
+$$
+f_Y(y)=\int_{-y}^{y}\frac{1}{2}e^{-y}\,\mathrm{d}x=ye^{-y},\qquad y>0
+$$
 
 $\int_{0}^{\infty}ye^{-y}\,\mathrm{d}y=1$，归一化成立。
 
 （3）$f_X$ 是偶函数，$xf_X(x)$ 为奇函数，故
 
-$$E(X)=\int_{-\infty}^{\infty}x\cdot\frac{1}{2}e^{-\lvert x\rvert}\,\mathrm{d}x=0$$
+$$
+E(X)=\int_{-\infty}^{\infty}x\cdot\frac{1}{2}e^{-\lvert x\rvert}\,\mathrm{d}x=0
+$$
 
 （4）$f_Y$ 是 $\Gamma(2)$ 密度，由 $\int_{0}^{\infty}y^{2}e^{-y}\,\mathrm{d}y=2!=2$ 得
 
-$$E(Y)=\int_{0}^{\infty}y\cdot ye^{-y}\,\mathrm{d}y=2$$
+$$
+E(Y)=\int_{0}^{\infty}y\cdot ye^{-y}\,\mathrm{d}y=2
+$$
 
 （5）先求条件密度。当 $f_X(x)>0$ 时，
 
-$$f_{Y\mid X}(y\mid x)=\frac{f_{XY}(x,y)}{f_X(x)}=\frac{0.5e^{-y}}{0.5e^{-\lvert x\rvert}}=e^{-(y-\lvert x\rvert)},\qquad y>\lvert x\rvert$$
+$$
+f_{Y\mid X}(y\mid x)=\frac{f_{XY}(x,y)}{f_X(x)}=\frac{0.5e^{-y}}{0.5e^{-\lvert x\rvert}}=e^{-(y-\lvert x\rvert)},\qquad y>\lvert x\rvert
+$$
 
 即给定 $X=x$ 后 $Y-\lvert x\rvert\sim\mathrm{Exp}(1)$，于是
 
-$$E(Y\mid X=x)=\int_{\lvert x\rvert}^{\infty}y\,e^{-(y-\lvert x\rvert)}\,\mathrm{d}y=\lvert x\rvert+1$$
+$$
+E(Y\mid X=x)=\int_{\lvert x\rvert}^{\infty}y\,e^{-(y-\lvert x\rvert)}\,\mathrm{d}y=\lvert x\rvert+1
+$$
 
 把 $x$ 换回随机变量 $X$，得 $E(Y\mid X)=\lvert X\rvert+1$。用全期望公式校验：$E\lvert X\rvert=\int_{0}^{\infty}xe^{-x}\,\mathrm{d}x=1$，故 $E[E(Y\mid X)]=E\lvert X\rvert+1=2=E(Y)$，一致。
 
@@ -259,36 +321,50 @@ $$E(Y\mid X=x)=\int_{\lvert x\rvert}^{\infty}y\,e^{-(y-\lvert x\rvert)}\,\mathrm
 
 > [!example] 题目
 > 设 $U$、$V$ 是区间 $(0,1)$ 上均匀分布的随机变量，它们相互独立。令
-> $$X=\sqrt{-2\ln U}\cos(2\pi V),\qquad Y=\sqrt{-2\ln U}\sin(2\pi V)$$
+> $$
+> X=\sqrt{-2\ln U}\cos(2\pi V),\qquad Y=\sqrt{-2\ln U}\sin(2\pi V)
+> $$
 > 试求 $X$、$Y$ 的联合概率密度函数 $f_{XY}(x,y)$ 及边缘概率密度 $f_X(x)$、$f_Y(y)$。
 
 **解**：
 
 这是把一对均匀随机数变成一对独立标准正态随机数的 **Box–Muller 变换**。$(U,V)$ 在单位正方形上均匀，$f_{UV}(u,v)=1$（$0<u<1$，$0<v<1$）。引入极坐标型中间变量
 
-$$R=\sqrt{-2\ln U},\qquad \Theta=2\pi V$$
+$$
+R=\sqrt{-2\ln U},\qquad \Theta=2\pi V
+$$
 
 反变换为 $U=e^{-R^{2}/2}$、$V=\Theta/(2\pi)$；下面用小写 $r>0$、$0<\theta<2\pi$ 表示它们的取值。由正文定义 8.3，从 $(R,\Theta)$ 到 $(U,V)$ 的雅可比为
 
-$$\left|\frac{\partial(u,v)}{\partial(r,\theta)}\right|=r e^{-r^{2}/2}\cdot\frac{1}{2\pi}=\frac{r e^{-r^{2}/2}}{2\pi}$$
+$$
+\left|\frac{\partial(u,v)}{\partial(r,\theta)}\right|=r e^{-r^{2}/2}\cdot\frac{1}{2\pi}=\frac{r e^{-r^{2}/2}}{2\pi}
+$$
 
 第一个因子来自 $\partial u/\partial r=-r e^{-r^{2}/2}$，第二个因子来自 $\partial v/\partial\theta=1/(2\pi)$；因 $u$ 只依赖 $r$、$v$ 只依赖 $\theta$，行列式等于两个对角元之积。于是
 
-$$f_{R\Theta}(r,\theta)=f_{UV}\!\left(e^{-r^{2}/2},\frac{\theta}{2\pi}\right)\frac{r e^{-r^{2}/2}}{2\pi}=\frac{r e^{-r^{2}/2}}{2\pi},\qquad r>0,\ 0<\theta<2\pi$$
+$$
+f_{R\Theta}(r,\theta)=f_{UV}\!\left(e^{-r^{2}/2},\frac{\theta}{2\pi}\right)\frac{r e^{-r^{2}/2}}{2\pi}=\frac{r e^{-r^{2}/2}}{2\pi},\qquad r>0,\ 0<\theta<2\pi
+$$
 
 对 $\theta$ 积分即得 $R$ 的瑞利密度 $f_R(r)=r e^{-r^{2}/2}$，且 $\Theta\sim U(0,2\pi)$、$R$ 与 $\Theta$ 独立。
 
 再换到 $(X,Y)$：$x=r\cos\theta$、$y=r\sin\theta$，反变换的雅可比为 $\partial(r,\theta)/\partial(x,y)=1/r$。这个 $1/r$ 不能漏：极坐标的面积元是 $r\,\mathrm{d}r\,\mathrm{d}\theta$，从 $(R,\Theta)$ 换到 $(X,Y)$ 时因子恰好抵消。于是
 
-$$f_{XY}(x,y)=f_{R\Theta}(r,\theta)\cdot\frac{1}{r}=\frac{1}{2\pi}e^{-\frac{r^{2}}{2}}=\frac{1}{2\pi}e^{-\frac{x^{2}+y^{2}}{2}}$$
+$$
+f_{XY}(x,y)=f_{R\Theta}(r,\theta)\cdot\frac{1}{r}=\frac{1}{2\pi}e^{-\frac{r^{2}}{2}}=\frac{1}{2\pi}e^{-\frac{x^{2}+y^{2}}{2}}
+$$
 
 该密度定义在全平面，且可分解为
 
-$$f_{XY}(x,y)=\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}\right)\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\right)=f_X(x)f_Y(y)$$
+$$
+f_{XY}(x,y)=\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}\right)\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\right)=f_X(x)f_Y(y)
+$$
 
 所以 $X$ 与 $Y$ 相互独立，边缘密度都是标准正态：
 
-$$f_X(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}},\qquad f_Y(y)=\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}},\qquad -\infty<x,y<\infty$$
+$$
+f_X(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}},\qquad f_Y(y)=\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}},\qquad -\infty<x,y<\infty
+$$
 
 这条变换的工程意义就是把均匀随机数变成高斯随机数，MATLAB 中 `randn` 的原理与实现见 [[vault-notes/math/probability/appendix-random-variable-functions]]。
 

@@ -48,12 +48,16 @@ related: []
 
 > [!info] Def 1 条件概率
 > 设 $A,B$ 是两个事件，且 $P(A)>0$，则称
-> $$P(B\mid A)=\frac{P(AB)}{P(A)}$$
+> $$
+> P(B\mid A)=\frac{P(AB)}{P(A)}
+> $$
 > 为**在事件 $A$ 发生的条件下，事件 $B$ 发生的条件概率**（conditional probability）。
 
 **直观理解**:原本的样本空间是 $\Omega$,现在已知 $A$ 一定发生,那么不可能落在 $A$ 之外的样本点——样本空间**缩小**成了 $A$。同时,为了让 $A$ 成为新的"必然事件",分母从 $P(\Omega)=1$ 换成了 $P(A)$,相当于**重新归一化**。
 
-$$\underbrace{P(B\mid A)}_{\text{在 } A \text{ 内 } B \text{ 占的比例}}=\frac{P(AB)}{P(A)}=\frac{AB \text{ 的面积}}{A \text{ 的面积}}$$
+$$
+\underbrace{P(B\mid A)}_{\text{在 } A \text{ 内 } B \text{ 占的比例}}=\frac{P(AB)}{P(A)}=\frac{AB \text{ 的面积}}{A \text{ 的面积}}
+$$
 
 下图把本章四个核心概念放在一起对照:
 
@@ -153,7 +157,9 @@ $$\underbrace{P(B\mid A)}_{\text{在 } A \text{ 内 } B \text{ 占的比例}}=\f
 
 因此,第一章里所有关于概率的公式,把 $P(\cdot)$ 换成 $P(\cdot\mid A)$ 后**全部成立**。例如:
 
-$$P(B\cup C\mid A)=P(B\mid A)+P(C\mid A)-P(BC\mid A)$$
+$$
+P(B\cup C\mid A)=P(B\mid A)+P(C\mid A)-P(BC\mid A)
+$$
 
 ## 4. 四个必须注意的点
 
@@ -167,17 +173,23 @@ $$P(B\cup C\mid A)=P(B\mid A)+P(C\mid A)-P(BC\mid A)$$
 
 把条件概率的定义式两边同乘 $P(A)$,就得到**乘法公式**:
 
-$$P(AB)=P(A)\,P(B\mid A)\qquad (P(A)>0)$$
+$$
+P(AB)=P(A)\,P(B\mid A)\qquad (P(A)>0)
+$$
 
 对称地也有 $P(AB)=P(B)\,P(A\mid B)$。
 
 **三个事件**(像剥洋葱,一层层剥):
 
-$$P(ABC)=P(A)\,P(B\mid A)\,P(C\mid AB)$$
+$$
+P(ABC)=P(A)\,P(B\mid A)\,P(C\mid AB)
+$$
 
 **一般情形**:
 
-$$P(A_1A_2\cdots A_n)=P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1A_2)\cdots P(A_n\mid A_1A_2\cdots A_{n-1})$$
+$$
+P(A_1A_2\cdots A_n)=P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1A_2)\cdots P(A_n\mid A_1A_2\cdots A_{n-1})
+$$
 
 **用法**:当"同时发生"很难直接算、但"逐步发生"容易算时,用乘法公式。典型场景是**不放回抽样**。
 
@@ -200,15 +212,21 @@ $$P(A_1A_2\cdots A_n)=P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1A_2)\cdots P(A_n\mid 
 
 设 $A_1,\dots,A_n$ 为 $\Omega$ 的一个划分,且 $P(A_i)>0$,则对任意事件 $B$:
 
-$$P(B)=\sum_{i=1}^{n}P(A_i)\,P(B\mid A_i)$$
+$$
+P(B)=\sum_{i=1}^{n}P(A_i)\,P(B\mid A_i)
+$$
 
 **思路**:$B$ 可能由任何一种"原因" $A_i$ 引起。把 $B$ 按 $A_i$ 拆开:
 
-$$B=B\Omega=B(A_1+A_2+\cdots+A_n)=BA_1+BA_2+\cdots+BA_n$$
+$$
+B=B\Omega=B(A_1+A_2+\cdots+A_n)=BA_1+BA_2+\cdots+BA_n
+$$
 
 这些 $BA_i$ 两两互斥,于是由有限可加性
 
-$$P(B)=\sum_{i=1}^{n}P(BA_i)=\sum_{i=1}^{n}P(A_i)P(B\mid A_i)$$
+$$
+P(B)=\sum_{i=1}^{n}P(BA_i)=\sum_{i=1}^{n}P(A_i)P(B\mid A_i)
+$$
 
 **口诀**:已知"原因"求"结果",分情况讨论再按概率加权。
 
@@ -217,7 +235,9 @@ $$P(B)=\sum_{i=1}^{n}P(BA_i)=\sum_{i=1}^{n}P(A_i)P(B\mid A_i)$$
 
 设 $A_1,\dots,A_n$ 为 $\Omega$ 的一个划分,$P(A_i)>0$,$P(B)>0$,则
 
-$$P(A_k\mid B)=\frac{P(A_k)P(B\mid A_k)}{\sum_{i=1}^{n}P(A_i)P(B\mid A_i)}=\frac{P(A_k)P(B\mid A_k)}{P(B)}$$
+$$
+P(A_k\mid B)=\frac{P(A_k)P(B\mid A_k)}{\sum_{i=1}^{n}P(A_i)P(B\mid A_i)}=\frac{P(A_k)P(B\mid A_k)}{P(B)}
+$$
 
 **与全概率公式的关系**:分母就是全概率公式,分子是第 $k$ 条路径的概率。所以**全概率公式是贝叶斯公式的分母**。
 
@@ -235,12 +255,16 @@ $$P(A_k\mid B)=\frac{P(A_k)P(B\mid A_k)}{\sum_{i=1}^{n}P(A_i)P(B\mid A_i)}=\frac
 
 > [!info] Def 3 相互独立
 > 若
-> $$P(AB)=P(A)P(B)$$
+> $$
+> P(AB)=P(A)P(B)
+> $$
 > 则称事件 $A$ 与 $B$ **相互独立**（independent）。
 
 **等价形式**:当 $P(A)>0$ 时,
 
-$$A,B \text{ 独立} \iff P(B\mid A)=P(B)$$
+$$
+A,B \text{ 独立} \iff P(B\mid A)=P(B)
+$$
 
 即"$A$ 发生与否,完全不改变 $B$ 的概率"——这正是"独立"二字的字面含义。反过来若 $P(B\mid A)\ne P(B)$,说明 $A$ 携带了关于 $B$ 的信息,两者不独立。
 
@@ -250,11 +274,15 @@ $$A,B \text{ 独立} \iff P(B\mid A)=P(B)$$
 
 若 $A$ 与 $B$ 独立,则以下三对**也相互独立**:
 
-$$A \text{ 与 } \bar B,\qquad \bar A \text{ 与 } B,\qquad \bar A \text{ 与 } \bar B$$
+$$
+A \text{ 与 } \bar B,\qquad \bar A \text{ 与 } B,\qquad \bar A \text{ 与 } \bar B
+$$
 
 证明 $\bar A$ 与 $B$ 独立:
 
-$$P(\bar A B)=P(B)-P(AB)=P(B)-P(A)P(B)=P(B)[1-P(A)]=P(B)P(\bar A)$$
+$$
+P(\bar A B)=P(B)-P(AB)=P(B)-P(A)P(B)=P(B)[1-P(A)]=P(B)P(\bar A)
+$$
 
 另外,必然事件 $\Omega$ 和不可能事件 $\varnothing$ 与任何事件都独立。
 
@@ -262,14 +290,20 @@ $$P(\bar A B)=P(B)-P(AB)=P(B)-P(A)P(B)=P(B)[1-P(A)]=P(B)P(\bar A)$$
 
 **三事件相互独立**,要求下面四个等式**同时成立**:
 
-$$\begin{cases} P(AB)=P(A)P(B) \\ P(AC)=P(A)P(C) \\ P(BC)=P(B)P(C) \end{cases} \quad\text{(两两独立)}$$
+$$
+\begin{cases} P(AB)=P(A)P(B) \\ P(AC)=P(A)P(C) \\ P(BC)=P(B)P(C) \end{cases} \quad\text{(两两独立)}
+$$
 
-$$P(ABC)=P(A)P(B)P(C) \quad\text{(三者独立)}$$
+$$
+P(ABC)=P(A)P(B)P(C) \quad\text{(三者独立)}
+$$
 
 > [!warning] 两两独立 $\nRightarrow$ 相互独立
 > **经典反例**(Feller):一个均匀正四面体,四个面分别涂成:面 1 红、面 2 白、面 3 黑、面 4 红白黑。
 > 投掷一次,**观察朝下的那个面**,该面上出现的颜色算作"出现"。定义
-> $$A=\text{"红出现"},\quad B=\text{"白出现"},\quad C=\text{"黑出现"}$$
+> $$
+> A=\text{"红出现"},\quad B=\text{"白出现"},\quad C=\text{"黑出现"}
+> $$
 > 朝下的面在 4 个面中等可能,于是
 > - $P(A)=P(B)=P(C)=\frac{2}{4}=\frac{1}{2}$(红色出现在面 1 和面 4 上,余同理)
 > - $P(AB)=P(AC)=P(BC)=\frac{1}{4}$(只有面 4 同时含两种颜色)→ **两两独立**
@@ -290,7 +324,9 @@ $$P(ABC)=P(A)P(B)P(C) \quad\text{(三者独立)}$$
 
 **关键结论**:若 $P(A)>0$ 且 $P(B)>0$,则
 
-$$\text{互斥} \Rightarrow \text{不独立}$$
+$$
+\text{互斥} \Rightarrow \text{不独立}
+$$
 
 因为互斥意味着 $P(AB)=0$,而独立要求 $P(AB)=P(A)P(B)>0$,矛盾。
 
@@ -304,7 +340,9 @@ $$\text{互斥} \Rightarrow \text{不独立}$$
 
 **二项概率公式**:$n$ 次试验中 $A$ 恰好发生 $k$ 次的概率为
 
-$$P_n(k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\dots,n$$
+$$
+P_n(k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\dots,n
+$$
 
 **推导思路**:指定某 $k$ 次发生、其余 $n-k$ 次不发生,由独立性其概率为 $p^k(1-p)^{n-k}$;而"哪 $k$ 次发生"有 $\binom{n}{k}$ 种选法,各种情况互斥,故相加。
 
@@ -319,7 +357,9 @@ $$P_n(k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\dots,n$$
 
 $P(A)=\frac{3}{6}=\frac{1}{2}$,$P(AB)=P(\{2\})=\frac{1}{6}$,故
 
-$$P(B\mid A)=\frac{1/6}{1/2}=\frac{1}{3}$$
+$$
+P(B\mid A)=\frac{1/6}{1/2}=\frac{1}{3}
+$$
 
 直观上:已知是偶数,样本空间缩为 $\{2,4,6\}$ 三个点,"是 2"占其中一个。
 
@@ -329,7 +369,9 @@ $$P(B\mid A)=\frac{1/6}{1/2}=\frac{1}{3}$$
 
 设 $A_i=$"第 $i$ 次取到白球"。
 
-$$P(A_1A_2)=P(A_1)P(A_2\mid A_1)=\frac{5}{8}\times\frac{4}{7}=\frac{5}{14}\approx 0.357$$
+$$
+P(A_1A_2)=P(A_1)P(A_2\mid A_1)=\frac{5}{8}\times\frac{4}{7}=\frac{5}{14}\approx 0.357
+$$
 
 ## 例 3(全概率 + 贝叶斯:三条信道的误码)
 
@@ -337,11 +379,15 @@ $$P(A_1A_2)=P(A_1)P(A_2\mid A_1)=\frac{5}{8}\times\frac{4}{7}=\frac{5}{14}\appro
 
 **(1) 求总误码率 $P(B)$**——全概率公式:
 
-$$P(B)=0.5\times0.01+0.3\times0.02+0.2\times0.05=0.005+0.006+0.010=0.021$$
+$$
+P(B)=0.5\times0.01+0.3\times0.02+0.2\times0.05=0.005+0.006+0.010=0.021
+$$
 
 **(2) 已知出现了一个误码,求它来自第 3 条信道的概率**——贝叶斯公式:
 
-$$P(A_3\mid B)=\frac{P(A_3)P(B\mid A_3)}{P(B)}=\frac{0.2\times0.05}{0.021}=\frac{0.010}{0.021}\approx 0.476$$
+$$
+P(A_3\mid B)=\frac{P(A_3)P(B\mid A_3)}{P(B)}=\frac{0.2\times0.05}{0.021}=\frac{0.010}{0.021}\approx 0.476
+$$
 
 注意:第 3 条信道只承担了 $20\%$ 的流量,却贡献了 $47.6\%$ 的误码——这正是**后验概率把"占比"与"错误率"两重信息合成**的结果。
 
@@ -351,11 +397,15 @@ $$P(A_3\mid B)=\frac{P(A_3)P(B\mid A_3)}{P(B)}=\frac{0.2\times0.05}{0.021}=\frac
 
 **串联**(三者都必须正常):
 
-$$P=0.9^3=0.729$$
+$$
+P=0.9^3=0.729
+$$
 
 **并联**(至少一个正常),用对立事件:
 
-$$P=1-P(\text{全坏})=1-0.1^3=0.999$$
+$$
+P=1-P(\text{全坏})=1-0.1^3=0.999
+$$
 
 这个对比说明:**并联冗余**对可靠性的提升远大于单件质量的提升。
 
@@ -363,7 +413,9 @@ $$P=1-P(\text{全坏})=1-0.1^3=0.999$$
 
 某链路误码率 $p=0.01$,传输 $100$ 个比特。求恰好出现 $2$ 位误码的概率。
 
-$$P_{100}(2)=\binom{100}{2}(0.01)^2(0.99)^{98}=4950\times10^{-4}\times0.99^{98}\approx 0.185$$
+$$
+P_{100}(2)=\binom{100}{2}(0.01)^2(0.99)^{98}=4950\times10^{-4}\times0.99^{98}\approx 0.185
+$$
 
 
 > [!tip] 本章收官

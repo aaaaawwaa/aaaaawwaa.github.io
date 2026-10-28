@@ -28,7 +28,9 @@ related: []
 
 > [!info] 定义 1 样本自相关
 > 对实序列 $x[0],\dots,x[N-1]$，滞后 $m$ 的样本自相关定义为
-> $$\hat R[m]=\frac{1}{N}\sum_{n=0}^{N-\lvert m\rvert-1}x[n+m]x[n],\qquad \lvert m\rvert\le N-1$$
+> $$
+> \hat R[m]=\frac{1}{N}\sum_{n=0}^{N-\lvert m\rvert-1}x[n+m]x[n],\qquad \lvert m\rvert\le N-1
+> $$
 > 若分母改为 $N-\lvert m\rvert$，得到无偏版本；复序列把 $x[n]$ 换成 $x^*[n]$。
 
 | 归一化 | 分母 | 期望（WSS） | 优点 | 缺点 |
@@ -57,7 +59,9 @@ $$\mathrm{Var}\big(\hat R[0]\big)\approx\frac{2\sigma^4}{N},\qquad
 
 对一般有色过程，协方差近似满足 Bartlett 公式：
 
-$$\mathrm{Cov}\big(\hat R[m],\hat R[n]\big)\approx\frac{1}{N}\sum_{k}\big[R[k]R[k+m-n]+R[k+m]R[k-n]\big]$$
+$$
+\mathrm{Cov}\big(\hat R[m],\hat R[n]\big)\approx\frac{1}{N}\sum_{k}\big[R[k]R[k+m-n]+R[k+m]R[k-n]\big]
+$$
 
 相关越强，有效独立样本越少，方差越大。若相关时间为 $\tau_c$（以采样点计），有效样本数约为 $N_{\mathrm{eff}}\approx N/(2\tau_c)$，它决定了估计精度的实际上限。
 

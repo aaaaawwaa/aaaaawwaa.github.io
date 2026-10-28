@@ -39,21 +39,29 @@ related: []
 
 设 $f(t)$ 以 $T$ 为周期，在 $[-T/2,T/2]$ 上满足狄利克雷条件（连续或只有有限个第一类间断点、只有有限个极值点），则
 
-$$f(t)=\frac{a_0}{2}+\sum_{n=1}^{\infty}\left(a_n\cos n\omega_0t+b_n\sin n\omega_0t\right)$$
+$$
+f(t)=\frac{a_0}{2}+\sum_{n=1}^{\infty}\left(a_n\cos n\omega_0t+b_n\sin n\omega_0t\right)
+$$
 
-$$a_n=\frac{2}{T}\int_{-T/2}^{T/2}f(t)\cos n\omega_0t\,dt,\qquad b_n=\frac{2}{T}\int_{-T/2}^{T/2}f(t)\sin n\omega_0t\,dt$$
+$$
+a_n=\frac{2}{T}\int_{-T/2}^{T/2}f(t)\cos n\omega_0t\,dt,\qquad b_n=\frac{2}{T}\int_{-T/2}^{T/2}f(t)\sin n\omega_0t\,dt
+$$
 
 在间断点处，级数收敛到左右极限的平均值。
 
 ## 复指数形式
 
 > [!info] Def 1 复傅里叶级数
-> $$f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t},\qquad c_n=\frac{1}{T}\int_{-T/2}^{T/2}f(t)e^{-in\omega_0t}\,\mathrm{d}t$$
+> $$
+> f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t},\qquad c_n=\frac{1}{T}\int_{-T/2}^{T/2}f(t)e^{-in\omega_0t}\,\mathrm{d}t
+> $$
 > 称为 $f$ 的**复傅里叶级数**（complex Fourier series）。
 
 **两种形式的关系**：
 
-$$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n+ib_n}{2}$$
+$$
+c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n+ib_n}{2}
+$$
 
 > [!tip] 复指数形式的优点
 > 1. 公式统一：正负频率一起处理，不用分 sin/cos。
@@ -63,7 +71,9 @@ $$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n
 
 > [!example] 方波的傅里叶级数
 > 周期 $T=2\pi$、幅值 $\pm1$ 的方波：
-> $$f(t)=\frac{4}{\pi}\left(\sin t+\frac{\sin3t}{3}+\frac{\sin5t}{5}+\cdots\right)$$
+> $$
+> f(t)=\frac{4}{\pi}\left(\sin t+\frac{\sin3t}{3}+\frac{\sin5t}{5}+\cdots\right)
+> $$
 > 只含奇次谐波，幅度按 $1/n$ 衰减。这是"吉布斯现象"的经典例子。
 
 # 2. 傅里叶变换
@@ -72,11 +82,15 @@ $$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n
 
 > [!info] Def 2 傅里叶变换
 > 设 $f(t)$ 在 $(-\infty,\infty)$ 上绝对可积，则
-> $$F(\omega)=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\,\mathrm{d}t$$
+> $$
+> F(\omega)=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\,\mathrm{d}t
+> $$
 > 称为 $f$ 的**傅里叶变换**（Fourier transform）。
 
 > [!info] Def 3 傅里叶逆变换
-> $$f(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega t}\,\mathrm{d}\omega$$
+> $$
+> f(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega t}\,\mathrm{d}\omega
+> $$
 > 称为**傅里叶逆变换**（inverse Fourier transform）。
 
 **存在条件**：$\int_{-\infty}^{\infty}|f(t)|\mathrm{d}t<\infty$（绝对可积）是充分条件，不是必要条件。δ 函数、常数、正弦等通过广义函数意义下的傅里叶变换处理。
@@ -117,7 +131,9 @@ $$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n
 | 帕塞瓦尔 | $\int\lvert f\rvert^2dt$ | $\frac{1}{2\pi}\int\lvert F\rvert^2d\omega$ |
 
 > [!important] 卷积定理
-> $$\mathcal{F}[f*g]=F(\omega)G(\omega)$$
+> $$
+> \mathcal{F}[f*g]=F(\omega)G(\omega)
+> $$
 > 时域卷积 ↔ 频域相乘。这是 LSI 系统分析的核心：**系统输出 = 输入 * 冲激响应**，在频域就是 **$Y=HX$**。
 
 > [!tip] 对偶性
@@ -144,7 +160,9 @@ $$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n
 
 > [!info] Def 4 δ 函数
 > **狄拉克 δ 函数**（Dirac delta function）是满足
-> $$\delta(t)=0\ (t\ne0),\qquad \int_{-\infty}^{\infty}\delta(t)\,\mathrm{d}t=1$$
+> $$
+> \delta(t)=0\ (t\ne0),\qquad \int_{-\infty}^{\infty}\delta(t)\,\mathrm{d}t=1
+> $$
 > 的广义函数。它不是普通函数，而是"集中在一点、面积为 1"的冲激。
 
 **三条核心性质**：
@@ -155,9 +173,13 @@ $$c_0=\frac{a_0}{2},\qquad c_n=\frac{a_n-ib_n}{2}\ (n>0),\qquad c_{-n}=\frac{a_n
 
 **傅里叶变换**：
 
-$$\mathcal{F}[\delta(t)]=1,\qquad \mathcal{F}[1]=2\pi\delta(\omega)$$
+$$
+\mathcal{F}[\delta(t)]=1,\qquad \mathcal{F}[1]=2\pi\delta(\omega)
+$$
 
-$$\mathcal{F}[\delta(t-t_0)]=e^{-i\omega t_0}$$
+$$
+\mathcal{F}[\delta(t-t_0)]=e^{-i\omega t_0}
+$$
 
 > [!warning] δ 函数不是普通函数
 > 它没有通常意义下的函数值；严格定义在广义函数（分布）理论中。工程上把它看作"宽度趋于 0、高度趋于无穷、面积保持 1"的脉冲极限。
@@ -166,7 +188,9 @@ $$\mathcal{F}[\delta(t-t_0)]=e^{-i\omega t_0}$$
 
 周期信号可以写成复指数之和：
 
-$$f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}\ \longleftrightarrow\ F(\omega)=2\pi\sum_{n=-\infty}^{\infty}c_n\delta(\omega-n\omega_0)$$
+$$
+f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}\ \longleftrightarrow\ F(\omega)=2\pi\sum_{n=-\infty}^{\infty}c_n\delta(\omega-n\omega_0)
+$$
 
 即**周期信号的频谱是离散的冲激串**。这统一了傅里叶级数与傅里叶变换：周期信号是"频谱为冲激串"的非周期信号。
 
@@ -182,7 +206,9 @@ $$f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}\ \longleftrightarrow\ F(\omeg
 
 LSI 系统：
 
-$$y(t)=x(t)*h(t)\ \longleftrightarrow\ Y(\omega)=X(\omega)H(\omega)$$
+$$
+y(t)=x(t)*h(t)\ \longleftrightarrow\ Y(\omega)=X(\omega)H(\omega)
+$$
 
 - $H(\omega)$：频率响应
 - 时域卷积 → 频域乘法：滤波器设计、均衡、匹配滤波都基于此
@@ -191,13 +217,17 @@ $$y(t)=x(t)*h(t)\ \longleftrightarrow\ Y(\omega)=X(\omega)H(\omega)$$
 
 若 $f(t)$ 带限（$|F(\omega)|=0$，$|\omega|>\omega_H$），以 $T\le\pi/\omega_H$ 抽样，则可由样值无失真恢复：
 
-$$f(t)=\sum_{n=-\infty}^{\infty}f(nT)\operatorname{sinc}\left(\frac{t-nT}{T}\right)$$
+$$
+f(t)=\sum_{n=-\infty}^{\infty}f(nT)\operatorname{sinc}\left(\frac{t-nT}{T}\right)
+$$
 
 抽样后的频谱是原频谱以 $2\pi/T$ 为周期的延拓；不混叠条件 $T\le\pi/\omega_H$（即 $f_s\ge2f_H$）。
 
 ## 帕塞瓦尔定理
 
-$$\int_{-\infty}^{\infty}|f(t)|^2\,\mathrm{d}t=\frac{1}{2\pi}\int_{-\infty}^{\infty}|F(\omega)|^2\,\mathrm{d}\omega$$
+$$
+\int_{-\infty}^{\infty}|f(t)|^2\,\mathrm{d}t=\frac{1}{2\pi}\int_{-\infty}^{\infty}|F(\omega)|^2\,\mathrm{d}\omega
+$$
 
 时域能量 = 频域能量。它是"能量守恒"在傅里叶变换下的表述。
 
@@ -221,31 +251,49 @@ y = conv(x, h, 'same');
 
 > [!example] 例 1：矩形脉冲
 > $f(t)=\operatorname{rect}(t/\tau)$（$|t|<\tau/2$ 时为 1，否则 0）。
-> $$F(\omega)=\int_{-\tau/2}^{\tau/2}e^{-i\omega t}\,\mathrm{d}t=\tau\frac{\sin(\omega\tau/2)}{\omega\tau/2}=\tau\operatorname{sinc}\left(\frac{\omega\tau}{2}\right)$$
+> $$
+> F(\omega)=\int_{-\tau/2}^{\tau/2}e^{-i\omega t}\,\mathrm{d}t=\tau\frac{\sin(\omega\tau/2)}{\omega\tau/2}=\tau\operatorname{sinc}\left(\frac{\omega\tau}{2}\right)
+> $$
 > 时域越窄（$\tau$ 小），频域主瓣越宽——时宽-带宽积不变。
 
 > [!example] 例 2：单边指数
 > $f(t)=e^{-at}u(t)$，$a>0$。
-> $$F(\omega)=\int_0^{\infty}e^{-(a+i\omega)t}\,\mathrm{d}t=\frac{1}{a+i\omega}$$
-> $$|F(\omega)|=\frac{1}{\sqrt{a^2+\omega^2}},\qquad \arg F(\omega)=-\arctan\frac{\omega}{a}$$
+> $$
+> F(\omega)=\int_0^{\infty}e^{-(a+i\omega)t}\,\mathrm{d}t=\frac{1}{a+i\omega}
+> $$
+> $$
+> |F(\omega)|=\frac{1}{\sqrt{a^2+\omega^2}},\qquad \arg F(\omega)=-\arctan\frac{\omega}{a}
+> $$
 
 > [!example] 例 3：高斯脉冲
 > $f(t)=e^{-t^2/(2\sigma^2)}$。
-> $$F(\omega)=\sigma\sqrt{2\pi}e^{-\sigma^2\omega^2/2}$$
+> $$
+> F(\omega)=\sigma\sqrt{2\pi}e^{-\sigma^2\omega^2/2}
+> $$
 > 高斯函数的傅里叶变换仍是高斯——它是"自傅里叶"函数。时域越窄，频域越宽。
 
 > [!example] 例 4：卷积定理
 > 求 $f(t)=e^{-at}u(t)$ 与 $g(t)=e^{-bt}u(t)$ 的卷积（$a,b>0$）。
-> $$F(\omega)=\frac{1}{a+i\omega},\qquad G(\omega)=\frac{1}{b+i\omega}$$
-> $$F G=\frac{1}{(a+i\omega)(b+i\omega)}=\frac{1}{b-a}\left(\frac{1}{a+i\omega}-\frac{1}{b+i\omega}\right)$$
+> $$
+> F(\omega)=\frac{1}{a+i\omega},\qquad G(\omega)=\frac{1}{b+i\omega}
+> $$
+> $$
+> F G=\frac{1}{(a+i\omega)(b+i\omega)}=\frac{1}{b-a}\left(\frac{1}{a+i\omega}-\frac{1}{b+i\omega}\right)
+> $$
 > 逆变换：
-> $$f*g=\frac{1}{b-a}\left(e^{-at}-e^{-bt}\right)u(t)$$
+> $$
+> f*g=\frac{1}{b-a}\left(e^{-at}-e^{-bt}\right)u(t)
+> $$
 
 > [!example] 例 5：帕塞瓦尔
 > 用帕塞瓦尔求 $\int_{-\infty}^{\infty}\frac{\mathrm{d}\omega}{(a^2+\omega^2)^2}$。
 > 取 $f(t)=e^{-a|t|}$，$F(\omega)=\frac{2a}{a^2+\omega^2}$。
-> $$\int|f|^2dt=\int e^{-2a|t|}dt=\frac1a$$
-> $$\frac{1}{2\pi}\int\frac{4a^2}{(a^2+\omega^2)^2}d\omega=\frac1a$$
+> $$
+> \int|f|^2dt=\int e^{-2a|t|}dt=\frac1a
+> $$
+> $$
+> \frac{1}{2\pi}\int\frac{4a^2}{(a^2+\omega^2)^2}d\omega=\frac1a
+> $$
 > 故 $\int\frac{d\omega}{(a^2+\omega^2)^2}=\frac{\pi}{2a^3}$。
 
 > [!tip] 本章收官

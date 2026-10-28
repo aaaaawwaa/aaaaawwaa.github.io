@@ -85,7 +85,9 @@ IIR 数字滤波器的设计通常走"模拟原型"路线：
 
 用 dB 表示：
 
-$$\alpha_p=-20\log_{10}\left|H(e^{j\omega_p})\right|,\qquad \alpha_s=-20\log_{10}\left|H(e^{j\omega_s})\right|$$
+$$
+\alpha_p=-20\log_{10}\left|H(e^{j\omega_p})\right|,\qquad \alpha_s=-20\log_{10}\left|H(e^{j\omega_s})\right|
+$$
 
 ## 映射必须满足的条件
 
@@ -109,7 +111,9 @@ $$\alpha_p=-20\log_{10}\left|H(e^{j\omega_p})\right|,\qquad \alpha_s=-20\log_{10
 
 > [!info] Def 2 巴特沃斯滤波器
 > **巴特沃斯滤波器**（Butterworth filter）的幅平方特性为
-> $$\left|H_a(j\Omega)\right|^2=\frac{1}{1+\left(\dfrac{\Omega}{\Omega_c}\right)^{2N}}$$
+> $$
+> \left|H_a(j\Omega)\right|^2=\frac{1}{1+\left(\dfrac{\Omega}{\Omega_c}\right)^{2N}}
+> $$
 > 它在 $\Omega=0$ 处**最平坦**（前 $2N-1$ 阶导数为零），在 $\Omega=\Omega_c$ 处衰减 3 dB，故 $\Omega_c$ 也称 **3 dB 截止频率**。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="100%" style="max-width:760px" font-family="inherit">
@@ -166,7 +170,9 @@ $$\alpha_p=-20\log_{10}\left|H(e^{j\omega_p})\right|,\qquad \alpha_s=-20\log_{10
 
 **阶数估计**：由 $\alpha_p$、$\alpha_s$ 与 $\Omega_p$、$\Omega_s$：
 
-$$N\ge\frac{\log_{10}\left[\dfrac{10^{\alpha_s/10}-1}{10^{\alpha_p/10}-1}\right]}{2\log_{10}\left(\dfrac{\Omega_s}{\Omega_p}\right)}$$
+$$
+N\ge\frac{\log_{10}\left[\dfrac{10^{\alpha_s/10}-1}{10^{\alpha_p/10}-1}\right]}{2\log_{10}\left(\dfrac{\Omega_s}{\Omega_p}\right)}
+$$
 
 取满足条件的最小整数。
 
@@ -174,7 +180,9 @@ $$N\ge\frac{\log_{10}\left[\dfrac{10^{\alpha_s/10}-1}{10^{\alpha_p/10}-1}\right]
 
 > [!info] Def 3 切比雪夫滤波器
 > **切比雪夫 I 型滤波器**（Chebyshev type I filter）的幅平方特性为
-> $$\left|H_a(j\Omega)\right|^2=\frac{1}{1+\varepsilon^2T_N^2\left(\dfrac{\Omega}{\Omega_p}\right)}$$
+> $$
+> \left|H_a(j\Omega)\right|^2=\frac{1}{1+\varepsilon^2T_N^2\left(\dfrac{\Omega}{\Omega_p}\right)}
+> $$
 > 其中 $T_N(x)$ 为 $N$ 阶切比雪夫多项式，$\varepsilon$ 由通带波纹决定。它在通带内**等波纹**、阻带单调下降。
 
 - 通带波纹 $\alpha_p$ 与 $\varepsilon$ 的关系：$\varepsilon=\sqrt{10^{\alpha_p/10}-1}$
@@ -203,15 +211,21 @@ $$N\ge\frac{\log_{10}\left[\dfrac{10^{\alpha_s/10}-1}{10^{\alpha_p/10}-1}\right]
 
 > [!info] Def 5 脉冲响应不变法
 > **脉冲响应不变法**（impulse invariance method）令数字滤波器的单位冲激响应等于模拟滤波器冲激响应的等间隔采样：
-> $$h(n)=T\,h_a(nT)$$
+> $$
+> h(n)=T\,h_a(nT)
+> $$
 > 其中 $T$ 为采样周期。对应的映射为
-> $$z=e^{sT}$$
+> $$
+> z=e^{sT}
+> $$
 
 ## 映射关系
 
 若 $H_a(s)$ 有极点 $s_k$，则 $H(z)$ 的极点为
 
-$$z_k=e^{s_kT}$$
+$$
+z_k=e^{s_kT}
+$$
 
 - $s$ 左半平面 → $z$ 单位圆内（稳定）
 - $s$ 虚轴 → $z$ 单位圆（频率轴）
@@ -221,7 +235,9 @@ $$z_k=e^{s_kT}$$
 
 由采样定理，$H(z)$ 的频响是 $H_a(j\Omega)$ 的周期延拓：
 
-$$H(e^{j\omega})=\frac{1}{T}\sum_{k=-\infty}^{\infty}H_a\left(j\frac{\omega-2\pi k}{T}\right)$$
+$$
+H(e^{j\omega})=\frac{1}{T}\sum_{k=-\infty}^{\infty}H_a\left(j\frac{\omega-2\pi k}{T}\right)
+$$
 
 因此若 $H_a(j\Omega)$ 在 $\Omega>\pi/T$ 处不为零，就会发生**频谱混叠**：
 
@@ -235,7 +251,9 @@ $$H(e^{j\omega})=\frac{1}{T}\sum_{k=-\infty}^{\infty}H_a\left(j\frac{\omega-2\pi
 > [!example] 一阶低通的脉冲响应不变法
 > 模拟滤波器 $H_a(s)=\dfrac{a}{s+a}$，冲激响应 $h_a(t)=ae^{-at}u(t)$。
 > 采样：$h(n)=T a e^{-anT}u(n)$，取 $z$ 变换：
-> $$H(z)=\frac{Ta}{1-e^{-aT}z^{-1}}$$
+> $$
+> H(z)=\frac{Ta}{1-e^{-aT}z^{-1}}
+> $$
 > 极点 $s=-a$ → $z=e^{-aT}$，确实落在单位圆内。
 > 若 $aT\ll1$，$H(z)\approx\dfrac{aT}{1-(1-aT)z^{-1}}$，与模拟滤波器在低频段一致。
 
@@ -249,7 +267,9 @@ $$H(e^{j\omega})=\frac{1}{T}\sum_{k=-\infty}^{\infty}H_a\left(j\frac{\omega-2\pi
 
 > [!info] Def 6 双线性变换法
 > **双线性变换法**（bilinear transform）用代换
-> $$s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}\qquad\Longleftrightarrow\qquad z=\frac{1+(T/2)s}{1-(T/2)s}$$
+> $$
+> s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}\qquad\Longleftrightarrow\qquad z=\frac{1+(T/2)s}{1-(T/2)s}
+> $$
 > 把模拟 $H_a(s)$ 映射为数字 $H(z)$。
 
 - 这是一个**双线性分式变换**：$s$ 平面 → $z$ 平面的一一映射
@@ -261,9 +281,13 @@ $$H(e^{j\omega})=\frac{1}{T}\sum_{k=-\infty}^{\infty}H_a\left(j\frac{\omega-2\pi
 
 > [!info] Def 7 频率畸变与预畸变
 > 双线性变换的频率关系为
-> $$\Omega=\frac{2}{T}\tan\frac{\omega}{2}$$
+> $$
+> \Omega=\frac{2}{T}\tan\frac{\omega}{2}
+> $$
 > 这是**非线性**的：$\omega$ 从 $0$ 到 $\pi$ 时，$\Omega$ 从 $0$ 到 $\infty$。为了让数字边沿 $\omega_p,\omega_s$ 映射到正确的模拟边沿，需要先做**预畸变**（prewarping）：
-> $$\Omega_p=\frac{2}{T}\tan\frac{\omega_p}{2},\qquad \Omega_s=\frac{2}{T}\tan\frac{\omega_s}{2}$$
+> $$
+> \Omega_p=\frac{2}{T}\tan\frac{\omega_p}{2},\qquad \Omega_s=\frac{2}{T}\tan\frac{\omega_s}{2}
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="100%" style="max-width:760px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>

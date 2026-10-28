@@ -159,7 +159,9 @@ set_multicycle_path 3 -hold  -from [get_cells small_cnt_reg*] -to [get_cells big
 
 把 [[vault-notes/fpga/sta/04-timing-analysis-setup-hold]] 的周期公式右边整体放宽 $N$ 倍：
 
-$$N\cdot T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})$$
+$$
+N\cdot T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})
+$$
 
 ## 五、逐引脚偏移约束（Path-pin offset）
 

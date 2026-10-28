@@ -39,7 +39,9 @@ related: []
 
 > [!info] Def 1 数字基带信号
 > **数字基带信号**（digital baseband signal）是未经过载波调制的数字信号，由一串码元波形组成：
-> $$s(t)=\sum_{n=-\infty}^{\infty}a_n g(t-nT_B)$$
+> $$
+> s(t)=\sum_{n=-\infty}^{\infty}a_n g(t-nT_B)
+> $$
 > 其中 $a_n$ 为第 $n$ 个符号，$g(t)$ 为码元波形，$T_B$ 为码元周期。
 
 ## 基本波形与表示
@@ -57,7 +59,9 @@ related: []
 
 ## 基带信号的功率谱密度（二进制）
 
-$$P_s(f)=f_B\,p(1-p)\,|G_1(f)-G_2(f)|^2+f_B^2\sum_{m=-\infty}^{\infty}\left|p\,G_1(mf_B)+(1-p)\,G_2(mf_B)\right|^2\delta(f-mf_B)$$
+$$
+P_s(f)=f_B\,p(1-p)\,|G_1(f)-G_2(f)|^2+f_B^2\sum_{m=-\infty}^{\infty}\left|p\,G_1(mf_B)+(1-p)\,G_2(mf_B)\right|^2\delta(f-mf_B)
+$$
 
 （$f_B=1/T_B$；$G_1,G_2$：两种码元波形的频谱；$p$：出现 $g_1$ 的概率。）
 
@@ -127,7 +131,9 @@ flowchart LR
 
 抽样值：
 
-$$r(kT_B)=a_k h(0)+\sum_{n\ne k}a_n h[(k-n)T_B]+n_R(kT_B)$$
+$$
+r(kT_B)=a_k h(0)+\sum_{n\ne k}a_n h[(k-n)T_B]+n_R(kT_B)
+$$
 
 （第二项即 ISI，第三项为噪声。）
 
@@ -135,7 +141,9 @@ $$r(kT_B)=a_k h(0)+\sum_{n\ne k}a_n h[(k-n)T_B]+n_R(kT_B)$$
 
 ## 时域条件
 
-$$h(kT_B)=\begin{cases}1,&k=0\\0,&k\ne0\end{cases}$$
+$$
+h(kT_B)=\begin{cases}1,&k=0\\0,&k\ne0\end{cases}
+$$
 
 （本码元抽样时刻最大，其他码元抽样时刻全为 0。）
 
@@ -143,7 +151,9 @@ $$h(kT_B)=\begin{cases}1,&k=0\\0,&k\ne0\end{cases}$$
 
 > [!info] Def 6 奈奎斯特第一准则
 > **奈奎斯特第一准则**（Nyquist first criterion）：若总传输特性满足
-> $$\sum_i H\!\left(\omega+\frac{2\pi i}{T_B}\right)=T_B\quad(\text{或常数}),\qquad|\omega|\le\frac{\pi}{T_B}$$
+> $$
+> \sum_i H\!\left(\omega+\frac{2\pi i}{T_B}\right)=T_B\quad(\text{或常数}),\qquad|\omega|\le\frac{\pi}{T_B}
+> $$
 > 则系统无码间串扰。
 
 > [!tip] 物理意义（判断口诀）
@@ -152,12 +162,16 @@ $$h(kT_B)=\begin{cases}1,&k=0\\0,&k\ne0\end{cases}$$
 
 ## 理想低通（极限性能）
 
-$$H(\omega)=\begin{cases}T_B\ (\text{常数}),&|\omega|\le\frac{\pi}{T_B}\\0,&\text{其他}\end{cases}$$
+$$
+H(\omega)=\begin{cases}T_B\ (\text{常数}),&|\omega|\le\frac{\pi}{T_B}\\0,&\text{其他}\end{cases}
+$$
 
 - **无 ISI 的最高码元速率**：$R_B=\frac{1}{T_B}=2B$（$B=\frac{1}{2T_B}$ 奈奎斯特带宽）
 - **极限频带利用率**：
 
-$$\eta_{\max}=\frac{R_B}{B}=2\ \text{Baud/Hz}$$
+$$
+\eta_{\max}=\frac{R_B}{B}=2\ \text{Baud/Hz}
+$$
 
 > [!warning] 必考结论
 > **理想低通（矩形谱）时 $\eta=2$ Baud/Hz = 基带系统理论极限**；但理想低通不可物理实现且拖尾收敛慢（$\frac{1}{t}$ 速率、对定时抖动敏感）→ 实际用**升余弦滚降**。
@@ -167,9 +181,13 @@ $$\eta_{\max}=\frac{R_B}{B}=2\ \text{Baud/Hz}$$
 > [!info] Def 7 滚降系数
 > **滚降系数**（roll-off factor）$\alpha\in[0,1]$ 描述升余弦频谱在奈奎斯特频率处的滚降程度；$\alpha=0$ 为理想低通，$\alpha=1$ 为全升余弦。
 
-$$B=(1+\alpha)\frac{1}{2T_B}=(1+\alpha)\frac{R_B}{2}$$
+$$
+B=(1+\alpha)\frac{1}{2T_B}=(1+\alpha)\frac{R_B}{2}
+$$
 
-$$\boxed{\eta=\frac{R_B}{B}=\frac{2}{1+\alpha}\ \text{Baud/Hz}}$$
+$$
+\boxed{\eta=\frac{R_B}{B}=\frac{2}{1+\alpha}\ \text{Baud/Hz}}
+$$
 
 - $\alpha=0$：理想低通，$\eta=2$（极限）
 - $\alpha=1$：全升余弦，$\eta=1$，$B=R_B$（拖尾按 $\frac{1}{t^3}$ 收敛，定时抖动不敏感）
@@ -184,13 +202,17 @@ $$\boxed{\eta=\frac{R_B}{B}=\frac{2}{1+\alpha}\ \text{Baud/Hz}}$$
 
 二进制双极性基带（最佳判决门限 $V_d=0$，等概）：
 
-$$P_e=\frac{1}{2}\mathrm{erfc}\!\left(\frac{d}{\sqrt{2}\sigma_n}\right)$$
+$$
+P_e=\frac{1}{2}\mathrm{erfc}\!\left(\frac{d}{\sqrt{2}\sigma_n}\right)
+$$
 
 （$d$：两电平差一半（双极性即 $\pm d$）；$\sigma_n^2=n_0B$。）
 
 单极性（门限 $V_d=d/2$，等概）：
 
-$$P_e=\frac{1}{2}\mathrm{erfc}\!\left(\frac{d}{2\sqrt{2}\sigma_n}\right)$$
+$$
+P_e=\frac{1}{2}\mathrm{erfc}\!\left(\frac{d}{2\sqrt{2}\sigma_n}\right)
+$$
 
 > [!important] 结论
 > 等功率条件下，**双极性比单极性抗噪性能好 6 dB**（同一 $P_e$ 所需信噪比低 6 dB）；且双极性无直流 → 首选双极性。
@@ -226,7 +248,9 @@ $$P_e=\frac{1}{2}\mathrm{erfc}\!\left(\frac{d}{2\sqrt{2}\sigma_n}\right)$$
 
 **第 I 类部分响应**（最常考）：两个相距 $T_B$ 的 $\frac{\sin x}{x}$ 波形相加：
 
-$$g(t)=\frac{\sin\frac{\pi t}{T_B}}{\frac{\pi t}{T_B}}+\frac{\sin\frac{\pi(t-T_B)}{T_B}}{\frac{\pi(t-T_B)}{T_B}}$$
+$$
+g(t)=\frac{\sin\frac{\pi t}{T_B}}{\frac{\pi t}{T_B}}+\frac{\sin\frac{\pi(t-T_B)}{T_B}}{\frac{\pi(t-T_B)}{T_B}}
+$$
 
 - 拖尾按 $\frac{1}{t^2}$ 衰减（比理想低通 $\frac{1}{t}$ 快）
 - 带宽 $B=\frac{1}{2T_B}$，$\eta=2$ Baud/Hz
@@ -236,7 +260,9 @@ $$g(t)=\frac{\sin\frac{\pi t}{T_B}}{\frac{\pi t}{T_B}}+\frac{\sin\frac{\pi(t-T_B
 
 **解决**：发送端**预编码**（模 2 相关编码）：
 
-$$b_k=a_k\oplus b_{k-1}\pmod2\quad(\text{预编码}),\qquad C_k=b_k+b_{k-1}\quad(\text{相关编码})$$
+$$
+b_k=a_k\oplus b_{k-1}\pmod2\quad(\text{预编码}),\qquad C_k=b_k+b_{k-1}\quad(\text{相关编码})
+$$
 
 接收判决：$a_k=C_k\pmod2$（**本码元只看自身抽样值，无差错传播**）。
 
@@ -250,7 +276,9 @@ $$b_k=a_k\oplus b_{k-1}\pmod2\quad(\text{预编码}),\qquad C_k=b_k+b_{k-1}\quad
 
 **思想**：判决前加横向滤波器（抽头延迟线），强迫**抽样时刻的 ISI 归零**——时域"补"信道失真。
 
-$$y(t)=\sum_{n=-N}^{N}C_n\,x(t-nT_B)$$
+$$
+y(t)=\sum_{n=-N}^{N}C_n\,x(t-nT_B)
+$$
 
 **峰值失真准则** → **迫零均衡器**：解方程组使 $y_0$ 之外抽样值为 0（有限抽头只能消除有限个 ISI 采样点）。
 

@@ -28,15 +28,21 @@ related: []
 > [!info] 定义 MMSE 估计
 > 在贝叶斯框架下，$\theta$ 具有先验密度 $f(\theta)$，观测 $\mathbf{x}$ 的条件密度为 $f(\mathbf{x}\mid\theta)$。使 $\mathrm{MSE}=E[(\hat{\theta}-\theta)^2]$ 最小的估计量为
 >
-> $$\hat{\theta}_{MMSE}(\mathbf{x})=E[\theta\mid\mathbf{x}]$$
+> $$
+> \hat{\theta}_{MMSE}(\mathbf{x})=E[\theta\mid\mathbf{x}]
+> $$
 
 后验均值是 $\mathbf{x}$ 的函数，因此 MMSE 估计是一个随机变量。把 MSE 对 $\hat{\theta}$ 求导并令其为零，可以得到同样的结论：
 
-$$\frac{\partial}{\partial\hat{\theta}}E\left[(\hat{\theta}-\theta)^2\mid\mathbf{x}\right]=2\left(\hat{\theta}-E[\theta\mid\mathbf{x}]\right)=0$$
+$$
+\frac{\partial}{\partial\hat{\theta}}E\left[(\hat{\theta}-\theta)^2\mid\mathbf{x}\right]=2\left(\hat{\theta}-E[\theta\mid\mathbf{x}]\right)=0
+$$
 
 对应的最小 MSE 为后验方差的期望：
 
-$$\mathrm{MSE}_{MMSE}=E\left[\mathrm{Var}(\theta\mid\mathbf{x})\right]$$
+$$
+\mathrm{MSE}_{MMSE}=E\left[\mathrm{Var}(\theta\mid\mathbf{x})\right]
+$$
 
 > [!tip] 直觉
 > MMSE 估计是“看完数据后对参数的最佳猜测”，先验把猜测往合理范围拉，观测把猜测往数据拉。若观测噪声极大，后验几乎等于先验，估计就退化为先验均值；若观测极准，后验集中在似然峰值附近。
@@ -57,15 +63,21 @@ $$\mathrm{MSE}_{MMSE}=E\left[\mathrm{Var}(\theta\mid\mathbf{x})\right]$$
 
 限制估计量为仿射函数 $\hat{\theta}=\mathbf{a}^T\mathbf{x}+b$，由正交性可解出
 
-$$\hat{\theta}_{LMMSE}=\mu_\theta+\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}\left(\mathbf{x}-\mu_x\right)$$
+$$
+\hat{\theta}_{LMMSE}=\mu_\theta+\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}\left(\mathbf{x}-\mu_x\right)
+$$
 
 其中 $\mathbf{C}_{\theta x}=E[(\theta-\mu_\theta)(\mathbf{x}-\mu_x)^T]$，$\mathbf{C}_{xx}$ 是观测协方差矩阵。对应的最小 MSE 为
 
-$$\mathrm{MSE}_{LMMSE}=\mathbf{C}_{\theta\theta}-\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}\mathbf{C}_{x\theta}$$
+$$
+\mathrm{MSE}_{LMMSE}=\mathbf{C}_{\theta\theta}-\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}\mathbf{C}_{x\theta}
+$$
 
 标量情形更直观：
 
-$$\hat{\theta}_{LMMSE}=\mu_\theta+\rho\frac{\sigma_\theta}{\sigma_x}(x-\mu_x),\qquad \mathrm{MSE}_{LMMSE}=\sigma_\theta^2(1-\rho^2)$$
+$$
+\hat{\theta}_{LMMSE}=\mu_\theta+\rho\frac{\sigma_\theta}{\sigma_x}(x-\mu_x),\qquad \mathrm{MSE}_{LMMSE}=\sigma_\theta^2(1-\rho^2)
+$$
 
 其中 $\rho$ 是 $\theta$ 与 $x$ 的相关系数。$|\rho|$ 越接近 1，线性估计越准；$\rho=0$ 时 LMMSE 直接退回先验均值，MSE 等于先验方差。
 
@@ -87,18 +99,24 @@ MVUE 的“无偏”约束很强，有时不存在；LMMSE 放弃无偏换取更
 
 若 $\theta$ 与 $\mathbf{x}$ 联合高斯，则条件分布仍是高斯，条件均值是 $\mathbf{x}$ 的仿射函数：
 
-$$E[\theta\mid\mathbf{x}]=\mu_\theta+\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}(\mathbf{x}-\mu_x)$$
+$$
+E[\theta\mid\mathbf{x}]=\mu_\theta+\mathbf{C}_{\theta x}\mathbf{C}_{xx}^{-1}(\mathbf{x}-\mu_x)
+$$
 
 右边正是 LMMSE 公式，因此
 
-$$\hat{\theta}_{MMSE}=\hat{\theta}_{LMMSE}$$
+$$
+\hat{\theta}_{MMSE}=\hat{\theta}_{LMMSE}
+$$
 
 这不是巧合：高斯分布由一、二阶矩完全确定，任何依赖高阶矩的非线性估计都无法再降低 MSE。对非高斯分布，条件均值一般是非线性的，LMMSE 只是它的一阶近似。
 
 > [!example] 标量高斯模型
 > 设 $x=\theta+w$，$\theta\sim\mathcal{N}(0,\sigma_\theta^2)$，$w\sim\mathcal{N}(0,\sigma_w^2)$，两者独立。则
 >
-> $$\hat{\theta}_{LMMSE}=\frac{\sigma_\theta^2}{\sigma_\theta^2+\sigma_w^2}x,\qquad \mathrm{MSE}_{LMMSE}=\frac{\sigma_\theta^2\sigma_w^2}{\sigma_\theta^2+\sigma_w^2}$$
+> $$
+> \hat{\theta}_{LMMSE}=\frac{\sigma_\theta^2}{\sigma_\theta^2+\sigma_w^2}x,\qquad \mathrm{MSE}_{LMMSE}=\frac{\sigma_\theta^2\sigma_w^2}{\sigma_\theta^2+\sigma_w^2}
+> $$
 >
 > 取 $\sigma_\theta^2=1$、$\sigma_w^2=3$，增益为 $1/4$，MSE 为 $3/4$。信噪比趋于零时增益趋于零，估计退回先验均值；信噪比很高时增益趋于 1，估计近似等于观测。
 

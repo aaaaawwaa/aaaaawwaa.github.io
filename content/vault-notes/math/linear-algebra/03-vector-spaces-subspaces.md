@@ -115,7 +115,9 @@ related: []
 为什么 $\mathbf{C}(A)$ 是子空间？两个组合相加就是"合并同类项"：$A\mathbf{x}+A\mathbf{y}=A(\mathbf{x}+\mathbf{y})$——组合永远在空间内。
 
 > [!tip] 第 1、2 章问题的最终答案
-> $$A\mathbf{x}=\mathbf{b}\ \text{有解}\quad\iff\quad \mathbf{b}\in\mathbf{C}(A)$$
+> $$
+> A\mathbf{x}=\mathbf{b}\ \text{有解}\quad\iff\quad \mathbf{b}\in\mathbf{C}(A)
+> $$
 > "b 是不是列的组合"（第 1 章）与"方程组有没有解"（第 2 章）在空间语言里合成了同一句话。从此判断有解性不再需要动笔算，只需要问：**b 落没落在列空间里**。
 
 **例子（Strang 经典 4×3 矩阵）**：
@@ -204,7 +206,9 @@ $$
 验证第一个：$-2\mathbf{a}_1+1\mathbf{a}_2=(-2,-4,-6)+(2,4,6)=\mathbf{0}\ \checkmark$（注意 $\mathbf{a}_2=2\mathbf{a}_1$——正好是它"举牌"的原因）。
 
 > [!tip] 零空间的完整答案
-> $$\mathbf{N}(A)=\left\{c_1\mathbf{s}_1+c_2\mathbf{s}_2\right\}=\left\{c_1\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}+c_2\begin{bmatrix}2\\0\\-2\\1\end{bmatrix}\right\}$$
+> $$
+> \mathbf{N}(A)=\left\{c_1\mathbf{s}_1+c_2\mathbf{s}_2\right\}=\left\{c_1\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}+c_2\begin{bmatrix}2\\0\\-2\\1\end{bmatrix}\right\}
+> $$
 > 两个特殊解张成一个**二维子空间**。任何 $A\mathbf{x}=\mathbf{0}$ 的解都在其中，没有例外。
 
 ## 最简行阶梯型矩阵
@@ -432,7 +436,9 @@ $$
 > 若 $c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k=\mathbf{0}$ 只有唯一零解 $c_1=\cdots=c_k=0$，称向量组**线性无关**（linearly independent）；否则**线性相关**（linearly dependent）。
 >
 > 把向量塞进矩阵列：$A=[\mathbf{v}_1\ \cdots\ \mathbf{v}_k]$，则
-> $$\text{各列无关}\iff \mathbf{N}(A)=\{\mathbf{0}\}\iff \text{每一列都是主元列}\iff r=k$$
+> $$
+> \text{各列无关}\iff \mathbf{N}(A)=\{\mathbf{0}\}\iff \text{每一列都是主元列}\iff r=k
+> $$
 
 第 1 章的表格在这里升级：判别无关，从此有三条等价通道（定义、零空间、消元主元）。
 
@@ -462,7 +468,9 @@ $$
 
 > [!tip] 唯一坐标定理
 > 在给定基 $\{\mathbf{v}_1,\dots,\mathbf{v}_k\}$ 下，空间中任何向量 $\mathbf{w}$ 的表出方式**唯一**：
-> $$\mathbf{w}=a_1\mathbf{v}_1+\cdots+a_k\mathbf{v}_k\ \text{的系数}\ (a_1,\dots,a_k)\ \text{唯一确定}$$
+> $$
+> \mathbf{w}=a_1\mathbf{v}_1+\cdots+a_k\mathbf{v}_k\ \text{的系数}\ (a_1,\dots,a_k)\ \text{唯一确定}
+> $$
 > 证明一句话：若两种表出，相减得"基的零组合"，无关性逼迫所有系数差为 0。
 > 这一条使得"坐标"这个词合法——**同一空间换一组基，就像换一套坐标系**（第 8 章相似矩阵的伏笔）。
 
@@ -528,7 +536,9 @@ $$
 > | 4 | 左零空间 $\mathbf{N}(A^T)$ | $A^T\mathbf{y}=\mathbf{0}$ 的解 | $\mathbb{R}^m$ | $m-r$ |
 >
 > **维数定理**（任一行分解一眼可见）：
-> $$r+(n-r)=n,\qquad r+(m-r)=m$$
+> $$
+> r+(n-r)=n,\qquad r+(m-r)=m
+> $$
 > 四个维数被 $m,n,r$ 三个数完全锁定——**线性代数的"元素周期表"**。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 310" width="100%" style="max-width:840px" font-family="inherit">
@@ -610,7 +620,9 @@ $$
 > **行空间 ⊥ 零空间**：$A\mathbf{x}=\mathbf{0}$ 的每个分量就是"某一行 · x = 0"——每一行都跟 x 正交。
 > **列空间 ⊥ 左零空间**：$\mathbf{y}^TA=\mathbf{0}$（即 $A^T\mathbf{y}=\mathbf{0}$）说 y 与 A 的每一列正交。
 > 于是"有解判定"再添第三种说法：
-> $$\mathbf{b}\in\mathbf{C}(A)\ \iff\ \mathbf{b}\perp\mathbf{N}(A^T)$$
+> $$
+> \mathbf{b}\in\mathbf{C}(A)\ \iff\ \mathbf{b}\perp\mathbf{N}(A^T)
+> $$
 > ——b 有解就当且仅当它和左零空间里的每个向量都正交。
 
 ## 秩一矩阵（回顾）

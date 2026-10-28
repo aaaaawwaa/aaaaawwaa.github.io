@@ -55,26 +55,36 @@ related: []
 
 > [!info] Def 1 序列
 > **序列**（sequence）是定义在整数集上的一条有次序的数值：对每个整数 $n$ 有一个值 $x(n)$。全体记作
-> $$\{x(n)\},\qquad -\infty<n<\infty$$
+> $$
+> \{x(n)\},\qquad -\infty<n<\infty
+> $$
 > **一个序列与一条连续曲线无关**：它只是一张"下标 → 数值"的查表。
 
 ## 四种最基本的序列
 
 > [!info] Def 2 单位抽样序列
-> $$\delta(n)=\begin{cases}1, & n=0\\[2pt] 0, & n\ne 0\end{cases}$$
+> $$
+> \delta(n)=\begin{cases}1, & n=0\\[2pt] 0, & n\ne 0\end{cases}
+> $$
 > 又称**单位冲激序列**（unit impulse sequence）。它只在一个点上非零，与连续时间的 $\delta(t)$ 不同，**取的是有限的整数值 1，不是面积**。
 
 > [!info] Def 3 单位阶跃序列
-> $$u(n)=\begin{cases}1, & n\ge 0\\[2pt] 0, & n<0\end{cases}$$
+> $$
+> u(n)=\begin{cases}1, & n\ge 0\\[2pt] 0, & n<0\end{cases}
+> $$
 > 又称**单位阶跃序列**（unit step sequence）。它标记了"时间原点"。
 
 > [!info] Def 4 矩形序列
-> $$R_N(n)=\begin{cases}1, & 0\le n\le N-1\\[2pt] 0, & \text{其他}\end{cases}$$
+> $$
+> R_N(n)=\begin{cases}1, & 0\le n\le N-1\\[2pt] 0, & \text{其他}\end{cases}
+> $$
 > 又称**矩形序列**（rectangular sequence），长度为 $N$。它就是"有限长"的标准样本——**数字滤波器永远只能处理有限长的数据**，所以 $R_N(n)$ 比 $u(n)$ 更贴近工程。
 
 三者之间可以互相表示（这是最常用的三个恒等式）：
 
-$$R_N(n)=u(n)-u(n-N),\qquad \delta(n)=u(n)-u(n-1),\qquad u(n)=\sum_{k=-\infty}^{n}\delta(k)$$
+$$
+R_N(n)=u(n)-u(n-N),\qquad \delta(n)=u(n)-u(n-1),\qquad u(n)=\sum_{k=-\infty}^{n}\delta(k)
+$$
 
 > [!tip] 三种"1"的区别 —— 最容易混的一处
 > - $\delta(n)$：**只有 $n=0$ 是 1**（求和为 1）
@@ -85,14 +95,18 @@ $$R_N(n)=u(n)-u(n-N),\qquad \delta(n)=u(n)-u(n-1),\qquad u(n)=\sum_{k=-\infty}^{
 
 > [!info] Def 5 指数序列
 > **实指数序列**（real exponential sequence）：
-> $$x(n)=a^n u(n),\qquad a\ \text{为实数}$$
+> $$
+> x(n)=a^n u(n),\qquad a\ \text{为实数}
+> $$
 > - $|a|>1$：单调增长（$a<0$ 时正负交替增长）
 > - $0<a<1$：单调衰减 —— **这正是一阶数字低通滤波器的冲激响应形状**
 > - $a=-0.9$：交替衰减 —— 一阶高通滤波器的形状
 > - $a=1$：退化为 $u(n)$；$a=-1$：退化为 $(-1)^n u(n)$
 >
 > **复指数序列**（complex exponential sequence）：
-> $$x(n)=e^{(\sigma+j\omega_0)n}=e^{\sigma n}\big(\cos\omega_0 n+j\sin\omega_0 n\big)$$
+> $$
+> x(n)=e^{(\sigma+j\omega_0)n}=e^{\sigma n}\big(\cos\omega_0 n+j\sin\omega_0 n\big)
+> $$
 > 它的实部与虚部分别是包络为 $e^{\sigma n}$ 的两条正弦序列。$\sigma<0$ 时是"衰减振荡"，是数字谐振器、二阶系统的标准响应。
 
 <svg width="100%" viewBox="0 0 545 160" xmlns="http://www.w3.org/2000/svg" font-family="inherit" font-size="12">
@@ -165,12 +179,16 @@ $$R_N(n)=u(n)-u(n-N),\qquad \delta(n)=u(n)-u(n-1),\qquad u(n)=\sum_{k=-\infty}^{
 
 > [!info] Def 6 周期序列
 > 若存在正整数 $N$ 使
-> $$x(n)=x(n+N),\qquad \forall n$$
+> $$
+> x(n)=x(n+N),\qquad \forall n
+> $$
 > 则称 $x(n)$ 为**周期序列**（periodic sequence），满足条件的最小 $N$ 称为**基波周期**。
 
 对复指数／正弦序列 $x(n)=e^{j\omega_0 n}$，条件 $e^{j\omega_0(n+N)}=e^{j\omega_0 n}$ 等价于 $e^{j\omega_0 N}=1$，即
 
-$$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \frac{2\pi}{\omega_0}=\frac{N}{k}\ \text{为有理数}$$
+$$
+\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \frac{2\pi}{\omega_0}=\frac{N}{k}\ \text{为有理数}
+$$
 
 > [!tip] 判周期三步法（考试必考）
 > 1. 写出 $\dfrac{2\pi}{\omega_0}$（若给的是 $A\cos(\omega_0 n)$，直接用它）；
@@ -185,7 +203,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 | $e^{j\frac{2\pi}{12}n}$               | $12$                                 | $N=12$  |
 
 > [!warning] 第二条分歧：$\omega$ 与 $\omega+2\pi$ 是**同一个频率**
-> $$e^{j(\omega+2\pi)n}=e^{j\omega n}e^{j2\pi n}=e^{j\omega n}$$
+> $$
+> e^{j(\omega+2\pi)n}=e^{j\omega n}e^{j2\pi n}=e^{j\omega n}
+> $$
 > 于是：
 > - 数字频率只有**一个 $2\pi$ 周期**是独立的，通常取 $-\pi<\omega\le\pi$ 或 $0\le\omega\le2\pi$；
 > - **最高频是 $\omega=\pi$**（对应 $(-1)^n$，每个样本都换号）；$\omega=0$ 与 $\omega=2\pi$ 都是最低频（直流）；
@@ -272,7 +292,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 ## 序列的能量与平均功率
 
 > [!info] Def 7 能量与平均功率
-> $$\text{能量：}\ E=\sum_{n=-\infty}^{\infty}\lvert x(n)\rvert^2\qquad\qquad \text{平均功率：}\ P=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\lvert x(n)\rvert^2$$
+> $$
+> \text{能量：}\ E=\sum_{n=-\infty}^{\infty}\lvert x(n)\rvert^2\qquad\qquad \text{平均功率：}\ P=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\lvert x(n)\rvert^2
+> $$
 > - $0<E<\infty$ → **能量序列**（energy sequence）
 > - $0<P<\infty$（此时 $E\to\infty$）→ **功率序列**（power sequence）
 
@@ -297,7 +319,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 
 > [!info] Def 8 离散时间系统
 > **离散时间系统**（discrete-time system）是一个变换 $T[\cdot]$：把一个输入序列 $x(n)$ 映射成一个输出序列
-> $$y(n)=T[x(n)]$$
+> $$
+> y(n)=T[x(n)]
+> $$
 > **"系统"不是电路，是算法**。同一个差分方程在 DSP 上是几行 C 代码，在 FPGA 上是几个乘法器加寄存器。
 
 一个系统可以从四个维度分类，这四个维度组合出本章后半部分的全部内容：
@@ -315,7 +339,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 
 > [!info] Def 9 线性系统
 > 若对任意常数 $a,b$ 与任意输入 $x_1,x_2$ 都有
-> $$T[a\,x_1(n)+b\,x_2(n)]=a\,T[x_1(n)]+b\,T[x_2(n)]$$
+> $$
+> T[a\,x_1(n)+b\,x_2(n)]=a\,T[x_1(n)]+b\,T[x_2(n)]
+> $$
 > 则称系统是**线性的**（linear）。它拆成两条：
 > - **齐次性（homogeneity）**：$T[ax]=aT[x]$
 > - **可加性（additivity）**：$T[x_1+x_2]=T[x_1]+T[x_2]$
@@ -340,7 +366,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 
 > [!info] Def 10 移不变系统
 > 若输入延迟 $n_0$ 拍，输出也**恰好延迟同样的 $n_0$ 拍且形状不变**：
-> $$T[x(n-n_0)]=y(n-n_0),\qquad \forall n_0$$
+> $$
+> T[x(n-n_0)]=y(n-n_0),\qquad \forall n_0
+> $$
 > 则称系统是**移不变的**（shift-invariant，又称时不变 time-invariant）。
 
 | 系统 | 移不变？ | 理由 |
@@ -360,24 +388,34 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 
 > [!info] Def 11 单位冲激响应
 > 令输入为 $\delta(n)$、系统**初始松弛**（无储能／零初始条件），得到的输出称为系统的**单位冲激响应**（unit impulse response，简称**冲激响应**）：
-> $$h(n)\triangleq T[\delta(n)]$$
+> $$
+> h(n)\triangleq T[\delta(n)]
+> $$
 > **$h(n)$ 是系统的"指纹"**——后面会证明它唯一确定一个 LSI 系统的全部行为。
 
 > [!tip] 主定理：LSI 系统的输出 = 输入与冲激响应的卷积和
 > **推导三步（务必会复述）：**
 > 1. **把输入拆成冲激的叠加**。由 Def 2 的恒等式，任意序列都可以写成
->    $$x(n)=\sum_{m=-\infty}^{\infty}x(m)\,\delta(n-m)$$
+>    $$
+>    x(n)=\sum_{m=-\infty}^{\infty}x(m)\,\delta(n-m)
+>    $$
 >    （即"$x$ 是一堆加权移位的 $\delta$"）
 > 2. **用线性**。线性系统可以逐项搬运：
->    $$y(n)=T\Big[\sum_m x(m)\delta(n-m)\Big]=\sum_m x(m)\,T[\delta(n-m)]$$
+>    $$
+>    y(n)=T\Big[\sum_m x(m)\delta(n-m)\Big]=\sum_m x(m)\,T[\delta(n-m)]
+>    $$
 > 3. **用移不变**。$T[\delta(n-m)]=h(n-m)$，于是
->    $$y(n)=\sum_{m=-\infty}^{\infty}x(m)\,h(n-m)\triangleq x(n)*h(n)$$
+>    $$
+>    y(n)=\sum_{m=-\infty}^{\infty}x(m)\,h(n-m)\triangleq x(n)*h(n)
+>    $$
 >
 > **结论**：只要知道 $h(n)$，任何输入的输出都能算出来，**不需要再知道系统内部长什么样**。这就是"$h(n)$ 是系统指纹"的严格含义。
 
 > [!info] Def 12 卷积和
 > 上式定义的运算称为**卷积和**（convolution sum，离散卷积）：
-> $$y(n)=x(n)*h(n)=\sum_{m=-\infty}^{\infty}x(m)h(n-m)=\sum_{m=-\infty}^{\infty}h(m)x(n-m)$$
+> $$
+> y(n)=x(n)*h(n)=\sum_{m=-\infty}^{\infty}x(m)h(n-m)=\sum_{m=-\infty}^{\infty}h(m)x(n-m)
+> $$
 > 后一个等号来自交换律：**被卷积的两个序列可以互换角色**（输入与冲激响应互换，结果不变）。
 
 > [!tip] LSI 系统有三种等价描述 —— 同一件事的三种语言
@@ -410,7 +448,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 >      y(4):         1+1               = 2
 >      y(5):            1              = 1
 > ```
-> $$y(n)=\{1,2,3,3,2,1\}\quad(0\le n\le5)$$
+> $$
+> y(n)=\{1,2,3,3,2,1\}\quad(0\le n\le5)
+> $$
 > **校验两条铁律**：非零点个数 $=4+3-1=6$ ✓；各点之和 $=12=4\times3$ ✓。
 
 <svg width="100%" viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" font-family="inherit" font-size="12">
@@ -480,11 +520,17 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 > $x(n)=a^n u(n)$、$h(n)=b^n u(n)$，求 $y(n)=x(n)*h(n)$。
 >
 > **第一步定求和限**：$x(m)$ 在 $m\ge0$ 非零，$h(n-m)$ 在 $n-m\ge0$ 即 $m\le n$ 非零。两者交叠区间是
-> $$0\le m\le n\quad\Longrightarrow\quad y(n)=0\ \ (n<0),\qquad y(n)=\sum_{m=0}^{n}a^m b^{\,n-m}\ (n\ge0)$$
+> $$
+> 0\le m\le n\quad\Longrightarrow\quad y(n)=0\ \ (n<0),\qquad y(n)=\sum_{m=0}^{n}a^m b^{\,n-m}\ (n\ge0)
+> $$
 > **第二步求和**（等比数列，公比 $a/b$）：
-> $$y(n)=b^n\sum_{m=0}^{n}\Big(\frac{a}{b}\Big)^{m}=\frac{a^{\,n+1}-b^{\,n+1}}{a-b}\qquad(a\ne b)$$
+> $$
+> y(n)=b^n\sum_{m=0}^{n}\Big(\frac{a}{b}\Big)^{m}=\frac{a^{\,n+1}-b^{\,n+1}}{a-b}\qquad(a\ne b)
+> $$
 > **第三步处理重根**：$a=b$ 时上式取极限（或直接算 $\sum_{m=0}^n a^m a^{n-m}=(n+1)a^n$），得
-> $$y(n)=(n+1)\,a^n u(n)$$
+> $$
+> y(n)=(n+1)\,a^n u(n)
+> $$
 >
 > 这个结果会在第 2 章用 $z$ 变换**一行**算出来——那时你会明白：**卷积之所以麻烦，是因为还没换到正确的坐标系去**。
 
@@ -509,7 +555,9 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 > [!example] 例：用"与 $\delta$ 卷"秒算
 > $x(n)=\{2,\underset{\uparrow}{1},3\}$（$n=0$ 处是 1），求 $x(n)*[\delta(n)+\delta(n-1)]$。
 > 由分配律与移位性质：$x*\delta(n)=x$，$x*\delta(n-1)=x$ 右移一拍，故
-> $$y(n)=\{2,3,4,3\}\quad(n=0,1,2,3)$$
+> $$
+> y(n)=\{2,3,4,3\}\quad(n=0,1,2,3)
+> $$
 > （逐点校验：$y(0)=2$，$y(1)=1+2=3$，$y(2)=3+1=4$，$y(3)=3$ ✓）
 
 > [!note] 通信方向延伸：卷积就是"信道"
@@ -519,18 +567,26 @@ $$\omega_0 N=2\pi k\quad(k\ \text{为整数})\qquad\Longleftrightarrow\qquad \fr
 
 > [!info] Def 13 因果系统
 > **因果系统**（causal system）的输出在任意时刻只依赖当前与过去的输入（不依赖未来）：
-> $$y(n_0)\ \text{只由}\ \{x(n),\,n\le n_0\}\ \text{决定}$$
+> $$
+> y(n_0)\ \text{只由}\ \{x(n),\,n\le n_0\}\ \text{决定}
+> $$
 > **对 LSI 系统的判据极其简单：**
-> $$h(n)=0,\qquad n<0$$
+> $$
+> h(n)=0,\qquad n<0
+> $$
 
 > [!info] Def 14 稳定系统（BIBO）
 > 若任意有界输入（$\lvert x(n)\rvert\le M_x<\infty$）都产生有界输出（$\lvert y(n)\rvert\le M_y<\infty$），则系统**稳定**（stable），这一判据记为 **BIBO**（bounded-input bounded-output）。
 > **对 LSI 系统的判据：**
-> $$\sum_{n=-\infty}^{\infty}\lvert h(n)\rvert<\infty\qquad\text{（冲激响应绝对可和）}$$
+> $$
+> \sum_{n=-\infty}^{\infty}\lvert h(n)\rvert<\infty\qquad\text{（冲激响应绝对可和）}
+> $$
 
 > [!tip] 稳定判据的证明与直读法
 > **充分性**：若 $\sum\lvert h(n)\rvert=S<\infty$ 且 $\lvert x(n)\rvert\le M_x$，则
-> $$\lvert y(n)\rvert=\Big\lvert\sum_m x(m)h(n-m)\Big\rvert\le M_x\sum_m\lvert h(n-m)\rvert=M_x S<\infty$$
+> $$
+> \lvert y(n)\rvert=\Big\lvert\sum_m x(m)h(n-m)\Big\rvert\le M_x\sum_m\lvert h(n-m)\rvert=M_x S<\infty
+> $$
 > **必要性**：取 $x(n)=\mathrm{sgn}\,[h(-n)]$（有界！），则 $y(0)=\sum_n\lvert h(n)\rvert$，若绝对可和条件不成立则 $y(0)$ 无界。
 >
 > **直读法（考试用）**：把 $h(n)$ 的包络看成 $n\to\infty$ 时的趋势——
@@ -599,9 +655,13 @@ sum(abs(0.9.^(0:999)))    % h(n)=0.9ⁿu(n) → 10（|a|<1 绝对可和）
 ## 一般形式与"阶"
 
 > [!info] Def 15 常系数线性差分方程
-> $$\sum_{k=0}^{N}a_k\,y(n-k)=\sum_{r=0}^{M}b_r\,x(n-r)$$
+> $$
+> \sum_{k=0}^{N}a_k\,y(n-k)=\sum_{r=0}^{M}b_r\,x(n-r)
+> $$
 > 其中 $a_k,b_r$ 是**常数**。习惯上归一化 $a_0=1$，即
-> $$y(n)=-\sum_{k=1}^{N}a_k y(n-k)+\sum_{r=0}^{M}b_r x(n-r)$$
+> $$
+> y(n)=-\sum_{k=1}^{N}a_k y(n-k)+\sum_{r=0}^{M}b_r x(n-r)
+> $$
 > **阶数（order）$=N$**，即输出侧的最大延迟拍数；$M$ 是输入侧的最大延迟。
 
 这个方程为什么重要，看它的三条性质就明白了：
@@ -619,7 +679,9 @@ sum(abs(0.9.^(0:999)))    % h(n)=0.9ⁿu(n) → 10（|a|<1 绝对可和）
 
 把 Def 15 的式子改写成"**算 $y(n)$ 的公式**"：
 
-$$y(n)=-\sum_{k=1}^{N}a_k\,y(n-k)+\sum_{r=0}^{M}b_r\,x(n-r)$$
+$$
+y(n)=-\sum_{k=1}^{N}a_k\,y(n-k)+\sum_{r=0}^{M}b_r\,x(n-r)
+$$
 
 只要已知 $N$ 个初始条件（$y(-1),y(-2),\dots,y(-N)$）和输入 $x(n)$，就能从 $n=0$ 开始一拍一拍算下去。这就是**计算机里的实现方式**（第 5 章的结构图、DSP 上的一条乘累加指令）。
 
@@ -632,7 +694,9 @@ $$y(n)=-\sum_{k=1}^{N}a_k\,y(n-k)+\sum_{r=0}^{M}b_r\,x(n-r)$$
 >
 > 递推式：$y(0)=0.5\times0+1=1$，$y(1)=0.5\times1+1=1.5$，$y(2)=0.5\times1.5+1=1.75$……
 > **猜测并验证通项**：
-> $$y(n)=2-0.5^{\,n},\qquad n\ge0$$
+> $$
+> y(n)=2-0.5^{\,n},\qquad n\ge0
+> $$
 > 代回方程：$(2-0.5^n)-0.5(2-0.5^{n-1})=2-0.5^n-1+0.5^n=1=x(n)$ ✓，且 $y(0)=1$ ✓。
 
 递推法的**优点**：适合编程、能得波形；**缺点**：只能得数值，看不出"通项里极点在哪"，稳定性／带宽都读不出来。所以还需要解析解法。
@@ -641,7 +705,9 @@ $$y(n)=-\sum_{k=1}^{N}a_k\,y(n-k)+\sum_{r=0}^{M}b_r\,x(n-r)$$
 
 **第一步：齐次解**（令输入为 0）：
 
-$$\sum_{k=0}^{N}a_k\,y_h(n-k)=0\quad\Longrightarrow\quad \sum_{k=0}^{N}a_k\,\alpha^{\,N-k}=0\ \ (\text{特征方程})$$
+$$
+\sum_{k=0}^{N}a_k\,y_h(n-k)=0\quad\Longrightarrow\quad \sum_{k=0}^{N}a_k\,\alpha^{\,N-k}=0\ \ (\text{特征方程})
+$$
 
 特征方程的根分三种情形：
 
@@ -670,7 +736,9 @@ $$\sum_{k=0}^{N}a_k\,y_h(n-k)=0\quad\Longrightarrow\quad \sum_{k=0}^{N}a_k\,\alp
 > - **特解**：设 $y_p=D$，则 $D-0.5D=1\Rightarrow D=2$，即 $y_p=2$；
 > - **齐次解**：特征方程 $\alpha-0.5=0\Rightarrow \alpha=0.5$，$y_h=C(0.5)^n$；
 > - **定系数**：把 $y(-1)=0$ 代入全解 $y(n)=2+C(0.5)^n$，得 $2+2C=0\Rightarrow C=-1$；
-> $$y(n)=2-0.5^{\,n},\qquad n\ge0$$
+> $$
+> y(n)=2-0.5^{\,n},\qquad n\ge0
+> $$
 > 与递推法的结果完全一致 ✓。**齐次解 $C\alpha^n$ 是"暂态"，特解 2 是"稳态"**——序列在无穷远处趋于 2，即阶跃输入的稳态仰值。
 
 ## 零输入响应与零状态响应
@@ -679,16 +747,24 @@ $$\sum_{k=0}^{N}a_k\,y_h(n-k)=0\quad\Longrightarrow\quad \sum_{k=0}^{N}a_k\,\alp
 > 由**线性**可以把全响应拆成互不干扰的两块：
 > - **零输入响应**（zero-input response）$y_{zi}(n)$：输入为零、仅由初始储能作用产生的响应。它就是**齐次解**（形状由特征根决定）；
 > - **零状态响应**（zero-state response）$y_{zs}(n)$：初始状态为零（初始松弛）、仅由输入作用产生的响应。它**就是 $x(n)*h(n)$**。
-> $$y(n)=\underbrace{y_{zi}(n)}_{\text{特征根}\times\text{初始状态}}+\underbrace{y_{zs}(n)}_{\text{输入}*h(n)}$$
+> $$
+> y(n)=\underbrace{y_{zi}(n)}_{\text{特征根}\times\text{初始状态}}+\underbrace{y_{zs}(n)}_{\text{输入}*h(n)}
+> $$
 
 > [!example] 例：同一个系统，初始条件非零
 > 仍取 $y(n)-0.5y(n-1)=x(n)$、$x(n)=u(n)$，但 $y(-1)=1$。
 > - **零输入响应**：令 $x=0$，则 $y_{zi}(n)=C(0.5)^n$，由 $y_{zi}(-1)=y(-1)=1$ 得 $C(0.5)^{-1}=1\Rightarrow C=0.5$，即
->   $$y_{zi}(n)=0.5^{\,n+1},\qquad n\ge-1$$
+>   $$
+>   y_{zi}(n)=0.5^{\,n+1},\qquad n\ge-1
+>   $$
 > - **零状态响应**：初始松弛（$y(-1)=0$），就是上例的结果
->   $$y_{zs}(n)=2-0.5^{\,n},\qquad n\ge0$$
+>   $$
+>   y_{zs}(n)=2-0.5^{\,n},\qquad n\ge0
+>   $$
 > - **全响应**：
->   $$y(n)=2-0.5^{\,n}+0.5^{\,n+1}=2-0.5^{\,n+1}$$
+>   $$
+>   y(n)=2-0.5^{\,n}+0.5^{\,n+1}=2-0.5^{\,n+1}
+>   $$
 > 校验：$y(0)=0.5\times1+1=1.5$，而 $2-0.5=1.5$ ✓；$y(1)=0.5\times1.5+1=1.75$，而 $2-0.25=1.75$ ✓。
 
 > [!warning] 三处高频踩坑
@@ -700,13 +776,19 @@ $$\sum_{k=0}^{N}a_k\,y_h(n-k)=0\quad\Longrightarrow\quad \sum_{k=0}^{N}a_k\,\alp
 
 方法：**令 $x(n)=\delta(n)$，初始松弛，求解**。对 $M\le N$ 的情形（通常是低通／一般滤波器）：
 
-$$h(n)\ \text{的形状}=\text{特征根的线性组合},\qquad h(n)=0\ \ (n<0)$$
+$$
+h(n)\ \text{的形状}=\text{特征根的线性组合},\qquad h(n)=0\ \ (n<0)
+$$
 
 > [!example] 例：$y(n)-0.5y(n-1)=x(n)+x(n-1)$ 的 $h(n)$
 > 令 $x=\delta$、$y(-1)=0$，逐点递推 $y(n)=0.5y(n-1)+\delta(n)+\delta(n-1)$：
-> $$h(0)=1,\quad h(1)=0.5+1=1.5,\quad h(n)=0.5\,h(n-1)=1.5\times0.5^{\,n-1}\ (n\ge2)$$
+> $$
+> h(0)=1,\quad h(1)=0.5+1=1.5,\quad h(n)=0.5\,h(n-1)=1.5\times0.5^{\,n-1}\ (n\ge2)
+> $$
 > 即
-> $$h(n)=\delta(n)+1.5\times0.5^{\,n-1}u(n-1)$$
+> $$
+> h(n)=\delta(n)+1.5\times0.5^{\,n-1}u(n-1)
+> $$
 > **注意 $h(0)=1$ 这个"直接项"**：当 $M\ge1$（分子有 $z^{-1}$）时，$h(n)$ 在开头会多出一段与特征根无关的值。第 2 章用 $z$ 变换（部分分式或长除法）可以把这件事一次算清，比逐点递推稳得多。
 
 > [!note] $h(n)$ 的两种成分 —— 与第 6、7 章的分水岭
@@ -772,9 +854,13 @@ all(abs(h - 0.5.^n) < 1e-12)    % true
 
 > [!info] Def 17 理想抽样
 > 用**冲激串**（impulse train，又称梳状函数）作为"采样开关"：
-> $$p(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT)\qquad(\text{周期 }T\text{，频率 }\Omega_s=\tfrac{2\pi}{T})$$
+> $$
+> p(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT)\qquad(\text{周期 }T\text{，频率 }\Omega_s=\tfrac{2\pi}{T})
+> $$
 > **抽样信号**为
-> $$\hat{x}_a(t)=x_a(t)\,p(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\,\delta(t-nT)$$
+> $$
+> \hat{x}_a(t)=x_a(t)\,p(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\,\delta(t-nT)
+> $$
 > 它是一条"只在这些时刻有值"的广义函数；在实际 ADC 中，冲激由"采样保持"的窄脉冲近似。
 
 <svg width="100%" viewBox="0 0 460 175" xmlns="http://www.w3.org/2000/svg" font-family="inherit" font-size="12">
@@ -827,15 +913,21 @@ all(abs(h - 0.5.^n) < 1e-12)    % true
 
 把 $p(t)$ 展开为傅里叶级数（它是周期函数！）：
 
-$$p(t)=\sum_{k=-\infty}^{\infty}P_k e^{jk\Omega_s t},\qquad P_k=\frac{1}{T}\int_{-T/2}^{T/2}\delta(t)e^{-jk\Omega_s t}\,dt=\frac{1}{T}$$
+$$
+p(t)=\sum_{k=-\infty}^{\infty}P_k e^{jk\Omega_s t},\qquad P_k=\frac{1}{T}\int_{-T/2}^{T/2}\delta(t)e^{-jk\Omega_s t}\,dt=\frac{1}{T}
+$$
 
 （冲激只在 $t=0$ 处"取样"，积分直接得 1。）于是
 
-$$\hat{x}_a(t)=x_a(t)\cdot\frac{1}{T}\sum_{k=-\infty}^{\infty}e^{jk\Omega_s t}=\frac{1}{T}\sum_{k=-\infty}^{\infty}x_a(t)e^{jk\Omega_s t}$$
+$$
+\hat{x}_a(t)=x_a(t)\cdot\frac{1}{T}\sum_{k=-\infty}^{\infty}e^{jk\Omega_s t}=\frac{1}{T}\sum_{k=-\infty}^{\infty}x_a(t)e^{jk\Omega_s t}
+$$
 
 两边取傅里叶变换，用频移性质 $x(t)e^{j\Omega_0 t}\leftrightarrow X(j(\Omega-\Omega_0))$，得到**抽样定理的数学核心**：
 
-$$\boxed{\ \hat{X}_a(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_a\big(j(\Omega-k\Omega_s)\big)\ }$$
+$$
+\boxed{\ \hat{X}_a(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_a\big(j(\Omega-k\Omega_s)\big)\ }
+$$
 
 ![[vault-notes/assets/01-discrete-time-systems/fig-01.png]]
 
@@ -851,7 +943,9 @@ $$\boxed{\ \hat{X}_a(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_a\big(j(\Ome
 
 > [!tip] 抽样定理（奈奎斯特–香农，Nyquist–Shannon sampling theorem）
 > 设 $x_a(t)$ 是**带限信号**，最高频率为 $\Omega_h$（即 $X_a(j\Omega)=0,\ \lvert\Omega\rvert>\Omega_h$）。若抽样频率满足
-> $$\Omega_s\ \ge\ 2\Omega_h\qquad\Longleftrightarrow\qquad f_s\ \ge\ 2f_h$$
+> $$
+> \Omega_s\ \ge\ 2\Omega_h\qquad\Longleftrightarrow\qquad f_s\ \ge\ 2f_h
+> $$
 > 则 $x_a(t)$ 可以由样值 $\{x_a(nT)\}$ **唯一恢复**。
 >
 > - $\Omega_s/2$ 称为**折叠频率**（folding frequency）或**奈奎斯特频率**（Nyquist frequency）；
@@ -865,7 +959,9 @@ $$\boxed{\ \hat{X}_a(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_a\big(j(\Ome
 
 > [!warning] 关于等号的争议：临界抽样是有条件的
 > $f_s=2f_h$ **并不总能**恢复。若信号在 $\Omega_h$ 处有冲激或谱线（例如 $x_a(t)=\cos(2\pi f_h t)$ 且 $f_s=2f_h$），抽样后所有样值恰好落在同一相位上，得到的是两条**直流序列**——原信号的频率信息彻底消失（如果是正弦，那么将会抵消变成0）。故工程上取
-> $$f_s>\ 2f_h\ \text{（留余量）}$$
+> $$
+> f_s>\ 2f_h\ \text{（留余量）}
+> $$
 > 或干脆用 $f_s=(2.5\sim5)f_h$，把过渡带留给抗混叠滤波器。
 
 ![[vault-notes/assets/01-discrete-time-systems/fig-02.png]]
@@ -908,7 +1004,9 @@ $$\boxed{\ \hat{X}_a(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_a\big(j(\Ome
 
 **量化算法**：样值只能反映"折算到 $[0,f_s/2]$ 范围内的那个频率"。折算规则（记住这一条就够）：
 
-$$f_{\text{表现}}=\Big\lvert\,\big(f+\tfrac{f_s}{2}\big)\bmod f_s-\tfrac{f_s}{2}\,\Big\rvert\qquad\Longleftrightarrow\qquad \text{把 }f\text{ 反复减（加）}f_s\text{ 直到落入}[0,f_s/2]$$
+$$
+f_{\text{表现}}=\Big\lvert\,\big(f+\tfrac{f_s}{2}\big)\bmod f_s-\tfrac{f_s}{2}\,\Big\rvert\qquad\Longleftrightarrow\qquad \text{把 }f\text{ 反复减（加）}f_s\text{ 直到落入}[0,f_s/2]
+$$
 
 > [!example] 例：$f_s=8$ kHz 时各种输入的表现
 > | 输入频率 $f$ | 与 $f_s$ 的关系 | 表现（假频） |
@@ -944,11 +1042,15 @@ $$f_{\text{表现}}=\Big\lvert\,\big(f+\tfrac{f_s}{2}\big)\bmod f_s-\tfrac{f_s}{
 
 要恢复，就把 $\hat{X}_a(j\Omega)$ 中**主谱之外的所有副本滤掉**——用一个理想低通滤波器：
 
-$$H(j\Omega)=\begin{cases}T,&\lvert\Omega\rvert<\dfrac{\Omega_s}{2}\\[6pt]0,&\lvert\Omega\rvert>\dfrac{\Omega_s}{2}\end{cases}$$
+$$
+H(j\Omega)=\begin{cases}T,&\lvert\Omega\rvert<\dfrac{\Omega_s}{2}\\[6pt]0,&\lvert\Omega\rvert>\dfrac{\Omega_s}{2}\end{cases}
+$$
 
 该低通的冲激响应为 $h(t)=\mathrm{Sa}\!\big(\pi t/T\big)=\dfrac{\sin(\pi t/T)}{\pi t/T}$，与冲激串卷积即得**插值公式**：
 
-$$x_a(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\,\frac{\sin\big[\pi(t-nT)/T\big]}{\pi(t-nT)/T}$$
+$$
+x_a(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\,\frac{\sin\big[\pi(t-nT)/T\big]}{\pi(t-nT)/T}
+$$
 
 > [!tip] 插值公式的两条要点
 > 1. **样点处严格相等**（内插函数在 $t\ne nT$ 时为 0），所以它"过所有样点"；
@@ -960,12 +1062,16 @@ $$x_a(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\,\frac{\sin\big[\pi(t-nT)/T\big]}{\pi(
 
 把抽样间隔"折叠进频率定义"里，令
 
-$$\omega=\Omega T\qquad\Longleftrightarrow\qquad \Omega=\frac{\omega}{T}$$
+$$
+\omega=\Omega T\qquad\Longleftrightarrow\qquad \Omega=\frac{\omega}{T}
+$$
 
 则 $\Omega_s=2\pi/T$ 对应 $\omega=2\pi$，$\Omega_s/2$ 对应 $\omega=\pi$。**数字域里的一切都只看 $\omega$，与 $T$ 无关。**
 
 $\Omega$ 称为模拟角频率，$\omega$ 称为数字角频率，$T$ 称为采样间隔/周期，因此我们可以拓展以下的公式
-$$\omega = 2\pi \frac{f}{f_S} $$
+$$
+\omega = 2\pi \frac{f}{f_S} 
+$$
 其中$f$为模拟频率，$f_s$为采样频率
 
 | 模拟量                      | 数字量                    | 备注                 |
@@ -987,12 +1093,16 @@ $$\omega = 2\pi \frac{f}{f_S} $$
 
 > [!tip] 带通抽样定理（下频带抽样）
 > 记带宽 $B=f_H-f_L$，取最大整数 $N=\lfloor f_H/B\rfloor$、余量 $M=f_H/B-N\in[0,1)$，则可用抽样率
-> $$f_s=2B\Big(1+\frac{M}{N}\Big)$$
+> $$
+> f_s=2B\Big(1+\frac{M}{N}\Big)
+> $$
 > 就能无混叠抽样。（当 $M=0$，即 $f_H$ 恰为 $B$ 的整数倍时，$f_s=2B$ 即最低速率。）
 
 > [!example] 例：中频采样
 > 带通信号 $f_L=30$ MHz、$f_H=35$ MHz，则 $B=5$ MHz、$f_H/B=7$（整数，$N=7,M=0$），故
-> $$f_s=2\times5=10\ \text{MHz}$$
+> $$
+> f_s=2\times5=10\ \text{MHz}
+> $$
 > 而按低通抽样定理需要 $70$ MHz，速度要求降到 **1/7**。
 > 这正是**软件无线电（SDR）直接在中频采样**的依据：ADC 用 $f_s=10$ MHz 就能覆盖 30~35 MHz 这一整段，随后在数字域做混频（数字下变频 DDC），把射频链路的模拟器件大幅简化。
 

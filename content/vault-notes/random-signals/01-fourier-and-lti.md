@@ -57,7 +57,9 @@ related: []
 
 **卷积定理**是全部频域分析的枢纽：
 
-$$y(t)=x(t)*h(t)\quad\Longleftrightarrow\quad Y(\omega)=X(\omega)H(\omega)$$
+$$
+y(t)=x(t)*h(t)\quad\Longleftrightarrow\quad Y(\omega)=X(\omega)H(\omega)
+$$
 
 离散形式完全平行：$y[n]=x[n]*h[n]\Longleftrightarrow Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})$。DFT 中则是循环卷积，要得到线性卷积必须补零到 $N\ge N_1+N_2-1$。
 
@@ -68,11 +70,17 @@ $$y(t)=x(t)*h(t)\quad\Longleftrightarrow\quad Y(\omega)=X(\omega)H(\omega)$$
 
 三种变换的 Parseval 关系（能量守恒）分别为
 
-$$\int_{-\infty}^{\infty}\lvert x(t)\rvert^2\,\mathrm{d}t=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert X(\omega)\rvert^2\,\mathrm{d}\omega$$
+$$
+\int_{-\infty}^{\infty}\lvert x(t)\rvert^2\,\mathrm{d}t=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert X(\omega)\rvert^2\,\mathrm{d}\omega
+$$
 
-$$\sum_{n=-\infty}^{\infty}\lvert x[n]\rvert^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert X(e^{j\omega})\rvert^2\,\mathrm{d}\omega$$
+$$
+\sum_{n=-\infty}^{\infty}\lvert x[n]\rvert^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert X(e^{j\omega})\rvert^2\,\mathrm{d}\omega
+$$
 
-$$\sum_{n=0}^{N-1}\lvert x[n]\rvert^2=\frac{1}{N}\sum_{k=0}^{N-1}\lvert X[k]\rvert^2$$
+$$
+\sum_{n=0}^{N-1}\lvert x[n]\rvert^2=\frac{1}{N}\sum_{k=0}^{N-1}\lvert X[k]\rvert^2
+$$
 
 | 信号类型 | 判据 | 频域描述 | 典型对象 |
 | --- | --- | --- | --- |
@@ -86,7 +94,9 @@ $$\sum_{n=0}^{N-1}\lvert x[n]\rvert^2=\frac{1}{N}\sum_{k=0}^{N-1}\lvert X[k]\rve
 
 > [!info] 定义 5.1 LTI 系统
 > 连续时间系统若满足叠加性与时不变性，则可由冲激响应 $h(t)$ 完全描述：
-> $$y(t)=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)\,\mathrm{d}\tau,\qquad H(\omega)=\int_{-\infty}^{\infty}h(t)e^{-j\omega t}\,\mathrm{d}t$$
+> $$
+> y(t)=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)\,\mathrm{d}\tau,\qquad H(\omega)=\int_{-\infty}^{\infty}h(t)e^{-j\omega t}\,\mathrm{d}t
+> $$
 > 离散情形把积分换成求和，$H(e^{j\omega})=\sum_n h[n]e^{-j\omega n}$。
 
 | 判据 | 连续时间 | 离散时间 | 频域等价 |
@@ -103,11 +113,17 @@ $$\sum_{n=0}^{N-1}\lvert x[n]\rvert^2=\frac{1}{N}\sum_{k=0}^{N-1}\lvert X[k]\rve
 
 把确知信号的结论"逐点搬到随机过程"是行不通的，正确做法是对二阶统计量做变换。设 $X(t)$ 为宽平稳过程，通过冲激响应为 $h(t)$ 的 LTI 系统得到 $Y(t)$，则
 
-$$\mu_Y=\mu_X\int_{-\infty}^{\infty}h(t)\,\mathrm{d}t=\mu_X H(0)$$
+$$
+\mu_Y=\mu_X\int_{-\infty}^{\infty}h(t)\,\mathrm{d}t=\mu_X H(0)
+$$
 
-$$S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)$$
+$$
+S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)
+$$
 
-$$P_Y=R_Y(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_X(\omega)\,\mathrm{d}\omega$$
+$$
+P_Y=R_Y(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_X(\omega)\,\mathrm{d}\omega
+$$
 
 > [!warning] 只有"输入平稳 + 系统 LTI"才保证输出平稳
 > 若系统是时变的（如采样、调制、自适应滤波），或输入非平稳，则 $S_Y=\lvert H\rvert^2S_X$ 不成立，必须回到时变相关函数 $R_Y(t_1,t_2)$ 重新推导。

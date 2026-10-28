@@ -15,6 +15,25 @@ tags:
 > [!tip] 一句话抓住重点
 > 频域分析的价值在于：很多在时域看起来复杂的运算（卷积、微分、滤波），在频域里只是加法与乘法。
 
+## 数字信号处理的学习路径
+
+数字信号处理以序列为对象：先理解信号如何采样、系统如何用卷积描述，再把问题搬到频域，最后设计实际滤波器。这条路径融合了 Obsidian 中的课程笔记和本站的专题讲解。
+
+### 1. 离散时间与系统
+
+序列用整数下标描述采样结果；线性时不变系统由单位冲激响应决定，输出通过卷积求得。采样连接连续时间与离散时间，但采样率不足会造成混叠。深入阅读：[[vault-notes/dsp/01-discrete-time-systems|离散时间信号与系统]]。
+
+### 2. 从 Z 变换到 DFT 和 FFT
+
+Z 变换用复平面描述离散系统；DTFT 描述连续频率上的响应；DFT 在有限个频率点上计算，而 FFT 是加速 DFT 的算法。本站 [[signal-processing/dft-and-fft|DFT 与 FFT 专题]]将两篇笔记的关键关系、圆周卷积和蝶形运算串在一起。详细推导：[[vault-notes/dsp/02-z-transform-and-dtft|Z 变换与 DTFT]]、[[vault-notes/dsp/03-discrete-fourier-transform|DFT]]、[[vault-notes/dsp/04-fast-fourier-transform|FFT]]。
+
+### 3. 数字滤波器
+
+滤波器用差分方程与结构图实现频率选择。IIR 借助反馈以较低阶数实现选择性，但需要检查稳定性；FIR 没有输出反馈，可以设计精确线性相位，通常需要较高阶数。深入阅读：[[vault-notes/dsp/05-filter-structures|基本结构]]、[[vault-notes/dsp/06-iir-filter-design|IIR 设计]]、[[vault-notes/dsp/07-fir-filter-design|FIR 设计]]。
+
+### 4. 多抽样率
+
+抽取降低采样率之前要考虑抗混叠滤波；插值提高采样率后要抑制成像频谱。深入阅读：[[vault-notes/dsp/08-multirate-sampling|序列的抽取和插值]]。
 ## 本分类文章
 
 - [[signal-processing/signals-and-systems-intro|信号与系统导论]]：LTI 系统、卷积、采样定理与混叠。
@@ -35,3 +54,19 @@ tags:
 - [[signal-processing/signals-and-systems-intro|信号与系统导论]]
 - [[signal-processing/dft-and-fft|DFT 与 FFT]]
 - [[maps/knowledge-network|跨学科知识网络]]
+
+<!-- topic-index:start -->
+## 数字信号处理知识点索引
+
+### 数字信号处理
+
+- [[vault-notes/dsp/01-discrete-time-systems|离散时间信号与系统]]
+- [[vault-notes/dsp/02-z-transform-and-dtft|Z变换与离散时间傅里叶变换(DTFT)]]
+- [[vault-notes/dsp/03-discrete-fourier-transform|离散傅里叶变换(DFT)]]
+- [[vault-notes/dsp/04-fast-fourier-transform|快速傅里叶变换(FFT)]]
+- [[vault-notes/dsp/05-filter-structures|数字滤波器的基本结构]]
+- [[vault-notes/dsp/06-iir-filter-design|无限长单位冲激响应数字滤波器(IIR)设计方法]]
+- [[vault-notes/dsp/07-fir-filter-design|有限长单位冲激响应数字滤波器(FIR)设计方法]]
+- [[vault-notes/dsp/08-multirate-sampling|序列的抽取和插值--多抽样率数字信号处理基础]]
+
+<!-- topic-index:end -->

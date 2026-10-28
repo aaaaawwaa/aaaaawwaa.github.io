@@ -66,9 +66,13 @@ $n$ 维复向量空间 $\mathbb{C}^n$ 就是把 $\mathbb{R}^n$ 的每个分量�
 平面上的点也可以用"距离 + 角度"表示。把两条信息合写成指数，就得到本章最有用的公式。
 
 > [!info] Def 2 极形式与欧拉公式
-> $$z=re^{j\theta},\qquad r=\lvert z\rvert\ge0,\quad \theta=\arg z$$
+> $$
+> z=re^{j\theta},\qquad r=\lvert z\rvert\ge0,\quad \theta=\arg z
+> $$
 > 其中**欧拉公式**（Euler's formula）说明了指数与三角函数的关系：
-> $$e^{j\theta}=\cos\theta+j\sin\theta$$
+> $$
+> e^{j\theta}=\cos\theta+j\sin\theta
+> $$
 > （把 $e^{j\theta}$、$\cos\theta$、$\sin\theta$ 都按泰勒级数展开，实部虚部分别对齐即得。）
 
 **三个必须记住的特例**：
@@ -143,7 +147,9 @@ $$
 > $$(r_1e^{j\theta_1})(r_2e^{j\theta_2})=r_1r_2\,e^{j(\theta_1+\theta_2)}
 > \qquad\qquad
 > \frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}e^{j(\theta_1-\theta_2)}$$
-> $$(re^{j\theta})^{n}=r^{n}e^{jn\theta}\qquad\text{（棣莫弗定理 de Moivre）}$$
+> $$
+> (re^{j\theta})^{n}=r^{n}e^{jn\theta}\qquad\text{（棣莫弗定理 de Moivre）}
+> $$
 > 于是 $\lvert z_1z_2\rvert=\lvert z_1\rvert\lvert z_2\rvert$、$\arg(z_1z_2)=\arg z_1+\arg z_2$ ✓（已验证：$z=1+j$、$w=\sqrt3+j$ 时 $\lvert zw\rvert=2\sqrt2$、$\arg(zw)=0.785+0.524=1.309$ ✓）
 
 **例**：$(1+j)^{4}$：
@@ -171,9 +177,13 @@ $$
 ## 复内积
 
 > [!info] Def 3 复内积
-> $$\langle\mathbf{v},\mathbf{w}\rangle=\mathbf{v}^{H}\mathbf{w}=\bar v_1w_1+\bar v_2w_2+\cdots+\bar v_nw_n$$
+> $$
+> \langle\mathbf{v},\mathbf{w}\rangle=\mathbf{v}^{H}\mathbf{w}=\bar v_1w_1+\bar v_2w_2+\cdots+\bar v_nw_n
+> $$
 > 关键在**第一个向量取共轭**。等价地：
-> $$\mathbf{v}^{H}\mathbf{w}=\overline{\mathbf{w}^{H}\mathbf{v}},\qquad \lVert\mathbf{v}\rVert^{2}=\mathbf{v}^{H}\mathbf{v}=\lvert v_1\rvert^{2}+\cdots+\lvert v_n\rvert^{2}$$
+> $$
+> \mathbf{v}^{H}\mathbf{w}=\overline{\mathbf{w}^{H}\mathbf{v}},\qquad \lVert\mathbf{v}\rVert^{2}=\mathbf{v}^{H}\mathbf{v}=\lvert v_1\rvert^{2}+\cdots+\lvert v_n\rvert^{2}
+> $$
 
 **为什么要共轭？** 因为要让**长度是实数**：
 
@@ -189,14 +199,18 @@ $$
 ## 埃尔米特矩阵
 
 > [!info] Def 4 埃尔米特矩阵
-> $$A^{H}=A\qquad(\text{即}\ a_{ij}=\bar a_{ji})$$
+> $$
+> A^{H}=A\qquad(\text{即}\ a_{ij}=\bar a_{ji})
+> $$
 > 称 $A$ 为**埃尔米特矩阵**（Hermitian matrix）。**实对称矩阵是它的特例**（$A^{T}=A$）。
 
 > [!tip] 定理 埃尔米特矩阵的三个保证（第 6 章对称矩阵的复版）
 > 1. **对角元必为实数**（$a_{ii}=\bar a_{ii}$）；
 > 2. **特征值全为实数**；
 > 3. **特征向量互相正交**（在复内积意义下），且可以**酉对角化**：
->    $$A=U\Lambda U^{H}\qquad(\Lambda\ \text{实对角},\ U\ \text{酉矩阵})$$
+>    $$
+>    A=U\Lambda U^{H}\qquad(\Lambda\ \text{实对角},\ U\ \text{酉矩阵})
+>    $$
 > ——这就是**谱定理**（spectral theorem）的完整形态，第 6 章只讲了它的实数情形。
 > 附带一条：对埃尔米特 $A$，二次型 $\mathbf{x}^{H}A\mathbf{x}$ **一定是实数**（它是能量，不能是复数）。
 
@@ -212,7 +226,9 @@ $$
 ## 酉矩阵
 
 > [!info] Def 5 酉矩阵
-> $$U^{H}U=I\qquad\Longleftrightarrow\qquad U^{H}=U^{-1}$$
+> $$
+> U^{H}U=I\qquad\Longleftrightarrow\qquad U^{H}=U^{-1}
+> $$
 > 称 $U$ 为**酉矩阵**（unitary matrix）。**实正交矩阵是它的特例**（第 4 章）。
 
 > [!tip] 定理 酉矩阵的三条性质
@@ -286,10 +302,14 @@ $$
 
 > [!info] Def 6 $n$ 次单位根
 > **$n$ 次单位根**（roots of unity）：
-> $$\omega=e^{2\pi j/n},\qquad \omega^{n}=1$$
+> $$
+> \omega=e^{2\pi j/n},\qquad \omega^{n}=1
+> $$
 > 它把单位圆**等分成 $n$ 份**：$1,\omega,\omega^{2},\dots,\omega^{n-1}$ 是方程 $z^{n}=1$ 的全部根。
 > 一条反复要用的恒等式：**所有单位根之和为零**
-> $$1+\omega+\omega^{2}+\cdots+\omega^{n-1}=0$$
+> $$
+> 1+\omega+\omega^{2}+\cdots+\omega^{n-1}=0
+> $$
 > （它们首尾相接正好绕一圈，向量和当然为零。）
 
 **$n=4$ 时**：$\omega=e^{2\pi j/4}=j$，四个根正是 $1,\ j,\ -1,\ -j$ ✓ ——**恰好是 QPSK 的星座点**！
@@ -467,7 +487,9 @@ $$
 
 > [!tip] 定理 FFT 的代价是 $O(n\log n)$
 > 令 $T(n)$ 为 $n$ 点 FFT 的运算量：
-> $$T(n)=2\,T\!\left(\frac n2\right)+O(n)\qquad\Longrightarrow\qquad \boxed{\ T(n)=O(n\log n)\ }$$
+> $$
+> T(n)=2\,T\!\left(\frac n2\right)+O(n)\qquad\Longrightarrow\qquad \boxed{\ T(n)=O(n\log n)\ }
+> $$
 > （两个"半尺寸"问题加上 $O(n)$ 的合并开销；递归 $\log_2n$ 层。）
 
 **乘法数对比**（DFT 是 $n^{2}$，FFT 约为 $\frac n2\log_2n$）：
@@ -498,7 +520,9 @@ $$
 > 第 9 章把线性代数"复化"了一遍，三条主线：
 > 1. **9.1 复数**：$z=re^{j\theta}$；**乘法 = 旋转 + 伸缩**（模相乘、幅角相加）；$e^{j\pi}=-1$；$\mathbb{C}^n$ 里所有实线性代数结论照旧；
 > 2. **9.2 埃尔米特与酉**：复内积必须取共轭（否则长度不是正实数）；于是
->    $$A^{H}=A\Rightarrow\lambda\in\mathbb{R};\qquad U^{H}=U^{-1}\Rightarrow\lvert\lambda\rvert=1;\qquad\text{都能酉对角化}\ A=U\Lambda U^{H}$$
+>    $$
+>    A^{H}=A\Rightarrow\lambda\in\mathbb{R};\qquad U^{H}=U^{-1}\Rightarrow\lvert\lambda\rvert=1;\qquad\text{都能酉对角化}\ A=U\Lambda U^{H}
+>    $$
 >    ——第 6 章"对称 + 正交"的复数版，而且**酉变换保能量**；
 > 3. **9.3 FFT**：单位根 ⇒ 傅里叶矩阵（$F^{H}F=nI$，酉）；**分奇偶 + 递归 + 旋转因子** ⇒ $O(n^{2})$ 变 $O(n\log n)$ ⇒ OFDM、频谱分析、快速卷积。
 > 一句话：**复数为"旋转"发了身份证，埃尔米特与酉给了它"实特征值/单位圆特征值"的保证，FFT 让它变得几乎免费。**

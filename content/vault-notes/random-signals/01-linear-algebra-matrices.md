@@ -84,12 +84,16 @@ related: []
 
 > [!info] 定义 4.4 正交投影
 > 设 $\mathbf{A}\in\mathbb{C}^{m\times n}$ 列满秩，$\mathrm{Col}(\mathbf{A})$ 为其列空间。向量 $\mathbf{b}$ 在该子空间上的**正交投影**为
-> $$\hat{\mathbf{b}}=\mathbf{P}\mathbf{b},\qquad \mathbf{P}=\mathbf{A}(\mathbf{A}^{H}\mathbf{A})^{-1}\mathbf{A}^{H}$$
+> $$
+> \hat{\mathbf{b}}=\mathbf{P}\mathbf{b},\qquad \mathbf{P}=\mathbf{A}(\mathbf{A}^{H}\mathbf{A})^{-1}\mathbf{A}^{H}
+> $$
 > $\mathbf{P}$ 满足 $\mathbf{P}^{2}=\mathbf{P}$ 与 $\mathbf{P}^{H}=\mathbf{P}$。
 
 最小二乘问题 $\min_{\mathbf{x}}\lVert\mathbf{A}\mathbf{x}-\mathbf{b}\rVert_2^2$ 的解由**正规方程**给出：
 
-$$\mathbf{A}^{H}\mathbf{A}\mathbf{x}=\mathbf{A}^{H}\mathbf{b}\quad\Longrightarrow\quad \hat{\mathbf{x}}=(\mathbf{A}^{H}\mathbf{A})^{-1}\mathbf{A}^{H}\mathbf{b}$$
+$$
+\mathbf{A}^{H}\mathbf{A}\mathbf{x}=\mathbf{A}^{H}\mathbf{b}\quad\Longrightarrow\quad \hat{\mathbf{x}}=(\mathbf{A}^{H}\mathbf{A})^{-1}\mathbf{A}^{H}\mathbf{b}
+$$
 
 > [!tip] 几何图像
 > 残差 $\mathbf{b}-\mathbf{A}\hat{\mathbf{x}}$ 与列空间正交，所以 $\mathbf{A}^{H}(\mathbf{b}-\mathbf{A}\hat{\mathbf{x}})=\mathbf{0}$。
@@ -99,7 +103,9 @@ $$\mathbf{A}^{H}\mathbf{A}\mathbf{x}=\mathbf{A}^{H}\mathbf{b}\quad\Longrightarro
 
 > [!info] 定义 4.5 矩阵求逆引理（Woodbury）
 > 若 $\mathbf{A}$ 与 $\mathbf{C}$ 可逆，则
-> $$\big(\mathbf{A}+\mathbf{B}\mathbf{C}\mathbf{D}\big)^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1}\mathbf{B}\big(\mathbf{C}^{-1}+\mathbf{D}\mathbf{A}^{-1}\mathbf{B}\big)^{-1}\mathbf{D}\mathbf{A}^{-1}$$
+> $$
+> \big(\mathbf{A}+\mathbf{B}\mathbf{C}\mathbf{D}\big)^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1}\mathbf{B}\big(\mathbf{C}^{-1}+\mathbf{D}\mathbf{A}^{-1}\mathbf{B}\big)^{-1}\mathbf{D}\mathbf{A}^{-1}
+> $$
 > 取 $\mathbf{B}=\mathbf{u}$、$\mathbf{C}=1$、$\mathbf{D}=\mathbf{v}^{H}$ 得 Sherman-Morrison 公式，用于秩一更新。
 
 秩一更新在自适应滤波中极其重要：RLS 每来一个新样本，只需用旧逆矩阵加一个秩一修正，单步复杂度从 $O(n^3)$ 降到 $O(n^2)$。卡尔曼滤波的协方差更新也是同一套路。

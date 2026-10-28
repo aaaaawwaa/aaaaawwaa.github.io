@@ -34,19 +34,27 @@ related: []
 
 设 $S[n]$ 为单位方差 AR(1)，观测 $X[n]=S[n]+V[n]$，$V[n]\sim N(0,\sigma_v^2)$ 与信号独立，则
 
-$$R_S[k]=a^{|k|},\qquad R_X[k]=R_S[k]+\sigma_v^2\delta[k]$$
+$$
+R_S[k]=a^{|k|},\qquad R_X[k]=R_S[k]+\sigma_v^2\delta[k]
+$$
 
 因果 FIR 只用 $X[n],\dots,X[n-M+1]$，最小化 $E[(S[n]-\sum_{k=0}^{M-1}h[k]X[n-k])^2]$。由正交性原理得正规方程
 
-$$\mathbf{R}_{XX}\mathbf{h}=\mathbf{r}_{XS},\qquad [\mathbf{R}_{XX}]_{ij}=R_X[i-j],\quad r_{XS}[j]=R_S[j]$$
+$$
+\mathbf{R}_{XX}\mathbf{h}=\mathbf{r}_{XS},\qquad [\mathbf{R}_{XX}]_{ij}=R_X[i-j],\quad r_{XS}[j]=R_S[j]
+$$
 
 其 MMSE 为 $\mathrm{MMSE}=\sigma_S^2-\mathbf{r}_{XS}^T\mathbf{h}$。非因果 Wiener 允许使用全部观测，频域解为
 
-$$H(\omega)=\frac{S_S(\omega)}{S_S(\omega)+S_V(\omega)}$$
+$$
+H(\omega)=\frac{S_S(\omega)}{S_S(\omega)+S_V(\omega)}
+$$
 
 对应 MMSE 由 $\frac{1}{2\pi}\int\frac{S_SS_V}{S_S+S_V}\,\mathrm{d}\omega$ 数值积分得到。输出 SNR 统一按“以完整 $S[n]$ 为期望信号”定义：
 
-$$\mathrm{SNR}_{out}=10\log_{10}\frac{\sigma_S^2}{\mathrm{MMSE}}$$
+$$
+\mathrm{SNR}_{out}=10\log_{10}\frac{\sigma_S^2}{\mathrm{MMSE}}
+$$
 
 分母是 MMSE 而非 $1-\mathrm{MMSE}$：因果滤波器的输出有失真，误差同时包含噪声残差与信号失真。
 

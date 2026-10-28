@@ -33,15 +33,21 @@ related: []
 
 标准高斯变量 $Z\sim N(0,1)$ 的 PDF 为
 
-$$f_Z(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}$$
+$$
+f_Z(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}
+$$
 
 对 $X=\mu+\sigma Z$，有 $X\sim N(\mu,\sigma^2)$，其 PDF 为
 
-$$f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]$$
+$$
+f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]
+$$
 
 样本均值 $\bar X$ 与样本方差 $S^2$ 满足
 
-$$E[\bar X]=\mu,\qquad \mathrm{Var}(\bar X)=\frac{\sigma^2}{N},\qquad E[S^2]=\sigma^2,\qquad \mathrm{Var}(S^2)=\frac{2\sigma^4}{N-1}$$
+$$
+E[\bar X]=\mu,\qquad \mathrm{Var}(\bar X)=\frac{\sigma^2}{N},\qquad E[S^2]=\sigma^2,\qquad \mathrm{Var}(S^2)=\frac{2\sigma^4}{N-1}
+$$
 
 Q-Q 图把排序后的样本 $x_{(i)}$ 与理论分位数 $\mu+\sigma\Phi^{-1}\left(\frac{i-0.5}{N}\right)$ 对比：点落在 $y=x$ 附近说明分布一致，尾部系统性偏离说明偏度或厚尾。
 

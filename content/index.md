@@ -12,7 +12,7 @@ tags:
   <div class="lt-subtitle">循着知识的脉络，理解工程。</div>
   <p class="lt-lead">一份持续生长的电子信息工程 Wiki。从一个概念出发，沿着公式、代码与实验，把零散的知识连成自己的理解。</p>
   <div class="lt-actions">
-    <a class="lt-button" href="./maps/learning-path">从学习路径开始 <span aria-hidden="true">↗</span></a>
+    <a class="lt-button" href="./maps/knowledge-network">按知识主题开始阅读 <span aria-hidden="true">↗</span></a>
     <a class="lt-button secondary" href="./maps/knowledge-network">探索知识网络 <span aria-hidden="true">→</span></a>
   </div>
   <div class="lt-process" aria-label="学习方法"><span>概念理解</span><b aria-hidden="true">→</b><span>数学表达</span><b aria-hidden="true">→</b><span>实现验证</span></div>
@@ -25,13 +25,14 @@ tags:
   <a class="lt-card" href="./communication/"><div class="lt-card-top"><span>03</span><b aria-hidden="true">↗</b></div><strong>通信原理</strong><p>从调制到检测，追踪信息穿过信道的完整旅程。</p><small>COMMUNICATION</small></a>
   <a class="lt-card" href="./digital-systems/"><div class="lt-card-top"><span>04</span><b aria-hidden="true">↗</b></div><strong>数字系统</strong><p>用 Verilog、时序逻辑与状态机，把设计变成电路。</p><small>DIGITAL SYSTEMS</small></a>
   <a class="lt-card" href="./programming/"><div class="lt-card-top"><span>05</span><b aria-hidden="true">↗</b></div><strong>编程实践</strong><p>在 C、Python 与 MATLAB 中，验证思路和算法。</p><small>PROGRAMMING</small></a>
-  <a class="lt-card" href="./ai-agents/"><div class="lt-card-top"><span>06</span><b aria-hidden="true">↗</b></div><strong>AI 与工具</strong><p>整理检索、编码助手与 Agent 的使用方法和边界。</p><small>AI & TOOLS</small></a>
-  <a class="lt-card" href="./projects/"><div class="lt-card-top"><span>07</span><b aria-hidden="true">↗</b></div><strong>项目实战</strong><p>记录设计、调试和复盘，让实验过程可以重现。</p><small>PROJECTS</small></a>
+  <a class="lt-card" href="./signal-processing/random-processes"><div class="lt-card-top"><span>06</span><b aria-hidden="true">↗</b></div><strong>随机信号处理</strong><p>从相关与功率谱，走到估计、滤波与检测。</p><small>RANDOM PROCESSES</small></a>
+  <a class="lt-card" href="./communication/mobile-networks"><div class="lt-card-top"><span>07</span><b aria-hidden="true">↗</b></div><strong>5G 与 6G</strong><p>连接网络架构、协议分层与无线接入过程。</p><small>MOBILE NETWORKS</small></a>
   <a class="lt-card" href="./interactive-labs/"><div class="lt-card-top"><span>08</span><b aria-hidden="true">↗</b></div><strong>交互实验</strong><p>从可运行的代码出发，观察参数怎样改变结果。</p><small>INTERACTIVE LABS</small></a>
 </nav>
 
 <div class="lt-section-head"><h2 id="start-reading">从这里开始读</h2><span>SELECTED NOTES</span></div>
 <div class="lt-feature-list">
+  <a class="lt-feature" href="./signal-processing/"><span><strong>数字信号处理学习路径</strong><small>从离散系统、频谱到数字滤波器</small></span><span aria-hidden="true">→</span></a>
   <a class="lt-feature" href="./signal-processing/dft-and-fft"><span><strong>DFT 与 FFT</strong><small>把离散频谱、分辨率和实际代码连接起来</small></span><span aria-hidden="true">→</span></a>
   <a class="lt-feature" href="./digital-systems/fsm-design"><span><strong>有限状态机设计</strong><small>用状态、转换条件和输出关系组织数字逻辑</small></span><span aria-hidden="true">→</span></a>
   <a class="lt-feature" href="./maps/"><span><strong>跨学科导航</strong><small>回到知识地图，寻找下一步学习的方向</small></span><span aria-hidden="true">→</span></a>

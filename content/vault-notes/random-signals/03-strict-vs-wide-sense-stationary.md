@@ -28,7 +28,9 @@ related: []
 
 > [!info] 定义 1 严平稳
 > 若对任意 $n$、任意时刻 $t_1,\dots,t_n$ 与任意时间平移 $\tau$，都有
-> $$F_X(x_1,\dots,x_n;t_1,\dots,t_n)=F_X(x_1,\dots,x_n;t_1+\tau,\dots,t_n+\tau)$$
+> $$
+> F_X(x_1,\dots,x_n;t_1,\dots,t_n)=F_X(x_1,\dots,x_n;t_1+\tau,\dots,t_n+\tau)
+> $$
 > 则称 $X(t)$ 为**严平稳**（strictly stationary）过程。
 
 严平稳要求整个有限维分布族对时间平移不变，因此：
@@ -47,7 +49,9 @@ related: []
 > 1. 二阶矩有限：$E\big[\lvert X(t)\rvert^2\big]<\infty$；
 > 2. 均值函数为常数：$\mu_X(t)=\mu_X$；
 > 3. 自相关只与时间差有关：
-> $$R_X(t_1,t_2)=R_X(t_1-t_2)=E\big[X(t+\tau)X^*(t)\big]=R_X(\tau)$$
+> $$
+> R_X(t_1,t_2)=R_X(t_1-t_2)=E\big[X(t+\tau)X^*(t)\big]=R_X(\tau)
+> $$
 >
 > 则称它为**宽平稳**（wide-sense stationary，WSS）过程，也称广义平稳过程。
 
@@ -87,7 +91,9 @@ related: []
 
 > [!example] 宽平稳但非严平稳
 > 设 $X(t)=A\cos\omega_0t+B\sin\omega_0t$，$A,B$ 零均值、不相关、方差均为 $1$；取 $A$ 以等概率取 $\pm1$，$B$ 服从方差为 $1$ 的拉普拉斯分布。则
-> $$\mu_X(t)=0,\qquad R_X(t,t+\tau)=\cos\omega_0\tau$$
+> $$
+> \mu_X(t)=0,\qquad R_X(t,t+\tau)=\cos\omega_0\tau
+> $$
 > 过程是 WSS 的；但 $t=0$ 时 $X(0)=A$ 只取 $\pm1$，$t=\pi/(2\omega_0)$ 时 $X(t)=B$ 服从拉普拉斯分布，一维分布随 $t$ 改变，故不严平稳。
 
 > [!example] 严平稳且宽平稳

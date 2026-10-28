@@ -152,9 +152,13 @@ flowchart LR
 
 则两条检查分别变成：
 
-$$\text{Setup: } T + T_{clk\_skew} \ge T_{cko} + T_{logic} + T_{net} + T_{setup}$$
+$$
+\text{Setup: } T + T_{clk\_skew} \ge T_{cko} + T_{logic} + T_{net} + T_{setup}
+$$
 
-$$\text{Hold: } T_{cd1} + T_{cko}^{min} + T_{logic}^{min} \ge T_{cd2} + T_{hold}$$
+$$
+\text{Hold: } T_{cd1} + T_{cko}^{min} + T_{logic}^{min} \ge T_{cd2} + T_{hold}
+$$
 
 > [!important] 两个方向相反
 > **捕获时钟更晚（skew 为正）→ setup 更宽裕，hold 更危险。**
@@ -191,7 +195,9 @@ $$\text{Hold: } T_{cd1} + T_{cko}^{min} + T_{logic}^{min} \ge T_{cd2} + T_{hold}
 
 课件第 30 页原文：
 
-$$T_{period}=T_{cko}+T_{logic}+T_{net}+T_{setup}-T_{clk\_skew},\qquad T_{clk\_skew}=T_{cd1}-T_{cd2}$$
+$$
+T_{period}=T_{cko}+T_{logic}+T_{net}+T_{setup}-T_{clk\_skew},\qquad T_{clk\_skew}=T_{cd1}-T_{cd2}
+$$
 
 其中 $T_{cko}$ = 时钟输出时间，$T_{logic}$ = 同步元件之间的组合逻辑延迟，$T_{net}$ = 网线延迟，$T_{setup}$ = 同步元件的建立时间，$T_{clk\_skew}$ = 时钟信号偏斜。
 
@@ -217,11 +223,15 @@ $$T_{period}=T_{cko}+T_{logic}+T_{net}+T_{setup}-T_{clk\_skew},\qquad T_{clk\_sk
 3. 到达捕获触发器 D 端：$T_{cd1}+T_{cko}+T_{logic}+T_{net}$
 4. 捕获时钟沿到：$T_{period}+T_{cd2}$，要求数据提前 $T_{setup}$ 稳定
 
-$$\Rightarrow T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}+(T_{cd1}-T_{cd2})$$
+$$
+\Rightarrow T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}+(T_{cd1}-T_{cd2})
+$$
 
 即工程上更好记的形式：
 
-$$\boxed{T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})}$$
+$$
+\boxed{T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})}
+$$
 
 > [!warning] 符号约定陷阱（本课件的易错点）
 > 课件把 $T_{clk\_skew}$ 定义为 $T_{cd1}-T_{cd2}$，却写成 $T_{period}=\cdots-T_{clk\_skew}$。若按"$T_{cd1}$ 是发起时钟、$T_{cd2}$ 是捕获时钟"直接代入，会得出"捕获时钟越晚、周期要求越短"的反直觉结论。
@@ -236,13 +246,19 @@ $$\boxed{T_{period}\ge T_{cko}+T_{logic}+T_{net}+T_{setup}-(T_{cd2}-T_{cd1})}$$
 
 **建立准则（准则 1）：**
 
-$$t_{ck}\ge t_{c}^{max}+t_{p}^{max}+t_{su}=3+8+4=15\ \text{ns}$$
+$$
+t_{ck}\ge t_{c}^{max}+t_{p}^{max}+t_{su}=3+8+4=15\ \text{ns}
+$$
 
-$$f_{max}=\frac{1}{t_{ck}}=\frac{1}{15\ \text{ns}}\approx 66.67\ \text{MHz}$$
+$$
+f_{max}=\frac{1}{t_{ck}}=\frac{1}{15\ \text{ns}}\approx 66.67\ \text{MHz}
+$$
 
 **保持准则（准则 2）：**
 
-$$t_p^{min}+t_c^{min}=5+1=6\ \text{ns}>t_h=2\ \text{ns}\quad\checkmark$$
+$$
+t_p^{min}+t_c^{min}=5+1=6\ \text{ns}>t_h=2\ \text{ns}\quad\checkmark
+$$
 
 结论：时钟周期至少要 15 ns（即频率不高于 66.67 MHz）；保持时间有 4 ns 余量，不是瓶颈。
 
@@ -273,7 +289,9 @@ data arrived time      -19.80      ← 疑为课件笔误，负号应去掉
 slack                   11.94
 ```
 
-$$\text{slack}=\text{required time}-\text{arrival time}$$
+$$
+\text{slack}=\text{required time}-\text{arrival time}
+$$
 
 - 数值自洽检查：$31.74-19.80=11.94$ ✓，而 $31.74-(-19.80)=51.54$ ✗ → **`-19.80` 的负号是课件笔误**。
 - 判据：**slack ≥ 0 才算满足**。arrival time 必须**早于** required time（原文："arrived time 应比 required time 提前，这样才能保证建立时间不违例"）。

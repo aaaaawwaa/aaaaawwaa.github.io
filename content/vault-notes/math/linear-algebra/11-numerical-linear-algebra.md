@@ -40,14 +40,20 @@ related: []
 
 > [!warning] 小主元的灾难
 > 取 $A=\begin{bmatrix}\varepsilon&1\\1&1\end{bmatrix}$、$\mathbf{b}=\begin{pmatrix}1\\2\end{pmatrix}$，其中 $\varepsilon=10^{-16}$。**不换行**的直接消元：
-> $$\text{乘数 }l=\frac{a_{21}}{a_{11}}=\frac{1}{\varepsilon}=10^{16}\qquad\text{（巨大！）}$$
+> $$
+> \text{乘数 }l=\frac{a_{21}}{a_{11}}=\frac{1}{\varepsilon}=10^{16}\qquad\text{（巨大！）}
+> $$
 > 消元后第二行变成 $[\,1-l\varepsilon,\ 1-l\,]=[\,1-1,\ 1-10^{16}\,]$——**关键信息 $1-l\varepsilon$ 在相减中被吃光了**（灾难性相消）。实测结果：
-> $$\text{不选主元}:\ \mathbf{x}\approx(2.22,\ 1)\qquad\text{正确解}:\ \mathbf{x}=(1,1)\ \checkmark$$
+> $$
+> \text{不选主元}:\ \mathbf{x}\approx(2.22,\ 1)\qquad\text{正确解}:\ \mathbf{x}=(1,1)\ \checkmark
+> $$
 > $x_1$ 错了 122%，**完全不可用**。
 
 > [!tip] 补救：先换行再消元
 > **列主元**（partial pivoting）：每一步**先交换行，让该列绝对值最大的元素当主元**。于是所有乘数满足
-> $$\lvert l_{ij}\rvert\le1$$
+> $$
+> \lvert l_{ij}\rvert\le1
+> $$
 > ——**误差不会被放大**。上例换行后立刻得到精确解 $(1,1)$ ✓
 > 这就是几乎所有线性求解器默认做的事（LAPACK 的 `dgesv`、MATLAB 的 `\`、NumPy 的 `solve`）。数学形式：**$PA=LU$**（$P$ 记录换行，第 2 章）。
 
@@ -85,7 +91,9 @@ related: []
 
 > [!tip] 定理 带状结构在消元中被保持，代价降到 $O(nw^{2})$
 > 消元只会在带宽内产生新的非零元（**不会"跑到带外"**），于是
-> $$\text{稠密 }O(n^{3})\quad\longrightarrow\quad \text{带状 }O(nw^{2})$$
+> $$
+> \text{稠密 }O(n^{3})\quad\longrightarrow\quad \text{带状 }O(nw^{2})
+> $$
 > **三对角**（$w=1$）是最常出现的情形：代价 $O(n)$ ✓——用**追赶法**（Thomas algorithm，本质就是一次 LU）解，**线性代价**。
 
 **实测**（三对角 $n\times n$，右端全 1）：
@@ -180,9 +188,13 @@ related: []
 
 > [!info] Def 2 范数
 > **向量范数**（常见三种）：
-> $$\lVert\mathbf{x}\rVert_1=\sum\lvert x_i\rvert,\qquad \lVert\mathbf{x}\rVert_2=\Bigl(\sum\lvert x_i\rvert^{2}\Bigr)^{1/2},\qquad \lVert\mathbf{x}\rVert_\infty=\max_i\lvert x_i\rvert$$
+> $$
+> \lVert\mathbf{x}\rVert_1=\sum\lvert x_i\rvert,\qquad \lVert\mathbf{x}\rVert_2=\Bigl(\sum\lvert x_i\rvert^{2}\Bigr)^{1/2},\qquad \lVert\mathbf{x}\rVert_\infty=\max_i\lvert x_i\rvert
+> $$
 > **矩阵范数**（由向量范数诱导，衡量"$A$ 能把向量放大多少"）：
-> $$\lVert A\rVert=\max_{\mathbf{x}\ne\mathbf{0}}\frac{\lVert A\mathbf{x}\rVert}{\lVert\mathbf{x}\rVert}\qquad\Longrightarrow\qquad \lVert A\mathbf{x}\rVert\le\lVert A\rVert\lVert\mathbf{x}\rVert$$
+> $$
+> \lVert A\rVert=\max_{\mathbf{x}\ne\mathbf{0}}\frac{\lVert A\mathbf{x}\rVert}{\lVert\mathbf{x}\rVert}\qquad\Longrightarrow\qquad \lVert A\mathbf{x}\rVert\le\lVert A\rVert\lVert\mathbf{x}\rVert
+> $$
 > 关键一条：$\lVert A\rVert_2=\sigma_1$（最大奇异值）✓ ——**第 7 章的奇异值就是"最大放大倍数"**。
 
 ## 矩阵A的条件数
@@ -195,7 +207,9 @@ related: []
 
 > [!tip] 定理 条件数 = 相对误差的放大倍数
 > 解 $A\mathbf{x}=\mathbf{b}$ 时，如果 $\mathbf{b}$（或 $A$）有相对误差 $\varepsilon$，则解的相对误差最多被放大 $\operatorname{cond}(A)$ 倍：
-> $$\frac{\lVert\Delta\mathbf{x}\rVert}{\lVert\mathbf{x}\rVert}\ \le\ \operatorname{cond}(A)\cdot\frac{\lVert\Delta\mathbf{b}\rVert}{\lVert\mathbf{b}\rVert}$$
+> $$
+> \frac{\lVert\Delta\mathbf{x}\rVert}{\lVert\mathbf{x}\rVert}\ \le\ \operatorname{cond}(A)\cdot\frac{\lVert\Delta\mathbf{b}\rVert}{\lVert\mathbf{b}\rVert}
+> $$
 > **换算成"有效数字"**：若 $\operatorname{cond}(A)\approx10^{k}$，双精度（16 位）算出来的解只剩约 $16-k$ 位有效数字 ✓
 > 几何解释（第 7 章）：**$\operatorname{cond}$ 就是"A 把单位球压成的椭球有多扁"**——最扁的比最长的。
 
@@ -265,23 +279,33 @@ M\mathbf{x}_{k+1}=N\mathbf{x}_k+\mathbf{b}\qquad\Longrightarrow\qquad
 $$
 
 > [!tip] 定理 收敛 ⟺ 谱半径小于 1
-> $$\text{迭代收敛（对任意初值）}\quad\Longleftrightarrow\quad \rho(B)=\max_i\lvert\lambda_i(B)\rvert<1$$
+> $$
+> \text{迭代收敛（对任意初值）}\quad\Longleftrightarrow\quad \rho(B)=\max_i\lvert\lambda_i(B)\rvert<1
+> $$
 > 而且误差按 $\rho(B)$ 的速率衰减：
-> $$\lVert\mathbf{x}_k-\mathbf{x}\rVert\ \le\ \rho(B)^{k}\,\lVert\mathbf{x}_0-\mathbf{x}\rVert$$
+> $$
+> \lVert\mathbf{x}_k-\mathbf{x}\rVert\ \le\ \rho(B)^{k}\,\lVert\mathbf{x}_0-\mathbf{x}\rVert
+> $$
 > **一句话**：**$\rho(B)$ 是"每次迭代把误差缩小多少倍"**——第 6 章的谱半径在这里成了迭代法的"速度表"✓
 > **实用判据**：$A$ **严格对角占优**（$\lvert a_{ii}\rvert>\sum_{j\ne i}\lvert a_{ij}\rvert$）⇒ Jacobi 与 Gauss–Seidel 都收敛 ✓（第 10 章的刚度矩阵就对角占优）
 
 ## 雅可比迭代法对比高斯-赛德尔迭代法
 
 **Jacobi**：只用**上一轮**的值
-$$x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j\ne i}a_{ij}x_j^{(k)}\Bigr),\qquad B_J=D^{-1}(L+U)$$
+$$
+x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j\ne i}a_{ij}x_j^{(k)}\Bigr),\qquad B_J=D^{-1}(L+U)
+$$
 
 **Gauss–Seidel**：**用上已经更新的分量**（通常收敛更快，且只要存一份解向量）
-$$x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}-\sum_{j>i}a_{ij}x_j^{(k)}\Bigr),\qquad B_{GS}=(D-L)^{-1}U$$
+$$
+x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}-\sum_{j>i}a_{ij}x_j^{(k)}\Bigr),\qquad B_{GS}=(D-L)^{-1}U
+$$
 
 > [!tip] 三对角矩阵的漂亮结果（已实测验证）
 > 对 $K=\operatorname{tridiag}(2,-1)$（第 10 章的一维拉普拉斯）：
-> $$\rho(B_J)=\cos\frac{\pi}{n+1},\qquad \boxed{\ \rho(B_{GS})=\rho(B_J)^{2}\ }$$
+> $$
+> \rho(B_J)=\cos\frac{\pi}{n+1},\qquad \boxed{\ \rho(B_{GS})=\rho(B_J)^{2}\ }
+> $$
 > **$n=8$ 实测**：$\rho(B_J)=0.9397=\cos(\pi/9)$ ✓，$\rho(B_{GS})=0.8830=\rho(B_J)^{2}$ ✓
 > 于是**Gauss–Seidel 的误差每步缩小得更多**（$\rho$ 更小），但要真正"快一个数量级"还得靠下一小节的共轭梯度。
 
@@ -333,7 +357,9 @@ $$x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}-\sum_{j>i}a_
 > **共轭梯度法**（conjugate gradient，简称 CG）：对 $A$ **对称正定**，它沿一组 **$A$-共轭方向**（互相 $A$-正交）搜索，第 $k$ 步在前 $k$ 维 Krylov 子空间里给出最优解：
 > - **理论保证**：$n$ 步以内精确收敛；
 > - **实际速度**：由 $\sqrt{\operatorname{cond}(A)}$ 控制 ——**注意是平方根**：
->   $$\text{迭代次数}\sim\frac{1}{2}\sqrt{\operatorname{cond}(A)}\qquad\text{（Gauss–Seidel 则是 }\sim\operatorname{cond}(A)\text{ 量级）}$$
+>   $$
+>   \text{迭代次数}\sim\frac{1}{2}\sqrt{\operatorname{cond}(A)}\qquad\text{（Gauss–Seidel 则是 }\sim\operatorname{cond}(A)\text{ 量级）}
+>   $$
 > - 只需要"矩阵乘向量"（不修改矩阵、无填元）⇒ **天然适合稀疏大规模问题** ✓
 
 **实测对比**（$n=8$ 三对角，$\operatorname{cond}=32.2$，$\sqrt{\operatorname{cond}}=5.7$）：CG **4 步**就把误差压到 $10^{-7}$ 以下，10 步达到机器精度 $\approx10^{-16}$；而 Gauss–Seidel 走 60 步才到 $6\times10^{-4}$ ✓ ——**差别在两个数量级以上**。
@@ -345,7 +371,9 @@ $$x_i^{(k+1)}=\frac{1}{a_{ii}}\Bigl(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}-\sum_{j>i}a_
 
 > [!tip] 预条件子：把条件数"调小"
 > **预条件子**（preconditioner）：找一个**容易求逆**的 $M\approx A$，改为解
-> $$M^{-1}A\mathbf{x}=M^{-1}\mathbf{b}$$
+> $$
+> M^{-1}A\mathbf{x}=M^{-1}\mathbf{b}
+> $$
 > 只要 $\operatorname{cond}(M^{-1}A)\ll\operatorname{cond}(A)$，迭代次数就大幅下降 ✓
 > 常用：对角（Jacobi）预条件、不完全 Cholesky（IC）、SSOR、多重网格本身 ✓
 > **一句话**：**预条件 = 换一组基让条件数变小**（第 8 章"换基就是换条件数"的算法版）✓

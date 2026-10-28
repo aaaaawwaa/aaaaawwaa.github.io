@@ -34,19 +34,27 @@ related: []
 
 对采样率 $f_s$ 的离散过程，归一化角频率 $\Omega=2\pi f/f_s$。AR(1) 的离散 PSD 为
 
-$$S_X(e^{j\Omega})=\frac{\sigma_w^2}{\lvert 1-ae^{-j\Omega}\rvert^2}$$
+$$
+S_X(e^{j\Omega})=\frac{\sigma_w^2}{\lvert 1-ae^{-j\Omega}\rvert^2}
+$$
 
 换成以 $\omega=2\pi f$（rad/s）为自变量的双边谱，并写出实过程的单边谱：
 
-$$S_X(\omega)=\frac{1}{f_s}S_X(e^{j\omega/f_s}),\qquad S_X^+(f)=2S_X(2\pi f),\quad f>0$$
+$$
+S_X(\omega)=\frac{1}{f_s}S_X(e^{j\omega/f_s}),\qquad S_X^+(f)=2S_X(2\pi f),\quad f>0
+$$
 
 周期图是单段数据的模平方谱：
 
-$$\hat S_X^{per}(f)=\frac{1}{f_sN}\left|\sum_{n=0}^{N-1}x[n]e^{-j2\pi fn/f_s}\right|^2$$
+$$
+\hat S_X^{per}(f)=\frac{1}{f_sN}\left|\sum_{n=0}^{N-1}x[n]e^{-j2\pi fn/f_s}\right|^2
+$$
 
 它的频率分辨率约为 $f_s/N$，但对每个频点只有约 2 个自由度的平均，相对标准差接近 100%，增加 $N$ 只会让谱线更密，不会让曲线更平滑。Welch 法把数据分成 $K$ 段、加窗、重叠，再平均：
 
-$$\hat S_X^{W}(f)=\frac{1}{K}\sum_{k=1}^{K}\hat S_{X,k}(f)$$
+$$
+\hat S_X^{W}(f)=\frac{1}{K}\sum_{k=1}^{K}\hat S_{X,k}(f)
+$$
 
 分辨率约为 $\mathrm{ENBW}\cdot f_s/L$，相对标准差约为 $1/\sqrt{K_{\mathrm{eff}}}$。
 

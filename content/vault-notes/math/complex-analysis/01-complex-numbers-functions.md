@@ -40,14 +40,22 @@ related: []
 
 > [!info] Def 1 复数
 > 形如
-> $$z=x+iy,\qquad x,y\in\mathbb{R},\ i^2=-1$$
+> $$
+> z=x+iy,\qquad x,y\in\mathbb{R},\ i^2=-1
+> $$
 > 的数称为**复数**（complex number）。$x=\operatorname{Re}z$ 为**实部**，$y=\operatorname{Im}z$ 为**虚部**。
 
 **四则运算**（与实数多项式同规则，只需把 $i^2$ 换成 $-1$）：
 
-$$(a+ib)\pm(c+id)=(a\pm c)+i(b\pm d)$$
-$$(a+ib)(c+id)=(ac-bd)+i(ad+bc)$$
-$$\frac{a+ib}{c+id}=\frac{(a+ib)(c-id)}{c^2+d^2}$$
+$$
+(a+ib)\pm(c+id)=(a\pm c)+i(b\pm d)
+$$
+$$
+(a+ib)(c+id)=(ac-bd)+i(ad+bc)
+$$
+$$
+\frac{a+ib}{c+id}=\frac{(a+ib)(c-id)}{c^2+d^2}
+$$
 
 > [!warning] 复数不能比较大小
 > $\mathbb{C}$ 上不存在与加法、乘法相容的全序。写 $z_1<z_2$ 是没有意义的；只能比较模 $|z_1|$ 与 $|z_2|$。
@@ -57,18 +65,26 @@ $$\frac{a+ib}{c+id}=\frac{(a+ib)(c-id)}{c^2+d^2}$$
 复数 $z=x+iy$ 与平面点 $(x,y)$ 一一对应，这个平面称为**复平面**（complex plane）。$x$ 轴为实轴，$y$ 轴为虚轴。
 
 > [!info] Def 2 模与辐角
-> $$|z|=r=\sqrt{x^2+y^2}$$
+> $$
+> |z|=r=\sqrt{x^2+y^2}
+> $$
 > 称为 $z$ 的**模**（modulus）；从正实轴到向量 $\overrightarrow{Oz}$ 的角 $\theta$ 称为**辐角**（argument），记 $\arg z$。辐角多值：
-> $$\arg z=\theta_0+2k\pi,\qquad k\in\mathbb{Z}$$
+> $$
+> \arg z=\theta_0+2k\pi,\qquad k\in\mathbb{Z}
+> $$
 > 其中 $\theta_0\in(-\pi,\pi]$ 称为**主值**，记 $\operatorname{Arg}z$。
 
 **三角形式与指数形式**：
 
-$$z=r(\cos\theta+i\sin\theta)=re^{i\theta}$$
+$$
+z=r(\cos\theta+i\sin\theta)=re^{i\theta}
+$$
 
 欧拉公式 $e^{i\theta}=\cos\theta+i\sin\theta$ 把指数与三角统一起来。共轭：
 
-$$\bar z=x-iy=re^{-i\theta},\qquad z\bar z=|z|^2$$
+$$
+\bar z=x-iy=re^{-i\theta},\qquad z\bar z=|z|^2
+$$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" width="100%" style="max-width:620px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -111,7 +127,9 @@ $$\bar z=x-iy=re^{-i\theta},\qquad z\bar z=|z|^2$$
 
 若 $z=re^{i\theta}$，则
 
-$$z^n=r^ne^{in\theta}=r^n(\cos n\theta+i\sin n\theta)$$
+$$
+z^n=r^ne^{in\theta}=r^n(\cos n\theta+i\sin n\theta)
+$$
 
 这就是**棣莫弗公式**（De Moivre's formula）。几何上，乘 $z$ 相当于**模相乘、辐角相加**：$z_1z_2$ 的模是 $|z_1||z_2|$，辐角是 $\arg z_1+\arg z_2$。
 
@@ -119,7 +137,9 @@ $$z^n=r^ne^{in\theta}=r^n(\cos n\theta+i\sin n\theta)$$
 
 > [!info] Def 3 n 次方根
 > 方程 $w^n=z$（$z=re^{i\theta}\ne0$）的 $n$ 个根为
-> $$w_k=\sqrt[n]{r}\,e^{i(\theta+2k\pi)/n},\qquad k=0,1,\dots,n-1$$
+> $$
+> w_k=\sqrt[n]{r}\,e^{i(\theta+2k\pi)/n},\qquad k=0,1,\dots,n-1
+> $$
 > 它们均匀分布在以原点为心、$\sqrt[n]{r}$ 为半径的圆上，相邻夹角 $2\pi/n$。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 440" width="100%" style="max-width:460px" font-family="inherit">
@@ -150,7 +170,9 @@ $$z^n=r^ne^{in\theta}=r^n(\cos n\theta+i\sin n\theta)$$
 
 > [!example] 1 的 n 次方根
 > $w_k=e^{i2k\pi/n}$，$k=0,\dots,n-1$。它们构成正 $n$ 边形的顶点，且
-> $$1+w+w^2+\cdots+w^{n-1}=0\quad(w\ne1)$$
+> $$
+> 1+w+w^2+\cdots+w^{n-1}=0\quad(w\ne1)
+> $$
 > 这是单位根在多项式、离散傅里叶变换（DFT）中的核心性质。
 
 > [!warning] 方根是"多值"的
@@ -165,7 +187,9 @@ $$z^n=r^ne^{in\theta}=r^n(\cos n\theta+i\sin n\theta)$$
 
 复变函数可以写成两个实函数：
 
-$$w=f(z)=u(x,y)+iv(x,y)$$
+$$
+w=f(z)=u(x,y)+iv(x,y)
+$$
 
 其中 $u=\operatorname{Re}f$、$v=\operatorname{Im}f$ 是 $x,y$ 的实函数。因此复变函数本质上是**两个实变量的两个实函数**，但它作为"复平面到复平面的映射"有更强的几何结构。
 
@@ -183,7 +207,9 @@ $$w=f(z)=u(x,y)+iv(x,y)$$
 
 > [!info] Def 5 复变函数的极限
 > 若对任意 $\varepsilon>0$，存在 $\delta>0$，使当 $0<|z-z_0|<\delta$ 时
-> $$|f(z)-A|<\varepsilon$$
+> $$
+> |f(z)-A|<\varepsilon
+> $$
 > 则称 $z\to z_0$ 时 $f(z)$ 的极限为 $A$，记 $\lim_{z\to z_0}f(z)=A$。
 
 > [!important] 复极限比实极限更强
@@ -200,7 +226,9 @@ $$w=f(z)=u(x,y)+iv(x,y)$$
 ## 指数函数
 
 > [!info] Def 7 指数函数
-> $$e^z=e^{x+iy}=e^x(\cos y+i\sin y)$$
+> $$
+> e^z=e^{x+iy}=e^x(\cos y+i\sin y)
+> $$
 > 称为**复指数函数**（complex exponential function）。
 
 **性质**：
@@ -217,9 +245,13 @@ $$w=f(z)=u(x,y)+iv(x,y)$$
 
 > [!info] Def 8 对数函数
 > 满足 $e^w=z$（$z\ne0$）的 $w$ 称为 $z$ 的**对数**，记
-> $$\operatorname{Ln}z=\ln|z|+i\arg z=\ln|z|+i(\operatorname{Arg}z+2k\pi),\qquad k\in\mathbb{Z}$$
+> $$
+> \operatorname{Ln}z=\ln|z|+i\arg z=\ln|z|+i(\operatorname{Arg}z+2k\pi),\qquad k\in\mathbb{Z}
+> $$
 > 这是**多值函数**；主值
-> $$\ln z=\ln|z|+i\operatorname{Arg}z$$
+> $$
+> \ln z=\ln|z|+i\operatorname{Arg}z
+> $$
 > 是单值分支。
 
 **性质**：
@@ -235,17 +267,25 @@ $$w=f(z)=u(x,y)+iv(x,y)$$
 
 > [!info] Def 9 幂函数
 > 对复数 $\alpha$，定义
-> $$z^\alpha=e^{\alpha\operatorname{Ln}z}\qquad(z\ne0)$$
+> $$
+> z^\alpha=e^{\alpha\operatorname{Ln}z}\qquad(z\ne0)
+> $$
 > 当 $\alpha$ 为整数时单值；当 $\alpha=p/q$（既约分数）时有 $q$ 个值；当 $\alpha$ 为无理数或复数时有无穷多个值。
 
 > [!example] $i^i$ 是多少？
-> $$i^i=e^{i\operatorname{Ln}i}=e^{i(\ln1+i(\pi/2+2k\pi))}=e^{-\pi/2-2k\pi}$$
+> $$
+> i^i=e^{i\operatorname{Ln}i}=e^{i(\ln1+i(\pi/2+2k\pi))}=e^{-\pi/2-2k\pi}
+> $$
 > 有无穷多个**实数**值！主值为 $e^{-\pi/2}\approx0.2079$。
 
 ## 三角函数与双曲函数
 
-$$\sin z=\frac{e^{iz}-e^{-iz}}{2i},\qquad \cos z=\frac{e^{iz}+e^{-iz}}{2}$$
-$$\sinh z=\frac{e^z-e^{-z}}{2},\qquad \cosh z=\frac{e^z+e^{-z}}{2}$$
+$$
+\sin z=\frac{e^{iz}-e^{-iz}}{2i},\qquad \cos z=\frac{e^{iz}+e^{-iz}}{2}
+$$
+$$
+\sinh z=\frac{e^z-e^{-z}}{2},\qquad \cosh z=\frac{e^z+e^{-z}}{2}
+$$
 
 **性质**：
 
@@ -260,29 +300,45 @@ $$\sinh z=\frac{e^z-e^{-z}}{2},\qquad \cosh z=\frac{e^z+e^{-z}}{2}$$
 
 > [!example] 例 1：复数运算
 > 求 $(1+i)(2-i)$ 与 $\dfrac{1+i}{1-i}$。
-> $$(1+i)(2-i)=2-i+2i-i^2=3+i$$
-> $$\frac{1+i}{1-i}=\frac{(1+i)^2}{1+1}=\frac{2i}{2}=i$$
+> $$
+> (1+i)(2-i)=2-i+2i-i^2=3+i
+> $$
+> $$
+> \frac{1+i}{1-i}=\frac{(1+i)^2}{1+1}=\frac{2i}{2}=i
+> $$
 
 > [!example] 例 2：模与辐角
 > 求 $z=-1+\sqrt3 i$ 的模与主辐角。
 > $|z|=\sqrt{1+3}=2$，$\operatorname{Arg}z=2\pi/3$。
-> $$z=2e^{i2\pi/3}$$
+> $$
+> z=2e^{i2\pi/3}
+> $$
 
 > [!example] 例 3：方根
 > 求 $\sqrt[3]{-8}$。
 > $-8=8e^{i\pi}$，故
-> $$w_k=2e^{i(\pi+2k\pi)/3},\qquad k=0,1,2$$
+> $$
+> w_k=2e^{i(\pi+2k\pi)/3},\qquad k=0,1,2
+> $$
 > 即 $2e^{i\pi/3}=1+\sqrt3 i$、$2e^{i\pi}=-2$、$2e^{i5\pi/3}=1-\sqrt3 i$。
 
 > [!example] 例 4：初等函数求值
 > 求 $\sin(1+i)$。
-> $$\sin(1+i)=\frac{e^{i(1+i)}-e^{-i(1+i)}}{2i}=\frac{e^{-1+i}-e^{1-i}}{2i}$$
-> $$=\frac{e^{-1}(\cos1+i\sin1)-e(\cos1-i\sin1)}{2i}=\sin1\cosh1+i\cos1\sinh1$$
+> $$
+> \sin(1+i)=\frac{e^{i(1+i)}-e^{-i(1+i)}}{2i}=\frac{e^{-1+i}-e^{1-i}}{2i}
+> $$
+> $$
+> =\frac{e^{-1}(\cos1+i\sin1)-e(\cos1-i\sin1)}{2i}=\sin1\cosh1+i\cos1\sinh1
+> $$
 
 > [!example] 例 5：对数与幂
 > 求 $\operatorname{Ln}(-1)$ 与 $(-1)^{1/2}$。
-> $$\operatorname{Ln}(-1)=\ln1+i(\pi+2k\pi)=i(2k+1)\pi$$
-> $$(-1)^{1/2}=e^{\frac12\operatorname{Ln}(-1)}=e^{i(2k+1)\pi/2}=\pm i$$
+> $$
+> \operatorname{Ln}(-1)=\ln1+i(\pi+2k\pi)=i(2k+1)\pi
+> $$
+> $$
+> (-1)^{1/2}=e^{\frac12\operatorname{Ln}(-1)}=e^{i(2k+1)\pi/2}=\pm i
+> $$
 
 > [!tip] 本章收官
 > 第 1 章把实数域的工具搬到复平面：

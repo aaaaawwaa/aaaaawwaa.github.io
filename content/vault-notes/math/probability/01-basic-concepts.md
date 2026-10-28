@@ -274,7 +274,9 @@ related: []
 
 做 $n$ 次试验,事件 $A$ 发生 $n_A$ 次,称
 
-$$f_n(A) = \frac{n_A}{n}$$
+$$
+f_n(A) = \frac{n_A}{n}
+$$
 
 为 $A$ 在这 $n$ 次试验中出现的**频率**。
 
@@ -293,7 +295,9 @@ $$f_n(A) = \frac{n_A}{n}$$
 1. **非负性**:$P(A) \ge 0$
 2. **规范性**:$P(\Omega) = 1$
 3. **可列可加性**:若 $A_1, A_2, \dots$ 两两互斥,则
-   $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
+   $$
+   P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+   $$
 
 则称 $P(A)$ 为事件 $A$ 的**概率**,$( \Omega, \mathcal{F}, P )$ 称为**概率空间**。
 
@@ -325,14 +329,18 @@ $$f_n(A) = \frac{n_A}{n}$$
 
 此时
 
-$$P(A) = \frac{A \text{ 包含的样本点数}}{\Omega \text{ 中样本点总数}} = \frac{k}{n}$$
+$$
+P(A) = \frac{A \text{ 包含的样本点数}}{\Omega \text{ 中样本点总数}} = \frac{k}{n}
+$$
 
 由非负性 + 规范性 + 有限可加性立即推出。计算就变成**数数**,主力工具是排列组合。
 
 > [!info] Def 6 几何概型
 > **几何概型**：$\Omega$ 是一个可度量的区域（长度、面积、体积），样本点等可能地落在其中，则
 
-$$P(A) = \frac{A \text{ 的度量}}{\Omega \text{ 的度量}}$$
+$$
+P(A) = \frac{A \text{ 的度量}}{\Omega \text{ 的度量}}
+$$
 
 例如在 $[0,1]$ 上随机取一点,落在 $[0, 0.3]$ 的概率是 $0.3$。
 

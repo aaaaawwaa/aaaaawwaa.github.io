@@ -39,28 +39,42 @@ related: []
 
 > [!info] Def 1 单因素方差分析
 > **单因素方差分析**（one-way analysis of variance，简称 ANOVA）研究**一个因素**的 $r$ 个水平对指标的影响。设第 $i$ 个水平下做了 $n_i$ 次试验，观测值为 $X_{ij}$，模型为
-> $$X_{ij}=\mu_i+\varepsilon_{ij},\qquad \varepsilon_{ij}\sim N(0,\sigma^2)\ \text{独立}$$
+> $$
+> X_{ij}=\mu_i+\varepsilon_{ij},\qquad \varepsilon_{ij}\sim N(0,\sigma^2)\ \text{独立}
+> $$
 > 其中 $\mu_i$ 是第 $i$ 个水平的均值，$\varepsilon_{ij}$ 是随机误差。
 
 **检验假设**：
 
-$$H_0:\ \mu_1=\mu_2=\cdots=\mu_r\qquad\text{vs}\qquad H_1:\ \text{至少有一对 }\mu_i\ne\mu_j$$
+$$
+H_0:\ \mu_1=\mu_2=\cdots=\mu_r\qquad\text{vs}\qquad H_1:\ \text{至少有一对 }\mu_i\ne\mu_j
+$$
 
 > [!warning] 为什么不能两两做 t 检验
 > 若 $r=5$，两两比较有 $\binom52=10$ 次。每次用 $\alpha=0.05$，至少一次误报的概率约为
-> $$1-(1-0.05)^{10}\approx0.40$$
+> $$
+> 1-(1-0.05)^{10}\approx0.40
+> $$
 > 远大于 0.05。方差分析用**一次** $F$ 检验控制整体的第一类错误。
 
 ## 平方和分解
 
 > [!info] Def 2 总平方和、组间平方和、组内平方和
-> $$SST=\sum_{i=1}^r\sum_{j=1}^{n_i}(X_{ij}-\bar X)^2\quad(\text{总变异})$$
-> $$SSA=\sum_{i=1}^r n_i(\bar X_i-\bar X)^2\quad(\text{组间/处理效应})$$
-> $$SSE=\sum_{i=1}^r\sum_{j=1}^{n_i}(X_{ij}-\bar X_i)^2\quad(\text{组内/随机误差})$$
+> $$
+> SST=\sum_{i=1}^r\sum_{j=1}^{n_i}(X_{ij}-\bar X)^2\quad(\text{总变异})
+> $$
+> $$
+> SSA=\sum_{i=1}^r n_i(\bar X_i-\bar X)^2\quad(\text{组间/处理效应})
+> $$
+> $$
+> SSE=\sum_{i=1}^r\sum_{j=1}^{n_i}(X_{ij}-\bar X_i)^2\quad(\text{组内/随机误差})
+> $$
 
 **核心恒等式**：
 
-$$SST=SSA+SSE$$
+$$
+SST=SSA+SSE
+$$
 
 即**总变异 = 组间变异 + 组内变异**。组间变异反映"不同水平之间的差异"，组内变异反映"同一水平内的随机波动"。
 
@@ -76,7 +90,9 @@ $$SST=SSA+SSE$$
 
 在 $H_0$ 成立时，组间与组内都只反映随机误差，故
 
-$$F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)$$
+$$
+F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)
+$$
 
 - $F$ 接近 1：组间差异与随机波动相当，**不拒绝 $H_0$**
 - $F$ 明显大于 1：组间差异远超随机波动，**拒绝 $H_0$**
@@ -120,9 +136,15 @@ $$F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)$$
 > | C | 13, 14, 15, 14, 14 | 14 |
 >
 > 总均值 $\bar X=12$，$n=15$，$r=3$。
-> $$SSA=5[(12-12)^2+(10-12)^2+(14-12)^2]=5(0+4+4)=40$$
-> $$SSE=\sum(X_{ij}-\bar X_i)^2=10+10+2=22$$
-> $$F=\frac{40/(3-1)}{22/(15-3)}=\frac{20}{1.833}=10.91$$
+> $$
+> SSA=5[(12-12)^2+(10-12)^2+(14-12)^2]=5(0+4+4)=40
+> $$
+> $$
+> SSE=\sum(X_{ij}-\bar X_i)^2=10+10+2=22
+> $$
+> $$
+> F=\frac{40/(3-1)}{22/(15-3)}=\frac{20}{1.833}=10.91
+> $$
 > $F_{0.05}(2,12)=3.89$，$10.91>3.89$，**拒绝 $H_0$**：三种工艺的产量有显著差异。
 
 # 2. 一元线性回归
@@ -131,7 +153,9 @@ $$F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)$$
 
 > [!info] Def 3 一元线性回归模型
 > 设
-> $$Y=\beta_0+\beta_1x+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2)$$
+> $$
+> Y=\beta_0+\beta_1x+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2)
+> $$
 > 其中 $x$ 是可控变量（自变量），$Y$ 是响应变量，$\beta_0$ 是截距，$\beta_1$ 是斜率，$\varepsilon$ 是随机误差。称为**一元线性回归模型**（simple linear regression model）。
 
 **回归分析的三件事**：
@@ -144,9 +168,13 @@ $$F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)$$
 
 > [!info] Def 4 最小二乘估计
 > 使残差平方和
-> $$Q(\beta_0,\beta_1)=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2$$
+> $$
+> Q(\beta_0,\beta_1)=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2
+> $$
 > 最小的 $\hat\beta_0,\hat\beta_1$ 称为**最小二乘估计**（least squares estimate）：
-> $$\hat\beta_1=\frac{S_{xy}}{S_{xx}},\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x$$
+> $$
+> \hat\beta_1=\frac{S_{xy}}{S_{xx}},\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x
+> $$
 > 其中 $S_{xx}=\sum(x_i-\bar x)^2$，$S_{xy}=\sum(x_i-\bar x)(y_i-\bar y)$。
 
 **回归直线**：$\hat y=\hat\beta_0+\hat\beta_1x$。
@@ -162,19 +190,27 @@ $$F=\frac{MSA}{MSE}\sim F(r-1,\ n-r)$$
 
 总平方和分解：
 
-$$S_{yy}=\sum(y_i-\bar y)^2=\underbrace{\sum(\hat y_i-\bar y)^2}_{SSR\ \text{回归}}+\underbrace{\sum(y_i-\hat y_i)^2}_{SSE\ \text{残差}}$$
+$$
+S_{yy}=\sum(y_i-\bar y)^2=\underbrace{\sum(\hat y_i-\bar y)^2}_{SSR\ \text{回归}}+\underbrace{\sum(y_i-\hat y_i)^2}_{SSE\ \text{残差}}
+$$
 
 > [!info] Def 5 决定系数
-> $$R^2=\frac{SSR}{SST}=1-\frac{SSE}{S_{yy}}$$
+> $$
+> R^2=\frac{SSR}{SST}=1-\frac{SSE}{S_{yy}}
+> $$
 > 称为**决定系数**（coefficient of determination），表示"$Y$ 的总变异中被回归直线解释的比例"。$0\le R^2\le1$，越接近 1 拟合越好。
 
 **回归系数的检验**（$H_0:\beta_1=0$）：
 
-$$t=\frac{\hat\beta_1}{s/\sqrt{S_{xx}}}\sim t(n-2),\qquad s^2=\frac{SSE}{n-2}$$
+$$
+t=\frac{\hat\beta_1}{s/\sqrt{S_{xx}}}\sim t(n-2),\qquad s^2=\frac{SSE}{n-2}
+$$
 
 等价地，$F=t^2\sim F(1,n-2)$：
 
-$$F=\frac{SSR/1}{SSE/(n-2)}\sim F(1,n-2)$$
+$$
+F=\frac{SSR/1}{SSE/(n-2)}\sim F(1,n-2)
+$$
 
 > [!warning] $R^2$ 大不等于模型好
 > $R^2$ 只衡量**线性拟合**的程度：
@@ -188,11 +224,15 @@ $$F=\frac{SSR/1}{SSE/(n-2)}\sim F(1,n-2)$$
 
 **均值响应的置信区间**（$E(Y_0)$）：
 
-$$\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}$$
+$$
+\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}
+$$
 
 **个体预测区间**（新的观测 $Y_0$）：
 
-$$\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}$$
+$$
+\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}
+$$
 
 > [!info] Def 6 预测区间
 > **预测区间**（prediction interval）是"未来一个个体值"的区间，比均值响应区间多一个 $1$（个体自身的随机误差），因此**更宽**。
@@ -236,11 +276,19 @@ $$\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}
 > | $y$ | 2 | 4 | 5 | 4 | 5 |
 >
 > $\bar x=3$，$\bar y=4$，$S_{xx}=10$，$S_{xy}=6$，$S_{yy}=6$。
-> $$\hat\beta_1=\frac{6}{10}=0.6,\qquad \hat\beta_0=4-0.6\times3=2.2$$
+> $$
+> \hat\beta_1=\frac{6}{10}=0.6,\qquad \hat\beta_0=4-0.6\times3=2.2
+> $$
 > 回归直线：$\hat y=2.2+0.6x$。
-> $$SSR=\hat\beta_1S_{xy}=0.6\times6=3.6,\qquad SSE=S_{yy}-SSR=6-3.6=2.4$$
-> $$R^2=\frac{3.6}{6}=0.6$$
-> $$F=\frac{3.6/1}{2.4/3}=4.5$$
+> $$
+> SSR=\hat\beta_1S_{xy}=0.6\times6=3.6,\qquad SSE=S_{yy}-SSR=6-3.6=2.4
+> $$
+> $$
+> R^2=\frac{3.6}{6}=0.6
+> $$
+> $$
+> F=\frac{3.6/1}{2.4/3}=4.5
+> $$
 > $F_{0.05}(1,3)=10.13$，$4.5<10.13$，**不拒绝 $H_0$**：在 5% 水平下，温度对输出的线性影响不显著（样本太少）。
 
 # 3. 例题
@@ -256,21 +304,33 @@ $$\hat y_0\pm t_{\alpha/2}(n-2)\,s\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}
 > | D | 21, 20, 22, 21 |
 >
 > 组均值：21.5, 18.5, 24.5, 21；总均值 21.375。
-> $$SSA=4[(21.5-21.375)^2+(18.5-21.375)^2+(24.5-21.375)^2+(21-21.375)^2]=4(0.0156+8.2656+9.7656+0.1406)=72.75$$
-> $$SSE=(1.5^2+0.5^2+0.5^2+1.5^2)+\cdots=5+5+5+2=17$$
-> $$F=\frac{72.75/3}{17/12}=\frac{24.25}{1.417}=17.11$$
+> $$
+> SSA=4[(21.5-21.375)^2+(18.5-21.375)^2+(24.5-21.375)^2+(21-21.375)^2]=4(0.0156+8.2656+9.7656+0.1406)=72.75
+> $$
+> $$
+> SSE=(1.5^2+0.5^2+0.5^2+1.5^2)+\cdots=5+5+5+2=17
+> $$
+> $$
+> F=\frac{72.75/3}{17/12}=\frac{24.25}{1.417}=17.11
+> $$
 > $F_{0.05}(3,12)=3.49$，$17.11>3.49$，**拒绝 $H_0$**：四种催化剂的产量有显著差异。
 
 > [!example] 例 4：回归预测
 > 承例 2，$s^2=SSE/(n-2)=2.4/3=0.8$，$s=0.894$。求 $x_0=6$ 时个体值的 95% 预测区间。
 > $\hat y_0=2.2+0.6\times6=5.8$，$t_{0.025}(3)=3.182$。
-> $$5.8\pm3.182\times0.894\times\sqrt{1+\frac15+\frac{(6-3)^2}{10}}$$
-> $$=5.8\pm2.844\times\sqrt{1+0.2+0.9}=5.8\pm2.844\times1.449=5.8\pm4.12$$
+> $$
+> 5.8\pm3.182\times0.894\times\sqrt{1+\frac15+\frac{(6-3)^2}{10}}
+> $$
+> $$
+> =5.8\pm2.844\times\sqrt{1+0.2+0.9}=5.8\pm2.844\times1.449=5.8\pm4.12
+> $$
 > 即 $[1.68,\ 9.92]$。区间很宽，因为 $n=5$ 太小、$s$ 不小。
 
 > [!example] 例 5：$R^2$ 与 F 的关系
 > 承例 2，$R^2=0.6$，$n=5$。
-> $$F=\frac{R^2/1}{(1-R^2)/(n-2)}=\frac{0.6/1}{0.4/3}=4.5$$
+> $$
+> F=\frac{R^2/1}{(1-R^2)/(n-2)}=\frac{0.6/1}{0.4/3}=4.5
+> $$
 > 与前面一致。**一元回归中 $F=t^2$，且 $F=\frac{R^2}{(1-R^2)/(n-2)}$**。
 
 > [!tip] 本章收官

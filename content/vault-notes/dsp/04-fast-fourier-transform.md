@@ -37,7 +37,9 @@ related: []
 
 DFT 的定义是
 
-$$X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1$$
+$$
+X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1
+$$
 
 直接计算时：
 
@@ -64,7 +66,9 @@ $$X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1$$
 
 一次复数乘需要 4 次实数乘 + 2 次实数加；一次复数加需要 2 次实数加。直接 DFT：
 
-$$N^2\ \text{复数乘},\qquad N(N-1)\ \text{复数加}$$
+$$
+N^2\ \text{复数乘},\qquad N(N-1)\ \text{复数加}
+$$
 
 当 $N$ 很大时，$N^2$ 是灾难性的。
 
@@ -72,13 +76,17 @@ $$N^2\ \text{复数乘},\qquad N(N-1)\ \text{复数加}$$
 
 ### 途径一：利用 $W_N$ 的对称性
 
-$$W_N^{k+N/2}=e^{-j2\pi(k+N/2)/N}=e^{-j2\pi k/N}\cdot e^{-j\pi}=-W_N^k$$
+$$
+W_N^{k+N/2}=e^{-j2\pi(k+N/2)/N}=e^{-j2\pi k/N}\cdot e^{-j\pi}=-W_N^k
+$$
 
 这条性质让"半个旋转因子"可以免费得到，是蝶形运算的核心。
 
 ### 途径二：利用 $W_N$ 的周期性
 
-$$W_N^{nk}=W_N^{nk\bmod N}$$
+$$
+W_N^{nk}=W_N^{nk\bmod N}
+$$
 
 很多乘积会重复出现，可以预先算好一张表（旋转因子表），避免重复计算。
 
@@ -101,23 +109,33 @@ $$W_N^{nk}=W_N^{nk\bmod N}$$
 
 设 $N=2^L$。把 $x(n)$ 按 $n$ 的奇偶分成两组：
 
-$$x_1(r)=x(2r),\qquad x_2(r)=x(2r+1),\qquad r=0,1,\dots,\frac{N}{2}-1$$
+$$
+x_1(r)=x(2r),\qquad x_2(r)=x(2r+1),\qquad r=0,1,\dots,\frac{N}{2}-1
+$$
 
 则
 
-$$X(k)=\sum_{r=0}^{N/2-1}x_1(r)W_N^{2rk}+W_N^k\sum_{r=0}^{N/2-1}x_2(r)W_N^{2rk}$$
+$$
+X(k)=\sum_{r=0}^{N/2-1}x_1(r)W_N^{2rk}+W_N^k\sum_{r=0}^{N/2-1}x_2(r)W_N^{2rk}
+$$
 
 利用 $W_N^2=W_{N/2}$：
 
-$$X(k)=\underbrace{\sum_{r=0}^{N/2-1}x_1(r)W_{N/2}^{rk}}_{X_1(k)}+W_N^k\underbrace{\sum_{r=0}^{N/2-1}x_2(r)W_{N/2}^{rk}}_{X_2(k)}$$
+$$
+X(k)=\underbrace{\sum_{r=0}^{N/2-1}x_1(r)W_{N/2}^{rk}}_{X_1(k)}+W_N^k\underbrace{\sum_{r=0}^{N/2-1}x_2(r)W_{N/2}^{rk}}_{X_2(k)}
+$$
 
 即
 
-$$X(k)=X_1(k)+W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1$$
+$$
+X(k)=X_1(k)+W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1
+$$
 
 再由 $W_N^{k+N/2}=-W_N^k$，得到后半段：
 
-$$X\left(k+\frac{N}{2}\right)=X_1(k)-W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1$$
+$$
+X\left(k+\frac{N}{2}\right)=X_1(k)-W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1
+$$
 
 > [!info] Def 2 蝶形运算
 > 上面两式构成一个**蝶形运算**（butterfly）：
@@ -163,7 +181,9 @@ $$X\left(k+\frac{N}{2}\right)=X_1(k)-W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-
 
 以 $N=8$ 为例，输入的分组顺序为：
 
-$$x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)$$
+$$
+x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)
+$$
 
 这正是下标的 **3 位二进制位倒序**：
 
@@ -235,11 +255,15 @@ $$x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)$$
 
 每级有 $N/2$ 个蝶形，每个蝶形 1 次复数乘、2 次复数加；共 $\log_2N$ 级：
 
-$$\text{复数乘}=\frac{N}{2}\log_2N,\qquad \text{复数加}=N\log_2N$$
+$$
+\text{复数乘}=\frac{N}{2}\log_2N,\qquad \text{复数加}=N\log_2N
+$$
 
 相比直接 DFT 的 $N^2$，加速比为
 
-$$\frac{N^2}{(N/2)\log_2N}=\frac{2N}{\log_2N}$$
+$$
+\frac{N^2}{(N/2)\log_2N}=\frac{2N}{\log_2N}
+$$
 
 ## 原地运算
 
@@ -248,7 +272,9 @@ DIT 的每一级蝶形只依赖上一级的两个节点，且输出可以覆盖�
 > [!example] N=8 的第一级
 > 输入位倒序后为 $x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)$。
 > 第一级把相邻两两做 2 点 DFT（旋转因子 $W_2^0=1$）：
-> $$x(0)\pm x(4),\quad x(2)\pm x(6),\quad x(1)\pm x(5),\quad x(3)\pm x(7)$$
+> $$
+> x(0)\pm x(4),\quad x(2)\pm x(6),\quad x(1)\pm x(5),\quad x(3)\pm x(7)
+> $$
 > 第二级用 $W_4^0=1$、$W_4^1=-j$；第三级用 $W_8^0,W_8^1,W_8^2,W_8^3$。三级之后得到自然序的 $X(0)\sim X(7)$。
 
 ## MATLAB
@@ -280,19 +306,27 @@ DIF 不拆输入，而是把输入序列分成前后两半，先做蝶形，再�
 
 由 DFT 定义，把 $n$ 分成 $0\sim N/2-1$ 与 $N/2\sim N-1$：
 
-$$X(k)=\sum_{n=0}^{N/2-1}x(n)W_N^{nk}+\sum_{n=0}^{N/2-1}x\left(n+\frac{N}{2}\right)W_N^{(n+N/2)k}$$
+$$
+X(k)=\sum_{n=0}^{N/2-1}x(n)W_N^{nk}+\sum_{n=0}^{N/2-1}x\left(n+\frac{N}{2}\right)W_N^{(n+N/2)k}
+$$
 
 利用 $W_N^{Nk/2}=(-1)^k$：
 
-$$X(k)=\sum_{n=0}^{N/2-1}\left[x(n)+(-1)^kx\left(n+\frac{N}{2}\right)\right]W_N^{nk}$$
+$$
+X(k)=\sum_{n=0}^{N/2-1}\left[x(n)+(-1)^kx\left(n+\frac{N}{2}\right)\right]W_N^{nk}
+$$
 
 - $k$ 为偶数（$k=2r$）：括号内为 $x(n)+x(n+N/2)$
 - $k$ 为奇数（$k=2r+1$）：括号内为 $[x(n)-x(n+N/2)]W_N^n$
 
 于是
 
-$$X(2r)=\mathrm{DFT}_{N/2}\left[x(n)+x\left(n+\frac{N}{2}\right)\right]$$
-$$X(2r+1)=\mathrm{DFT}_{N/2}\left[\left(x(n)-x\left(n+\frac{N}{2}\right)\right)W_N^n\right]$$
+$$
+X(2r)=\mathrm{DFT}_{N/2}\left[x(n)+x\left(n+\frac{N}{2}\right)\right]
+$$
+$$
+X(2r+1)=\mathrm{DFT}_{N/2}\left[\left(x(n)-x\left(n+\frac{N}{2}\right)\right)W_N^n\right]
+$$
 
 > [!info] Def 4 按频率抽取
 > **按频率抽取**（decimation in frequency，简称 DIF）的基-2 FFT：先对输入前后两半做蝶形（和/差），再分别做 $N/2$ 点 DFT，输出按偶/奇频率分开。
@@ -343,21 +377,29 @@ $$X(2r+1)=\mathrm{DFT}_{N/2}\left[\left(x(n)-x\left(n+\frac{N}{2}\right)\right)W
 
 IDFT 的定义是
 
-$$x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}$$
+$$
+x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}
+$$
 
 与 DFT 相比，只差**旋转因子取共轭**和**除以 $N$**。因此可以完全复用 FFT 程序：
 
-$$x(n)=\frac{1}{N}\left[\mathrm{FFT}\big(X^*(k)\big)\right]^*$$
+$$
+x(n)=\frac{1}{N}\left[\mathrm{FFT}\big(X^*(k)\big)\right]^*
+$$
 
 推导：对 $X^*(k)$ 做 DFT：
 
-$$\mathrm{DFT}[X^*(k)]=\sum_{k=0}^{N-1}X^*(k)W_N^{nk}=\left[\sum_{k=0}^{N-1}X(k)W_N^{-nk}\right]^*=\big[Nx(n)\big]^*$$
+$$
+\mathrm{DFT}[X^*(k)]=\sum_{k=0}^{N-1}X^*(k)W_N^{nk}=\left[\sum_{k=0}^{N-1}X(k)W_N^{-nk}\right]^*=\big[Nx(n)\big]^*
+$$
 
 两边取共轭再除以 $N$，即得 $x(n)$。
 
 > [!info] Def 5 快速傅里叶反变换
 > **快速傅里叶反变换**（inverse fast Fourier transform，简称 IFFT）用 FFT 实现 IDFT：
-> $$x(n)=\frac{1}{N}\big[\mathrm{FFT}(X^*)\big]^*$$
+> $$
+> x(n)=\frac{1}{N}\big[\mathrm{FFT}(X^*)\big]^*
+> $$
 > 也可以把 FFT 中的 $W_N$ 全部换成 $W_N^{-1}$，最后乘 $1/N$。
 
 MATLAB 里直接 `ifft(X)`；FPGA 里通常复用同一个 FFT 核，切换旋转因子表并加一个 $1/N$ 缩放。
@@ -368,7 +410,9 @@ MATLAB 里直接 `ifft(X)`；FPGA 里通常复用同一个 FFT 核，切换旋�
 
 由第 3 章，补零到 $L\ge L_x+L_h-1$ 后：
 
-$$y(n)=x(n)*h(n)=\mathrm{IFFT}\big[\mathrm{FFT}_L(x)\cdot\mathrm{FFT}_L(h)\big]$$
+$$
+y(n)=x(n)*h(n)=\mathrm{IFFT}\big[\mathrm{FFT}_L(x)\cdot\mathrm{FFT}_L(h)\big]
+$$
 
 运算量：
 
@@ -411,11 +455,15 @@ $$y(n)=x(n)*h(n)=\mathrm{IFFT}\big[\mathrm{FFT}_L(x)\cdot\mathrm{FFT}_L(h)\big]$
 
 互相关：
 
-$$R_{xy}(m)=\sum_{n=-\infty}^{\infty}x(n)y(n-m)$$
+$$
+R_{xy}(m)=\sum_{n=-\infty}^{\infty}x(n)y(n-m)
+$$
 
 用 FFT 计算：
 
-$$R_{xy}(m)=\mathrm{IFFT}\big[X(k)Y^*(k)\big]$$
+$$
+R_{xy}(m)=\mathrm{IFFT}\big[X(k)Y^*(k)\big]
+$$
 
 注意是 $Y^*$ 而不是 $Y$。自相关同理：$R_{xx}(m)=\mathrm{IFFT}[|X(k)|^2]$。
 

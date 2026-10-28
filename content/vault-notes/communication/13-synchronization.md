@@ -65,7 +65,9 @@ related: []
 
 2PSK/DSB 信号无载波离散谱 → **平方后出现 2 倍频分量**：
 
-$$[m(t)\cos\omega_c t]^2=\frac{m^2(t)}{2}[1+\cos2\omega_c t]\ \to\ \text{窄带取 }2f_c\ \to\ \text{二分频得 }f_c$$
+$$
+[m(t)\cos\omega_c t]^2=\frac{m^2(t)}{2}[1+\cos2\omega_c t]\ \to\ \text{窄带取 }2f_c\ \to\ \text{二分频得 }f_c
+$$
 
 > [!warning] 相位模糊的根源
 > 平方 + 二分频 → 输出相位有 **$0/\pi$ 二义**（这就是第 7 章 2PSK"倒 π"的出处）→ 工程用**差分编码（2DPSK）**规避。
@@ -90,9 +92,13 @@ flowchart LR
 
 **工作原理（关键方程）**：
 
-$$v_r=\tfrac{1}{2}m(t)\cos(\varphi-\theta),\qquad v_l=\tfrac{1}{2}m(t)\sin(\varphi-\theta)$$
+$$
+v_r=\tfrac{1}{2}m(t)\cos(\varphi-\theta),\qquad v_l=\tfrac{1}{2}m(t)\sin(\varphi-\theta)
+$$
 
-$$v_g=v_rv_l=\tfrac{1}{8}m^2(t)\sin2(\varphi-\theta)\approx\tfrac{1}{4}m^2(t)(\varphi-\theta)\quad(\text{小相差时})$$
+$$
+v_g=v_rv_l=\tfrac{1}{8}m^2(t)\sin2(\varphi-\theta)\approx\tfrac{1}{4}m^2(t)(\varphi-\theta)\quad(\text{小相差时})
+$$
 
 - $m(t)=\pm1$（数字）时 $v_g\propto(\varphi-\theta)$：**误差电压驱动 VCO 锁定相位**
 - **同时输出解调信号 $v_r$**（锁定后 $v_r\to\frac{1}{2}m(t)$）——载波提取与解调一步完成
@@ -158,12 +164,16 @@ $$v_g=v_rv_l=\tfrac{1}{8}m^2(t)\sin2(\varphi-\theta)\approx\tfrac{1}{4}m^2(t)(\v
 
 > [!info] Def 6 巴克码
 > **巴克码**（Barker code）是具有尖锐双值局部自相关的同步码：
-> $$R(j)=\begin{cases}n,&j=0\\0\text{ 或 }\pm1,&j\ne0\end{cases}$$
+> $$
+> R(j)=\begin{cases}n,&j=0\\0\text{ 或 }\pm1,&j\ne0\end{cases}
+> $$
 > 已知长度 $n=2,3,4,5,7,11,13$（已证明 $n>13$ 不存在，奇长）。
 
 **特殊性质**：局部自相关函数双值尖锐：
 
-$$R(j)=\begin{cases}n,&j=0\\0\text{ 或 }\pm1,&j\ne0\end{cases}$$
+$$
+R(j)=\begin{cases}n,&j=0\\0\text{ 或 }\pm1,&j\ne0\end{cases}
+$$
 
 已知巴克码：$n=2,3,4,5,7,11,13$（已证明 $n>13$ 不存在，奇长）。典型 **7 位巴克码：1110010**（$-+-+++-$，注意约定）。
 
@@ -177,9 +187,13 @@ $$R(j)=\begin{cases}n,&j=0\\0\text{ 或 }\pm1,&j\ne0\end{cases}$$
 
 设同步码长 $n$，识别器允许错误 $m$ 位（判决门限降低）：
 
-$$\boxed{\text{漏同步概率 }P_1=1-\sum_{i=0}^{m}C_n^i\,p^i(1-p)^{n-i}}\quad(p\text{: 码元误码率})$$
+$$
+\boxed{\text{漏同步概率 }P_1=1-\sum_{i=0}^{m}C_n^i\,p^i(1-p)^{n-i}}\quad(p\text{: 码元误码率})
+$$
 
-$$\boxed{\text{假同步概率 }P_2=\frac{\sum_{i=0}^{m}C_n^i}{2^n}}\quad(\text{随机数据中碰巧出现同步码样的概率})$$
+$$
+\boxed{\text{假同步概率 }P_2=\frac{\sum_{i=0}^{m}C_n^i}{2^n}}\quad(\text{随机数据中碰巧出现同步码样的概率})
+$$
 
 - **矛盾**：$m$↑ → $P_1$↓ 但 $P_2$↑（容错与误判的折中）
 - **平均建立时间**：集中插入 $t_s\approx N_T(1+P_1+P_2)$ 帧（误码小时约一两帧）

@@ -36,20 +36,28 @@ related: []
 
 > [!info] Def 1 切比雪夫不等式
 > 设随机变量 $X$ 的期望 $E(X)=\mu$、方差 $D(X)=\sigma^2$ 都存在，则对任意 $\varepsilon>0$，
-> $$P\big(|X-\mu|\ge\varepsilon\big)\le\frac{\sigma^2}{\varepsilon^2}$$
+> $$
+> P\big(|X-\mu|\ge\varepsilon\big)\le\frac{\sigma^2}{\varepsilon^2}
+> $$
 > 等价地，
-> $$P\big(|X-\mu|<\varepsilon\big)\ge1-\frac{\sigma^2}{\varepsilon^2}$$
+> $$
+> P\big(|X-\mu|<\varepsilon\big)\ge1-\frac{\sigma^2}{\varepsilon^2}
+> $$
 
 **意义**：只用到期望和方差，就能给出"偏离均值超过 $\varepsilon$"的概率上界。它不依赖于具体分布，因此是**最保守**的估计。
 
 > [!example] 切比雪夫不等式的应用
 > 设 $E(X)=10$、$D(X)=4$。估计 $P(|X-10|\ge5)$。
-> $$P(|X-10|\ge5)\le\frac{4}{5^2}=0.16$$
+> $$
+> P(|X-10|\ge5)\le\frac{4}{5^2}=0.16
+> $$
 > 即偏离超过 5 的概率不超过 16%。若已知 $X$ 是正态分布，实际概率只有约 1.2%——**切比雪夫给出的上界很松，但适用范围最广**。
 
 **证明思路**（连续型）：
 
-$$D(X)=\int_{-\infty}^{+\infty}(x-\mu)^2f(x)\,\mathrm{d}x\ge\int_{|x-\mu|\ge\varepsilon}(x-\mu)^2f(x)\,\mathrm{d}x\ge\varepsilon^2P(|X-\mu|\ge\varepsilon)$$
+$$
+D(X)=\int_{-\infty}^{+\infty}(x-\mu)^2f(x)\,\mathrm{d}x\ge\int_{|x-\mu|\ge\varepsilon}(x-\mu)^2f(x)\,\mathrm{d}x\ge\varepsilon^2P(|X-\mu|\ge\varepsilon)
+$$
 
 两边除以 $\varepsilon^2$ 即得。
 
@@ -62,9 +70,13 @@ $$D(X)=\int_{-\infty}^{+\infty}(x-\mu)^2f(x)\,\mathrm{d}x\ge\int_{|x-\mu|\ge\var
 
 > [!info] Def 2 依概率收敛
 > 若对任意 $\varepsilon>0$，都有
-> $$\lim_{n\to\infty}P\big(|Y_n-Y|\ge\varepsilon\big)=0$$
+> $$
+> \lim_{n\to\infty}P\big(|Y_n-Y|\ge\varepsilon\big)=0
+> $$
 > 则称随机变量序列 $Y_n$ **依概率收敛**（convergence in probability）到 $Y$，记作
-> $$Y_n\xrightarrow{P}Y$$
+> $$
+> Y_n\xrightarrow{P}Y
+> $$
 
 直观：$n$ 很大时，$Y_n$ 与 $Y$ 的偏差超过任意给定 $\varepsilon$ 的概率趋于 0。它不要求"每个样本都收敛"，只要求"偏差大的概率越来越小"。
 
@@ -77,7 +89,9 @@ $$D(X)=\int_{-\infty}^{+\infty}(x-\mu)^2f(x)\,\mathrm{d}x\ge\int_{|x-\mu|\ge\var
 
 设 $n_A$ 是 $n$ 重伯努利试验中事件 $A$ 发生的次数，$P(A)=p$，则
 
-$$\frac{n_A}{n}\xrightarrow{P}p$$
+$$
+\frac{n_A}{n}\xrightarrow{P}p
+$$
 
 即**频率依概率收敛到概率**。这是"概率是频率的稳定值"的严格数学表述。
 
@@ -85,17 +99,23 @@ $$\frac{n_A}{n}\xrightarrow{P}p$$
 
 设 $X_1,X_2,\dots$ 相互独立，$E(X_i)=\mu$，$D(X_i)\le C$（方差一致有界），则
 
-$$\bar X_n=\frac1n\sum_{i=1}^nX_i\xrightarrow{P}\mu$$
+$$
+\bar X_n=\frac1n\sum_{i=1}^nX_i\xrightarrow{P}\mu
+$$
 
 证明：$E(\bar X_n)=\mu$，$D(\bar X_n)=\frac{1}{n^2}\sum D(X_i)\le\frac{C}{n}$。由切比雪夫不等式，
 
-$$P(|\bar X_n-\mu|\ge\varepsilon)\le\frac{D(\bar X_n)}{\varepsilon^2}\le\frac{C}{n\varepsilon^2}\to0$$
+$$
+P(|\bar X_n-\mu|\ge\varepsilon)\le\frac{D(\bar X_n)}{\varepsilon^2}\le\frac{C}{n\varepsilon^2}\to0
+$$
 
 ### 辛钦大数定律
 
 设 $X_1,X_2,\dots$ **独立同分布**，$E(X_i)=\mu$ 存在，则
 
-$$\bar X_n\xrightarrow{P}\mu$$
+$$
+\bar X_n\xrightarrow{P}\mu
+$$
 
 注意：辛钦大数定律**只要求期望存在**，不要求方差存在；它比切比雪夫大数定律更一般，但要求同分布。
 
@@ -114,9 +134,13 @@ $$\bar X_n\xrightarrow{P}\mu$$
 
 > [!info] Def 4 中心极限定理
 > 设 $X_1,X_2,\dots$ **独立同分布**，$E(X_i)=\mu$，$D(X_i)=\sigma^2\in(0,\infty)$，则对任意实数 $x$，
-> $$\lim_{n\to\infty}P\left(\frac{\sum_{i=1}^nX_i-n\mu}{\sqrt{n}\sigma}\le x\right)=\Phi(x)$$
+> $$
+> \lim_{n\to\infty}P\left(\frac{\sum_{i=1}^nX_i-n\mu}{\sqrt{n}\sigma}\le x\right)=\Phi(x)
+> $$
 > 即标准化部分和**依分布收敛**到标准正态分布：
-> $$\frac{\bar X_n-\mu}{\sigma/\sqrt n}\xrightarrow{d}N(0,1)$$
+> $$
+> \frac{\bar X_n-\mu}{\sigma/\sqrt n}\xrightarrow{d}N(0,1)
+> $$
 
 **关键点**：
 
@@ -169,18 +193,24 @@ $$\bar X_n\xrightarrow{P}\mu$$
 
 > [!example] 均匀分布之和
 > $X_i\sim U(0,1)$，$\mu=1/2$，$\sigma^2=1/12$。$n=12$ 时，
-> $$S_{12}=\sum_{i=1}^{12}X_i\approx N(6,\ 1)$$
+> $$
+> S_{12}=\sum_{i=1}^{12}X_i\approx N(6,\ 1)
+> $$
 > 这正是"用 12 个均匀随机数之和生成标准正态"的经典技巧（Box–Muller 之外的另一种方法）。
 
 ## Lyapunov 中心极限定理
 
 设 $X_1,X_2,\dots$ 相互独立（不要求同分布），$E(X_i)=\mu_i$，$D(X_i)=\sigma_i^2$，若 Lyapunov 条件
 
-$$\lim_{n\to\infty}\frac{\sum_{i=1}^nE|X_i-\mu_i|^3}{\left(\sum_{i=1}^n\sigma_i^2\right)^{3/2}}=0$$
+$$
+\lim_{n\to\infty}\frac{\sum_{i=1}^nE|X_i-\mu_i|^3}{\left(\sum_{i=1}^n\sigma_i^2\right)^{3/2}}=0
+$$
 
 成立，则
 
-$$\frac{\sum_{i=1}^nX_i-\sum_{i=1}^n\mu_i}{\sqrt{\sum_{i=1}^n\sigma_i^2}}\xrightarrow{d}N(0,1)$$
+$$
+\frac{\sum_{i=1}^nX_i-\sum_{i=1}^n\mu_i}{\sqrt{\sum_{i=1}^n\sigma_i^2}}\xrightarrow{d}N(0,1)
+$$
 
 它允许各 $X_i$ 分布不同，只要"每个变量的三阶矩相对于总方差足够小"——即没有哪一个变量主导总和。
 
@@ -188,15 +218,21 @@ $$\frac{\sum_{i=1}^nX_i-\sum_{i=1}^n\mu_i}{\sqrt{\sum_{i=1}^n\sigma_i^2}}\xright
 
 设 $X\sim B(n,p)$，则
 
-$$\frac{X-np}{\sqrt{np(1-p)}}\xrightarrow{d}N(0,1)$$
+$$
+\frac{X-np}{\sqrt{np(1-p)}}\xrightarrow{d}N(0,1)
+$$
 
 即**二项分布的正态近似**：
 
-$$P(a\le X\le b)\approx\Phi\left(\frac{b-np}{\sqrt{np(1-p)}}\right)-\Phi\left(\frac{a-np}{\sqrt{np(1-p)}}\right)$$
+$$
+P(a\le X\le b)\approx\Phi\left(\frac{b-np}{\sqrt{np(1-p)}}\right)-\Phi\left(\frac{a-np}{\sqrt{np(1-p)}}\right)
+$$
 
 > [!warning] 正态近似的连续性修正
 > 二项分布是离散的，正态是连续的。用正态近似 $P(X\le k)$ 时，最好做**连续性修正**：
-> $$P(X\le k)\approx\Phi\left(\frac{k+0.5-np}{\sqrt{np(1-p)}}\right)$$
+> $$
+> P(X\le k)\approx\Phi\left(\frac{k+0.5-np}{\sqrt{np(1-p)}}\right)
+> $$
 > 当 $np$ 和 $n(1-p)$ 都大于 5（最好大于 10）时，近似才比较可靠。
 
 # 4. 应用与例题
@@ -204,26 +240,38 @@ $$P(a\le X\le b)\approx\Phi\left(\frac{b-np}{\sqrt{np(1-p)}}\right)-\Phi\left(\f
 > [!example] 例 1：二项分布的正态近似
 > 某链路误码率 $p=0.01$，传输 $n=1000$ 比特。求误码数 $X$ 在 $5$ 到 $15$ 之间的概率。
 > $X\sim B(1000,0.01)$，$\mu=np=10$，$\sigma=\sqrt{np(1-p)}=\sqrt{9.9}\approx3.146$。
-> $$P(5\le X\le15)\approx\Phi\left(\frac{15.5-10}{3.146}\right)-\Phi\left(\frac{4.5-10}{3.146}\right)$$
-> $$=\Phi(1.75)-\Phi(-1.75)=2\Phi(1.75)-1\approx2(0.9599)-1=0.9198$$
+> $$
+> P(5\le X\le15)\approx\Phi\left(\frac{15.5-10}{3.146}\right)-\Phi\left(\frac{4.5-10}{3.146}\right)
+> $$
+> $$
+> =\Phi(1.75)-\Phi(-1.75)=2\Phi(1.75)-1\approx2(0.9599)-1=0.9198
+> $$
 > 即约 92% 的概率误码数落在 5–15 之间。
 
 > [!example] 例 2：样本量的确定
 > 设 $X_i$ i.i.d.，$E(X_i)=\mu$，$D(X_i)=\sigma^2=4$。要使样本均值 $\bar X$ 与 $\mu$ 的偏差不超过 $0.5$ 的概率至少为 $0.95$，需要多大 $n$？
 > 由中心极限定理，$\bar X\approx N(\mu,\sigma^2/n)$，故
-> $$P(|\bar X-\mu|\le0.5)\approx2\Phi\left(\frac{0.5}{2/\sqrt n}\right)-1\ge0.95$$
-> $$\Phi\left(0.25\sqrt n\right)\ge0.975\ \Longrightarrow\ 0.25\sqrt n\ge1.96\ \Longrightarrow\ n\ge61.5$$
+> $$
+> P(|\bar X-\mu|\le0.5)\approx2\Phi\left(\frac{0.5}{2/\sqrt n}\right)-1\ge0.95
+> $$
+> $$
+> \Phi\left(0.25\sqrt n\right)\ge0.975\ \Longrightarrow\ 0.25\sqrt n\ge1.96\ \Longrightarrow\ n\ge61.5
+> $$
 > 取 $n=62$。
 
 > [!example] 例 3：切比雪夫上界 vs 正态近似
 > 承例 2，若不做正态假设，只用切比雪夫：
-> $$P(|\bar X-\mu|\ge0.5)\le\frac{D(\bar X)}{0.5^2}=\frac{4/n}{0.25}=\frac{16}{n}$$
+> $$
+> P(|\bar X-\mu|\ge0.5)\le\frac{D(\bar X)}{0.5^2}=\frac{4/n}{0.25}=\frac{16}{n}
+> $$
 > 要求 $\le0.05$，得 $n\ge320$。比正态近似的 62 大得多——**切比雪夫最保守，正态近似更精确（但需要 $n$ 足够大）**。
 
 > [!example] 例 4：频率的稳定性
 > 抛硬币 $n=10000$ 次，正面概率 $p=0.5$。求正面频率与 $0.5$ 的偏差不超过 $0.01$ 的概率。
 > 由伯努利大数定律/中心极限定理，$\hat p=n_A/n\approx N(0.5,\ 0.25/10000)$，标准差 $0.005$。
-> $$P(|\hat p-0.5|\le0.01)\approx2\Phi(2)-1\approx0.9544$$
+> $$
+> P(|\hat p-0.5|\le0.01)\approx2\Phi(2)-1\approx0.9544
+> $$
 > 即约 95.4% 的把握频率落在 $[0.49,0.51]$。
 
 > [!tip] 本章收官

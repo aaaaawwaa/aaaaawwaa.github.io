@@ -41,13 +41,17 @@ related: []
 
 **解决办法**：先乘衰减因子 $e^{-\sigma t}$（$\sigma$ 足够大），再做傅里叶变换：
 
-$$\mathcal{F}[f(t)e^{-\sigma t}]=\int_{-\infty}^{\infty}f(t)e^{-\sigma t}e^{-i\omega t}\,\mathrm{d}t=\int_{-\infty}^{\infty}f(t)e^{-(\sigma+i\omega)t}\,\mathrm{d}t$$
+$$
+\mathcal{F}[f(t)e^{-\sigma t}]=\int_{-\infty}^{\infty}f(t)e^{-\sigma t}e^{-i\omega t}\,\mathrm{d}t=\int_{-\infty}^{\infty}f(t)e^{-(\sigma+i\omega)t}\,\mathrm{d}t
+$$
 
 令 $s=\sigma+i\omega$，就得到拉普拉斯变换。
 
 > [!info] Def 1 拉普拉斯变换
 > 设 $f(t)$ 在 $t\ge0$ 上有定义，若积分
-> $$F(s)=\int_{0^-}^{\infty}f(t)e^{-st}\,\mathrm{d}t$$
+> $$
+> F(s)=\int_{0^-}^{\infty}f(t)e^{-st}\,\mathrm{d}t
+> $$
 > 在某个 $s$ 值下收敛，则称 $F(s)$ 为 $f(t)$ 的**拉普拉斯变换**（Laplace transform），记 $F(s)=\mathcal{L}[f(t)]$。
 > 双边拉氏变换定义为 $\int_{-\infty}^{\infty}f(t)e^{-st}dt$。
 
@@ -107,50 +111,78 @@ $$\mathcal{F}[f(t)e^{-\sigma t}]=\int_{-\infty}^{\infty}f(t)e^{-\sigma t}e^{-i\o
 
 ## 线性与时移
 
-$$\mathcal{L}[af(t)+bg(t)]=aF(s)+bG(s)$$
+$$
+\mathcal{L}[af(t)+bg(t)]=aF(s)+bG(s)
+$$
 
-$$\mathcal{L}[f(t-t_0)u(t-t_0)]=e^{-st_0}F(s)$$
+$$
+\mathcal{L}[f(t-t_0)u(t-t_0)]=e^{-st_0}F(s)
+$$
 
 注意：时移必须配合 $u(t-t_0)$，否则会引入 $t<0$ 的部分。
 
 ## 频移
 
-$$\mathcal{L}[e^{at}f(t)]=F(s-a)$$
+$$
+\mathcal{L}[e^{at}f(t)]=F(s-a)
+$$
 
 ## 尺度
 
-$$\mathcal{L}[f(at)]=\frac1aF\left(\frac sa\right),\qquad a>0$$
+$$
+\mathcal{L}[f(at)]=\frac1aF\left(\frac sa\right),\qquad a>0
+$$
 
 ## 微分
 
 > [!important] 微分性质（解微分方程的核心）
-> $$\mathcal{L}[f'(t)]=sF(s)-f(0^-)$$
-> $$\mathcal{L}[f''(t)]=s^2F(s)-sf(0^-)-f'(0^-)$$
-> $$\mathcal{L}[f^{(n)}(t)]=s^nF(s)-s^{n-1}f(0^-)-\cdots-f^{(n-1)}(0^-)$$
+> $$
+> \mathcal{L}[f'(t)]=sF(s)-f(0^-)
+> $$
+> $$
+> \mathcal{L}[f''(t)]=s^2F(s)-sf(0^-)-f'(0^-)
+> $$
+> $$
+> \mathcal{L}[f^{(n)}(t)]=s^nF(s)-s^{n-1}f(0^-)-\cdots-f^{(n-1)}(0^-)
+> $$
 
 初值自动进入方程——这是拉氏变换比傅里叶变换更适合"初值问题"的原因。
 
 ## 积分
 
-$$\mathcal{L}\left[\int_0^t f(\tau)\,\mathrm{d}\tau\right]=\frac{F(s)}{s}$$
+$$
+\mathcal{L}\left[\int_0^t f(\tau)\,\mathrm{d}\tau\right]=\frac{F(s)}{s}
+$$
 
-$$\mathcal{L}\left[\frac{f(t)}{t}\right]=\int_s^{\infty}F(\sigma)\,\mathrm{d}\sigma$$
+$$
+\mathcal{L}\left[\frac{f(t)}{t}\right]=\int_s^{\infty}F(\sigma)\,\mathrm{d}\sigma
+$$
 
 ## 卷积
 
 > [!important] 卷积定理
-> $$\mathcal{L}[f(t)*g(t)]=F(s)G(s)$$
-> $$(f*g)(t)=\int_0^t f(\tau)g(t-\tau)\,\mathrm{d}\tau$$
+> $$
+> \mathcal{L}[f(t)*g(t)]=F(s)G(s)
+> $$
+> $$
+> (f*g)(t)=\int_0^t f(\tau)g(t-\tau)\,\mathrm{d}\tau
+> $$
 
 时域卷积 ↔ $s$ 域相乘。系统零状态响应：
 
-$$Y(s)=H(s)X(s)$$
+$$
+Y(s)=H(s)X(s)
+$$
 
 ## 初值定理与终值定理
 
-$$\lim_{t\to0^+}f(t)=\lim_{s\to\infty}sF(s)$$
+$$
+\lim_{t\to0^+}f(t)=\lim_{s\to\infty}sF(s)
+$$
 
-$$\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s)$$
+$$
+\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s)
+$$
 
 > [!warning] 终值定理的条件
 > 终值定理要求 $sF(s)$ 在虚轴及右半平面解析（即 $F(s)$ 的极点都在左半平面，最多在 $s=0$ 有一个一阶极点）。若系统不稳定，终值不存在，公式失效。
@@ -158,7 +190,9 @@ $$\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s)$$
 # 3. 拉普拉斯逆变换
 
 > [!info] Def 3 拉普拉斯逆变换
-> $$f(t)=\mathcal{L}^{-1}[F(s)]=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}F(s)e^{st}\,\mathrm{d}s$$
+> $$
+> f(t)=\mathcal{L}^{-1}[F(s)]=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}F(s)e^{st}\,\mathrm{d}s
+> $$
 > 积分沿 ROC 内一条竖直线（布罗姆维奇围道）。
 
 **工程上很少直接用围道积分**，而是用以下两种方法：
@@ -174,12 +208,18 @@ $$\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s)$$
 3. **重极点**：$\dfrac{A}{(s-s_0)^m}\leftrightarrow A\dfrac{t^{m-1}}{(m-1)!}e^{s_0t}$
 
 > [!example] 部分分式
-> $$F(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1}-\frac{1}{s+2}$$
-> $$f(t)=e^{-t}-e^{-2t},\qquad t\ge0$$
+> $$
+> F(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1}-\frac{1}{s+2}
+> $$
+> $$
+> f(t)=e^{-t}-e^{-2t},\qquad t\ge0
+> $$
 
 ## 留数法
 
-$$f(t)=\sum_{\text{所有极点}}\operatorname{Res}\left[F(s)e^{st},s_k\right],\qquad t>0$$
+$$
+f(t)=\sum_{\text{所有极点}}\operatorname{Res}\left[F(s)e^{st},s_k\right],\qquad t>0
+$$
 
 - 简单极点：$\operatorname{Res}=\lim_{s\to s_k}(s-s_k)F(s)e^{st}$
 - $m$ 阶极点：$\operatorname{Res}=\frac{1}{(m-1)!}\lim\dfrac{d^{m-1}}{ds^{m-1}}[(s-s_k)^mF(s)e^{st}]$
@@ -206,18 +246,36 @@ f = ilaplace(1/(s^2+2*s+5), s, t);
 3. 部分分式/留数求逆变换
 
 > [!example] 解一阶 ODE
-> $$y'+2y=e^{-t},\qquad y(0)=1$$
+> $$
+> y'+2y=e^{-t},\qquad y(0)=1
+> $$
 > 取拉氏变换：
-> $$sY(s)-1+2Y(s)=\frac{1}{s+1}$$
-> $$Y(s)=\frac{1}{s+2}\left(1+\frac{1}{s+1}\right)=\frac{s+2}{(s+1)(s+2)}=\frac{1}{s+1}$$
-> $$y(t)=e^{-t},\qquad t\ge0$$
+> $$
+> sY(s)-1+2Y(s)=\frac{1}{s+1}
+> $$
+> $$
+> Y(s)=\frac{1}{s+2}\left(1+\frac{1}{s+1}\right)=\frac{s+2}{(s+1)(s+2)}=\frac{1}{s+1}
+> $$
+> $$
+> y(t)=e^{-t},\qquad t\ge0
+> $$
 
 > [!example] 解二阶 ODE
-> $$y''+3y'+2y=0,\qquad y(0)=1,\ y'(0)=0$$
-> $$s^2Y-s-0+3(sY-1)+2Y=0$$
-> $$(s^2+3s+2)Y=s+3$$
-> $$Y=\frac{s+3}{(s+1)(s+2)}=\frac{2}{s+1}-\frac{1}{s+2}$$
-> $$y(t)=2e^{-t}-e^{-2t},\qquad t\ge0$$
+> $$
+> y''+3y'+2y=0,\qquad y(0)=1,\ y'(0)=0
+> $$
+> $$
+> s^2Y-s-0+3(sY-1)+2Y=0
+> $$
+> $$
+> (s^2+3s+2)Y=s+3
+> $$
+> $$
+> Y=\frac{s+3}{(s+1)(s+2)}=\frac{2}{s+1}-\frac{1}{s+2}
+> $$
+> $$
+> y(t)=2e^{-t}-e^{-2t},\qquad t\ge0
+> $$
 
 ## 电路分析
 
@@ -231,7 +289,9 @@ f = ilaplace(1/(s^2+2*s+5), s, t);
 
 > [!info] Def 4 系统函数
 > 零状态下
-> $$H(s)=\frac{Y(s)}{X(s)}$$
+> $$
+> H(s)=\frac{Y(s)}{X(s)}
+> $$
 > 称为**系统函数**（系统函数/传递函数）。
 
 - $H(s)$ 的极点决定系统的自然响应
@@ -246,31 +306,49 @@ f = ilaplace(1/(s^2+2*s+5), s, t);
 > [!example] 例 1：常用变换
 > 求 $\mathcal{L}[t^2e^{-3t}]$。
 > $\mathcal{L}[t^2]=\frac{2}{s^3}$，频移 $a=-3$：
-> $$\mathcal{L}[t^2e^{-3t}]=\frac{2}{(s+3)^3}$$
+> $$
+> \mathcal{L}[t^2e^{-3t}]=\frac{2}{(s+3)^3}
+> $$
 
 > [!example] 例 2：逆变换
 > 求 $F(s)=\dfrac{s+3}{s^2+4s+13}$ 的逆变换。
 > 配方：$s^2+4s+13=(s+2)^2+3^2$。
-> $$F(s)=\frac{(s+2)+1}{(s+2)^2+3^2}=\frac{s+2}{(s+2)^2+9}+\frac13\cdot\frac{3}{(s+2)^2+9}$$
-> $$f(t)=e^{-2t}\cos3t+\frac13e^{-2t}\sin3t,\qquad t\ge0$$
+> $$
+> F(s)=\frac{(s+2)+1}{(s+2)^2+3^2}=\frac{s+2}{(s+2)^2+9}+\frac13\cdot\frac{3}{(s+2)^2+9}
+> $$
+> $$
+> f(t)=e^{-2t}\cos3t+\frac13e^{-2t}\sin3t,\qquad t\ge0
+> $$
 
 > [!example] 例 3：重极点
 > 求 $F(s)=\dfrac{1}{s(s+1)^2}$ 的逆变换。
 > 部分分式：
-> $$F(s)=\frac{1}{s}-\frac{1}{s+1}-\frac{1}{(s+1)^2}$$
-> $$f(t)=1-e^{-t}-te^{-t},\qquad t\ge0$$
+> $$
+> F(s)=\frac{1}{s}-\frac{1}{s+1}-\frac{1}{(s+1)^2}
+> $$
+> $$
+> f(t)=1-e^{-t}-te^{-t},\qquad t\ge0
+> $$
 
 > [!example] 例 4：初值/终值
 > $F(s)=\dfrac{2s+3}{s^2+3s+2}$。求 $f(0^+)$ 与 $f(\infty)$。
-> $$f(0^+)=\lim_{s\to\infty}sF(s)=\lim_{s\to\infty}\frac{2s^2+3s}{s^2+3s+2}=2$$
-> $$f(\infty)=\lim_{s\to0}sF(s)=\lim_{s\to0}\frac{2s^2+3s}{s^2+3s+2}=0$$
+> $$
+> f(0^+)=\lim_{s\to\infty}sF(s)=\lim_{s\to\infty}\frac{2s^2+3s}{s^2+3s+2}=2
+> $$
+> $$
+> f(\infty)=\lim_{s\to0}sF(s)=\lim_{s\to0}\frac{2s^2+3s}{s^2+3s+2}=0
+> $$
 > 极点 $-1,-2$ 都在左半平面，终值存在。
 
 > [!example] 例 5：RLC 电路
 > RLC 串联，输入 $u(t)$，$R=2$、$L=1$、$C=1$，零初值。求电容电压。
-> $$V_C(s)=\frac{1}{s}\cdot\frac{1}{s^2+2s+1}=\frac{1}{s(s+1)^2}$$
+> $$
+> V_C(s)=\frac{1}{s}\cdot\frac{1}{s^2+2s+1}=\frac{1}{s(s+1)^2}
+> $$
 > 同例 3：
-> $$v_C(t)=1-e^{-t}-te^{-t},\qquad t\ge0$$
+> $$
+> v_C(t)=1-e^{-t}-te^{-t},\qquad t\ge0
+> $$
 
 > [!tip] 本章收官
 > 第 8 章把傅里叶变换"带收敛因子"推广：

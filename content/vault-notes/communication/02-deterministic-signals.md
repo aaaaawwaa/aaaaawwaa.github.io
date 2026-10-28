@@ -46,7 +46,9 @@ related: []
 | **能量信号** (energy signal) | 能量 $E = \int_{-\infty}^{\infty} s^2(t)\,dt$ **有限**，平均功率 $P = 0$ | 单个矩形脉冲、sinc 信号 |
 | **功率信号** (power signal) | 平均功率 $P = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} s^2(t)\,dt$ **有限非零**，能量 $E \to \infty$ | 周期信号、直流、随机噪声 |
 
-$$P = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} s^2(t)\,dt \qquad E = \int_{-\infty}^{\infty} s^2(t)\,dt$$
+$$
+P = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} s^2(t)\,dt \qquad E = \int_{-\infty}^{\infty} s^2(t)\,dt
+$$
 
 > [!important] 判断口诀
 > **脉冲类 → 能量信号；周期/无限持续类 → 功率信号**。两者互斥（一个信号不能既是能量信号又是功率信号）。
@@ -61,15 +63,23 @@ $$P = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} s^2(t)\,dt \qquad E = \int_{
 
 > [!info] Def 3 频谱
 > 周期为 $T_0$ 的功率信号可展开为**傅里叶级数**（Fourier series）：
-> $$s(t)=\sum_{n=-\infty}^{\infty}C_n e^{jn\omega_0 t},\qquad \omega_0=\frac{2\pi}{T_0}$$
-> $$C_n=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}s(t)e^{-jn\omega_0 t}\,dt$$
+> $$
+> s(t)=\sum_{n=-\infty}^{\infty}C_n e^{jn\omega_0 t},\qquad \omega_0=\frac{2\pi}{T_0}
+> $$
+> $$
+> C_n=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}s(t)e^{-jn\omega_0 t}\,dt
+> $$
 > $|C_n|$ 随频率的分布称为**幅度谱**（amplitude spectrum），$\arg C_n$ 的分布称为**相位谱**（phase spectrum）；周期信号的频谱是**离散的**。
 
 周期为 $T_0$ 的功率信号可展开为傅里叶级数：
 
-$$s(t) = \sum_{n=-\infty}^{\infty} C_n\, e^{j n \omega_0 t}, \qquad \omega_0 = \frac{2\pi}{T_0}$$
+$$
+s(t) = \sum_{n=-\infty}^{\infty} C_n\, e^{j n \omega_0 t}, \qquad \omega_0 = \frac{2\pi}{T_0}
+$$
 
-$$C_n = \frac{1}{T_0}\int_{-T_0/2}^{T_0/2} s(t)\, e^{-j n \omega_0 t}\,dt$$
+$$
+C_n = \frac{1}{T_0}\int_{-T_0/2}^{T_0/2} s(t)\, e^{-j n \omega_0 t}\,dt
+$$
 
 - $|C_n|$ ~ 频率 → **幅度谱**（离散谱线）；$\arg C_n$ ~ 频率 → **相位谱**
 - 周期信号的频谱是**离散的**，谱线间隔 $\omega_0 = 2\pi/T_0$
@@ -78,10 +88,14 @@ $$C_n = \frac{1}{T_0}\int_{-T_0/2}^{T_0/2} s(t)\, e^{-j n \omega_0 t}\,dt$$
 
 > [!info] Def 4 频谱密度
 > 能量信号的**频谱密度**（spectral density）由**傅里叶变换**（Fourier transform）给出：
-> $$S(\omega)=\int_{-\infty}^{\infty}s(t)e^{-j\omega t}\,dt \qquad\leftrightarrow\qquad s(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S(\omega)e^{j\omega t}\,d\omega$$
+> $$
+> S(\omega)=\int_{-\infty}^{\infty}s(t)e^{-j\omega t}\,dt \qquad\leftrightarrow\qquad s(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S(\omega)e^{j\omega t}\,d\omega
+> $$
 > 能量信号的频谱密度是**连续谱**。
 
-$$S(\omega) = \int_{-\infty}^{\infty} s(t)\, e^{-j\omega t}\,dt \qquad \leftrightarrow \qquad s(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} S(\omega)\, e^{j\omega t}\,d\omega$$
+$$
+S(\omega) = \int_{-\infty}^{\infty} s(t)\, e^{-j\omega t}\,dt \qquad \leftrightarrow \qquad s(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} S(\omega)\, e^{j\omega t}\,d\omega
+$$
 
 - 能量信号的频谱密度是**连续谱**
 - 单位冲激函数 $\delta(t) \leftrightarrow 1$（均匀谱）；$1 \leftrightarrow 2\pi\delta(\omega)$
@@ -95,16 +109,22 @@ $$S(\omega) = \int_{-\infty}^{\infty} s(t)\, e^{-j\omega t}\,dt \qquad \leftrigh
 
 > [!info] Def 5 能量谱密度
 > 由**帕塞瓦尔定理**（Parseval's theorem），信号的时域能量等于频域能量；**能量谱密度**（energy spectral density）定义为
-> $$G(f)=|S(f)|^2\quad(\text{J/Hz}),\qquad E=\int_{-\infty}^{\infty}G(f)\,df$$
+> $$
+> G(f)=|S(f)|^2\quad(\text{J/Hz}),\qquad E=\int_{-\infty}^{\infty}G(f)\,df
+> $$
 > 它只由频谱密度的**模**决定，与相位无关。
 
 由**帕塞瓦尔定理**，信号的时域能量等于频域能量：
 
-$$E = \int_{-\infty}^{\infty} s^2(t)\,dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |S(\omega)|^2\, d\omega = \int_{-\infty}^{\infty} |S(f)|^2\, df$$
+$$
+E = \int_{-\infty}^{\infty} s^2(t)\,dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |S(\omega)|^2\, d\omega = \int_{-\infty}^{\infty} |S(f)|^2\, df
+$$
 
 定义**能量谱密度**：
 
-$$G(f) = |S(f)|^2 \quad (\text{J/Hz})$$
+$$
+G(f) = |S(f)|^2 \quad (\text{J/Hz})
+$$
 
 - 能量谱密度只由频谱密度的**模**决定，与相位无关
 - $E = \int_{-\infty}^{\infty} G(f)\,df$
@@ -113,13 +133,19 @@ $$G(f) = |S(f)|^2 \quad (\text{J/Hz})$$
 
 > [!info] Def 6 功率谱密度
 > 把功率信号截断为 $s_T(t)$（$|t|\le T/2$ 内等于原信号，之外为 0），其傅里叶变换为 $S_T(\omega)$；**功率谱密度**（power spectral density，简称 PSD）定义为
-> $$P(f)=\lim_{T\to\infty}\frac{1}{T}|S_T(f)|^2\quad(\text{W/Hz}),\qquad P=\int_{-\infty}^{\infty}P(f)\,df$$
+> $$
+> P(f)=\lim_{T\to\infty}\frac{1}{T}|S_T(f)|^2\quad(\text{W/Hz}),\qquad P=\int_{-\infty}^{\infty}P(f)\,df
+> $$
 
 将功率信号截断为 $s_T(t)$（在 $|t|\le T/2$ 内等于原信号，之外为 0），截断信号是能量信号，其傅里叶变换为 $S_T(\omega)$。定义**功率谱密度**：
 
-$$P(f) = \lim_{T\to\infty} \frac{1}{T} |S_T(f)|^2 \quad (\text{W/Hz})$$
+$$
+P(f) = \lim_{T\to\infty} \frac{1}{T} |S_T(f)|^2 \quad (\text{W/Hz})
+$$
 
-$$P = \int_{-\infty}^{\infty} P(f)\,df$$
+$$
+P = \int_{-\infty}^{\infty} P(f)\,df
+$$
 
 > [!tip] 一句话记忆
 > **能量信号配能量谱 $G(f)=|S(f)|^2$；功率信号配功率谱 $P(f)=\lim\frac{1}{T}|S_T(f)|^2$**——都满足"曲线下面积 = 能量/功率"。
@@ -308,7 +334,9 @@ $$P = \int_{-\infty}^{\infty} P(f)\,df$$
 </svg>
 
 > [!important] 必记结论（贯穿全书）
-> $$g_\tau(t)=\mathrm{rect}(t/\tau) \;\longleftrightarrow\; G_\tau(\omega)=\tau\,\mathrm{Sa}\!\left(\frac{\omega\tau}{2}\right)$$
+> $$
+> g_\tau(t)=\mathrm{rect}(t/\tau) \;\longleftrightarrow\; G_\tau(\omega)=\tau\,\mathrm{Sa}\!\left(\frac{\omega\tau}{2}\right)
+> $$
 > - 频谱**零点间隔** $\dfrac{2\pi}{\tau}$（以 $f$ 计则为 $\dfrac{1}{\tau}$）；
 > - 工程上取**第一个零点**作为带宽 → **矩形脉冲带宽 $B\approx\dfrac{1}{\tau}$**；
 > - 这条结论直接推出第 6 章"**码元宽度 $T_B$ ↔ 带宽 $1/T_B$**"与第 7 章 2ASK/2PSK 的 $B=2/T_B$。
@@ -437,7 +465,9 @@ $$P = \int_{-\infty}^{\infty} P(f)\,df$$
 </svg>
 
 > [!important] 周期信号的频谱是离散的
-> $$\cos\omega_0t \;\longleftrightarrow\; \pi[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)]$$
+> $$
+> \cos\omega_0t \;\longleftrightarrow\; \pi[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)]
+> $$
 > - **余弦只有两条谱线**（$\pm\omega_0$），幅度各为 $\pi$——这就是"周期信号的频谱是离散谱线"的最简例子；
 > - 正弦的频谱带有因子 $1/j$（**虚奇函数**），说明正弦与余弦的差别只在相位（相差 $\pi/2$）；
 > - **冲激串的频谱还是冲激串**：时域周期 $T$ ↔ 频域周期 $\dfrac{2\pi}{T}$，**时域越密、频域越稀**。这是第 7 章"二进制调制离散谱线"与第 13 章群同步码频谱的共同来源。

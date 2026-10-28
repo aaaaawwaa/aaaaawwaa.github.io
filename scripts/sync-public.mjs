@@ -76,6 +76,9 @@ async function main() {
     let inFence=false;
     text=text.split('\n').map(line=>{
       if (/^\s*(```|~~~)/.test(line)) {inFence=!inFence;return line;} if(inFence) return line;
+      // Normalize Obsidian's single-line display math for the site, preserving blockquote prefixes.
+      const displayMath=line.match(/^(\s*(?:>\s*)*)\$\$(.+?)\$\$\s*$/);
+      if (displayMath && !displayMath[2].includes('$$')) return `${displayMath[1]}$$\n${displayMath[1]}${displayMath[2]}\n${displayMath[1]}$$`;
       const saved=[]; line=line.replace(/`[^`]*`/g,m=>{saved.push(m);return `@@WIKICODE${saved.length-1}@@`;});
       line=line.replace(/(!?)\[\[([^\]]+)\]\]/g,(all,embed,inner)=>{
         const escapedPipe=inner.includes('\\|');

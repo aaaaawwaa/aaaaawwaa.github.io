@@ -44,7 +44,9 @@ related: []
 > - **零向量与任何向量都正交**（点积恒为 0）——记住这一条，它能一眼排除很多错误选项。
 
 > [!tip] 勾股定理的代数版
-> $$\mathbf{v}\perp\mathbf{w}\quad\Longleftrightarrow\quad\|\mathbf{v}+\mathbf{w}\|^2=\|\mathbf{v}\|^2+\|\mathbf{w}\|^2$$
+> $$
+> \mathbf{v}\perp\mathbf{w}\quad\Longleftrightarrow\quad\|\mathbf{v}+\mathbf{w}\|^2=\|\mathbf{v}\|^2+\|\mathbf{w}\|^2
+> $$
 > 展开 $\|\mathbf{v}+\mathbf{w}\|^2=\mathbf{v}\cdot\mathbf{v}+2\mathbf{v}\cdot\mathbf{w}+\mathbf{w}\cdot\mathbf{w}$，中间的交叉项消失即得。
 > 这个"交叉项为零"的形式会在 4.3 最小二乘的误差分解里原样重现：$\|\mathbf{b}\|^2=\|\mathbf{p}\|^2+\|\mathbf{e}\|^2$。
 
@@ -68,7 +70,9 @@ related: []
 
 > [!tip] 定理 线性代数基本定理（第二部分）
 > 对任意 $m\times n$ 矩阵 $A$：
-> $$\mathbf{N}(A)=\mathbf{C}(A^T)^{\perp}\qquad\text{（在 }\mathbb{R}^n\text{ 中）}\qquad \mathbf{N}(A^T)=\mathbf{C}(A)^{\perp}\qquad\text{（在 }\mathbb{R}^m\text{ 中）}$$
+> $$
+> \mathbf{N}(A)=\mathbf{C}(A^T)^{\perp}\qquad\text{（在 }\mathbb{R}^n\text{ 中）}\qquad \mathbf{N}(A^T)=\mathbf{C}(A)^{\perp}\qquad\text{（在 }\mathbb{R}^m\text{ 中）}
+> $$
 > 也就是：**行空间与零空间互补正交，列空间与左零空间互补正交**。
 
 两个方向都只需两行：
@@ -96,7 +100,9 @@ $$
 
 > [!tip] 正交补带来的唯一分解
 > $\mathbb{R}^n$ 中任何向量 $\mathbf{x}$ 都能**唯一**地写成
-> $$\mathbf{x}=\mathbf{x}_{\text{row}}+\mathbf{x}_{\text{null}},\qquad \mathbf{x}_{\text{row}}\in\mathbf{C}(A^T),\ \mathbf{x}_{\text{null}}\in\mathbf{N}(A)$$
+> $$
+> \mathbf{x}=\mathbf{x}_{\text{row}}+\mathbf{x}_{\text{null}},\qquad \mathbf{x}_{\text{row}}\in\mathbf{C}(A^T),\ \mathbf{x}_{\text{null}}\in\mathbf{N}(A)
+> $$
 > 存在性由两空间维数相加等于 $n$ 保证；唯一性由"交集只有 $\mathbf{0}$"保证。
 > 这个分解不是装饰品：$A\mathbf{x}_{\text{null}}=\mathbf{0}$，所以 $A\mathbf{x}=A\mathbf{x}_{\text{row}}$——**$A$ 看不见零空间分量**。4.3 里"最小二乘解总是行空间里那一个"，用的就是这条。
 
@@ -173,7 +179,9 @@ $$
 
 > [!tip] 拼装定理
 > 设行空间的一组基为 $\mathbf{v}_1,\dots,\mathbf{v}_r$，零空间的一组基为 $\mathbf{u}_1,\dots,\mathbf{u}_{n-r}$，则
-> $$\underbrace{\mathbf{v}_1,\dots,\mathbf{v}_r}_{r\ \text{个}},\ \underbrace{\mathbf{u}_1,\dots,\mathbf{u}_{n-r}}_{n-r\ \text{个}}\quad\text{是}\ \mathbb{R}^n\ \text{的一组基}$$
+> $$
+> \underbrace{\mathbf{v}_1,\dots,\mathbf{v}_r}_{r\ \text{个}},\ \underbrace{\mathbf{u}_1,\dots,\mathbf{u}_{n-r}}_{n-r\ \text{个}}\quad\text{是}\ \mathbb{R}^n\ \text{的一组基}
+> $$
 > 理由两条：**个数正好是 $n$**；**彼此无关**——若 $\sum c_i\mathbf{v}_i+\sum d_j\mathbf{u}_j=\mathbf{0}$，左边两项分别在两个正交子空间里，它们的和为零且正交，由勾股定理得两项**各自为零**，再由各组内部无关性得 $c_i=d_j=0$。
 > 同一个道理：**列空间的基 + 左零空间的基 = $\mathbb{R}^m$ 的一组基**。
 
@@ -248,7 +256,9 @@ $$
 
 > [!info] Def 4 直线投影的投影矩阵
 > **投影**（projection）就是把 $\mathbf{b}$ 垂直地"拍"到 $\mathbf{a}$ 的方向上，落点 $\mathbf{p}$ 由**投影矩阵**（projection matrix）$P$ 算出：
-> $$\mathbf{p}=t\mathbf{a}=\mathbf{a}\,\frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}=\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}\,\mathbf{b}=P\mathbf{b},\qquad P=\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}$$
+> $$
+> \mathbf{p}=t\mathbf{a}=\mathbf{a}\,\frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}=\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}\,\mathbf{b}=P\mathbf{b},\qquad P=\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}
+> $$
 > 注意形状：$\mathbf{a}\mathbf{a}^T$ 是 $n\times n$ **矩阵**（列乘行，秩 1），$\mathbf{a}^T\mathbf{a}$ 是**数**。所以 $P$ 是"秩一矩阵除以一个数"，**秩为 1**。
 
 **例（$\mathbf{a}=(1,2,2)$，$\mathbf{b}=(1,1,1)$）**：
@@ -269,7 +279,9 @@ P=\frac{1}{9}\begin{bmatrix}1&2&2\\2&4&4\\2&4&4\end{bmatrix}
 $$
 
 > [!tip] 投影矩阵的两个身份证明
-> $$P^2=P\qquad\text{（投两次 = 投一次）}\qquad P^T=P\qquad\text{（对称）}$$
+> $$
+> P^2=P\qquad\text{（投两次 = 投一次）}\qquad P^T=P\qquad\text{（对称）}
+> $$
 > - $P^2=P$：$\mathbf{p}$ 已经在直线上，再投一次纹丝不动。验算：$\left(\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}\right)^2=\frac{\mathbf{a}(\mathbf{a}^T\mathbf{a})\mathbf{a}^T}{(\mathbf{a}^T\mathbf{a})^2}=\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}$ ✓（中间那个 $\mathbf{a}^T\mathbf{a}$ 是数，可以提出来约掉）。
 > - $P^T=P$：因为 $(\mathbf{a}\mathbf{a}^T)^T=\mathbf{a}\mathbf{a}^T$。
 > 这两条是投影矩阵的"身份证"：$P^2=P$（**幂等**，idempotent）说明"重复投影不再改变"，$P^T=P$ 说明投影是**垂直**而不是斜着拍的。只满足 $P^2=P$ 的矩阵叫斜投影矩阵，本章不讨论。
@@ -277,7 +289,9 @@ $$
 
 > [!tip] 为什么投影点是"最近的点"
 > 令 $\mathbf{p}'$ 为直线上任何一个别的点，则 $\mathbf{b}-\mathbf{p}'=\mathbf{e}+(\mathbf{p}-\mathbf{p}')$，其中两项**互相正交**（$\mathbf{e}\perp$ 直线，$\mathbf{p}-\mathbf{p}'$ 在直线上），勾股定理给出
-> $$\|\mathbf{b}-\mathbf{p}'\|^2=\|\mathbf{e}\|^2+\|\mathbf{p}-\mathbf{p}'\|^2\ \ge\ \|\mathbf{e}\|^2$$
+> $$
+> \|\mathbf{b}-\mathbf{p}'\|^2=\|\mathbf{e}\|^2+\|\mathbf{p}-\mathbf{p}'\|^2\ \ge\ \|\mathbf{e}\|^2
+> $$
 > 等号只在 $\mathbf{p}'=\mathbf{p}$ 时取到。所以"垂直"这个条件恰好等价于"距离最短"——**投影就是最优逼近**，4.3 把这件事变成求方程组的算法。
 
 > [!warning] 关于投影的三个小提醒
@@ -304,7 +318,9 @@ $$
 这组 $n$ 个方程 $n$ 个未知数的方程叫**法方程**（normal equations）。两边左乘 $(A^TA)^{-1}$ 得 $\hat{\mathbf{x}}$，代回 $\mathbf{p}=A\hat{\mathbf{x}}$：
 
 > [!info] Def 5 子空间投影的投影矩阵
-> $$\hat{\mathbf{x}}=(A^TA)^{-1}A^T\mathbf{b},\qquad \mathbf{p}=A(A^TA)^{-1}A^T\mathbf{b},\qquad P=A(A^TA)^{-1}A^T$$
+> $$
+> \hat{\mathbf{x}}=(A^TA)^{-1}A^T\mathbf{b},\qquad \mathbf{p}=A(A^TA)^{-1}A^T\mathbf{b},\qquad P=A(A^TA)^{-1}A^T
+> $$
 > $\hat{\mathbf{x}}$ 这个记号读作 "x hat"，4.3 会证明它正是**最小二乘解**——同一个东西，两种叫法。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" width="100%" style="max-width:840px" font-family="inherit">
@@ -399,11 +415,15 @@ $$
 > **找不到让 $A\mathbf{x}$ 恰好等于 $\mathbf{b}$ 的 $\mathbf{x}$，那就找让误差 $\|\mathbf{b}-A\mathbf{x}\|$ 最小的那个。**
 
 > [!info] Def 6 最小二乘解
-> $$\hat{\mathbf{x}}=\arg\min_{\mathbf{x}}\ \|A\mathbf{x}-\mathbf{b}\|^2$$
+> $$
+> \hat{\mathbf{x}}=\arg\min_{\mathbf{x}}\ \|A\mathbf{x}-\mathbf{b}\|^2
+> $$
 > 平方和形式的 $\|A\mathbf{x}-\mathbf{b}\|^2=(Ax_1-b_1)^2+\cdots+(Ax_m-b_m)^2$（这里 $Ax_i$ 指"第 $i$ 个方程左边"）就是**平方误差之和**——"最小二乘"（least squares）的名字由此而来。
 
 > [!tip] 定理 最小二乘解的三个等价刻画
-> $$\underbrace{A^TA\hat{\mathbf{x}}=A^T\mathbf{b}}_{\text{代数：法方程}}\qquad\Longleftrightarrow\qquad \underbrace{A^T(\mathbf{b}-A\hat{\mathbf{x}})=\mathbf{0}}_{\text{几何：残差 ⊥ 列空间}}\qquad\Longleftrightarrow\qquad \underbrace{\mathbf{e}\in\mathbf{N}(A^T)}_{\text{空间：落在左零空间}}$$
+> $$
+> \underbrace{A^TA\hat{\mathbf{x}}=A^T\mathbf{b}}_{\text{代数：法方程}}\qquad\Longleftrightarrow\qquad \underbrace{A^T(\mathbf{b}-A\hat{\mathbf{x}})=\mathbf{0}}_{\text{几何：残差 ⊥ 列空间}}\qquad\Longleftrightarrow\qquad \underbrace{\mathbf{e}\in\mathbf{N}(A^T)}_{\text{空间：落在左零空间}}
+> $$
 > 三条说的是同一件事，只是换了三个抽屉来讲。
 
 **几何证明**：$\mathbf{b}$ 在 $\mathbf{R}^m$ 里，$A\mathbf{x}$ 能取遍的只有列空间 $S$。要让 $\|A\mathbf{x}-\mathbf{b}\|$ 最小，就是要在 $S$ 里找离 $\mathbf{b}$ 最近的点——4.2 已经证明那个点就是**投影** $\mathbf{p}=A\hat{\mathbf{x}}$，而投影的特征正是 $\mathbf{b}-\mathbf{p}\perp S$。
@@ -579,7 +599,9 @@ $$
 
 > [!tip] 伪逆：秩亏时的统一答案
 > 第 7 章会给出**伪逆**（pseudoinverse）$A^{+}$（Moore-Penrose 伪逆），它一次性解决所有情形——包括**秩亏**（rank deficient，即列相关）的时候：
-> $$\hat{\mathbf{x}}=A^{+}\mathbf{b},\qquad P=AA^{+}\qquad\text{（列满秩时 }A^{+}=(A^TA)^{-1}A^T\text{）}$$
+> $$
+> \hat{\mathbf{x}}=A^{+}\mathbf{b},\qquad P=AA^{+}\qquad\text{（列满秩时 }A^{+}=(A^TA)^{-1}A^T\text{）}
+> $$
 > 源码里的 `pinv(A)*b`、`np.linalg.lstsq`、MATLAB 的 `A\b` 在检测到列相关时**自动切到伪逆路径**，给出的正是最小范数解。
 > 这也解释了为什么"秩亏时不要随便挑一个解手工报出去"：**只有最小范数解才不依赖"你挑了哪一组自由变量"**，才具有可复现的工程意义。
 
@@ -637,16 +659,22 @@ $$
 
 > [!info] Def 7 标准正交向量组与标准正交基
 > 向量组 $\mathbf{q}_1,\dots,\mathbf{q}_n$ 满足
-> $$\mathbf{q}_i^T\mathbf{q}_j=\begin{cases}0,&i\ne j\\1,&i=j\end{cases}$$
+> $$
+> \mathbf{q}_i^T\mathbf{q}_j=\begin{cases}0,&i\ne j\\1,&i=j\end{cases}
+> $$
 > （即两两正交 + 每个长度都是 1），称**标准正交**（orthonormal）。若它们还能张成空间 $S$，就称 $S$ 的一组**标准正交基**。
 
 > [!info] Def 8 正交矩阵
 > 列向量构成标准正交组的**方阵** $Q$ 称为**正交矩阵**（orthogonal matrix），等价说法：
-> $$Q^TQ=I\quad\Longleftrightarrow\quad Q^T=Q^{-1}\quad\Longleftrightarrow\quad Q^{-1}\text{ 白送}$$
+> $$
+> Q^TQ=I\quad\Longleftrightarrow\quad Q^T=Q^{-1}\quad\Longleftrightarrow\quad Q^{-1}\text{ 白送}
+> $$
 > $Q^TQ=I$ 的每一行就是一个点积：第 $i$ 行乘第 $j$ 列 = $\mathbf{q}_i^T\mathbf{q}_j=\delta_{ij}$。
 
 > [!tip] 定理 正交矩阵保长、保内积、保数值
-> $$\|Q\mathbf{x}\|=\|\mathbf{x}\|,\qquad (Q\mathbf{x})^T(Q\mathbf{y})=\mathbf{x}^T\mathbf{y}\qquad\text{对一切 }\mathbf{x},\mathbf{y}$$
+> $$
+> \|Q\mathbf{x}\|=\|\mathbf{x}\|,\qquad (Q\mathbf{x})^T(Q\mathbf{y})=\mathbf{x}^T\mathbf{y}\qquad\text{对一切 }\mathbf{x},\mathbf{y}
+> $$
 > 证明只用 $Q^TQ=I$：$\|Q\mathbf{x}\|^2=\mathbf{x}^TQ^TQ\mathbf{x}=\mathbf{x}^T\mathbf{x}$。
 > 工程含义：正交变换**不放大误差**（相对误差不增长），条件数为 1 ——**数值上最安全的矩阵**。旋转、反射都是它的几何化身（长度当然不变！）。
 
@@ -664,7 +692,9 @@ $$
 
 > [!warning] 矩形 $Q$ 的陷阱
 > 当 $m>n$（列数少于行数，这正是"高瘦"的最小二乘场景）时，$Q$ 是**矩形**的：
-> $$Q^TQ=I_n\quad\text{但}\quad QQ^T\ne I_m$$
+> $$
+> Q^TQ=I_n\quad\text{但}\quad QQ^T\ne I_m
+> $$
 > $QQ^T$ 是 $\mathbb{R}^m$ 上的投影矩阵（投向 $Q$ 的 $n$ 维列空间），秩为 $n$，绝不是单位阵。**只有方阵才享有 $Q^{-1}=Q^T$**。
 
 **正交矩阵的例子**（都能在通信里找到位置）：
@@ -786,7 +816,9 @@ $$
 
 > [!info] Def 9 QR 分解
 > 对列无关的 $m\times n$ 矩阵 $A$，**QR 分解**（QR factorization）是：
-> $$A=QR$$
+> $$
+> A=QR
+> $$
 > 其中 $Q$ 是 $m\times n$、列为标准正交；$R$ 是 $n\times n$ **上三角**且对角元为正。
 > 取 $R=Q^TA$ 即可验证（$Q^TQ=I$ 使 $QR=Q(Q^TA)=A$ ✓）；对角元 $r_{ii}=\mathbf{q}_i^T\mathbf{a}_i=\|A_i\|$，正是 Gram-Schmidt 里"剩下那一截的长度"。
 

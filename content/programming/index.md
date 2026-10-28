@@ -33,3 +33,13 @@ Python 部分关注 NumPy 的数组模型与向量化写法，以及 SciPy 的�
 - [[programming/c-pointer-and-memory|C 指针与内存]]
 - [[programming/python-numpy-dsp|Python NumPy 与 DSP]]
 - [[ai-agents/ai-tools-overview|AI 工具概览]]
+
+<!-- topic-index:start -->
+## MATLAB 与算法验证
+
+### MATLAB
+
+- [[vault-notes/matlab/matlab-notes|Matlab]]
+- [[vault-notes/matlab/experiment-06-dsp-design|实验六 数字信号与系统产生软件设计与实现]]
+
+<!-- topic-index:end -->

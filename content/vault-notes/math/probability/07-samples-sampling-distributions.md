@@ -66,7 +66,9 @@ related: []
 
 > [!info] Def 4 统计量
 > 设 $X_1,\dots,X_n$ 是总体 $X$ 的样本。若样本的函数
-> $$T=T(X_1,\dots,X_n)$$
+> $$
+> T=T(X_1,\dots,X_n)
+> $$
 > **不含任何未知参数**，则称 $T$ 为**统计量**（statistic）。
 
 - $T$ 是随机变量（抽样前），有分布——这个分布称为**抽样分布**（sampling distribution）
@@ -77,7 +79,9 @@ related: []
 ## 样本均值
 
 > [!info] Def 5 样本均值
-> $$\bar X=\frac1n\sum_{i=1}^nX_i$$
+> $$
+> \bar X=\frac1n\sum_{i=1}^nX_i
+> $$
 > 称为**样本均值**（sample mean）。
 
 **性质**（对任意总体，只要期望方差存在）：
@@ -90,12 +94,16 @@ related: []
 ## 样本方差
 
 > [!info] Def 6 样本方差
-> $$S^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2$$
+> $$
+> S^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2
+> $$
 > 称为**样本方差**（sample variance）；$S=\sqrt{S^2}$ 为**样本标准差**。
 
 **为什么除以 $n-1$ 而不是 $n$**：
 
-$$E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2$$
+$$
+E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2
+$$
 
 若除以 $n$，得到的估计量的期望是 $\frac{n-1}{n}\sigma^2$，**系统性偏小**；除以 $n-1$ 才无偏。$n-1$ 称为**自由度**（degree of freedom）——因为 $\sum(X_i-\bar X)=0$ 是一个约束，$n$ 个偏差中只有 $n-1$ 个自由。
 
@@ -124,19 +132,25 @@ $$E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2$$
 
 > [!info] Def 7 卡方分布
 > 设 $X_1,\dots,X_n$ 独立同分布 $N(0,1)$，则
-> $$\chi^2=X_1^2+\cdots+X_n^2\sim\chi^2(n)$$
+> $$
+> \chi^2=X_1^2+\cdots+X_n^2\sim\chi^2(n)
+> $$
 > 称为自由度为 $n$ 的**卡方分布**（chi-square distribution）。
 > 密度：$f(x)=\dfrac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}$（$x>0$）；$E(\chi^2)=n$，$D(\chi^2)=2n$。
 
 > [!info] Def 8 t 分布
 > 设 $X\sim N(0,1)$，$Y\sim\chi^2(n)$，且 $X,Y$ 独立，则
-> $$T=\frac{X}{\sqrt{Y/n}}\sim t(n)$$
+> $$
+> T=\frac{X}{\sqrt{Y/n}}\sim t(n)
+> $$
 > 称为自由度为 $n$ 的 **$t$ 分布**（Student's t-distribution）。
 > 密度关于 0 对称，比标准正态"厚尾"；$n\to\infty$ 时趋于 $N(0,1)$。
 
 > [!info] Def 9 F 分布
 > 设 $X\sim\chi^2(n_1)$，$Y\sim\chi^2(n_2)$，且 $X,Y$ 独立，则
-> $$F=\frac{X/n_1}{Y/n_2}\sim F(n_1,n_2)$$
+> $$
+> F=\frac{X/n_1}{Y/n_2}\sim F(n_1,n_2)
+> $$
 > 称为自由度为 $(n_1,n_2)$ 的 **$F$ 分布**（F-distribution）。
 > 性质：若 $F\sim F(n_1,n_2)$，则 $1/F\sim F(n_2,n_1)$。
 
@@ -214,17 +228,23 @@ $$E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2$$
 
 设 $X\sim N(\mu_1,\sigma_1^2)$、$Y\sim N(\mu_2,\sigma_2^2)$，样本容量分别为 $n_1,n_2$，样本方差 $S_1^2,S_2^2$：
 
-$$\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F(n_1-1,\ n_2-1)$$
+$$
+\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F(n_1-1,\ n_2-1)
+$$
 
 特别地，若 $\sigma_1^2=\sigma_2^2$，则 $S_1^2/S_2^2\sim F(n_1-1,n_2-1)$。
 
 **两样本均值差**（方差已知）：
 
-$$\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}\sim N(0,1)$$
+$$
+\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}\sim N(0,1)
+$$
 
 **两样本均值差**（方差未知但相等，合并方差 $S_p^2$）：
 
-$$\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_p\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}\sim t(n_1+n_2-2)$$
+$$
+\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_p\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}\sim t(n_1+n_2-2)
+$$
 
 其中 $S_p^2=\dfrac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$。
 
@@ -243,7 +263,9 @@ $$\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_p\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}\sim 
 
 > [!info] Def 10 分位数
 > 对随机变量 $X$ 和 $0<\alpha<1$，若 $x_\alpha$ 满足
-> $$P(X>x_\alpha)=\alpha$$
+> $$
+> P(X>x_\alpha)=\alpha
+> $$
 > 则称 $x_\alpha$ 为 $X$ 的**上侧 $\alpha$ 分位数**（upper quantile）。
 > 类似地，$P(X\le x)=1-\alpha$ 对应**下侧分位数**。
 
@@ -256,11 +278,15 @@ $$\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_p\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}\sim 
 
 **对称性**（$t$ 分布与标准正态）：
 
-$$z_{1-\alpha}=-z_\alpha,\qquad t_{1-\alpha}(n)=-t_\alpha(n)$$
+$$
+z_{1-\alpha}=-z_\alpha,\qquad t_{1-\alpha}(n)=-t_\alpha(n)
+$$
 
 **$F$ 分布的关系**：
 
-$$F_{1-\alpha}(n_1,n_2)=\frac{1}{F_\alpha(n_2,n_1)}$$
+$$
+F_{1-\alpha}(n_1,n_2)=\frac{1}{F_\alpha(n_2,n_1)}
+$$
 
 > [!warning] 分位数的"上侧/下侧"约定
 > 本书统一用**上侧**分位数：$P(X>x_\alpha)=\alpha$。不同教材可能用下侧，查表前先看清定义。MATLAB 的 `norminv(1-alpha)` 给的是下侧分位数，`chi2inv(1-alpha,n)` 同理。
@@ -269,30 +295,50 @@ $$F_{1-\alpha}(n_1,n_2)=\frac{1}{F_\alpha(n_2,n_1)}$$
 
 > [!example] 例 1：样本均值与样本方差
 > 从总体中抽得样本 $2,3,4,5,6$。求 $\bar x$、$s^2$。
-> $$\bar x=\frac{2+3+4+5+6}{5}=4$$
-> $$s^2=\frac{(2-4)^2+(3-4)^2+(4-4)^2+(5-4)^2+(6-4)^2}{4}=\frac{4+1+0+1+4}{4}=2.5$$
+> $$
+> \bar x=\frac{2+3+4+5+6}{5}=4
+> $$
+> $$
+> s^2=\frac{(2-4)^2+(3-4)^2+(4-4)^2+(5-4)^2+(6-4)^2}{4}=\frac{4+1+0+1+4}{4}=2.5
+> $$
 
 > [!example] 例 2：样本均值的分布
 > 设总体 $X\sim N(10,4)$，抽 $n=16$ 的样本。求 $P(\bar X>11)$。
-> $$\bar X\sim N\left(10,\frac{4}{16}\right)=N(10,0.25)$$
-> $$P(\bar X>11)=1-\Phi\left(\frac{11-10}{0.5}\right)=1-\Phi(2)\approx0.0228$$
+> $$
+> \bar X\sim N\left(10,\frac{4}{16}\right)=N(10,0.25)
+> $$
+> $$
+> P(\bar X>11)=1-\Phi\left(\frac{11-10}{0.5}\right)=1-\Phi(2)\approx0.0228
+> $$
 
 > [!example] 例 3：$\chi^2$ 分布的应用
 > 设总体 $X\sim N(\mu,\sigma^2)$，$n=10$，$S^2=4$。求 $P(S^2>6.5)$（$\sigma^2=4$）。
-> $$\frac{(n-1)S^2}{\sigma^2}=\frac{9S^2}{4}\sim\chi^2(9)$$
-> $$P(S^2>6.5)=P\left(\chi^2(9)>\frac{9\times6.5}{4}=14.625\right)$$
+> $$
+> \frac{(n-1)S^2}{\sigma^2}=\frac{9S^2}{4}\sim\chi^2(9)
+> $$
+> $$
+> P(S^2>6.5)=P\left(\chi^2(9)>\frac{9\times6.5}{4}=14.625\right)
+> $$
 > 查表 $\chi^2_{0.10}(9)=14.684$，故概率约 $0.10$。
 
 > [!example] 例 4：t 分布的应用
 > 承例 3，若 $\sigma$ 未知，用 $S=2$ 估计。求 $P(\bar X-\mu>0.5)$。
-> $$T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)=t(9)$$
-> $$P(\bar X-\mu>0.5)=P\left(T>\frac{0.5}{2/\sqrt{10}}=0.7906\right)$$
+> $$
+> T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)=t(9)
+> $$
+> $$
+> P(\bar X-\mu>0.5)=P\left(T>\frac{0.5}{2/\sqrt{10}}=0.7906\right)
+> $$
 > 查表 $t_{0.25}(9)\approx0.703$、$t_{0.10}(9)\approx1.383$，故概率介于 0.10 与 0.25 之间（约 0.22）。
 
 > [!example] 例 5：F 分布的应用
 > 两个正态总体，$n_1=n_2=10$，$S_1^2=4$、$S_2^2=9$。求 $P(S_1^2/S_2^2>2)$（假设 $\sigma_1^2=\sigma_2^2$）。
-> $$F=\frac{S_1^2}{S_2^2}\sim F(9,9)$$
-> $$P(F>2)\approx0.16$$
+> $$
+> F=\frac{S_1^2}{S_2^2}\sim F(9,9)
+> $$
+> $$
+> P(F>2)\approx0.16
+> $$
 > 查表 $F_{0.10}(9,9)\approx2.44$、$F_{0.25}(9,9)\approx1.49$，故概率介于 0.10 与 0.25 之间。
 
 > [!tip] 本章收官

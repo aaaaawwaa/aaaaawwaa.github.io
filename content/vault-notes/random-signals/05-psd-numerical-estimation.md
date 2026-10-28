@@ -31,9 +31,13 @@ related: []
 
 > [!info] 定义 1 周期图
 > 序列 $x[n]$ 的**周期图**定义为
-> $$\hat S_p(\omega)=\frac{1}{N}\left\lvert\sum_{n=0}^{N-1}x[n]e^{-j\omega n}\right\rvert^2=\frac{1}{N}\lvert X_N(e^{j\omega})\rvert^2$$
+> $$
+> \hat S_p(\omega)=\frac{1}{N}\left\lvert\sum_{n=0}^{N-1}x[n]e^{-j\omega n}\right\rvert^2=\frac{1}{N}\lvert X_N(e^{j\omega})\rvert^2
+> $$
 > 在 DFT 频点 $\omega_k=2\pi k/N$ 上，
-> $$\hat S_p[k]=\frac{1}{N}\lvert X[k]\rvert^2,\qquad k=0,1,\dots,N-1$$
+> $$
+> \hat S_p[k]=\frac{1}{N}\lvert X[k]\rvert^2,\qquad k=0,1,\dots,N-1
+> $$
 
 若 $x[n]$ 是实信号，单边谱要把 $k=1,\dots,N/2-1$ 的谱值乘 2，直流与奈奎斯特频点不乘，才能保持总功率不变。MATLAB 的 `periodogram` 与 `pwelch` 默认对实信号返回单边谱，并已完成这个缩放。
 
@@ -44,9 +48,13 @@ related: []
 
 > [!info] 定义 2 周期图的统计性质
 > 对宽平稳过程，周期图的期望为
-> $$E[\hat S_p(\omega)]=S_X(\omega)*W_B(\omega)$$
+> $$
+> E[\hat S_p(\omega)]=S_X(\omega)*W_B(\omega)
+> $$
 > 其中 $W_B(\omega)$ 是矩形窗的 Fejér 核。当 $N\to\infty$ 时 $W_B$ 趋于 $\delta$，故周期图**渐近无偏**；但其方差（高斯情形）近似为
-> $$\mathrm{Var}[\hat S_p(\omega)]\approx S_X^2(\omega)$$
+> $$
+> \mathrm{Var}[\hat S_p(\omega)]\approx S_X^2(\omega)
+> $$
 > 与 $N$ 无关，因此周期图**不是一致估计**。
 
 对高斯白噪声，$\hat S_p[k]/S_X$ 近似服从 $\chi_2^2/2$ 分布，标准差等于均值，相对标准差约 100%。增加数据长度只会让谱点变密，不会让曲线变光滑。
@@ -58,7 +66,9 @@ related: []
 
 给数据乘窗 $w[n]$ 可以压低截断造成的旁瓣泄漏，代价是主瓣变宽。
 
-$$\hat S_w(\omega)=\frac{1}{N U}\left\lvert\sum_{n=0}^{N-1}w[n]x[n]e^{-j\omega n}\right\rvert^2,\qquad U=\frac{1}{N}\sum_{n=0}^{N-1}w^2[n]$$
+$$
+\hat S_w(\omega)=\frac{1}{N U}\left\lvert\sum_{n=0}^{N-1}w[n]x[n]e^{-j\omega n}\right\rvert^2,\qquad U=\frac{1}{N}\sum_{n=0}^{N-1}w^2[n]
+$$
 
 归一化因子 $N U$ 保证白噪声输入时 $E[\hat S_w]=\sigma^2$。
 
@@ -71,7 +81,9 @@ $$\hat S_w(\omega)=\frac{1}{N U}\left\lvert\sum_{n=0}^{N-1}w[n]x[n]e^{-j\omega n
 
 Welch 法把长数据切成 $K$ 段，每段长 $L$，允许重叠，分别加窗求周期图再平均：
 
-$$\hat S_{\mathrm{Welch}}(\omega)=\frac{1}{K}\sum_{i=1}^{K}\hat S_w^{(i)}(\omega)$$
+$$
+\hat S_{\mathrm{Welch}}(\omega)=\frac{1}{K}\sum_{i=1}^{K}\hat S_w^{(i)}(\omega)
+$$
 
 方差约降为原来的 $1/K$（段间独立时），分辨率降为约 $f_s/L$。常用 50% 重叠；Hann 窗用 75% 重叠可补偿窗两端的衰减。
 

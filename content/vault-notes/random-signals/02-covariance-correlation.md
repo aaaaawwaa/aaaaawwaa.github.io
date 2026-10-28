@@ -29,7 +29,9 @@ related: []
 
 > [!info] 定义 7.1 协方差
 > 若 $E[X^2]$、$E[Y^2]$ 存在，称
-> $$\mathrm{Cov}(X,Y)=E\big[(X-\mu_X)(Y-\mu_Y)\big]=E[XY]-\mu_X\mu_Y$$
+> $$
+> \mathrm{Cov}(X,Y)=E\big[(X-\mu_X)(Y-\mu_Y)\big]=E[XY]-\mu_X\mu_Y
+> $$
 > 为 $X$ 与 $Y$ 的**协方差**。
 
 协方差是**双线性**的，这条性质让大部分计算可以机械化展开：
@@ -49,7 +51,9 @@ related: []
 
 > [!info] 定义 7.2 相关系数
 > 当 $\sigma_X>0$、$\sigma_Y>0$ 时
-> $$\rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]$$
+> $$
+> \rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]
+> $$
 > 也称为 Pearson 相关系数。
 
 | 取值 | 含义 | 几何解释 |
@@ -83,12 +87,16 @@ related: []
 
 > [!info] 定义 7.3 协方差矩阵
 > 随机向量 $\mathbf{X}=[X_1,\dots,X_n]^{T}$ 的协方差矩阵为
-> $$\mathbf{C}_X=E\big[(\mathbf{X}-\boldsymbol{\mu}_X)(\mathbf{X}-\boldsymbol{\mu}_X)^{H}\big]$$
+> $$
+> \mathbf{C}_X=E\big[(\mathbf{X}-\boldsymbol{\mu}_X)(\mathbf{X}-\boldsymbol{\mu}_X)^{H}\big]
+> $$
 > 对角元是各分量方差，非对角元是协方差；$\mathbf{C}_X$ 为 Hermitian 半正定矩阵。
 
 对线性变换 $\mathbf{Y}=\mathbf{A}\mathbf{X}+\mathbf{b}$，有
 
-$$\boldsymbol{\mu}_Y=\mathbf{A}\boldsymbol{\mu}_X+\mathbf{b},\qquad \mathbf{C}_Y=\mathbf{A}\mathbf{C}_X\mathbf{A}^{H}$$
+$$
+\boldsymbol{\mu}_Y=\mathbf{A}\boldsymbol{\mu}_X+\mathbf{b},\qquad \mathbf{C}_Y=\mathbf{A}\mathbf{C}_X\mathbf{A}^{H}
+$$
 
 更一般地，$\mathrm{Cov}(\mathbf{A}\mathbf{X},\mathbf{B}\mathbf{Y})=\mathbf{A}\,\mathrm{Cov}(\mathbf{X},\mathbf{Y})\,\mathbf{B}^{H}$。
 
@@ -103,14 +111,20 @@ $$\boldsymbol{\mu}_Y=\mathbf{A}\boldsymbol{\mu}_X+\mathbf{b},\qquad \mathbf{C}_Y
 > [!info] 定义 7.4 白化
 > 若线性变换 $\mathbf{W}$ 使 $\mathbf{C}_Y=\mathbf{W}\mathbf{C}_X\mathbf{W}^{H}=\mathbf{I}$，称 $\mathbf{W}$ 为**白化矩阵**。
 > 由特征分解 $\mathbf{C}_X=\mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^{H}$，取
-> $$\mathbf{W}=\mathbf{\Lambda}^{-1/2}\mathbf{Q}^{H}$$
+> $$
+> \mathbf{W}=\mathbf{\Lambda}^{-1/2}\mathbf{Q}^{H}
+> $$
 > 即可。只把非对角元消掉（$\mathbf{C}_Y$ 为对角阵）称为**去相关**，白化还要求对角元为 1。
 
 > [!example] 二维相关变量的和与差
 > 设 $\sigma_1=2$、$\sigma_2=3$、$\rho=0.5$，则 $\mathrm{Cov}(X_1,X_2)=0.5\times2\times3=3$。
 > 令 $S=X_1+X_2$、$D=X_1-X_2$，则
-> $$\mathrm{Var}(S)=4+9+6=19,\qquad \mathrm{Var}(D)=4+9-6=7$$
-> $$\mathrm{Cov}(S,D)=4-9=-5,\qquad \rho_{SD}=\frac{-5}{\sqrt{19\times7}}\approx-0.433$$
+> $$
+> \mathrm{Var}(S)=4+9+6=19,\qquad \mathrm{Var}(D)=4+9-6=7
+> $$
+> $$
+> \mathrm{Cov}(S,D)=4-9=-5,\qquad \rho_{SD}=\frac{-5}{\sqrt{19\times7}}\approx-0.433
+> $$
 > 原本正相关的两个变量，其"和"与"差"变成负相关。差分对共模分量不敏感，正是这个负协方差的工程含义。
 
 > [!tip] 白化在接收机中的位置

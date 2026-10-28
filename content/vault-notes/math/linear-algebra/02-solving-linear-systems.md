@@ -55,9 +55,13 @@ $$
 
 > [!tip] 列图像
 > **列图像**（column picture）：把同一件事改写成"**两列拼出 b**"：
-> $$x\begin{bmatrix}2\\-1\end{bmatrix}+y\begin{bmatrix}-1\\2\end{bmatrix}=\begin{bmatrix}0\\3\end{bmatrix}$$
+> $$
+> x\begin{bmatrix}2\\-1\end{bmatrix}+y\begin{bmatrix}-1\\2\end{bmatrix}=\begin{bmatrix}0\\3\end{bmatrix}
+> $$
 > 所谓"解方程"，就是找**组合系数** $x=1$、$y=2$：
-> $$1\begin{bmatrix}2\\-1\end{bmatrix}+2\begin{bmatrix}-1\\2\end{bmatrix}=\begin{bmatrix}2\\-1\end{bmatrix}+\begin{bmatrix}-2\\4\end{bmatrix}=\begin{bmatrix}0\\3\end{bmatrix}\ \checkmark$$
+> $$
+> 1\begin{bmatrix}2\\-1\end{bmatrix}+2\begin{bmatrix}-1\\2\end{bmatrix}=\begin{bmatrix}2\\-1\end{bmatrix}+\begin{bmatrix}-2\\4\end{bmatrix}=\begin{bmatrix}0\\3\end{bmatrix}\ \checkmark
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 300" width="100%" style="max-width:840px" font-family="inherit">
   <defs>
@@ -229,7 +233,9 @@ $$
 > [!info] Def 1 主元与乘数
 > 消元进行到第 $k$ 列时，用来"清洗"下面各行的对角线元素称为**主元**（pivot），必须非零；
 > 第 $i$ 行要消去第 $k$ 个未知数时，执行的运算是
-> $$\text{行}_i\ \longleftarrow\ \text{行}_i-l_{ik}\,\text{行}_k,\qquad l_{ik}=\frac{a_{ik}^{(k)}}{\text{主元}_k}$$
+> $$
+> \text{行}_i\ \longleftarrow\ \text{行}_i-l_{ik}\,\text{行}_k,\qquad l_{ik}=\frac{a_{ik}^{(k)}}{\text{主元}_k}
+> $$
 > 比值 $l_{ik}$ 称为**乘数**（multiplier）。
 
 ## 含三个未知数的三个方程
@@ -505,7 +511,9 @@ $$
 
 > [!info] Def 3 逆矩阵
 > 对方阵 $A$，若存在方阵 $A^{-1}$ 使
-> $$A^{-1}A=I\quad\text{且}\quad AA^{-1}=I$$
+> $$
+> A^{-1}A=I\quad\text{且}\quad AA^{-1}=I
+> $$
 > 则称 $A$ **可逆（非奇异）**，$A^{-1}$ 为**逆矩阵**（inverse matrix）。
 
 **直觉**：$A^{-1}$ 是"撤销 $A$ 的操作"。消元矩阵是最好的例子：
@@ -550,7 +558,9 @@ $$
 
 > [!tip] 为什么 [A|I] 能一次算出全部列
 > 行变换 = 左乘 E。对 $[A\mid I]$ 做一串行变换，等价于整体左乘同一个 $E$：
-> $$E\,[\,A\mid I\,]=[\,EA\mid EI\,]=[\,EA\mid E\,]$$
+> $$
+> E\,[\,A\mid I\,]=[\,EA\mid EI\,]=[\,EA\mid E\,]
+> $$
 > 当 $EA=I$ 时，右边恰好是 $E=A^{-1}$——不是巧合，是**必然**。
 
 **顺带记住特殊形状**：
@@ -561,7 +571,9 @@ $$
 ## 乘积 AB 的逆矩阵
 
 > [!info] Def 4 穿脱鞋序
-> $$(AB)^{-1}=B^{-1}A^{-1}$$
+> $$
+> (AB)^{-1}=B^{-1}A^{-1}
+> $$
 > 记忆：先穿鞋、后穿袜 → 脱的时候**先脱袜、后脱鞋**（顺序颠倒）。
 
 数字验证。取 $A=\begin{bmatrix}2&1\\1&1\end{bmatrix}$、$B=\begin{bmatrix}1&0\\3&2\end{bmatrix}$：

@@ -36,11 +36,15 @@ related: []
 > **期望**（expectation，也叫均值 mean）：
 > 离散情形：$E[X]=\sum_i p_ix_i$（$p_i$ 是取 $x_i$ 的概率）；连续情形：$E[X]=\int x\,p(x)\,\mathrm{d}x$。
 > **最重要的性质是它"线性"**：
-> $$E[cX+dY]=c\,E[X]+d\,E[Y]\qquad\text{（永远成立，不要求独立！）}$$
+> $$
+> E[cX+dY]=c\,E[X]+d\,E[Y]\qquad\text{（永远成立，不要求独立！）}
+> $$
 
 > [!tip] 换个说法：期望是一个"线性泛函"
 > 把随机变量看成向量空间里的元素，那么
-> $$E:\ \{\text{随机变量}\}\ \longrightarrow\ \mathbb{R}\quad\text{是一个线性映射}$$
+> $$
+> E:\ \{\text{随机变量}\}\ \longrightarrow\ \mathbb{R}\quad\text{是一个线性映射}
+> $$
 > ——这正是第 8 章的"线性变换"（只不过陪域是一维）。所以"期望可以逐项算、可以和系数交换"这些操作，**不是巧合，而是线性的定义** ✓
 > 与之对照：方差**不是**线性的（见下），协方差是**双线性**的（对两个变量分别线性）✓
 
@@ -48,7 +52,9 @@ related: []
 
 > [!info] Def 2 方差
 > **方差**（variance）：
-> $$\operatorname{Var}(X)=E\bigl[(X-\mu)^{2}\bigr]=E[X^{2}]-\mu^{2},\qquad \sigma=\sqrt{\operatorname{Var}(X)}$$
+> $$
+> \operatorname{Var}(X)=E\bigl[(X-\mu)^{2}\bigr]=E[X^{2}]-\mu^{2},\qquad \sigma=\sqrt{\operatorname{Var}(X)}
+> $$
 > 读法：**"到均值的平均平方距离"**——它就是"围绕中心散得有多开"。
 
 两条常用性质：
@@ -62,7 +68,9 @@ $$
 
 > [!note] 通信方向：方差就是功率
 > 对**零均值**信号（通信信号几乎总是零均值），
-> $$E[X^{2}]=\operatorname{Var}(X)=\text{平均功率}$$
+> $$
+> E[X^{2}]=\operatorname{Var}(X)=\text{平均功率}
+> $$
 > 于是：**信噪比 = 信号方差 / 噪声方差**（SNR $=\sigma_s^{2}/\sigma_n^{2}$），而"噪声功率"这个词在数学上就是"噪声的方差" ✓ 这也解释了为什么通信里的高斯白噪声模型只用一个参数 $\sigma^{2}$（或 $N_0$）就能刻划：**它的均值为 0、方差就是功率**。
 
 ## 连续性概率分布
@@ -91,7 +99,9 @@ $$
 
 > [!tip] 一条漂亮的连接：**均值 = 最小均方意义下的最优常数**
 > 若要用一个常数 $c$ 去"代表"随机变量 $X$（使均方误差最小）：
-> $$\min_c\ E\bigl[(X-c)^{2}\bigr]\qquad\Longrightarrow\qquad \frac{\mathrm{d}}{\mathrm{d}c}E[(X-c)^{2}]=-2E[X-c]=0\qquad\Longrightarrow\qquad c=E[X]\ \checkmark$$
+> $$
+> \min_c\ E\bigl[(X-c)^{2}\bigr]\qquad\Longrightarrow\qquad \frac{\mathrm{d}}{\mathrm{d}c}E[(X-c)^{2}]=-2E[X-c]=0\qquad\Longrightarrow\qquad c=E[X]\ \checkmark
+> $$
 > **"均值是最优的常数逼近"**——这就是第 4 章最小二乘的随机版本：把"用常数拟合常数"换成"用直线/平面拟合数据"，得到的就是最小二乘 ✓
 > 更一般地：**给定观测，用均方误差最小化求的估计，就是"条件期望"**——这是通信里一切都从它出发（MMSE 估计）。
 
@@ -99,7 +109,9 @@ $$
 
 > [!info] Def 4 正态分布（高斯分布）
 > **正态分布**（normal distribution，也叫高斯分布 Gaussian distribution）：
-> $$p(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}\ \exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right)$$
+> $$
+> p(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}\ \exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right)
+> $$
 > 记作 $X\sim N(\mu,\sigma^{2})$。**两个参数就说完了一切**：$\mu$ 决定中心，$\sigma$ 决定胖瘦 ✓
 
 **"68–95–99.7" 规则**（数值积分验证）：
@@ -194,12 +206,16 @@ $$
 
 > [!tip] 定理 中心极限定理
 > **中心极限定理**（central limit theorem，简称 CLT）：若 $X_1,X_2,\dots$ 独立同分布，均值 $\mu$、方差 $\sigma^{2}$，则
-> $$\frac{X_1+X_2+\cdots+X_N-N\mu}{\sigma\sqrt N}\ \xrightarrow{\ N\to\infty\ }\ N(0,1)$$
+> $$
+> \frac{X_1+X_2+\cdots+X_N-N\mu}{\sigma\sqrt N}\ \xrightarrow{\ N\to\infty\ }\ N(0,1)
+> $$
 > ——**不管原来的分布是什么**，和都会趋于正态 ✓（抛硬币的例子：$N=100$ 时峰度 2.98、偏度 0，已和正态几乎无法区分）
 
 > [!tip] CLT 的线性代数读法
 > "求和"是最简单的线性组合：$S_N=\mathbf{1}^{T}\mathbf{X}$（$\mathbf{1}=(1,\dots,1)^{T}$、$\mathbf{X}=(X_1,\dots,X_N)^{T}$）✓ 于是
-> $$E[S_N]=\mathbf{1}^{T}\boldsymbol\mu,\qquad \operatorname{Var}(S_N)=\mathbf{1}^{T}V\mathbf{1}$$
+> $$
+> E[S_N]=\mathbf{1}^{T}\boldsymbol\mu,\qquad \operatorname{Var}(S_N)=\mathbf{1}^{T}V\mathbf{1}
+> $$
 > ——**"随机向量的线性组合的均值与方差"正是第 2 节要建立的那套公式** ✓ CLT 说的则是：当 $N$ 很大时，这个线性组合的**分布形状**趋于高斯。
 > 几何直觉（Poincaré）：高维空间里"角落"几乎不存在，概率质量集中在一层薄球壳上——这就是为什么"和"的分布会稳定到同一个形状 ✓
 
@@ -207,25 +223,35 @@ $$
 
 > [!info] Def 5 协方差与相关系数
 > **协方差**（covariance）：
-> $$\operatorname{Cov}(X,Y)=E\bigl[(X-\mu_X)(Y-\mu_Y)\bigr]=E[XY]-\mu_X\mu_Y$$
+> $$
+> \operatorname{Cov}(X,Y)=E\bigl[(X-\mu_X)(Y-\mu_Y)\bigr]=E[XY]-\mu_X\mu_Y
+> $$
 > $\rho$ 是**相关系数**（correlation coefficient）：
-> $$\rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]\qquad\text{（标准化后的协方差）}$$
+> $$
+> \rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]\qquad\text{（标准化后的协方差）}
+> $$
 > - $\operatorname{Cov}=0$ 称**不相关**；
 > - **独立 ⟹ 不相关**（因为 $E[XY]=E[X]E[Y]$），但**反之不成立**（不相关 ≠ 独立，除非是高斯！）✓
 
 > [!info] Def 6 协方差矩阵
 > 对随机向量 $\mathbf{x}=(x_1,\dots,x_n)^{T}$：
-> $$V=\operatorname{Cov}(\mathbf{x})=E\bigl[(\mathbf{x}-\boldsymbol\mu)(\mathbf{x}-\boldsymbol\mu)^{T}\bigr]$$
+> $$
+> V=\operatorname{Cov}(\mathbf{x})=E\bigl[(\mathbf{x}-\boldsymbol\mu)(\mathbf{x}-\boldsymbol\mu)^{T}\bigr]
+> $$
 > - 对角元 $V_{ii}=\operatorname{Var}(x_i)$；非对角元 $V_{ij}=\operatorname{Cov}(x_i,x_j)$；
 > - **$V$ 一定对称**（$V_{ij}=V_{ji}$）；
 > - **$V$ 一定半正定**（positive semidefinite）：对任意 $\mathbf{a}$，
->   $$\mathbf{a}^{T}V\mathbf{a}=E\bigl[(\mathbf{a}^{T}(\mathbf{x}-\boldsymbol\mu))^{2}\bigr]\ge0\ \checkmark$$
+>   $$
+>   \mathbf{a}^{T}V\mathbf{a}=E\bigl[(\mathbf{a}^{T}(\mathbf{x}-\boldsymbol\mu))^{2}\bigr]\ge0\ \checkmark
+>   $$
 > - **$V$ 正定 $\iff$ 各分量之间不存在"完全相关的组合"**（没有 $\mathbf{a}\ne\mathbf{0}$ 使 $\mathbf{a}^{T}\mathbf{x}$ 恒为常数）✓
 
 **对称半正定**——第 6 章、第 7 章的一切结论立刻可以搬过来：
 
 > [!tip] 定理 协方差矩阵的谱分解（= PCA 的老家）
-> $$V=Q\Lambda Q^{T}\qquad(\Lambda=\operatorname{diag}(\lambda_1,\dots,\lambda_n),\ \lambda_i\ge0,\ Q\ \text{正交})$$
+> $$
+> V=Q\Lambda Q^{T}\qquad(\Lambda=\operatorname{diag}(\lambda_1,\dots,\lambda_n),\ \lambda_i\ge0,\ Q\ \text{正交})
+> $$
 > - **特征向量 $\mathbf{q}_i$ = 主方向**（各分量"共同变化"的方向）；
 > - **特征值 $\lambda_i$ = 该方向上的方差**；
 > - **总方差** $=\operatorname{tr}(V)=\sum\lambda_i$（第 6 章的迹定理）✓
@@ -243,14 +269,18 @@ $$
 
 > [!tip] 定理 线性变换的均值与协方差
 > 若 $\mathbf{y}=A\mathbf{x}$（$A$ 是**确定性**矩阵，$\mathbf{x}$ 随机），则
-> $$E[\mathbf{y}]=A\boldsymbol\mu,\qquad \operatorname{Cov}(\mathbf{y})=A\,V\,A^{T}$$
+> $$
+> E[\mathbf{y}]=A\boldsymbol\mu,\qquad \operatorname{Cov}(\mathbf{y})=A\,V\,A^{T}
+> $$
 > 一行证明：$E[(A\mathbf{x}-A\boldsymbol\mu)(A\mathbf{x}-A\boldsymbol\mu)^{T}]=A\,E[(\mathbf{x}-\boldsymbol\mu)(\mathbf{x}-\boldsymbol\mu)^{T}]A^{T}$ ✓
 > **特例**（最常用）：标量 $y=\mathbf{a}^{T}\mathbf{x}$ 的方差 $=\mathbf{a}^{T}V\mathbf{a}$ ✓
 > **实测**：$V=\begin{bmatrix}4&2\\2&3\end{bmatrix}$、$A=\begin{bmatrix}1&0\\1&1\end{bmatrix}$ ⇒ $AVA^{T}=\begin{bmatrix}4&6\\6&11\end{bmatrix}$ ✓
 
 > [!tip] 白化：把"椭圆"掰成"圆"
 > **白化**（whitening）：令
-> $$\mathbf{z}=\Lambda^{-1/2}Q^{T}(\mathbf{x}-\boldsymbol\mu)\qquad\Longrightarrow\qquad \operatorname{Cov}(\mathbf{z})=I$$
+> $$
+> \mathbf{z}=\Lambda^{-1/2}Q^{T}(\mathbf{x}-\boldsymbol\mu)\qquad\Longrightarrow\qquad \operatorname{Cov}(\mathbf{z})=I
+> $$
 > （因为 $\Lambda^{-1/2}Q^{T}\,V\,Q\Lambda^{-1/2}=\Lambda^{-1/2}\Lambda\Lambda^{-1/2}=I$ ✓ 实测验证 ✓）
 > **意义**：白化后的各分量**方差都是 1、彼此不相关**——"有色噪声"变成了"白噪声"。通信里的**白化滤波器**、MIMO 的**空间白化**、检测器的**预处理**都是这一步 ✓
 
@@ -264,16 +294,22 @@ $$
 
 > [!info] Def 7 多维高斯分布
 > **$n$ 维高斯分布**（multivariate Gaussian，也叫多维正态）：
-> $$p(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\,(\det V)^{1/2}}\ \exp\left(-\frac12(\mathbf{x}-\boldsymbol\mu)^{T}V^{-1}(\mathbf{x}-\boldsymbol\mu)\right)$$
+> $$
+> p(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\,(\det V)^{1/2}}\ \exp\left(-\frac12(\mathbf{x}-\boldsymbol\mu)^{T}V^{-1}(\mathbf{x}-\boldsymbol\mu)\right)
+> $$
 > 记作 $\mathbf{x}\sim N(\boldsymbol\mu,V)$。
 > **注意密度里同时出现了两样东西**：$\det V$（第 5 章的行列式——它保证积分等于 1，是"体积"的归一化因子）和 $V^{-1}$（第 4 章的逆矩阵）✓
 > **验证**：对 $\mu=0$、$V=\begin{bmatrix}1&0.8\\0.8&1\end{bmatrix}$（$\det V=0.36$）做二重数值积分，$\int\int p=0.9999$ ✓
 
 > [!tip] 定理 等概率面是椭球（第 6.5 节的椭圆回来了）
 > 由 $V=Q\Lambda Q^{T}$，令 $\mathbf{y}=Q^{T}(\mathbf{x}-\boldsymbol\mu)$：
-> $$(\mathbf{x}-\boldsymbol\mu)^{T}V^{-1}(\mathbf{x}-\boldsymbol\mu)=\frac{y_1^{2}}{\lambda_1}+\frac{y_2^{2}}{\lambda_2}+\cdots+\frac{y_n^{2}}{\lambda_n}$$
+> $$
+> (\mathbf{x}-\boldsymbol\mu)^{T}V^{-1}(\mathbf{x}-\boldsymbol\mu)=\frac{y_1^{2}}{\lambda_1}+\frac{y_2^{2}}{\lambda_2}+\cdots+\frac{y_n^{2}}{\lambda_n}
+> $$
 > 所以 $p(\mathbf{x})=$ 常数的曲面是**椭球**：
-> $$\text{半轴方向}=\text{特征向量 }\mathbf{q}_i;\qquad \text{半轴长}\propto\sqrt{\lambda_i}$$
+> $$
+> \text{半轴方向}=\text{特征向量 }\mathbf{q}_i;\qquad \text{半轴长}\propto\sqrt{\lambda_i}
+> $$
 > **方差大的方向，椭球轴长**——这正是"噪声椭圆"的样子 ✓（第 6.5 节的椭圆、第 7.3 节 PCA 的散点椭圆，都是它）
 
 **数值例**（$\rho=0.8$ 的二维高斯）：$V=\begin{bmatrix}1&0.8\\0.8&1\end{bmatrix}$，特征值 $0.2$ 与 $1.8$，特征向量 $(1,-1)/\sqrt2$ 与 $(1,1)/\sqrt2$ ⇒ **等高线是沿 $(1,1)$ 拉长的倾斜椭圆**（长轴 : 短轴 $=\sqrt{1.8}:\sqrt{0.2}=3:1$）✓
@@ -319,7 +355,9 @@ $$
 
 > [!tip] 线性变换下的多维高斯（第 5 章的行列式在这里现身）
 > 若 $\mathbf{y}=A\mathbf{x}$（可逆 $A$），则 $\mathbf{y}\sim N(A\boldsymbol\mu,\ AVA^{T})$，且**密度按 $1/\lvert\det A\rvert$ 缩放**：
-> $$p_{\mathbf{y}}(\mathbf{y})=\frac{p_{\mathbf{x}}(A^{-1}\mathbf{y})}{\lvert\det A\rvert}$$
+> $$
+> p_{\mathbf{y}}(\mathbf{y})=\frac{p_{\mathbf{x}}(A^{-1}\mathbf{y})}{\lvert\det A\rvert}
+> $$
 > 那个 $1/\lvert\det A\rvert$ 就是第 5 章的"**体积缩放因子**"——线性变换把空间拉伸了 $\lvert\det A\rvert$ 倍，概率密度必须相应地被"摊薄"✓
 > **好消息**：高斯在**线性变换下仍然是高斯**（形状不变，只换参数）——这让线性系统 + 高斯噪声的分析变得极其清爽。
 
@@ -386,16 +424,22 @@ $$
 
 > [!tip] 定理 Gauss–Markov：最优权重是"噪声协方差之逆"
 > 若观测噪声的协方差为 $V_n$，则取
-> $$W=V_n^{-1}$$
+> $$
+> W=V_n^{-1}
+> $$
 > 时的加权最小二乘给出**最优线性无偏估计**（BLUE，best linear unbiased estimator）——它在所有线性无偏估计里方差最小 ✓
 > **直觉**：观测越准（$V_n$ 那一块越小）⇒ $V_n^{-1}$ 那一块的权重越大 ⇒ 越"听它的" ✓ 这就是"精度加权"。
 
 > [!tip] 先验 + 观测 = 贝叶斯/MMSE（卡尔曼滤波的静态形式）
 > 若还知道 $\mathbf{x}$ 的**先验** $\mathbf{x}\sim N(\boldsymbol\mu_0,V_0)$，则融合先验与观测后的后验是
-> $$\hat{\mathbf{x}}=\bigl(V_0^{-1}+A^{T}V_n^{-1}A\bigr)^{-1}\bigl(V_0^{-1}\boldsymbol\mu_0+A^{T}V_n^{-1}\mathbf{b}\bigr)$$
+> $$
+> \hat{\mathbf{x}}=\bigl(V_0^{-1}+A^{T}V_n^{-1}A\bigr)^{-1}\bigl(V_0^{-1}\boldsymbol\mu_0+A^{T}V_n^{-1}\mathbf{b}\bigr)
+> $$
 > ——**"精度相加、估值按精度加权平均"** ✓ 这条式子递推地做下去，就是**卡尔曼滤波**（Kalman filter，每一步都用上一次的后验当先验）✓
 > **数值例**：先验 $N(0,1)$（精度 1.0）；三次观测均值 $1.30$、噪声方差 $0.25$（数据总精度 $3/0.25=12$）⇒
-> $$\hat x=\frac{0\times1.0+1.30\times12}{1.0+12}=1.200,\qquad \text{后验方差}=\frac{1}{13}=0.0769$$
+> $$
+> \hat x=\frac{0\times1.0+1.30\times12}{1.0+12}=1.200,\qquad \text{后验方差}=\frac{1}{13}=0.0769
+> $$
 > 数据精度（12）压倒先验（1），所以估计几乎由观测决定（1.20 靠近 1.30）——**精度加权，一目了然** ✓
 
 > [!note] 通信方向：LMMSE 与卡尔曼滤波

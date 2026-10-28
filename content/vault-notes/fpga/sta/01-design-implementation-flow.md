@@ -188,11 +188,15 @@ CLOAD OUT 0 20fF
 
 ### 5.4 相关公式
 
-$$t_{pHL}=\frac{t_{PHL1}+t_{PHL2}}{2}\ \text{（按边沿的 50% 点到 50% 点）},\qquad t_p=\frac{t_{pHL}+t_{pLH}}{2}$$
+$$
+t_{pHL}=\frac{t_{PHL1}+t_{PHL2}}{2}\ \text{（按边沿的 50% 点到 50% 点）},\qquad t_p=\frac{t_{pHL}+t_{pLH}}{2}
+$$
 
 一阶估算（把 MOS 看成恒流源给 $C_L$ 充放电）：
 
-$$t_{pHL}\approx \frac{C_L V_{DD}}{2 I_{DSN}},\qquad t_{pLH}\approx \frac{C_L V_{DD}}{2 I_{DSP}}$$
+$$
+t_{pHL}\approx \frac{C_L V_{DD}}{2 I_{DSN}},\qquad t_{pLH}\approx \frac{C_L V_{DD}}{2 I_{DSP}}
+$$
 
 因此要让两者接近，需要 $I_{DSP}\approx I_{DSN}$，这正是课件取 $W_p/W_n = 1.8/0.9 = 2:1$ 的原因（空穴迁移率约为电子的 $1/2$）。
 

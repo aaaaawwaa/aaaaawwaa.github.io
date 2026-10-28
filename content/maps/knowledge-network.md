@@ -65,3 +65,16 @@ graph TD
 - [[maps/learning-path|推荐学习路径]]
 - [[maps/index|导航总览]]
 - [[signal-processing/dft-and-fft|DFT 与 FFT]]
+
+<!-- topic-index:start -->
+## 跨学科知识地图
+
+### 知识关联
+
+- [[vault-notes/maps/sampling-quantization-map|采样、量化与数字化知识地图]]
+- [[vault-notes/maps/fourier-analysis-map|傅里叶分析知识地图]]
+- [[vault-notes/maps/digital-communication-map|数字通信系统知识地图]]
+- [[vault-notes/maps/random-signal-processing-map|随机信号处理知识地图]]
+- [[vault-notes/maps/linear-systems-filtering-map|线性系统与滤波知识地图]]
+
+<!-- topic-index:end -->

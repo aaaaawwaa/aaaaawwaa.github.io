@@ -74,7 +74,9 @@ x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]e^{j2\pi kn/N}$$
 
 > [!warning] $\omega$ 与 $f$ 的换算
 > $\omega=2\pi f$。本库默认双边功率谱 $S_X(\omega)$；若用 $S_X(f)$，则
-> $$S_X(\omega)\,\mathrm{d}\omega=S_X(f)\,\mathrm{d}f,\qquad S_X(f)=\frac{1}{2\pi}S_X(2\pi f)$$
+> $$
+> S_X(\omega)\,\mathrm{d}\omega=S_X(f)\,\mathrm{d}f,\qquad S_X(f)=\frac{1}{2\pi}S_X(2\pi f)
+> $$
 > 实过程常用**单边谱** $S_X^+(f)=2S_X(f)$（$f\ge0$），此时总功率为 $\int_0^\infty S_X^+(f)\,\mathrm{d}f$。写题时先声明单边还是双边。
 
 | 符号 | 含义 | 单位 |

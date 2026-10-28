@@ -42,7 +42,9 @@ related: []
 
 > [!info] Def 2 标准调幅
 > **标准调幅**（amplitude modulation，简称 AM）：
-> $$s_{AM}(t)=[A_0+m(t)]\cos\omega_c t$$
+> $$
+> s_{AM}(t)=[A_0+m(t)]\cos\omega_c t
+> $$
 > 其中 $A_0$ 为直流偏置，必须满足 $A_0\ge|m(t)|_{\max}$。
 
 - 频谱：载波 $\delta$ 函数（$\pm\omega_c$）+ 上下边带
@@ -56,8 +58,12 @@ related: []
 
 > [!info] Def 3 双边带调制
 > **抑制载波双边带调制**（double-sideband suppressed-carrier，简称 DSB-SC 或 DSB）：
-> $$s_{DSB}(t)=m(t)\cos\omega_c t$$
-> $$S_{DSB}(\omega)=\tfrac{1}{2}[M(\omega+\omega_c)+M(\omega-\omega_c)]$$
+> $$
+> s_{DSB}(t)=m(t)\cos\omega_c t
+> $$
+> $$
+> S_{DSB}(\omega)=\tfrac{1}{2}[M(\omega+\omega_c)+M(\omega-\omega_c)]
+> $$
 
 - 无载波分量 → **调制效率 100%**
 - **带宽**仍 $2f_H$；包络与 $|m(t)|$ 成正比（有相位突变）→ **不能包络检波，必须相干解调**
@@ -72,7 +78,9 @@ related: []
 1. **滤波法**：DSB → 边带滤波器（难点：低频含丰富频谱的信号要求极陡滤波器）
 2. **相移法（希尔伯特变换法）**：
 
-$$s_{SSB}(t)=\tfrac{1}{2}m(t)\cos\omega_c t\mp\tfrac{1}{2}\hat{m}(t)\sin\omega_c t$$
+$$
+s_{SSB}(t)=\tfrac{1}{2}m(t)\cos\omega_c t\mp\tfrac{1}{2}\hat{m}(t)\sin\omega_c t
+$$
 
 （$-$ 上边带 USB，$+$ 下边带 LSB；$\hat{m}(t)$ 为 $m(t)$ 的希尔伯特变换）
 
@@ -104,11 +112,15 @@ flowchart LR
 
 **分析模型**：已调信号 + 窄带高斯噪声（双边谱密度 $\dfrac{n_0}{2}$）通过解调器。
 
-$$\frac{S_o}{N_o}=G\cdot\frac{S_i}{N_i}$$
+$$
+\frac{S_o}{N_o}=G\cdot\frac{S_i}{N_i}
+$$
 
 > [!info] Def 6 解调增益
 > **解调增益**（demodulation gain，也称信噪比增益）定义为
-> $$G=\frac{S_o/N_o}{S_i/N_i}$$
+> $$
+> G=\frac{S_o/N_o}{S_i/N_i}
+> $$
 > 它是衡量解调器抗噪性能的核心指标。其中 $S_i/N_i$ 为解调器**输入**信噪比（$N_i=n_0B$，$B$ 为带通带宽）。
 
 ## 结论汇总
@@ -130,7 +142,9 @@ $$\frac{S_o}{N_o}=G\cdot\frac{S_i}{N_i}$$
 
 > [!info] Def 7 角度调制
 > **角度调制**（angle modulation）使载波的**频率或相位**随 $m(t)$ 变化，频谱不再是简单搬移而产生新的频率分量，故称**非线性调制**；其已调信号为**恒包络**。
-> $$s(t)=A\cos[\omega_c t+\varphi(t)]$$
+> $$
+> s(t)=A\cos[\omega_c t+\varphi(t)]
+> $$
 
 | 方式 | 相位偏移 | 瞬时频率偏移 |
 | --- | --- | --- |
@@ -143,7 +157,9 @@ $$\frac{S_o}{N_o}=G\cdot\frac{S_i}{N_i}$$
 
 设 $m(t)=A_m\cos\omega_m t$：
 
-$$s_{FM}(t)=A\cos[\omega_c t+m_f\sin\omega_m t]$$
+$$
+s_{FM}(t)=A\cos[\omega_c t+m_f\sin\omega_m t]
+$$
 
 > [!info] Def 8 调频指数与最大频偏
 > **调频指数**（modulation index）$m_f=\dfrac{K_fA_m}{\omega_m}=\dfrac{\Delta f}{f_m}$；
@@ -155,7 +171,9 @@ $$s_{FM}(t)=A\cos[\omega_c t+m_f\sin\omega_m t]$$
 
 ## 卡森公式（FM 带宽）
 
-$$B_{FM}=2(m_f+1)f_m=2(\Delta f+f_m)$$
+$$
+B_{FM}=2(m_f+1)f_m=2(\Delta f+f_m)
+$$
 
 - NBFM：$B\approx2f_m$；WBFM：$B\approx2\Delta f$
 - 例：调频广播 $f_m=15$ kHz、$\Delta f=75$ kHz → $m_f=5$，$B=180$ kHz（**卡森带宽**）
@@ -170,7 +188,9 @@ $$B_{FM}=2(m_f+1)f_m=2(\Delta f+f_m)$$
 
 ## 大信噪比时的解调增益
 
-$$G_{FM}=3m_f^2(m_f+1)\approx3m_f^3\quad(m_f\gg1)$$
+$$
+G_{FM}=3m_f^2(m_f+1)\approx3m_f^3\quad(m_f\gg1)
+$$
 
 （单音调制、鉴频解调。）
 
@@ -181,7 +201,9 @@ $$G_{FM}=3m_f^2(m_f+1)\approx3m_f^3\quad(m_f\gg1)$$
 
 ## 门限效应
 
-$$\left(\frac{S_i}{N_i}\right)_{th}\approx10\,\text{dB}\quad(\text{经验门限})$$
+$$
+\left(\frac{S_i}{N_i}\right)_{th}\approx10\,\text{dB}\quad(\text{经验门限})
+$$
 
 - 输入信噪比低于门限 → 输出信噪比急剧恶化（脉冲噪声"咔嗒"声）
 - $m_f$ 越大门限越高 → 宽带 FM 要在**足够大信噪比**下才有优势

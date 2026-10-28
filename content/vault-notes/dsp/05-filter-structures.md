@@ -65,7 +65,9 @@ related: []
 
 > [!info] Def 2 直接型 I
 > 直接把 $H(z)=\dfrac{\sum_{r=0}^{M}b_rz^{-r}}{1+\sum_{k=1}^{N}a_kz^{-k}}$ 的分子、分母分别实现：
-> $$w(n)=\sum_{r=0}^{M}b_rx(n-r),\qquad y(n)=w(n)-\sum_{k=1}^{N}a_ky(n-k)$$
+> $$
+> w(n)=\sum_{r=0}^{M}b_rx(n-r),\qquad y(n)=w(n)-\sum_{k=1}^{N}a_ky(n-k)
+> $$
 > 称为**直接型 I**（direct form I）。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="100%" style="max-width:760px" font-family="inherit">
@@ -119,9 +121,13 @@ related: []
 - 优点：结构直观，零点和极点分开；缺点：延迟多、高阶时系数敏感
 
 > [!example] 二阶 IIR 的直接型 I
-> $$H(z)=\frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}}$$
+> $$
+> H(z)=\frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}}
+> $$
 > 时域差分方程：
-> $$y(n)=b_0x(n)+b_1x(n-1)+b_2x(n-2)-a_1y(n-1)-a_2y(n-2)$$
+> $$
+> y(n)=b_0x(n)+b_1x(n-1)+b_2x(n-2)-a_1y(n-1)-a_2y(n-2)
+> $$
 > 直接型 I 需要 4 个延迟（$x$ 链 2 个、$y$ 链 2 个）。
 
 ## 直接型 II（典范型）
@@ -174,7 +180,9 @@ related: []
 
 > [!info] Def 4 级联型
 > 把 $H(z)$ 的分子、分母分别因式分解，再两两配对成**二阶节**（second-order section，简称 SOS）：
-> $$H(z)=\prod_{i=1}^{K}H_i(z),\qquad H_i(z)=\frac{b_{0i}+b_{1i}z^{-1}+b_{2i}z^{-2}}{1+a_{1i}z^{-1}+a_{2i}z^{-2}}$$
+> $$
+> H(z)=\prod_{i=1}^{K}H_i(z),\qquad H_i(z)=\frac{b_{0i}+b_{1i}z^{-1}+b_{2i}z^{-2}}{1+a_{1i}z^{-1}+a_{2i}z^{-2}}
+> $$
 > 称为**级联型**（cascade form）。
 
 - 每个二阶节用直接型 II 实现
@@ -183,14 +191,18 @@ related: []
 - 定点实现时要做**缩放**（避免各级溢出）
 
 > [!example] 级联分解
-> $$H(z)=\frac{1+2z^{-1}+z^{-2}}{1-1.5z^{-1}+0.56z^{-2}}\cdot\frac{1-0.5z^{-1}}{1+0.3z^{-1}}$$
+> $$
+> H(z)=\frac{1+2z^{-1}+z^{-2}}{1-1.5z^{-1}+0.56z^{-2}}\cdot\frac{1-0.5z^{-1}}{1+0.3z^{-1}}
+> $$
 > 前一个二阶节实现一对共轭极点，后一个一阶节实现实极点；两个节串联。
 
 ## 并联型
 
 > [!info] Def 5 并联型
 > 把 $H(z)$ 做**部分分式展开**：
-> $$H(z)=\sum_{i=1}^{K}H_i(z)$$
+> $$
+> H(z)=\sum_{i=1}^{K}H_i(z)
+> $$
 > 每个 $H_i(z)$ 是一阶或二阶节，各节**并联**（输出相加），称为**并联型**（parallel form）。
 
 - 各节独立，**一个节的误差不会通过反馈传到另一个节**
@@ -219,7 +231,9 @@ related: []
 
 > [!info] Def 6 FIR 直接型
 > FIR 滤波器的差分方程
-> $$y(n)=\sum_{m=0}^{M}h(m)x(n-m)$$
+> $$
+> y(n)=\sum_{m=0}^{M}h(m)x(n-m)
+> $$
 > 直接实现为一条**抽头延迟线**（tapped delay line）：输入依次经过 $M$ 个延迟，每个抽头乘 $h(m)$ 后相加，称为**横向滤波器**（transversal filter）。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="100%" style="max-width:760px" font-family="inherit">
@@ -270,7 +284,9 @@ related: []
 
 把 $H(z)=\sum_{m=0}^{M}h(m)z^{-m}$ 因式分解为一阶/二阶节的乘积：
 
-$$H(z)=h(0)\prod_{i=1}^{K}\left(1-c_iz^{-1}\right)\prod_{j=1}^{L}\left(1-b_{1j}z^{-1}+b_{2j}z^{-2}\right)$$
+$$
+H(z)=h(0)\prod_{i=1}^{K}\left(1-c_iz^{-1}\right)\prod_{j=1}^{L}\left(1-b_{1j}z^{-1}+b_{2j}z^{-2}\right)
+$$
 
 - 每个节用直接型实现
 - 适合**零点需要单独调整**的场合
@@ -280,7 +296,9 @@ $$H(z)=h(0)\prod_{i=1}^{K}\left(1-c_iz^{-1}\right)\prod_{j=1}^{L}\left(1-b_{1j}z
 
 由第 3 章的频率采样定理，FIR 的 $H(z)$ 可以用 $N$ 个频率采样值 $H(k)$ 表示：
 
-$$H(z)=\left(1-z^{-N}\right)\frac{1}{N}\sum_{k=0}^{N-1}\frac{H(k)}{1-W_N^{-k}z^{-1}}$$
+$$
+H(z)=\left(1-z^{-N}\right)\frac{1}{N}\sum_{k=0}^{N-1}\frac{H(k)}{1-W_N^{-k}z^{-1}}
+$$
 
 - 结构由**梳状滤波器**（$1-z^{-N}$）与**并联谐振器**组成
 - 优点：频率采样值 $H(k)$ 直接就是设计参数，适合**窄带/多带**滤波器
@@ -290,16 +308,22 @@ $$H(z)=\left(1-z^{-N}\right)\frac{1}{N}\sum_{k=0}^{N-1}\frac{H(k)}{1-W_N^{-k}z^{
 
 > [!info] Def 7 线性相位 FIR 结构
 > 若 FIR 系数满足对称条件
-> $$h(n)=h(M-n)\quad(\text{偶对称})\qquad\text{或}\qquad h(n)=-h(M-n)\quad(\text{奇对称})$$
+> $$
+> h(n)=h(M-n)\quad(\text{偶对称})\qquad\text{或}\qquad h(n)=-h(M-n)\quad(\text{奇对称})
+> $$
 > 则滤波器具有**严格线性相位**；实现时可以把对称的抽头**先相加再乘**，乘法次数减少近一半。
 
 以偶对称为例：
 
-$$y(n)=\sum_{m=0}^{M}h(m)x(n-m)$$
+$$
+y(n)=\sum_{m=0}^{M}h(m)x(n-m)
+$$
 
 把 $h(m)=h(M-m)$ 的项合并：
 
-$$y(n)=h(0)\big[x(n)+x(n-M)\big]+h(1)\big[x(n-1)+x(n-M+1)\big]+\cdots$$
+$$
+y(n)=h(0)\big[x(n)+x(n-M)\big]+h(1)\big[x(n-1)+x(n-M+1)\big]+\cdots
+$$
 
 - 乘法数从 $M+1$ 降到约 $(M+1)/2$
 - 加法数增加，但乘法器在硬件中更贵
@@ -328,7 +352,9 @@ $$y(n)=h(0)\big[x(n)+x(n-M)\big]+h(1)\big[x(n-1)+x(n-M+1)\big]+\cdots$$
 
 IIR 格型在 FIR 格型的基础上加反馈，实现全极点系统：
 
-$$H(z)=\frac{1}{A(z)},\qquad A(z)=1+\sum_{k=1}^{N}a_kz^{-k}$$
+$$
+H(z)=\frac{1}{A(z)},\qquad A(z)=1+\sum_{k=1}^{N}a_kz^{-k}
+$$
 
 - 反射系数 $k_m$ 由 $A(z)$ 通过 Levinson–Durbin 递推得到
 - 全极点格型 + 零点支路 = 一般 IIR 格型
@@ -336,10 +362,14 @@ $$H(z)=\frac{1}{A(z)},\qquad A(z)=1+\sum_{k=1}^{N}a_kz^{-k}$$
 
 > [!example] 一阶格型
 > 一阶 FIR 格型：
-> $$f_1(n)=x(n)+k_1x(n-1),\qquad g_1(n)=k_1x(n)+x(n-1)$$
+> $$
+> f_1(n)=x(n)+k_1x(n-1),\qquad g_1(n)=k_1x(n)+x(n-1)
+> $$
 > 传递函数 $H(z)=1+k_1z^{-1}$，反射系数 $k_1$ 就是唯一的系数。
 > 一阶 IIR 格型（全极点）：
-> $$H(z)=\frac{1}{1+k_1z^{-1}}$$
+> $$
+> H(z)=\frac{1}{1+k_1z^{-1}}
+> $$
 > 稳定条件 $|k_1|<1$，比直接型的 $|a_1|<1$ 更容易检查。
 
 ## MATLAB

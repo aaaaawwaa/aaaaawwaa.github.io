@@ -29,17 +29,25 @@ related: []
 
 > [!info] 定义 1 输入输出功率谱关系
 > 设 $X(t)$ 宽平稳，$h$ 稳定，$Y=X*h$，则
-> $$S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)$$
+> $$
+> S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)
+> $$
 > 离散形式为
-> $$S_Y(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2S_X(e^{j\omega})$$
+> $$
+> S_Y(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2S_X(e^{j\omega})
+> $$
 
 推导只需对 [[vault-notes/random-signals/06-output-mean-autocorrelation]] 的 $R_Y=R_X*h*h(-\cdot)$ 两边做傅里叶变换。利用
 
-$$h(t)\ \longleftrightarrow\ H(\omega),\qquad h(-t)\ \longleftrightarrow\ H^*(\omega)$$
+$$
+h(t)\ \longleftrightarrow\ H(\omega),\qquad h(-t)\ \longleftrightarrow\ H^*(\omega)
+$$
 
 以及卷积对应乘积，得
 
-$$S_Y(\omega)=S_X(\omega)H(\omega)H^*(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)$$
+$$
+S_Y(\omega)=S_X(\omega)H(\omega)H^*(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)
+$$
 
 > [!tip] 为什么是模平方
 > 功率谱是"功率"的密度，不是幅度。系统对幅度乘 $\lvert H\rvert$，对功率就乘 $\lvert H\rvert^2$。相位被平方后消失，所以 PSD 只记得系统的幅频特性，不记得相频特性。
@@ -51,7 +59,9 @@ $$S_Y(\omega)=S_X(\omega)H(\omega)H^*(\omega)=\lvert H(\omega)\rvert^2S_X(\omega
 
 > [!info] 定义 2 输入输出互谱
 > 在 $R_{XY}(\tau)=E[X(t)Y(t+\tau)]$ 的约定下（实过程、实系统），
-> $$S_{XY}(\omega)=H(\omega)S_X(\omega),\qquad S_{YX}(\omega)=H^*(\omega)S_X(\omega)$$
+> $$
+> S_{XY}(\omega)=H(\omega)S_X(\omega),\qquad S_{YX}(\omega)=H^*(\omega)S_X(\omega)
+> $$
 
 这两个式子说明：互谱的模是 $\lvert H\rvert S_X$，相位就是 $H$ 的相位；若已知 $S_X$ 且输出无独立噪声，可以用 $\hat H=S_{XY}/S_X$ 估计频响；共轭关系 $S_{YX}=S_{XY}^*$ 与 [[vault-notes/random-signals/05-cross-power-spectral-density]] 一致。
 
@@ -69,27 +79,39 @@ $$S_Y(\omega)=S_X(\omega)H(\omega)H^*(\omega)=\lvert H(\omega)\rvert^2S_X(\omega
 
 > [!example] 例 1 白噪声通过任意稳定滤波器
 > 输入双边谱 $N_0/2$，则
-> $$S_Y(\omega)=\frac{N_0}{2}\lvert H(\omega)\rvert^2$$
+> $$
+> S_Y(\omega)=\frac{N_0}{2}\lvert H(\omega)\rvert^2
+> $$
 > 输出功率
-> $$P_Y=\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{N_0}{2}\lvert H(\omega)\rvert^2\,\mathrm{d}\omega=N_0\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f$$
+> $$
+> P_Y=\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{N_0}{2}\lvert H(\omega)\rvert^2\,\mathrm{d}\omega=N_0\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f
+> $$
 > 这里 $N_0$ 是单边谱密度；若 $H$ 是基带滤波器且最大增益在 0 Hz，则 $P_Y=N_0B_n\lvert H(0)\rvert^2$，其中 $B_n$ 是噪声等效带宽。
 
 对一般输入，输出功率为
 
-$$P_Y=R_Y(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_X(\omega)\,\mathrm{d}\omega$$
+$$
+P_Y=R_Y(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_X(\omega)\,\mathrm{d}\omega
+$$
 
 离散形式为
 
-$$P_Y=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert H(e^{j\omega})\rvert^2S_X(e^{j\omega})\,\mathrm{d}\omega$$
+$$
+P_Y=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert H(e^{j\omega})\rvert^2S_X(e^{j\omega})\,\mathrm{d}\omega
+$$
 
 > [!example] 例 2 RC 低通
 > $H(\omega)=1/(1+j\omega RC)$，白噪声输入：
-> $$S_Y(\omega)=\frac{N_0/2}{1+(\omega RC)^2},\qquad P_Y=\frac{N_0}{4RC}$$
+> $$
+> S_Y(\omega)=\frac{N_0/2}{1+(\omega RC)^2},\qquad P_Y=\frac{N_0}{4RC}
+> $$
 > 若输入不是白噪声，而是带宽远大于 $1/(2\pi RC)$ 的带限噪声，只要在 $1/(2\pi RC)$ 附近谱近似平坦，上述结果仍可近似使用。
 
 > [!example] 例 3 理想低通
 > $\lvert H(f)\rvert=1$（$\lvert f\rvert\le B$），其余为零。白噪声输入时
-> $$P_Y=N_0B$$
+> $$
+> P_Y=N_0B
+> $$
 > 输出谱在带内仍然平坦，带外为零；输出相关函数为 $N_0B\,\mathrm{sinc}(2B\tau)$。
 
 | 系统 | $H(\omega)$ | 白噪声输入下的 $S_Y$ | 输出功率 |

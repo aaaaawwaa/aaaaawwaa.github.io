@@ -143,3 +143,25 @@ test('body hashtags with Chinese text are escaped to plain text', async t => {
   assert.equal(out.split('\n').find(line => line.includes('\u6982\u5ff5\u89e3\u6790')), String.fromCharCode(92) + '#\u6982\u5ff5\u89e3\u6790');
   assert.match(out,/# 标题/, 'Markdown 标题不受影响');
 });
+
+test('normalizes standalone block math, including callouts, but preserves code', async t => {
+  const f=await fixture(t);
+  const source = ['$$x^2$$', '> $$y^2$$', '```text', '$$literal$$', '```', 'Inline $x$ remains.'].join('\n');
+  await writeFile(path.join(f.vault,'a.md'), source);
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.ok(out.includes('$$\nx^2\n$$'));
+  assert.ok(out.includes('> $$\n> y^2\n> $$'));
+  assert.ok(out.includes('```text\n$$literal$$\n```'));
+  assert.ok(out.includes('Inline $x$ remains.'));
+});
+test('multiple math expressions on one prose line are not merged into a display block', async t => {
+  const f=await fixture(t);
+  const source='$$x$$ and $$y$$';
+  await writeFile(path.join(f.vault,'a.md'),source);
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.ok(out.includes(source));
+});

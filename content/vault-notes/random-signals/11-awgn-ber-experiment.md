@@ -36,15 +36,21 @@ related: []
 
 BPSK 把比特映射为 $s_0=+1$、$s_1=-1$，每个符号能量 $E_b=1$。AWGN 下接收信号为 $r=s+n$，$n\sim N(0,N_0/2)$。最佳判决门限为 0，误码率为
 
-$$P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{E_b}{N_0}}\right)$$
+$$
+P_b=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{E_b}{N_0}}\right)
+$$
 
 其中高斯尾概率定义为
 
-$$Q(x)=\frac{1}{\sqrt{2\pi}}\int_x^{\infty}e^{-t^2/2}\,\mathrm{d}t$$
+$$
+Q(x)=\frac{1}{\sqrt{2\pi}}\int_x^{\infty}e^{-t^2/2}\,\mathrm{d}t
+$$
 
 仿真时 $E_b=1$，因此噪声标准差为
 
-$$\sigma=\sqrt{\frac{N_0}{2}}=\frac{1}{\sqrt{2E_b/N_0}}$$
+$$
+\sigma=\sqrt{\frac{N_0}{2}}=\frac{1}{\sqrt{2E_b/N_0}}
+$$
 
 若误码数为 $N_e$、总比特数为 $N$，则 $\hat P_b=N_e/N$，其相对标准差约为 $1/\sqrt{N_e}$。想分辨 $10^{-6}$ 的 BER，至少需要约 100 个错误，即 $N\gtrsim10^8$；本实验用 $10^6$ 比特，可靠下限约 $10^{-5}$。
 

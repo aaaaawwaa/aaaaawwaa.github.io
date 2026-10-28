@@ -28,7 +28,9 @@ related: []
 > [!info] 定义 似然比检验
 > 对简单假设 $H_0:\mathbf{x}\sim f_0(\mathbf{x})$ 与 $H_1:\mathbf{x}\sim f_1(\mathbf{x})$，似然比定义为 $\Lambda(\mathbf{x})=f_1(\mathbf{x})/f_0(\mathbf{x})$。给定门限 $\eta>0$，LRT 的判决规则为
 >
-> $$\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\eta$$
+> $$
+> \Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\eta
+> $$
 
 $\Lambda$ 越大，观测在 $H_1$ 下出现的相对可能性越高，越倾向判 $H_1$。门限 $\eta$ 不是 LRT 本身的一部分，而由设计准则决定：Bayes 准则用先验与代价算 $\eta$，Neyman-Pearson 准则用 $P_{fa}=\alpha$ 反解 $\eta$。
 
@@ -39,11 +41,15 @@ $\Lambda$ 越大，观测在 $H_1$ 下出现的相对可能性越高，越倾向
 
 独立同分布样本的联合密度是乘积，直接算 $\Lambda$ 容易下溢，实际都用对数：
 
-$$\ln\Lambda(\mathbf{x})=\sum_{n=1}^{N}\ln\frac{f_1(x_n)}{f_0(x_n)}$$
+$$
+\ln\Lambda(\mathbf{x})=\sum_{n=1}^{N}\ln\frac{f_1(x_n)}{f_0(x_n)}
+$$
 
 判决规则变成
 
-$$\ln\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\ln\eta$$
+$$
+\ln\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\ln\eta
+$$
 
 对数把“乘积型证据”变成“可累加的分数”，每一新样本只贡献一项，天然适合序贯处理。若某项为正，说明该样本更支持 $H_1$；为负则支持 $H_0$。序贯概率比检验（SPRT）正是让这个累加量在越过上、下门限时提前停止。
 
@@ -54,22 +60,30 @@ $$\ln\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\ln\eta$$
 
 设 $H_0$ 下 $x_n\sim\mathcal{N}(0,\sigma^2)$，$H_1$ 下 $x_n\sim\mathcal{N}(\mu,\sigma^2)$，样本独立，$\mu>0$。对数似然比为
 
-$$\ln\Lambda(\mathbf{x})=\sum_{n=1}^{N}\left[-\frac{(x_n-\mu)^2}{2\sigma^2}+\frac{x_n^2}{2\sigma^2}\right]=\frac{\mu}{\sigma^2}\sum_{n=1}^{N}x_n-\frac{N\mu^2}{2\sigma^2}$$
+$$
+\ln\Lambda(\mathbf{x})=\sum_{n=1}^{N}\left[-\frac{(x_n-\mu)^2}{2\sigma^2}+\frac{x_n^2}{2\sigma^2}\right]=\frac{\mu}{\sigma^2}\sum_{n=1}^{N}x_n-\frac{N\mu^2}{2\sigma^2}
+$$
 
 它只通过样本和 $T=\sum x_n$ 依赖于数据，且是 $T$ 的单调增函数。因此 LRT 等价于
 
-$$\bar{x}\underset{H_0}{\overset{H_1}{\gtrless}}\gamma,\qquad \gamma=\frac{\sigma^2}{N\mu}\ln\eta+\frac{\mu}{2}$$
+$$
+\bar{x}\underset{H_0}{\overset{H_1}{\gtrless}}\gamma,\qquad \gamma=\frac{\sigma^2}{N\mu}\ln\eta+\frac{\mu}{2}
+$$
 
 两类错误为
 
-$$P_{fa}=Q\left(\frac{\gamma\sqrt{N}}{\sigma}\right),\qquad P_d=Q\left(\frac{(\gamma-\mu)\sqrt{N}}{\sigma}\right)$$
+$$
+P_{fa}=Q\left(\frac{\gamma\sqrt{N}}{\sigma}\right),\qquad P_d=Q\left(\frac{(\gamma-\mu)\sqrt{N}}{\sigma}\right)
+$$
 
 样本数 $N$ 只以 $\sqrt{N}$ 的形式进入，说明检测性能随样本数按“功率”改善：$N$ 翻倍，等效信噪比提高 $\sqrt{2}$ 倍。
 
 > [!example] 给定虚警率反解门限
 > 取 $\sigma=1$、$\mu=1$、$N=16$、$P_{fa}=10^{-3}$。由 $Q(\gamma\sqrt{N}/\sigma)=10^{-3}$ 得 $\gamma\sqrt{N}=3.090$，即 $\gamma=0.7725$。于是
 >
-> $$P_d=Q\left((0.7725-1)\times4\right)=Q(-0.910)\approx0.819$$
+> $$
+> P_d=Q\left((0.7725-1)\times4\right)=Q(-0.910)\approx0.819
+> $$
 >
 > 若把 $N$ 增到 25，门限降到 $\gamma=0.618$，$P_d=Q(-1.91)\approx0.972$。同样的虚警率下，检测率显著提高。
 
@@ -96,7 +110,9 @@ $$P_{fa}=Q\left(\frac{\gamma\sqrt{N}}{\sigma}\right),\qquad P_d=Q\left(\frac{(\g
 
 复合假设下，$H_1$ 中含有未知参数（如未知幅度、相位、时延），一般不存在对所有参数都最优的一致最大功效检验。工程上常用广义似然比检验：
 
-$$\Lambda_G(\mathbf{x})=\frac{\max_{\theta_1}f(\mathbf{x};\theta_1,H_1)}{\max_{\theta_0}f(\mathbf{x};\theta_0,H_0)}$$
+$$
+\Lambda_G(\mathbf{x})=\frac{\max_{\theta_1}f(\mathbf{x};\theta_1,H_1)}{\max_{\theta_0}f(\mathbf{x};\theta_0,H_0)}
+$$
 
 把未知参数换成各自的最大似然估计再比较。GLRT 实现简单、渐近有效，但小样本下不保证最优，门限通常要靠仿真或渐近分布确定。
 

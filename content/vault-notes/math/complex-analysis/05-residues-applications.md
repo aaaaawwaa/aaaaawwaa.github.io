@@ -37,16 +37,22 @@ related: []
 
 > [!info] Def 1 留数
 > 设 $z_0$ 是 $f(z)$ 的孤立奇点，$f$ 在 $0<|z-z_0|<R$ 内的洛朗展开为
-> $$f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n$$
+> $$
+> f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
+> $$
 > 则称 $c_{-1}$ 为 $f$ 在 $z_0$ 的**留数**（residue），记
-> $$\operatorname{Res}[f,z_0]=c_{-1}=\frac{1}{2\pi i}\oint_C f(z)\,\mathrm{d}z$$
+> $$
+> \operatorname{Res}[f,z_0]=c_{-1}=\frac{1}{2\pi i}\oint_C f(z)\,\mathrm{d}z
+> $$
 > 其中 $C$ 是绕 $z_0$ 的任意小逆时针闭曲线。
 
 ## 留数定理
 
 > [!info] Def 2 留数定理
 > 设 $f(z)$ 在简单闭曲线 $C$ 及其内部除有限个孤立奇点 $z_1,\dots,z_n$ 外解析，则
-> $$\oint_C f(z)\,\mathrm{d}z=2\pi i\sum_{k=1}^n\operatorname{Res}[f,z_k]$$
+> $$
+> \oint_C f(z)\,\mathrm{d}z=2\pi i\sum_{k=1}^n\operatorname{Res}[f,z_k]
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" width="100%" style="max-width:620px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -78,25 +84,35 @@ related: []
 
 若 $z_0$ 是**一阶极点**，则
 
-$$\operatorname{Res}[f,z_0]=\lim_{z\to z_0}(z-z_0)f(z)$$
+$$
+\operatorname{Res}[f,z_0]=\lim_{z\to z_0}(z-z_0)f(z)
+$$
 
 若 $f(z)=\dfrac{P(z)}{Q(z)}$，$P(z_0)\ne0$，$Q(z_0)=0$，$Q'(z_0)\ne0$（简单极点），则
 
-$$\operatorname{Res}[f,z_0]=\frac{P(z_0)}{Q'(z_0)}$$
+$$
+\operatorname{Res}[f,z_0]=\frac{P(z_0)}{Q'(z_0)}
+$$
 
 > [!example] 简单极点
 > $f(z)=\dfrac{e^z}{z-1}$，$z_0=1$：
-> $$\operatorname{Res}[f,1]=\lim_{z\to1}(z-1)\frac{e^z}{z-1}=e$$
+> $$
+> \operatorname{Res}[f,1]=\lim_{z\to1}(z-1)\frac{e^z}{z-1}=e
+> $$
 
 ## m 阶极点
 
 若 $z_0$ 是 **$m$ 阶极点**，则
 
-$$\operatorname{Res}[f,z_0]=\frac{1}{(m-1)!}\lim_{z\to z_0}\frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-1}}\left[(z-z_0)^mf(z)\right]$$
+$$
+\operatorname{Res}[f,z_0]=\frac{1}{(m-1)!}\lim_{z\to z_0}\frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-1}}\left[(z-z_0)^mf(z)\right]
+$$
 
 > [!example] 二阶极点
 > $f(z)=\dfrac{e^z}{(z-1)^2}$，$z_0=1$ 是二阶极点：
-> $$\operatorname{Res}[f,1]=\frac{1}{1!}\lim_{z\to1}\frac{\mathrm{d}}{\mathrm{d}z}e^z=e$$
+> $$
+> \operatorname{Res}[f,1]=\frac{1}{1!}\lim_{z\to1}\frac{\mathrm{d}}{\mathrm{d}z}e^z=e
+> $$
 
 ## 本性奇点
 
@@ -104,19 +120,25 @@ $$\operatorname{Res}[f,z_0]=\frac{1}{(m-1)!}\lim_{z\to z_0}\frac{\mathrm{d}^{m-1
 
 > [!example] 本性奇点
 > $f(z)=e^{1/z}$ 在 $z=0$：
-> $$e^{1/z}=1+\frac1z+\frac{1}{2!z^2}+\cdots$$
+> $$
+> e^{1/z}=1+\frac1z+\frac{1}{2!z^2}+\cdots
+> $$
 > $c_{-1}=1$，故 $\operatorname{Res}[f,0]=1$。
 
 ## 无穷远点的留数
 
 > [!info] Def 3 无穷远点的留数
 > 设 $f$ 在 $R<|z|<\infty$ 内解析，定义
-> $$\operatorname{Res}[f,\infty]=-\frac{1}{2\pi i}\oint_{|z|=R}f(z)\,\mathrm{d}z$$
+> $$
+> \operatorname{Res}[f,\infty]=-\frac{1}{2\pi i}\oint_{|z|=R}f(z)\,\mathrm{d}z
+> $$
 > 即 $f$ 在 $\infty$ 处洛朗展开中 $z^{-1}$ 系数的**相反数**。
 
 **留数定理的全局形式**：
 
-$$\sum_{k}\operatorname{Res}[f,z_k]+\operatorname{Res}[f,\infty]=0$$
+$$
+\sum_{k}\operatorname{Res}[f,z_k]+\operatorname{Res}[f,\infty]=0
+$$
 
 即**所有有限奇点的留数之和 + 无穷远点的留数 = 0**。当有限奇点很多、而无穷远点容易算时，这条性质很好用。
 
@@ -127,67 +149,107 @@ $$\sum_{k}\operatorname{Res}[f,z_k]+\operatorname{Res}[f,\infty]=0$$
 
 ## 三角函数有理式的积分
 
-$$I=\int_0^{2\pi}R(\cos\theta,\sin\theta)\,\mathrm{d}\theta$$
+$$
+I=\int_0^{2\pi}R(\cos\theta,\sin\theta)\,\mathrm{d}\theta
+$$
 
 令 $z=e^{i\theta}$，则
 
-$$\cos\theta=\frac{z+z^{-1}}{2},\qquad \sin\theta=\frac{z-z^{-1}}{2i},\qquad \mathrm{d}\theta=\frac{\mathrm{d}z}{iz}$$
+$$
+\cos\theta=\frac{z+z^{-1}}{2},\qquad \sin\theta=\frac{z-z^{-1}}{2i},\qquad \mathrm{d}\theta=\frac{\mathrm{d}z}{iz}
+$$
 
 积分化为单位圆上的围道积分：
 
-$$I=\oint_{|z|=1}R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}\right)\frac{\mathrm{d}z}{iz}=2\pi i\sum_{|z_k|<1}\operatorname{Res}$$
+$$
+I=\oint_{|z|=1}R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}\right)\frac{\mathrm{d}z}{iz}=2\pi i\sum_{|z_k|<1}\operatorname{Res}
+$$
 
 > [!example] 三角函数积分
-> $$I=\int_0^{2\pi}\frac{\mathrm{d}\theta}{2+\cos\theta}$$
+> $$
+> I=\int_0^{2\pi}\frac{\mathrm{d}\theta}{2+\cos\theta}
+> $$
 > 令 $z=e^{i\theta}$：
-> $$I=\oint_{|z|=1}\frac{1}{2+(z+z^{-1})/2}\frac{\mathrm{d}z}{iz}=\frac{2}{i}\oint_{|z|=1}\frac{\mathrm{d}z}{z^2+4z+1}$$
+> $$
+> I=\oint_{|z|=1}\frac{1}{2+(z+z^{-1})/2}\frac{\mathrm{d}z}{iz}=\frac{2}{i}\oint_{|z|=1}\frac{\mathrm{d}z}{z^2+4z+1}
+> $$
 > 分母零点 $z=-2\pm\sqrt3$，只有 $-2+\sqrt3$ 在单位圆内。
-> $$\operatorname{Res}\left[\frac{2}{i}\frac{1}{z^2+4z+1},-2+\sqrt3\right]=\frac{2}{i}\frac{1}{2(-2+\sqrt3)+4}=\frac{1}{i\sqrt3}$$
-> $$I=2\pi i\cdot\frac{1}{i\sqrt3}=\frac{2\pi}{\sqrt3}$$
+> $$
+> \operatorname{Res}\left[\frac{2}{i}\frac{1}{z^2+4z+1},-2+\sqrt3\right]=\frac{2}{i}\frac{1}{2(-2+\sqrt3)+4}=\frac{1}{i\sqrt3}
+> $$
+> $$
+> I=2\pi i\cdot\frac{1}{i\sqrt3}=\frac{2\pi}{\sqrt3}
+> $$
 
 ## 有理函数的无穷积分
 
-$$I=\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}\,\mathrm{d}x$$
+$$
+I=\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}\,\mathrm{d}x
+$$
 
 **条件**：$Q$ 无实零点，$\deg Q\ge\deg P+2$。
 
 **方法**：取上半平面大围道（实轴 $[-R,R]$ + 上半大圆弧），令 $R\to\infty$。大圆弧上积分趋于 0，故
 
-$$I=2\pi i\sum_{\operatorname{Im}z_k>0}\operatorname{Res}\left[\frac{P(z)}{Q(z)},z_k\right]$$
+$$
+I=2\pi i\sum_{\operatorname{Im}z_k>0}\operatorname{Res}\left[\frac{P(z)}{Q(z)},z_k\right]
+$$
 
 > [!example] 有理函数积分
-> $$I=\int_{-\infty}^{\infty}\frac{\mathrm{d}x}{x^2+1}$$
+> $$
+> I=\int_{-\infty}^{\infty}\frac{\mathrm{d}x}{x^2+1}
+> $$
 > 上半平面奇点 $z=i$（简单极点）：
-> $$\operatorname{Res}\left[\frac{1}{z^2+1},i\right]=\frac{1}{2i}$$
-> $$I=2\pi i\cdot\frac{1}{2i}=\pi$$
+> $$
+> \operatorname{Res}\left[\frac{1}{z^2+1},i\right]=\frac{1}{2i}
+> $$
+> $$
+> I=2\pi i\cdot\frac{1}{2i}=\pi
+> $$
 
 ## 含 $e^{iax}$ 的积分与约当引理
 
-$$I=\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}e^{iax}\,\mathrm{d}x,\qquad a>0$$
+$$
+I=\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}e^{iax}\,\mathrm{d}x,\qquad a>0
+$$
 
 **约当引理**：若 $|f(z)|\to0$（$|z|\to\infty$，上半平面），则大圆弧上 $\int f(z)e^{iaz}\mathrm{d}z\to0$。于是
 
-$$I=2\pi i\sum_{\operatorname{Im}z_k>0}\operatorname{Res}\left[\frac{P(z)}{Q(z)}e^{iaz},z_k\right]$$
+$$
+I=2\pi i\sum_{\operatorname{Im}z_k>0}\operatorname{Res}\left[\frac{P(z)}{Q(z)}e^{iaz},z_k\right]
+$$
 
 > [!example] 含指数的积分
-> $$I=\int_{-\infty}^{\infty}\frac{e^{ix}}{x^2+1}\,\mathrm{d}x$$
+> $$
+> I=\int_{-\infty}^{\infty}\frac{e^{ix}}{x^2+1}\,\mathrm{d}x
+> $$
 > 上半平面奇点 $z=i$：
-> $$\operatorname{Res}\left[\frac{e^{iz}}{z^2+1},i\right]=\frac{e^{-1}}{2i}$$
-> $$I=2\pi i\cdot\frac{e^{-1}}{2i}=\frac{\pi}{e}$$
+> $$
+> \operatorname{Res}\left[\frac{e^{iz}}{z^2+1},i\right]=\frac{e^{-1}}{2i}
+> $$
+> $$
+> I=2\pi i\cdot\frac{e^{-1}}{2i}=\frac{\pi}{e}
+> $$
 
 ## 实轴上有奇点：挖去小半圆
 
 若 $f$ 在实轴上有简单极点 $x_0$，取**挖去小半圆**的围道（上半平面）。小半圆上的积分趋于 $-i\pi\operatorname{Res}[f,x_0]$（逆时针绕行），故
 
-$$\mathrm{PV}\int_{-\infty}^{\infty}f(x)\,\mathrm{d}x=2\pi i\sum_{\text{上半}}\operatorname{Res}+i\pi\sum_{\text{实轴}}\operatorname{Res}$$
+$$
+\mathrm{PV}\int_{-\infty}^{\infty}f(x)\,\mathrm{d}x=2\pi i\sum_{\text{上半}}\operatorname{Res}+i\pi\sum_{\text{实轴}}\operatorname{Res}
+$$
 
 其中 PV 表示**柯西主值**。
 
 > [!example] 实轴上有奇点
-> $$\mathrm{PV}\int_{-\infty}^{\infty}\frac{\sin x}{x}\,\mathrm{d}x$$
+> $$
+> \mathrm{PV}\int_{-\infty}^{\infty}\frac{\sin x}{x}\,\mathrm{d}x
+> $$
 > 被积函数 $\frac{\sin x}{x}$ 在 $x=0$ 可去；但用 $\frac{e^{iz}}{z}$ 时 $z=0$ 是简单极点，留数 1。
 > 上半平面无奇点，实轴奇点贡献 $i\pi\cdot1$，故
-> $$\mathrm{PV}\int\frac{e^{ix}}{x}\,\mathrm{d}x=i\pi\ \Longrightarrow\ \int_{-\infty}^{\infty}\frac{\sin x}{x}\,\mathrm{d}x=\pi$$
+> $$
+> \mathrm{PV}\int\frac{e^{ix}}{x}\,\mathrm{d}x=i\pi\ \Longrightarrow\ \int_{-\infty}^{\infty}\frac{\sin x}{x}\,\mathrm{d}x=\pi
+> $$
 
 ## 应用套路总结
 
@@ -202,33 +264,57 @@ $$\mathrm{PV}\int_{-\infty}^{\infty}f(x)\,\mathrm{d}x=2\pi i\sum_{\text{上半}}
 
 > [!example] 例 1：简单极点留数
 > $f(z)=\dfrac{z}{z^2+1}$，求 $z=\pm i$ 的留数。
-> $$\operatorname{Res}[f,i]=\lim_{z\to i}(z-i)\frac{z}{(z-i)(z+i)}=\frac{i}{2i}=\frac12$$
-> $$\operatorname{Res}[f,-i]=\frac{-i}{-2i}=\frac12$$
+> $$
+> \operatorname{Res}[f,i]=\lim_{z\to i}(z-i)\frac{z}{(z-i)(z+i)}=\frac{i}{2i}=\frac12
+> $$
+> $$
+> \operatorname{Res}[f,-i]=\frac{-i}{-2i}=\frac12
+> $$
 
 > [!example] 例 2：三阶极点
 > $f(z)=\dfrac{1}{z(z-1)^3}$，求 $z=1$ 的留数。
 > $m=3$：
-> $$\operatorname{Res}[f,1]=\frac{1}{2!}\lim_{z\to1}\frac{\mathrm{d}^2}{\mathrm{d}z^2}\left[\frac{1}{z}\right]=\frac12\cdot\frac{2}{1^3}=1$$
+> $$
+> \operatorname{Res}[f,1]=\frac{1}{2!}\lim_{z\to1}\frac{\mathrm{d}^2}{\mathrm{d}z^2}\left[\frac{1}{z}\right]=\frac12\cdot\frac{2}{1^3}=1
+> $$
 
 > [!example] 例 3：围道积分
-> $$\oint_{|z|=2}\frac{z^2}{z^2+1}\,\mathrm{d}z$$
+> $$
+> \oint_{|z|=2}\frac{z^2}{z^2+1}\,\mathrm{d}z
+> $$
 > 奇点 $\pm i$ 都在圆内，均为简单极点。
-> $$\operatorname{Res}[f,i]=\frac{i^2}{2i}=\frac{i}{2},\qquad \operatorname{Res}[f,-i]=\frac{(-i)^2}{-2i}=\frac{i}{2}$$
+> $$
+> \operatorname{Res}[f,i]=\frac{i^2}{2i}=\frac{i}{2},\qquad \operatorname{Res}[f,-i]=\frac{(-i)^2}{-2i}=\frac{i}{2}
+> $$
 > 和为 $i$，故积分 $=2\pi i\cdot i=-2\pi$。
 
 > [!example] 例 4：有理函数积分
-> $$\int_{-\infty}^{\infty}\frac{\mathrm{d}x}{(x^2+1)^2}$$
+> $$
+> \int_{-\infty}^{\infty}\frac{\mathrm{d}x}{(x^2+1)^2}
+> $$
 > 上半平面 $z=i$ 是二阶极点：
-> $$f(z)=\frac{1}{(z-i)^2(z+i)^2}$$
-> $$\operatorname{Res}[f,i]=\lim_{z\to i}\frac{\mathrm{d}}{\mathrm{d}z}\frac{1}{(z+i)^2}=\frac{-2}{(2i)^3}=\frac{-2}{-8i}=\frac{1}{4i}$$
-> $$I=2\pi i\cdot\frac{1}{4i}=\frac{\pi}{2}$$
+> $$
+> f(z)=\frac{1}{(z-i)^2(z+i)^2}
+> $$
+> $$
+> \operatorname{Res}[f,i]=\lim_{z\to i}\frac{\mathrm{d}}{\mathrm{d}z}\frac{1}{(z+i)^2}=\frac{-2}{(2i)^3}=\frac{-2}{-8i}=\frac{1}{4i}
+> $$
+> $$
+> I=2\pi i\cdot\frac{1}{4i}=\frac{\pi}{2}
+> $$
 
 > [!example] 例 5：含指数的积分
-> $$\int_0^{\infty}\frac{\cos ax}{x^2+1}\,\mathrm{d}x,\qquad a>0$$
+> $$
+> \int_0^{\infty}\frac{\cos ax}{x^2+1}\,\mathrm{d}x,\qquad a>0
+> $$
 > 由偶性，$I=\frac12\int_{-\infty}^{\infty}\frac{e^{iax}}{x^2+1}dx$。
 > 上半平面奇点 $i$：
-> $$\operatorname{Res}\left[\frac{e^{iaz}}{z^2+1},i\right]=\frac{e^{-a}}{2i}$$
-> $$I=\frac12\cdot2\pi i\cdot\frac{e^{-a}}{2i}=\frac{\pi}{2}e^{-a}$$
+> $$
+> \operatorname{Res}\left[\frac{e^{iaz}}{z^2+1},i\right]=\frac{e^{-a}}{2i}
+> $$
+> $$
+> I=\frac12\cdot2\pi i\cdot\frac{e^{-a}}{2i}=\frac{\pi}{2}e^{-a}
+> $$
 
 > [!tip] 本章收官
 > 第 5 章把洛朗级数的 $c_{-1}$ 变成解决积分的利器：

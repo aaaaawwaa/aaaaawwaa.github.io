@@ -31,3 +31,31 @@ tags:
 - [[communication/analog-modulation-am|模拟调制 AM]]
 - [[communication/digital-modulation-qpsk|数字调制 QPSK]]
 - [[maps/learning-path|推荐学习路径]]
+
+<!-- topic-index:start -->
+## 从信道到编码的知识点
+
+### 通信原理
+
+- [[vault-notes/communication/00-guide|通信原理知识库总导读]]
+- [[vault-notes/communication/01-introduction|绪论]]
+- [[vault-notes/communication/02-deterministic-signals|确知信号]]
+- [[vault-notes/communication/03-random-processes|随机过程]]
+- [[vault-notes/communication/04-channel|信道]]
+- [[vault-notes/communication/05-analog-modulation|模拟调制系统]]
+- [[vault-notes/communication/06-digital-baseband|数字基带传输系统]]
+- [[vault-notes/communication/07-digital-bandpass|数字带通传输系统]]
+- [[vault-notes/communication/08-advanced-digital-modulation|新型数字带通调制技术]]
+- [[vault-notes/communication/09-optimal-reception|数字信号的最佳接收]]
+- [[vault-notes/communication/10-source-coding|信源编码]]
+- [[vault-notes/communication/11-error-control-coding|差错控制编码]]
+- [[vault-notes/communication/12-orthogonal-codes-pn-sequences|正交编码与伪随机序列]]
+- [[vault-notes/communication/13-synchronization|同步原理]]
+- [[vault-notes/communication/a-formula-cheatsheet|通信原理公式速查表]]
+- [[vault-notes/communication/b-cross-library-links|跨库知识关联]]
+
+### 数字调制
+
+- [[vault-notes/digital-modulation/01-digital-communication-system|数字通信系统的基本组成部分]]
+
+<!-- topic-index:end -->

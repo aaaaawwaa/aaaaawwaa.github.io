@@ -54,7 +54,9 @@ related: []
 
 > [!info] Def 1 FIR 数字滤波器
 > **FIR 数字滤波器**（finite impulse response filter）是冲激响应长度有限的滤波器：
-> $$y(n)=\sum_{m=0}^{M}h(m)x(n-m),\qquad H(z)=\sum_{m=0}^{M}h(m)z^{-m}$$
+> $$
+> y(n)=\sum_{m=0}^{M}h(m)x(n-m),\qquad H(z)=\sum_{m=0}^{M}h(m)z^{-m}
+> $$
 > 它没有反馈，系统函数只有零点、没有极点（除 $z=0$ 外）。
 
 # 2. 线性相位 FIR 数字滤波器的特点
@@ -63,13 +65,19 @@ related: []
 
 > [!info] Def 2 线性相位
 > 若 FIR 的相频特性满足
-> $$\varphi(\omega)=-\tau\omega$$
+> $$
+> \varphi(\omega)=-\tau\omega
+> $$
 > 其中 $\tau$ 为常数，则称其具有**线性相位**（linear phase）。此时群延迟
-> $$\tau_g(\omega)=-\frac{d\varphi}{d\omega}=\tau$$
+> $$
+> \tau_g(\omega)=-\frac{d\varphi}{d\omega}=\tau
+> $$
 > 为常数，所有频率分量延迟相同，**波形不失真**。
 
 > [!important] 线性相位的充要条件
-> $$h(n)=\pm h(M-n),\qquad 0\le n\le M$$
+> $$
+> h(n)=\pm h(M-n),\qquad 0\le n\le M
+> $$
 > - **偶对称**：$h(n)=h(M-n)$
 > - **奇对称**：$h(n)=-h(M-n)$
 >
@@ -106,7 +114,9 @@ related: []
 
 以 I 型为例，$M$ 为偶数、$h(n)=h(M-n)$：
 
-$$H(e^{j\omega})=e^{-j\omega M/2}\sum_{n=0}^{M/2}a_n\cos(\omega n)$$
+$$
+H(e^{j\omega})=e^{-j\omega M/2}\sum_{n=0}^{M/2}a_n\cos(\omega n)
+$$
 
 其中 $a_0=h(M/2)$，$a_n=2h(M/2-n)$。括号内是**实函数**，因此相位严格等于 $-\omega M/2$——这就是线性相位的代数来源。
 
@@ -116,7 +126,9 @@ $$H(e^{j\omega})=e^{-j\omega M/2}\sum_{n=0}^{M/2}a_n\cos(\omega n)$$
 
 > [!info] Def 4 窗函数法
 > **窗函数法**（window method）先用理想频率响应 $H_d(e^{j\omega})$ 求无限长冲激响应 $h_d(n)$，再用一个有限长窗 $w(n)$ 截断：
-> $$h(n)=h_d(n)\,w(n),\qquad 0\le n\le M$$
+> $$
+> h(n)=h_d(n)\,w(n),\qquad 0\le n\le M
+> $$
 > 窗的长度决定过渡带宽度，窗的形状决定旁瓣电平。
 
 以理想低通（截止 $\omega_c$）为例：
@@ -138,7 +150,9 @@ $$h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
 
 > [!info] Def 6 凯泽窗
 > **凯泽窗**（Kaiser window）用零阶修正贝塞尔函数构造，带一个可调参数 $\beta$：
-> $$w(n)=\frac{I_0\left[\beta\sqrt{1-\left(\frac{2n}{M}-1\right)^2}\right]}{I_0(\beta)},\qquad 0\le n\le M$$
+> $$
+> w(n)=\frac{I_0\left[\beta\sqrt{1-\left(\frac{2n}{M}-1\right)^2}\right]}{I_0(\beta)},\qquad 0\le n\le M
+> $$
 > $\beta$ 越大，旁瓣越低、主瓣越宽；它可以在"旁瓣衰减"与"过渡带宽度"之间连续折中。
 
 | 窗 | 主瓣宽度（×$2\pi/M$） | 最高旁瓣（dB） | 过渡带（×$2\pi/M$） | 阻带衰减（dB） |
@@ -197,7 +211,9 @@ $$h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
 > 指标：$f_s=10$ kHz，通带 $f_p=1$ kHz，阻带 $f_s=2$ kHz，阻带衰减 $\ge50$ dB。
 > 1. 归一化：$\omega_p=0.2\pi$，$\omega_s=0.4\pi$，$\omega_c=0.3\pi$
 > 2. 汉明窗阻带约 53 dB，满足 50 dB；过渡带约 $6.6\times2\pi/M$，要求 $\Delta\omega=0.2\pi$
->    $$M\approx\frac{6.6\times2\pi}{0.2\pi}=66$$
+>    $$
+>    M\approx\frac{6.6\times2\pi}{0.2\pi}=66
+>    $$
 > 3. 取 $M=66$（偶数，I 型），$\alpha=33$
 > 4. $h_d(n)=\dfrac{\sin[0.3\pi(n-33)]}{\pi(n-33)}$，$h(n)=h_d(n)\left[0.54-0.46\cos\dfrac{2\pi n}{66}\right]$
 > 5. `freqz` 检查：通带波动与阻带衰减应满足指标
@@ -213,7 +229,9 @@ $$h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
 
 > [!info] Def 7 频率采样法
 > **频率采样法**（frequency sampling method）直接对期望的频率响应 $H_d(e^{j\omega})$ 在 $N$ 个等间隔频率上采样：
-> $$H(k)=H_d(e^{j2\pi k/N}),\qquad k=0,1,\dots,N-1$$
+> $$
+> H(k)=H_d(e^{j2\pi k/N}),\qquad k=0,1,\dots,N-1
+> $$
 > 再做 $N$ 点 IDFT 得到 $h(n)$。由于 $h(n)$ 是有限长的，$H(e^{j\omega})$ 是这些采样点的**内插**。
 
 - 优点：可以直接指定频域采样值，适合任意形状（多带、任意幅度）
@@ -223,7 +241,9 @@ $$h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
 
 若要求线性相位，$H(k)$ 必须满足对称条件：
 
-$$|H(k)|=|H(N-k)|,\qquad \arg H(k)=-\frac{2\pi k}{N}\frac{N-1}{2}$$
+$$
+|H(k)|=|H(N-k)|,\qquad \arg H(k)=-\frac{2\pi k}{N}\frac{N-1}{2}
+$$
 
 即幅度偶对称、相位线性。这样 IDFT 得到的 $h(n)$ 自动满足 $h(n)=h(N-1-n)$。
 

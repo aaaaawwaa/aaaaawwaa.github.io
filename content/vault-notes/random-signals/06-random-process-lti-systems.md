@@ -29,9 +29,13 @@ related: []
 
 > [!info] 定义 1 随机过程通过 LTI 系统
 > 设系统冲激响应为 $h(t)$（离散为 $h[n]$），输入 $X(t)$ 是随机过程，输出定义为
-> $$Y(t)=\int_{-\infty}^{\infty}h(\tau)X(t-\tau)\,\mathrm{d}\tau=(h*X)(t)$$
+> $$
+> Y(t)=\int_{-\infty}^{\infty}h(\tau)X(t-\tau)\,\mathrm{d}\tau=(h*X)(t)
+> $$
 > 离散形式为
-> $$Y[n]=\sum_{k=-\infty}^{\infty}h[k]X[n-k]=(h*X)[n]$$
+> $$
+> Y[n]=\sum_{k=-\infty}^{\infty}h[k]X[n-k]=(h*X)[n]
+> $$
 
 对每个固定的 $t$，$Y(t)$ 是输入样本函数的线性泛函，因此仍是随机变量。积分（或求和）要按**均方意义**理解：先用有限支撑近似，再取均方极限。
 
@@ -70,7 +74,9 @@ flowchart LR
 
 > [!info] 定义 3 频率响应
 > 对稳定系统，频率响应为
-> $$H(\omega)=\int_{-\infty}^{\infty}h(t)e^{-j\omega t}\,\mathrm{d}t,\qquad H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]e^{-j\omega n}$$
+> $$
+> H(\omega)=\int_{-\infty}^{\infty}h(t)e^{-j\omega t}\,\mathrm{d}t,\qquad H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]e^{-j\omega n}
+> $$
 > 它存在、连续、有界，且 $\lvert H(\omega)\rvert\le\int\lvert h(t)\rvert\,\mathrm{d}t$。离散系统的 $H(e^{j\omega})$ 以 $2\pi$ 为周期。
 
 频率响应描述"系统对各频率复指数的增益与相移"。对随机信号，单个频率的相位没有意义，但 $\lvert H(\omega)\rvert^2$ 会直接乘到功率谱上，相位则影响互谱与波形。
@@ -85,19 +91,25 @@ flowchart LR
 
 > [!example] 例 1 积分器把白噪声变成随机游走
 > 设 $X(t)$ 为零均值白噪声（双边谱 $N_0/2$），$h(t)=u(t)$，从 $t=0$ 起接入，则 $Y(t)=\int_0^tX(s)\,\mathrm{d}s$。虽然每个 $Y(t)$ 的均值仍为 0，但
-> $$\mathrm{Var}[Y(t)]=\frac{N_0}{2}t$$
+> $$
+> \mathrm{Var}[Y(t)]=\frac{N_0}{2}t
+> $$
 > 随 $t$ 增长，$Y(t)$ 不是宽平稳的。原因就是 $h$ 不绝对可积，不满足定理条件。
 
 ## 四、基本假设与两个例子
 
 > [!example] 例 2 白噪声通过 RC 低通
 > $H(\omega)=1/(1+j\omega RC)$，输入双边谱 $N_0/2$。输出均值 $\mu_Y=0$，自相关
-> $$R_Y(\tau)=\frac{N_0}{4RC}e^{-\lvert\tau\rvert/(RC)}$$
+> $$
+> R_Y(\tau)=\frac{N_0}{4RC}e^{-\lvert\tau\rvert/(RC)}
+> $$
 > 输出是宽平稳的，且样本路径均方连续。这是"稳定系统 + 白噪声"的标准结果。
 
 > [!example] 例 3 滑动平均
 > $h[n]=\frac{1}{M}\sum_{k=0}^{M-1}\delta[n-k]$，输入为方差 $\sigma^2$ 的离散白噪声。输出
-> $$R_Y[m]=\begin{cases}\frac{\sigma^2(M-\lvert m\rvert)}{M^2}, & \lvert m\rvert<M\\ 0, & \lvert m\rvert\ge M\end{cases}$$
+> $$
+> R_Y[m]=\begin{cases}\frac{\sigma^2(M-\lvert m\rvert)}{M^2}, & \lvert m\rvert<M\\ 0, & \lvert m\rvert\ge M\end{cases}
+> $$
 > 输出功率为 $\sigma^2/M$。平均把噪声功率压小了 $M$ 倍，但样本之间出现了相关性，输出不再是白噪声。
 
 > [!warning] 随机过程通过 LTI 的四个默认假设

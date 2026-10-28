@@ -37,19 +37,29 @@ $\mathbf{F}$ 描述状态如何自行演化，$\mathbf{B}\mathbf{u}$ 是已知�
 
 卡尔曼滤波每一轮分两步。**预测**用状态方程把上一时刻的后验估计推到当前时刻：
 
-$$\hat{\mathbf{x}}_{k|k-1}=\mathbf{F}\hat{\mathbf{x}}_{k-1|k-1}+\mathbf{B}\mathbf{u}_{k-1}$$
+$$
+\hat{\mathbf{x}}_{k|k-1}=\mathbf{F}\hat{\mathbf{x}}_{k-1|k-1}+\mathbf{B}\mathbf{u}_{k-1}
+$$
 
-$$\mathbf{P}_{k|k-1}=\mathbf{F}\mathbf{P}_{k-1|k-1}\mathbf{F}^T+\mathbf{Q}$$
+$$
+\mathbf{P}_{k|k-1}=\mathbf{F}\mathbf{P}_{k-1|k-1}\mathbf{F}^T+\mathbf{Q}
+$$
 
 **更新**用当前观测修正预测。先算新息与新息协方差：
 
-$$\tilde{\mathbf{y}}_k=\mathbf{z}_k-\mathbf{H}\hat{\mathbf{x}}_{k|k-1},\qquad \mathbf{S}_k=\mathbf{H}\mathbf{P}_{k|k-1}\mathbf{H}^T+\mathbf{R}$$
+$$
+\tilde{\mathbf{y}}_k=\mathbf{z}_k-\mathbf{H}\hat{\mathbf{x}}_{k|k-1},\qquad \mathbf{S}_k=\mathbf{H}\mathbf{P}_{k|k-1}\mathbf{H}^T+\mathbf{R}
+$$
 
 再算卡尔曼增益、状态更新与协方差更新：
 
-$$\mathbf{K}_k=\mathbf{P}_{k|k-1}\mathbf{H}^T\mathbf{S}_k^{-1}$$
+$$
+\mathbf{K}_k=\mathbf{P}_{k|k-1}\mathbf{H}^T\mathbf{S}_k^{-1}
+$$
 
-$$\hat{\mathbf{x}}_{k|k}=\hat{\mathbf{x}}_{k|k-1}+\mathbf{K}_k\tilde{\mathbf{y}}_k,\qquad \mathbf{P}_{k|k}=(\mathbf{I}-\mathbf{K}_k\mathbf{H})\mathbf{P}_{k|k-1}$$
+$$
+\hat{\mathbf{x}}_{k|k}=\hat{\mathbf{x}}_{k|k-1}+\mathbf{K}_k\tilde{\mathbf{y}}_k,\qquad \mathbf{P}_{k|k}=(\mathbf{I}-\mathbf{K}_k\mathbf{H})\mathbf{P}_{k|k-1}
+$$
 
 | 步骤 | 输入 | 输出 | 作用 |
 | --- | --- | --- | --- |
@@ -64,7 +74,9 @@ $$\hat{\mathbf{x}}_{k|k}=\hat{\mathbf{x}}_{k|k-1}+\mathbf{K}_k\tilde{\mathbf{y}}
 
 把更新代回预测，得到只含协方差的 Riccati 递推：
 
-$$\mathbf{P}_{k+1|k}=\mathbf{F}\mathbf{P}_{k|k}\mathbf{F}^T+\mathbf{Q}$$
+$$
+\mathbf{P}_{k+1|k}=\mathbf{F}\mathbf{P}_{k|k}\mathbf{F}^T+\mathbf{Q}
+$$
 
 稳态时 $\mathbf{P}_{k+1|k}=\mathbf{P}_{k|k-1}=\mathbf{P}_\infty$，得到离散代数 Riccati 方程。稳态增益 $\mathbf{K}_\infty$ 可以离线算好，在线只做乘加，这就是常说的“稳态卡尔曼”。
 
@@ -76,11 +88,15 @@ $$\mathbf{P}_{k+1|k}=\mathbf{F}\mathbf{P}_{k|k}\mathbf{F}^T+\mathbf{Q}$$
 > [!example] 随机游走
 > 设 $x_k=x_{k-1}+w_k$，$z_k=x_k+v_k$，$w_k\sim\mathcal{N}(0,q)$，$v_k\sim\mathcal{N}(0,r)$，取 $q=r=1$，初始 $P_0=1$。预测与更新退化为
 
-$$P^-=P_{k-1}+q,\qquad K_k=\frac{P^-}{P^-+r},\qquad P_k=(1-K_k)P^-$$
+$$
+P^-=P_{k-1}+q,\qquad K_k=\frac{P^-}{P^-+r},\qquad P_k=(1-K_k)P^-
+$$
 
 稳态协方差满足 $P=(P+q)r/(P+q+r)$，整理得 $P^2+Pq-rq=0$，取正根
 
-$$P_\infty=\frac{-q+\sqrt{q^2+4rq}}{2}=\frac{\sqrt{5}-1}{2}\approx0.618,\qquad K_\infty\approx0.382$$
+$$
+P_\infty=\frac{-q+\sqrt{q^2+4rq}}{2}=\frac{\sqrt{5}-1}{2}\approx0.618,\qquad K_\infty\approx0.382
+$$
 
 | $k$ | $P_{k\vert k-1}$ | $K_k$ | $P_{k\vert k}$ |
 | --- | --- | --- | --- |

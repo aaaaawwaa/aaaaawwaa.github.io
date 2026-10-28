@@ -28,10 +28,16 @@ related: []
 
 > [!info] 定义 1 自相关与自协方差
 > 对宽平稳过程 $X(t)$，定义
-> $$R_X(\tau)=E\big[X(t+\tau)X^*(t)\big]$$
-> $$C_X(\tau)=E\big[(X(t+\tau)-\mu_X)(X(t)-\mu_X)^*\big]=R_X(\tau)-\lvert\mu_X\rvert^2$$
+> $$
+> R_X(\tau)=E\big[X(t+\tau)X^*(t)\big]
+> $$
+> $$
+> C_X(\tau)=E\big[(X(t+\tau)-\mu_X)(X(t)-\mu_X)^*\big]=R_X(\tau)-\lvert\mu_X\rvert^2
+> $$
 > 分别称为**自相关函数**与**自协方差函数**。离散情形为
-> $$R_X[m]=E\big[X[n+m]X^*[n]\big],\qquad C_X[m]=R_X[m]-\lvert\mu_X\rvert^2$$
+> $$
+> R_X[m]=E\big[X[n+m]X^*[n]\big],\qquad C_X[m]=R_X[m]-\lvert\mu_X\rvert^2
+> $$
 
 本库采用 $X(t+\tau)$ 在前、$X(t)$ 在后的约定，因此对复过程有 $R_X(-\tau)=R_X^*(\tau)$。若换成相反约定，相关函数变成共轭反转，实过程不受影响，复过程的所有相位结论都要跟着改。
 
@@ -49,7 +55,9 @@ related: []
 
 自协方差具有完全相同的四条性质，只需把 $R_X(0)$ 换成 $C_X(0)=\sigma_X^2$。归一化自相关定义为
 
-$$\rho_X(\tau)=\frac{C_X(\tau)}{C_X(0)},\qquad \rho_X(0)=1,\quad \lvert\rho_X(\tau)\rvert\le1$$
+$$
+\rho_X(\tau)=\frac{C_X(\tau)}{C_X(0)},\qquad \rho_X(0)=1,\quad \lvert\rho_X(\tau)\rvert\le1
+$$
 
 它无量纲，适合比较不同量级信号的相关结构。
 
@@ -87,9 +95,13 @@ $$\rho_X(\tau)=\frac{C_X(\tau)}{C_X(0)},\qquad \rho_X(0)=1,\quad \lvert\rho_X(\t
 
 > [!example] AR(1) 的推导
 > 设 $X[n]=aX[n-1]+W[n]$，$\lvert a\rvert<1$，$W[n]$ 为零均值白噪声、方差 $\sigma_w^2$，且与过去值独立。两边乘 $X[n-m]$ 取期望，对 $m\ge1$ 得
-> $$R_X[m]=aR_X[m-1]\ \Longrightarrow\ R_X[m]=a^mR_X[0]$$
+> $$
+> R_X[m]=aR_X[m-1]\ \Longrightarrow\ R_X[m]=a^mR_X[0]
+> $$
 > 再由 $R_X[0]=aR_X[1]+\sigma_w^2=a^2R_X[0]+\sigma_w^2$，解得
-> $$R_X[0]=\frac{\sigma_w^2}{1-a^2}$$
+> $$
+> R_X[0]=\frac{\sigma_w^2}{1-a^2}
+> $$
 > 结合偶对称即得表中结果。$a$ 越接近 $1$，相关时间越长，谱越窄。
 
 > [!tip] 三个例子记住三句话
@@ -99,7 +111,9 @@ $$\rho_X(\tau)=\frac{C_X(\tau)}{C_X(0)},\qquad \rho_X(0)=1,\quad \lvert\rho_X(\t
 
 > [!example] 直流会掩盖相关结构
 > 设 $X(t)=A+N(t)$，$A$ 为常数，$N(t)$ 为零均值 WSS 噪声。则
-> $$R_X(\tau)=A^2+R_N(\tau),\qquad C_X(\tau)=R_N(\tau)$$
+> $$
+> R_X(\tau)=A^2+R_N(\tau),\qquad C_X(\tau)=R_N(\tau)
+> $$
 > 当 $A$ 很大时，$R_X(\tau)$ 几乎是一条水平线，看不出噪声的相关时间；$C_X(\tau)$ 才能恢复 $R_N(\tau)$ 的形状。若再做归一化，$\rho_X(\tau)=R_N(\tau)/R_N(0)$ 与直流大小无关。
 
 选择哪一个量取决于问题：计算总功率、信噪比中的信号加噪声功率时用 $R_X(0)$；判断噪声白化程度、估计相关时间、做谱估计前的预处理时用 $C_X$。写答案时应注明“已去均值”或“未去均值”，否则同一句“相关系数为 0.8”可能有完全不同的含义。
@@ -120,23 +134,33 @@ $$\rho_X(\tau)=\frac{C_X(\tau)}{C_X(0)},\qquad \rho_X(0)=1,\quad \lvert\rho_X(\t
 **解**：
 
 **先明确归一化。** §三 的三种定义都建立在归一化相关函数上，而本题含常数项 $\beta$，归一化方式会直接改变答案，因此两种常用归一化都要写出来：
-$$\rho_1(\tau)=\frac{R_X(\tau)}{R_X(0)}=\frac{\sigma_X^2e^{-\alpha\lvert\tau\rvert}+\beta}{\sigma_X^2+\beta},\qquad \rho_2(\tau)=\frac{C_X(\tau)}{C_X(0)}=e^{-\alpha\lvert\tau\rvert}$$
+$$
+\rho_1(\tau)=\frac{R_X(\tau)}{R_X(0)}=\frac{\sigma_X^2e^{-\alpha\lvert\tau\rvert}+\beta}{\sigma_X^2+\beta},\qquad \rho_2(\tau)=\frac{C_X(\tau)}{C_X(0)}=e^{-\alpha\lvert\tau\rvert}
+$$
 $\rho_1$ 是总功率归一化，$\rho_2$ 是正文 §二 采用的协方差归一化。若把 $\beta$ 解释为随机直流功率 $\lvert\mu_X\rvert^2$，则 $\sigma_X^2$ 恰为方差，$R_X(0)=\sigma_X^2+\beta$ 为平均功率。$\beta$ 的物理含义是自相关中**不衰减的部分**（随机直流或未抑制的周期分量），它使 $\rho(\tau)$ 在 $\tau\to\infty$ 时不趋于 $0$。
 
 这正是本篇 §五 讲过的现象：常数项相当于随机直流，直接用 $R_X$ 归一化会把“直流平台”也算进相关时间；先把直流去掉（用 $C_X$ 归一化）才能看出噪声本身的衰减速度。因此工程上遇到本题形状的自相关，**默认答案是先去掉 $\beta$ 再算 $t_0=1/\alpha$**，下面的三种定义则用来说明“不这么做会得到什么”。
 
 （1）积分尺度 $\tau_c=\int_0^{\infty}\lvert\rho(\tau)\rvert\,\mathrm{d}\tau$。用 $\rho_1$ 时 $\rho_1(\infty)=\dfrac{\beta}{\sigma_X^2+\beta}\ne0$（$\beta\ne0$），被积函数不趋于零，积分发散：
-$$t_0=\int_0^{\infty}\lvert\rho_1(\tau)\rvert\,\mathrm{d}\tau=+\infty\quad(\beta\ne0),\qquad t_0=\int_0^{\infty}e^{-\alpha\tau}\,\mathrm{d}\tau=\frac1\alpha\quad(\beta=0)$$
+$$
+t_0=\int_0^{\infty}\lvert\rho_1(\tau)\rvert\,\mathrm{d}\tau=+\infty\quad(\beta\ne0),\qquad t_0=\int_0^{\infty}e^{-\alpha\tau}\,\mathrm{d}\tau=\frac1\alpha\quad(\beta=0)
+$$
 用 $\rho_2$ 时被积函数恒为 $e^{-\alpha\tau}$，与 $\beta$ 无关，恒有 $t_0=1/\alpha$。
 
 （2）首次过零 $\tau_c=\min\lbrace\tau>0:\rho(\tau)=0\rbrace$。$\rho_1(\tau)=0$ 要求 $\sigma_X^2e^{-\alpha\tau}=-\beta$，故仅当 $\beta<0$ 时有解：
-$$t_0=\frac1\alpha\ln\frac{\sigma_X^2}{-\beta}\qquad(-\sigma_X^2<\beta<0)$$
+$$
+t_0=\frac1\alpha\ln\frac{\sigma_X^2}{-\beta}\qquad(-\sigma_X^2<\beta<0)
+$$
 $\beta\ge0$ 时 $\rho_1(\tau)$ 恒正，不存在过零点，该定义失效。$\rho_2(\tau)=e^{-\alpha\lvert\tau\rvert}>0$ 恒成立，对任何 $\beta$ 都无过零点。这也说明 §三 把首次过零列为“适合振荡型相关函数”的定义是合理的：单调衰减的指数相关本来就没有过零点。
 
 （3）$1/e$ 衰减，解 $\rho(t_0)=e^{-1}$。用 $\rho_1$：
-$$\frac{\sigma_X^2e^{-\alpha t_0}+\beta}{\sigma_X^2+\beta}=\frac1e\ \Longrightarrow\ e^{-\alpha t_0}=\frac1e-\frac{\beta}{\sigma_X^2}\left(1-\frac1e\right)$$
+$$
+\frac{\sigma_X^2e^{-\alpha t_0}+\beta}{\sigma_X^2+\beta}=\frac1e\ \Longrightarrow\ e^{-\alpha t_0}=\frac1e-\frac{\beta}{\sigma_X^2}\left(1-\frac1e\right)
+$$
 解得
-$$t_0=\frac1\alpha\left[1+\ln\frac{\sigma_X^2}{\sigma_X^2+\beta(1-e)}\right]$$
+$$
+t_0=\frac1\alpha\left[1+\ln\frac{\sigma_X^2}{\sigma_X^2+\beta(1-e)}\right]
+$$
 它有意义要求右端指数式为正，即 $\beta<\dfrac{\sigma_X^2}{e-1}$（且 $\beta>-\sigma_X^2$ 保证 $R_X(0)>0$）；$\beta$ 超过该门限时 $\rho_1$ 的最低值就高于 $1/e$，方程无解。$\beta=0$ 时回代得 $t_0=1/\alpha$，与积分尺度的结果一致。用 $\rho_2$ 时 $e^{-\alpha t_0}=e^{-1}$ 直接给出 $t_0=1/\alpha$。
 
 三种定义的结果汇总如下：

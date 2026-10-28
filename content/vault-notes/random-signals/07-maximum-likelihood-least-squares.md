@@ -30,11 +30,15 @@ related: []
 
 实际计算通常取对数，把连乘变成求和。若 $f$ 对 $\theta$ 可微且最大值在内部，则 $\hat{\theta}_{ML}$ 满足得分方程
 
-$$\frac{\partial\ell(\theta)}{\partial\theta}=\mathbf{0},\qquad \ell(\theta)=\ln f(\mathbf{x};\theta)$$
+$$
+\frac{\partial\ell(\theta)}{\partial\theta}=\mathbf{0},\qquad \ell(\theta)=\ln f(\mathbf{x};\theta)
+$$
 
 还需二阶条件或边界检查确认是最大值。MLE 有三个常用性质：参数变换不变性，即 $g(\hat{\theta}_{ML})$ 是 $g(\theta)$ 的 MLE；正则条件下渐近无偏、渐近有效；样本量足够大时近似服从
 
-$$\sqrt{N}\left(\hat{\theta}_{ML}-\theta\right)\xrightarrow{d}\mathcal{N}\left(\mathbf{0},I_1^{-1}(\theta)\right)$$
+$$
+\sqrt{N}\left(\hat{\theta}_{ML}-\theta\right)\xrightarrow{d}\mathcal{N}\left(\mathbf{0},I_1^{-1}(\theta)\right)
+$$
 
 其中 $I_1$ 是单样本 Fisher 信息。这把 MLE 与 [[vault-notes/random-signals/07-estimator-bias-variance]] 中的 CRLB 联系起来。
 
@@ -48,13 +52,17 @@ $$\sqrt{N}\left(\hat{\theta}_{ML}-\theta\right)\xrightarrow{d}\mathcal{N}\left(\
 
 若 $\mathbf{H}$ 列满秩，展开目标函数并对 $\theta$ 求梯度，得到正规方程
 
-$$\mathbf{H}^T\mathbf{H}\hat{\theta}_{LS}=\mathbf{H}^T\mathbf{y}\quad\Longrightarrow\quad\hat{\theta}_{LS}=(\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T\mathbf{y}$$
+$$
+\mathbf{H}^T\mathbf{H}\hat{\theta}_{LS}=\mathbf{H}^T\mathbf{y}\quad\Longrightarrow\quad\hat{\theta}_{LS}=(\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T\mathbf{y}
+$$
 
 几何上，$\mathbf{H}\hat{\theta}_{LS}$ 是 $\mathbf{y}$ 在 $\mathbf{H}$ 列空间上的正交投影，残差与列空间正交，即 $\mathbf{H}^T(\mathbf{y}-\mathbf{H}\hat{\theta}_{LS})=\mathbf{0}$。这条正交性与 [[vault-notes/math/linear-algebra/04-orthogonality]] 中的投影定理是同一件事。
 
 若各观测噪声方差不相等或相关，应使用加权最小二乘：
 
-$$\hat{\theta}_{WLS}=\arg\min_{\theta}(\mathbf{y}-\mathbf{H}\theta)^T\mathbf{W}(\mathbf{y}-\mathbf{H}\theta)=(\mathbf{H}^T\mathbf{W}\mathbf{H})^{-1}\mathbf{H}^T\mathbf{W}\mathbf{y}$$
+$$
+\hat{\theta}_{WLS}=\arg\min_{\theta}(\mathbf{y}-\mathbf{H}\theta)^T\mathbf{W}(\mathbf{y}-\mathbf{H}\theta)=(\mathbf{H}^T\mathbf{W}\mathbf{H})^{-1}\mathbf{H}^T\mathbf{W}\mathbf{y}
+$$
 
 权重矩阵 $\mathbf{W}$ 越接近噪声协方差逆，估计越有效。
 
@@ -62,11 +70,15 @@ $$\hat{\theta}_{WLS}=\arg\min_{\theta}(\mathbf{y}-\mathbf{H}\theta)^T\mathbf{W}(
 
 设 $\mathbf{y}=\mathbf{H}\theta+\mathbf{w}$，$\mathbf{w}\sim\mathcal{N}(\mathbf{0},\sigma^2\mathbf{I})$，则似然为
 
-$$f(\mathbf{y};\theta)=\frac{1}{(2\pi\sigma^2)^{N/2}}\exp\left[-\frac{1}{2\sigma^2}\lVert\mathbf{y}-\mathbf{H}\theta\rVert^2\right]$$
+$$
+f(\mathbf{y};\theta)=\frac{1}{(2\pi\sigma^2)^{N/2}}\exp\left[-\frac{1}{2\sigma^2}\lVert\mathbf{y}-\mathbf{H}\theta\rVert^2\right]
+$$
 
 对数似然为
 
-$$\ell(\theta)=-\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\lVert\mathbf{y}-\mathbf{H}\theta\rVert^2$$
+$$
+\ell(\theta)=-\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\lVert\mathbf{y}-\mathbf{H}\theta\rVert^2
+$$
 
 第一项与 $\theta$ 无关，最大化 $\ell$ 等价于最小化 $\lVert\mathbf{y}-\mathbf{H}\theta\rVert^2$，所以 $\hat{\theta}_{ML}=\hat{\theta}_{LS}$。若噪声协方差为 $\mathbf{C}$ 而非 $\sigma^2\mathbf{I}$，则 MLE 对应 $\mathbf{W}=\mathbf{C}^{-1}$ 的 WLS。这条等价关系是高斯假设在估计问题中的核心作用。
 
@@ -78,7 +90,9 @@ $$\ell(\theta)=-\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\lVert\mathbf{y}
 > [!example] 直线拟合
 > 观测 $y_n=a+bn+w_n$，$n=1,\dots,N$，$w_n$ 独立同分布零均值。记 $\bar{n}$、$\bar{y}$ 为样本均值，则正规方程给出
 >
-> $$\hat{b}=\frac{\sum_{n=1}^N(n-\bar{n})(y_n-\bar{y})}{\sum_{n=1}^N(n-\bar{n})^2},\qquad \hat{a}=\bar{y}-\hat{b}\bar{n}$$
+> $$
+> \hat{b}=\frac{\sum_{n=1}^N(n-\bar{n})(y_n-\bar{y})}{\sum_{n=1}^N(n-\bar{n})^2},\qquad \hat{a}=\bar{y}-\hat{b}\bar{n}
+> $$
 >
 > 若 $w_n$ 为高斯噪声，这两式就是 MLE；若噪声只满足零均值、等方差且不相关，它们仍是 BLUE（高斯-马尔可夫定理），但不再保证有效。
 

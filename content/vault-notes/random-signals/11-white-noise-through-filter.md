@@ -35,19 +35,27 @@ related: []
 
 方差为 $\sigma^2$ 的离散白噪声，其连续等效双边 PSD 在 $\lvert\omega\rvert\le\pi f_s$ 内为常数：
 
-$$S_X(\omega)=\frac{N_0}{2}=\frac{\sigma^2}{f_s}$$
+$$
+S_X(\omega)=\frac{N_0}{2}=\frac{\sigma^2}{f_s}
+$$
 
 这里 $N_0=2\sigma^2/f_s$ 是单边 PSD。白噪声通过冲激响应为 $h[n]$ 的 LTI 系统后，
 
-$$S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)$$
+$$
+S_Y(\omega)=\lvert H(\omega)\rvert^2S_X(\omega)
+$$
 
 对输出功率，用 Parseval 定理可直接在时域算：
 
-$$P_Y=\frac{1}{2\pi}\int_{-\pi f_s}^{\pi f_s}S_Y(\omega)\,\mathrm{d}\omega=\sigma^2\sum_{n}\lvert h[n]\rvert^2$$
+$$
+P_Y=\frac{1}{2\pi}\int_{-\pi f_s}^{\pi f_s}S_Y(\omega)\,\mathrm{d}\omega=\sigma^2\sum_{n}\lvert h[n]\rvert^2
+$$
 
 单边等效噪声带宽定义为
 
-$$B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^{f_s/2}\lvert H(f)\rvert^2\,\mathrm{d}f=\frac{f_s\sum_n\lvert h[n]\rvert^2}{2\lvert H(0)\rvert^2}$$
+$$
+B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^{f_s/2}\lvert H(f)\rvert^2\,\mathrm{d}f=\frac{f_s\sum_n\lvert h[n]\rvert^2}{2\lvert H(0)\rvert^2}
+$$
 
 于是白噪声输入时 $P_Y=N_0B_n\lvert H(0)\rvert^2$。注意 $B_n$ 不是 3 dB 带宽，它把滤波器的总噪声功率等效成一个矩形通带。
 

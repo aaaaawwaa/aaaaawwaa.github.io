@@ -29,7 +29,9 @@ related: []
 
 > [!info] 定义 1 输出噪声功率
 > 设滤波器频率响应为 $H(\omega)$，输入噪声功率谱为 $S_n(\omega)$，则输出噪声功率为
-> $$P_n=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_n(\omega)\,\mathrm{d}\omega=\int_{-\infty}^{\infty}\lvert H(f)\rvert^2S_n(f)\,\mathrm{d}f$$
+> $$
+> P_n=\frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert H(\omega)\rvert^2S_n(\omega)\,\mathrm{d}\omega=\int_{-\infty}^{\infty}\lvert H(f)\rvert^2S_n(f)\,\mathrm{d}f
+> $$
 > 离散形式为 $P_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert H(e^{j\omega})\rvert^2S_n(e^{j\omega})\,\mathrm{d}\omega$。
 
 这个式子就是"输出功率谱积分"，没有新物理，只是把 [[vault-notes/random-signals/06-input-output-psd-relation]] 的 $S_Y=\lvert H\rvert^2S_X$ 积分。
@@ -41,9 +43,13 @@ related: []
 
 > [!info] 定义 2 噪声等效带宽
 > 对基带滤波器（最大增益在 0 Hz），
-> $$B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f$$
+> $$
+> B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f
+> $$
 > 对中心频率 $f_0$ 的带通滤波器，把 $H(0)$ 换成 $H(f_0)$。若输入为单边谱 $N_0$ 的白噪声，则
-> $$P_n=N_0B_n\lvert H(f_0)\rvert^2$$
+> $$
+> P_n=N_0B_n\lvert H(f_0)\rvert^2
+> $$
 
 $B_n$ 的物理意义：用一个高为 $\lvert H(f_0)\rvert^2$、宽为 $B_n$ 的矩形滤波器替代实际滤波器，通过的噪声功率相同。
 
@@ -59,16 +65,24 @@ $B_n$ 的物理意义：用一个高为 $\lvert H(f_0)\rvert^2$、宽为 $B_n$ �
 
 > [!example] 例 1 RC 低通的噪声功率
 > 取 $R=1\,\mathrm{k}\Omega$、$C=1\,\mu\mathrm{F}$，则 $RC=1\,\mathrm{ms}$，$B_{3\mathrm{dB}}\approx159\,\mathrm{Hz}$，$B_n=250\,\mathrm{Hz}$。若 $N_0=10^{-6}\,\mathrm{V^2/Hz}$，则
-> $$P_n=N_0B_n=2.5\times10^{-4}\,\mathrm{V^2},\qquad \sqrt{P_n}\approx15.8\,\mathrm{mV_{rms}}$$
+> $$
+> P_n=N_0B_n=2.5\times10^{-4}\,\mathrm{V^2},\qquad \sqrt{P_n}\approx15.8\,\mathrm{mV_{rms}}
+> $$
 
 ## 三、信噪比与滤波改善
 
 > [!info] 定义 3 输出信噪比
-> $$\mathrm{SNR}_{\mathrm{out}}=\frac{P_s}{P_n}$$
+> $$
+> \mathrm{SNR}_{\mathrm{out}}=\frac{P_s}{P_n}
+> $$
 > 若信号是幅度 $A$、频率 $f_0$ 的正弦，噪声是带内单边谱 $N_0$ 的白噪声，则
-> $$P_s=\frac{A^2}{2}\lvert H(f_0)\rvert^2,\qquad P_n=N_0B_n\lvert H(f_0)\rvert^2$$
+> $$
+> P_s=\frac{A^2}{2}\lvert H(f_0)\rvert^2,\qquad P_n=N_0B_n\lvert H(f_0)\rvert^2
+> $$
 > 于是
-> $$\mathrm{SNR}_{\mathrm{out}}=\frac{A^2}{2N_0B_n}$$
+> $$
+> \mathrm{SNR}_{\mathrm{out}}=\frac{A^2}{2N_0B_n}
+> $$
 
 注意 $H(f_0)$ 被约掉了：对白噪声，滤波器增益同时放大信号与噪声，真正决定 SNR 的是**噪声带宽**。
 
@@ -77,7 +91,9 @@ $B_n$ 的物理意义：用一个高为 $\lvert H(f_0)\rvert^2$、宽为 $B_n$ �
 
 > [!example] 例 2 RC 低通对正弦加白噪声
 > 输入 $s(t)=A\cos(2\pi f_0t)$ 加单边谱 $N_0$ 的白噪声，$f_0\ll1/(2\pi RC)$ 时 $\lvert H(f_0)\rvert\approx1$。输出
-> $$\mathrm{SNR}_{\mathrm{out}}\approx\frac{A^2}{2N_0B_n}=\frac{A^2}{2N_0\cdot\frac{1}{4RC}}=\frac{2A^2RC}{N_0}$$
+> $$
+> \mathrm{SNR}_{\mathrm{out}}\approx\frac{A^2}{2N_0B_n}=\frac{A^2}{2N_0\cdot\frac{1}{4RC}}=\frac{2A^2RC}{N_0}
+> $$
 > 时间常数越大，噪声带宽越窄，SNR 越高；但信号的高频分量也被削弱，宽带信号不能这样换。
 
 ## 四、理想低通与匹配滤波
@@ -87,9 +103,13 @@ $B_n$ 的物理意义：用一个高为 $\lvert H(f_0)\rvert^2$、宽为 $B_n$ �
 
 > [!example] 例 4 匹配滤波
 > 对已知波形 $s(t)$、能量 $E=\int s^2(t)\,\mathrm{d}t$，在白噪声（单边谱 $N_0$）中输入，匹配滤波器
-> $$h(t)=s(T-t),\qquad H(\omega)=S^*(\omega)e^{-j\omega T}$$
+> $$
+> h(t)=s(T-t),\qquad H(\omega)=S^*(\omega)e^{-j\omega T}
+> $$
 > 在 $t=T$ 时刻输出信号功率 $E^2$，噪声功率 $\frac{N_0}{2}E$，峰值信噪比
-> $$\mathrm{SNR}_{\max}=\frac{2E}{N_0}$$
+> $$
+> \mathrm{SNR}_{\max}=\frac{2E}{N_0}
+> $$
 > 这是所有线性滤波器中能达到的最大输出峰值 SNR。匹配滤波不追求"窄带宽"，而是让滤波器与信号波形匹配；它的噪声带宽由信号谱决定，通常不等于 $B_{3\mathrm{dB}}$。
 
 | 场景 | 噪声功率 | 峰值/平均 SNR | 关键量 |

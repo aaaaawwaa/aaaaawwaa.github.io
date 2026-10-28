@@ -29,9 +29,13 @@ related: []
 
 > [!info] 定义 1 连续时间白噪声
 > 若宽平稳过程 $N(t)$ 的自相关为
-> $$R_N(\tau)=\frac{N_0}{2}\delta(\tau)$$
+> $$
+> R_N(\tau)=\frac{N_0}{2}\delta(\tau)
+> $$
 > 则称其为**白噪声**，其双边功率谱为
-> $$S_N(\omega)=\frac{N_0}{2}\quad(\text{双边}),\qquad S_N^+(f)=N_0\quad(\text{单边})$$
+> $$
+> S_N(\omega)=\frac{N_0}{2}\quad(\text{双边}),\qquad S_N^+(f)=N_0\quad(\text{单边})
+> $$
 
 "白"是光学借词：所有频率功率相同，像白光包含所有颜色。要点是：
 
@@ -41,7 +45,9 @@ related: []
 
 > [!info] 定义 2 离散时间白噪声
 > 若序列 $N[n]$ 满足
-> $$R_N[m]=\sigma^2\delta[m],\qquad S_N(e^{j\omega})=\sigma^2,\quad\lvert\omega\rvert\le\pi$$
+> $$
+> R_N[m]=\sigma^2\delta[m],\qquad S_N(e^{j\omega})=\sigma^2,\quad\lvert\omega\rvert\le\pi
+> $$
 > 则称为离散白噪声。它在 $[-\pi,\pi]$ 上谱平坦，平均功率为 $\sigma^2$。
 
 离散白噪声的"白"只相对于奈奎斯特区间。采样率越高，同样的 $\sigma^2$ 对应越宽的模拟带宽，因此不能把离散的 $\sigma^2$ 直接当成连续谱密度 $N_0/2$。
@@ -57,7 +63,9 @@ related: []
 
 理想白噪声经过理想低通或带通后，变成**带限白噪声**。以基带 $[0,B]$ 为例：
 
-$$S_N(f)=\frac{N_0}{2}\ (\lvert f\rvert\le B),\qquad R_N(\tau)=N_0B\,\mathrm{sinc}(2B\tau)$$
+$$
+S_N(f)=\frac{N_0}{2}\ (\lvert f\rvert\le B),\qquad R_N(\tau)=N_0B\,\mathrm{sinc}(2B\tau)
+$$
 
 其中 $\mathrm{sinc}(x)=\sin(\pi x)/(\pi x)$。相关函数在 $\tau=k/(2B)$ 处过零，说明以奈奎斯特速率采样得到的样本互不相关。
 
@@ -71,11 +79,15 @@ $$S_N(f)=\frac{N_0}{2}\ (\lvert f\rvert\le B),\qquad R_N(\tau)=N_0B\,\mathrm{sin
 
 最常用的模型是一阶自回归 AR(1)：
 
-$$X[n]=aX[n-1]+W[n],\qquad \lvert a\rvert<1,\quad W[n]\sim\mathrm{WN}(0,\sigma_W^2)$$
+$$
+X[n]=aX[n-1]+W[n],\qquad \lvert a\rvert<1,\quad W[n]\sim\mathrm{WN}(0,\sigma_W^2)
+$$
 
 其相关函数与谱为
 
-$$R_X[m]=\frac{\sigma_W^2}{1-a^2}a^{\lvert m\rvert},\qquad S_X(e^{j\omega})=\frac{\sigma_W^2}{1-2a\cos\omega+a^2}$$
+$$
+R_X[m]=\frac{\sigma_W^2}{1-a^2}a^{\lvert m\rvert},\qquad S_X(e^{j\omega})=\frac{\sigma_W^2}{1-2a\cos\omega+a^2}
+$$
 
 | 参数 | 谱形 | 相关时间 | 典型场景 |
 | --- | --- | --- | --- |
@@ -93,16 +105,22 @@ $$R_X[m]=\frac{\sigma_W^2}{1-a^2}a^{\lvert m\rvert},\qquad S_X(e^{j\omega})=\fra
 
 > [!info] 定义 4 噪声等效带宽
 > 设滤波器 $H(\omega)$ 在基带的最大幅度在 $\omega=0$，定义**噪声等效带宽**
-> $$B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f\quad(\text{Hz})$$
+> $$
+> B_n=\frac{1}{\lvert H(0)\rvert^2}\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f\quad(\text{Hz})
+> $$
 > 对中心频率 $f_0$ 的带通滤波器，把 $H(0)$ 换成 $H(f_0)$，积分仍取正频率。
 
 它的含义是：一个高度为 $\lvert H(0)\rvert^2$、宽度为 $B_n$ 的理想矩形滤波器，通过单边谱为 $N_0$ 的白噪声时产生与实际滤波器相同的噪声功率。
 
-$$P_n=N_0B_n\lvert H(0)\rvert^2$$
+$$
+P_n=N_0B_n\lvert H(0)\rvert^2
+$$
 
 > [!example] 例 2 RC 低通的噪声带宽
 > $H(f)=\frac{1}{1+j2\pi fRC}$，则
-> $$\int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f=\int_0^\infty\frac{\mathrm{d}f}{1+(2\pi fRC)^2}=\frac{1}{4RC}$$
+> $$
+> \int_0^\infty\lvert H(f)\rvert^2\,\mathrm{d}f=\int_0^\infty\frac{\mathrm{d}f}{1+(2\pi fRC)^2}=\frac{1}{4RC}
+> $$
 > 所以 $B_n=\frac{1}{4RC}$，而 3 dB 带宽 $B_{3\mathrm{dB}}=\frac{1}{2\pi RC}$，两者之比为 $\pi/2\approx1.571$。
 
 | 滤波器 | $B_{3\mathrm{dB}}$ | $B_n$ | $B_n/B_{3\mathrm{dB}}$ |

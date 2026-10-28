@@ -46,7 +46,9 @@ related: []
 
 **视线传播距离**（天线高 $h$、地球半径 $r=6370$ km）：
 
-$$d\approx\sqrt{2rh}$$
+$$
+d\approx\sqrt{2rh}
+$$
 
 > [!note] 电离层要点
 > 反射高频电磁波的主要是 **F 层**（150~400 km，F₂ 层 250~400 km）；D 层主要起**吸收衰减**作用（白天存在，夜晚消失）。
@@ -66,7 +68,9 @@ $$d\approx\sqrt{2rh}$$
 
 ## 调制信道模型（连续）
 
-$$e_o(t)=f[e_i(t)]+n(t)$$
+$$
+e_o(t)=f[e_i(t)]+n(t)
+$$
 
 - $f[\cdot]$：信道**传输特性**（可能线性/非线性、时变/时不变）
 - $n(t)$：**加性噪声**（additive noise，与信号独立叠加）
@@ -76,7 +80,9 @@ $$e_o(t)=f[e_i(t)]+n(t)$$
 
 **常见调制信道（线性时不变）**：
 
-$$e_o(t)=k(t)e_i(t)+n(t)$$
+$$
+e_o(t)=k(t)e_i(t)+n(t)
+$$
 
 - $k(t)$：**乘性干扰**（multiplicative interference，衰减/时变）
 - 乘性干扰是区分**恒参/随参**信道的标志：
@@ -149,7 +155,9 @@ $$e_o(t)=k(t)e_i(t)+n(t)$$
 - $C$：每符号最大平均信息量（b/符号）
 - $C_t$：单位时间最大平均信息量（b/s）
 
-$$C_t=\max_{p(x)}r\,[H(x)-H(x/y)]$$
+$$
+C_t=\max_{p(x)}r\,[H(x)-H(x/y)]
+$$
 
 （$r$：符号速率；$H(x/y)$：条件熵/疑义度。**对称二进制信道例**：$H(x)=1$，错传概率 $1/128$ 时 $H(x/y)\approx0.065$，$C=0.935$ b/符号。）
 
@@ -161,7 +169,9 @@ $$C_t=\max_{p(x)}r\,[H(x)-H(x/y)]$$
 > [!important] 香农公式（Shannon formula，必背必考）
 > 带宽有限、平均功率有限的高斯白噪声连续信道：
 >
-> $$C=B\log_2\!\left(1+\frac{S}{N}\right)=B\log_2\!\left(1+\frac{S}{n_0B}\right)\quad(\text{b/s})$$
+> $$
+> C=B\log_2\!\left(1+\frac{S}{N}\right)=B\log_2\!\left(1+\frac{S}{n_0B}\right)\quad(\text{b/s})
+> $$
 >
 > - $S$：信号平均功率（W）；$N=n_0B$：噪声功率（W）；$B$：带宽（Hz）
 
@@ -171,16 +181,22 @@ $$C_t=\max_{p(x)}r\,[H(x)-H(x/y)]$$
 2. **增大 $S$ 或减小 $n_0$ 都可增大 $C$**；$S\to\infty$ 或 $n_0\to0$ 时 $C\to\infty$。
 3. **带宽无限增大，容量有限**：
 
-$$\lim_{B\to\infty}C=\frac{S}{n_0}\log_2 e\approx1.44\frac{S}{n_0}\quad(\text{b/s})$$
+$$
+\lim_{B\to\infty}C=\frac{S}{n_0}\log_2 e\approx1.44\frac{S}{n_0}\quad(\text{b/s})
+$$
 
 > [!note] 推论：香农下限
 > 由 $C=B\log_2\left(1+\dfrac{E_b/T_b}{n_0B}\right)$ 令 $B\to\infty$，可得无误传输的极限：
-> $$\frac{E_b}{n_0}\ge\ln2\approx0.693\quad(-1.6\,\text{dB})$$
+> $$
+> \frac{E_b}{n_0}\ge\ln2\approx0.693\quad(-1.6\,\text{dB})
+> $$
 > 即**每比特能量与噪声谱密度之比存在 $-1.6$ dB 的香农极限**——一切数字通信系统性能的终极标尺。
 
 **香农公式还可写成**（用 $R_b$ 代 $C$ 讨论）：
 
-$$R_b\le B\log_2\left(1+\frac{S}{N}\right)\quad\Longrightarrow\quad\frac{R_b}{B}\le\log_2\left(1+\frac{S}{N}\right)$$
+$$
+R_b\le B\log_2\left(1+\frac{S}{N}\right)\quad\Longrightarrow\quad\frac{R_b}{B}\le\log_2\left(1+\frac{S}{N}\right)
+$$
 
 **典型计算套路**：
 

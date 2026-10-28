@@ -49,7 +49,9 @@ $$
 > 3. **对每一行分别线性**：
 >    (a) 某一行乘以 $t$，则行列式乘以 $t$；
 >    (b) 若某一行是**两个向量之和**，则行列式可拆成两个行列式之和（其余各行不动）：
->    $$\det\begin{bmatrix}\leftarrow\ \mathbf{r}_i+\mathbf{r}_i'\ \rightarrow\\\vdots\end{bmatrix}=\det\begin{bmatrix}\leftarrow\ \mathbf{r}_i\ \rightarrow\\\vdots\end{bmatrix}+\det\begin{bmatrix}\leftarrow\ \mathbf{r}_i'\ \rightarrow\\\vdots\end{bmatrix}$$
+>    $$
+>    \det\begin{bmatrix}\leftarrow\ \mathbf{r}_i+\mathbf{r}_i'\ \rightarrow\\\vdots\end{bmatrix}=\det\begin{bmatrix}\leftarrow\ \mathbf{r}_i\ \rightarrow\\\vdots\end{bmatrix}+\det\begin{bmatrix}\leftarrow\ \mathbf{r}_i'\ \rightarrow\\\vdots\end{bmatrix}
+>    $$
 >
 > 措辞要盯紧：性质 3 是"**对每一行分别**线性"，**不是**对整个矩阵线性——$\det(A+B)\ne\det A+\det B$（本节末有反例）。
 
@@ -163,7 +165,9 @@ $$
 
 > [!warning] 三个高频误算
 > 1. **$\det(A+B)\ne\det A+\det B$**。反例只要两行：
->    $$A=\begin{bmatrix}1&0\\0&0\end{bmatrix},\ B=\begin{bmatrix}0&0\\0&1\end{bmatrix}\quad\Rightarrow\quad \det A=\det B=0,\ \text{但}\ \det(A+B)=\det I=1$$
+>    $$
+>    A=\begin{bmatrix}1&0\\0&0\end{bmatrix},\ B=\begin{bmatrix}0&0\\0&1\end{bmatrix}\quad\Rightarrow\quad \det A=\det B=0,\ \text{但}\ \det(A+B)=\det I=1
+>    $$
 > 2. **$\det(cA)=c^n\det A\ne c\det A$**。取 $A=\begin{bmatrix}1&2\\3&4\end{bmatrix}$：$\det A=-2$，而 $\det(2A)=4\times(-2)=-8\ne2\times(-2)$。
 > 3. **$\det(AB)=\det(BA)$ 总成立**（虽然 $AB\ne BA$）。所以判别式里 $AB$ 与 $BA$ 的 $\det$ 可以放心互换——第 6 章算特征值时会用到。
 
@@ -183,9 +187,13 @@ $$
 
 > [!tip] 主元公式
 > **主元公式**（pivot formula）：若消元过程中做了 $p$ 次**行交换**，则
-> $$\det A=(-1)^p\,(\text{各主元之积})$$
+> $$
+> \det A=(-1)^p\,(\text{各主元之积})
+> $$
 > **推导**：$PA=LU$（第 2 章的分解式），两边取 $\det$：
-> $$\det P\cdot\det A=\det L\cdot\det U=1\times\prod(\text{主元})$$
+> $$
+> \det P\cdot\det A=\det L\cdot\det U=1\times\prod(\text{主元})
+> $$
 > 而**置换矩阵**（permutation matrix）$\det P=(-1)^p$，又因为它只能是 $\pm1$，故 $1/\det P=\det P$，于是 $\det A=\det P\cdot\prod(\text{主元})=(-1)^p\prod(\text{主元})$。
 
 **例 1（无换行）**：上面第 2 章的 $A$，主元为 $2,-8,1$，故 $\det A=2\times(-8)\times1=-16$ ✓（与逐项算一致）。
@@ -215,7 +223,9 @@ $$
 主元公式把"计算"解决了，但"$\det$ 究竟是怎么由 $n^2$ 个元素搭出来的"还没说清。把三项性质一路展开到底，就得到**排列公式**（Strang 称之为 the big formula）。
 
 > [!tip] 排列公式（大公式）
-> $$\boxed{\ \det A=\sum_{\sigma\in S_n}(-1)^{\sigma}\,a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}\ }$$
+> $$
+> \boxed{\ \det A=\sum_{\sigma\in S_n}(-1)^{\sigma}\,a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}\ }
+> $$
 > **排列公式**（permutation formula，Strang 称之为 the big formula）：对**全部 $n!$ 个排列**求和；每一项从**每一行、每一列各取恰好一个**元素相乘。
 > 符号 $(-1)^{\sigma}$ 有两种等价算法：
 > - **逆序数**（inversion count）：$(-1)^{\sigma}=(-1)^{\#\text{逆序对}}$（"前面的数比后面大"的次数）；
@@ -264,7 +274,9 @@ $$
 
 > [!info] Def 2 余子式与代数余子式
 > 划掉 $A$ 的第 $i$ 行与第 $j$ 列，剩下的 $(n-1)\times(n-1)$ 行列式叫**余子式** $M_{ij}$。带上符号
-> $$C_{ij}=(-1)^{i+j}M_{ij}$$
+> $$
+> C_{ij}=(-1)^{i+j}M_{ij}
+> $$
 > 叫**代数余子式**（cofactor）。符号只取决于"位置"，是棋盘的形状：
 >
 > ```
@@ -276,9 +288,13 @@ $$
 
 > [!tip] 展开定理（拉普拉斯展开）
 > **代数余子式展开**（cofactor expansion，也叫 Laplace expansion）：沿**任意一行或任意一列**展开，结果都等于 $\det A$：
-> $$\det A=\sum_{j=1}^{n}a_{ij}C_{ij}\quad(\text{沿第}\ i\ \text{行})\qquad\qquad \det A=\sum_{i=1}^{n}a_{ij}C_{ij}\quad(\text{沿第}\ j\ \text{列})$$
+> $$
+> \det A=\sum_{j=1}^{n}a_{ij}C_{ij}\quad(\text{沿第}\ i\ \text{行})\qquad\qquad \det A=\sum_{i=1}^{n}a_{ij}C_{ij}\quad(\text{沿第}\ j\ \text{列})
+> $$
 > 另有一条"**错行公式**"，5.3 的求逆就靠它：
-> $$\sum_{j=1}^{n}a_{kj}C_{ij}=0\qquad(k\ne i)$$
+> $$
+> \sum_{j=1}^{n}a_{kj}C_{ij}=0\qquad(k\ne i)
+> $$
 > 理由很妙：这个和等于"把第 $i$ 行替换成第 $k$ 行后"的行列式，而那矩阵有两行相同（性质 4）。**"展开式 = det、错行式 = 0"这两条合起来就是 $AC^T=(\det A)I$。**
 
 > [!tip] 手算技巧：挑零最多的行/列
@@ -294,21 +310,31 @@ $$
 
 > [!tip] 例 2：三对角矩阵的递推（$\det D_n=n+1$）
 > 定义 $n\times n$ 的**三对角矩阵**（tridiagonal matrix）——"一维离散拉普拉斯"（对角 2、两侧 $-1$）：
-> $$D_n=\begin{bmatrix}2&-1&\\-1&2&-1\\&\ddots&\ddots&\ddots\\&&-1&2\end{bmatrix}$$
+> $$
+> D_n=\begin{bmatrix}2&-1&\\-1&2&-1\\&\ddots&\ddots&\ddots\\&&-1&2\end{bmatrix}
+> $$
 > 沿**第一行**展开：$a_{11}=2$ 配的代数余子式正是 $D_{n-1}$；$a_{12}=-1$ 配的 $C_{12}=-M_{12}$，而 $M_{12}$ 沿第一列展开恰好得 $-D_{n-2}$（两次"借一位"的符号恰好抵消），所以这一项是 $-D_{n-2}$：
-> $$\det D_n=2\det D_{n-1}-\det D_{n-2},\qquad \det D_1=2,\ \det D_2=3$$
+> $$
+> \det D_n=2\det D_{n-1}-\det D_{n-2},\qquad \det D_1=2,\ \det D_2=3
+> $$
 > 于是序列 $2,3,4,5,\dots$，归纳得
-> $$\det D_n=n+1\quad(2,3,4,5,6,\dots)$$
+> $$
+> \det D_n=n+1\quad(2,3,4,5,6,\dots)
+> $$
 > 这个矩阵在通信里反复出现（把连续问题离散化），它的行列式"只线性增长"是很值得记住的性质。
 
 > [!tip] 例 3：范德蒙德行列式
-> $$\det\begin{bmatrix}1&1&1\\x_1&x_2&x_3\\x_1^2&x_2^2&x_3^2\end{bmatrix}=(x_2-x_1)(x_3-x_1)(x_3-x_2),\qquad\text{一般地}\ \ \prod_{i<j}(x_j-x_i)$$
+> $$
+> \det\begin{bmatrix}1&1&1\\x_1&x_2&x_3\\x_1^2&x_2^2&x_3^2\end{bmatrix}=(x_2-x_1)(x_3-x_1)(x_3-x_2),\qquad\text{一般地}\ \ \prod_{i<j}(x_j-x_i)
+> $$
 > 举例：$x=(1,2,3)$ 时 $\det=1\times2\times1=2$。
 > 这就是**范德蒙德行列式**（Vandermonde determinant）。**含义极其重要**：只要各 $x_i$ **互不相同**，这个矩阵就**可逆**。
 > 通信里的**阵列流形矩阵**（array manifold matrix；各行对应不同入射方向或不同频率）正是范德蒙德结构，所以"**方向互异 ⇒ 满秩 ⇒ 可分辨**"这条 DOA 估计（MUSIC / ESPRIT）的前提条件，本质就是上面这个乘积不为零（[[vault-notes/5g/phy/04-physical-channels-signals]]）。
 
 > [!tip] 例 4：分块三角
-> $$\det\begin{bmatrix}A&B\\0&D\end{bmatrix}=\det A\cdot\det D\qquad(A,D\ \text{为方阵})$$
+> $$
+> \det\begin{bmatrix}A&B\\0&D\end{bmatrix}=\det A\cdot\det D\qquad(A,D\ \text{为方阵})
+> $$
 > 级联系统、状态空间模型里常见这种结构：整体"体积缩放"= 各级缩放之积。
 
 > [!warning] 余子式展开的代价也是阶乘级
@@ -334,7 +360,9 @@ $$
 > - 非对角元：$\sum_j a_{kj}C_{ij}=0$（**错行公式**，等于两行相同的行列式）。
 >
 > **$2\times2$ 特例**（第 2 章用过的那条）：
-> $$\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$$
+> $$
+> \begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}
+> $$
 > 对照代数余子式：$C_{11}=d$、$C_{12}=-c$、$C_{21}=-b$、$C_{22}=a$——**先算 $C$ 再转置**，就是上面那个"交叉换位、副对角变号"的样子。
 
 > [!warning] 这是公式，不是算法
@@ -347,18 +375,28 @@ $$
 
 > [!tip] 克拉默法则
 > **克拉默法则**（Cramer's rule）：若 $\det A\ne0$，则 $A\mathbf{x}=\mathbf{b}$ 的**唯一**解为
-> $$x_1=\frac{\det B_1}{\det A},\qquad x_2=\frac{\det B_2}{\det A},\qquad\dots,\qquad x_n=\frac{\det B_n}{\det A}$$
+> $$
+> x_1=\frac{\det B_1}{\det A},\qquad x_2=\frac{\det B_2}{\det A},\qquad\dots,\qquad x_n=\frac{\det B_n}{\det A}
+> $$
 > 其中 $B_j$ 是把 $A$ 的**第 $j$ 列换成 $\mathbf{b}$**、其余列不动得到的矩阵。
 > **推导两行**：$\mathbf{x}=A^{-1}\mathbf{b}=\dfrac{C^{T}\mathbf{b}}{\det A}$，取第 $j$ 个分量：
-> $$x_j=\frac{1}{\det A}\sum_{i=1}^{n}C_{ij}b_i$$
+> $$
+> x_j=\frac{1}{\det A}\sum_{i=1}^{n}C_{ij}b_i
+> $$
 > 而按第 $j$ 列展开 $B_j$ 恰好给出这个和——因为 $B_j$ 的第 $j$ 列是 $b_i$，其余列与 $A$ 相同，**代数余子式完全没变**。
 
 > [!tip] 例：用第 1 章那组方程验证
 > 第 1、2 章反复出现的方程组
-> $$2x+y+z=5,\qquad 4x-6y=-2,\qquad -2x+7y+2z=9$$
+> $$
+> 2x+y+z=5,\qquad 4x-6y=-2,\qquad -2x+7y+2z=9
+> $$
 > 即 $A=\begin{bmatrix}2&1&1\\4&-6&0\\-2&7&2\end{bmatrix}$，$\mathbf{b}=(5,-2,9)$，已知解为 $\mathbf{x}=(1,1,2)$。现在用克拉默法则独立地"再解一次"：
-> $$\det A=-16,\qquad \det B_1=-16,\quad \det B_2=-16,\quad \det B_3=-32$$
-> $$\Longrightarrow\quad \mathbf{x}=\left(\frac{-16}{-16},\ \frac{-16}{-16},\ \frac{-32}{-16}\right)=(1,1,2)\ \checkmark$$
+> $$
+> \det A=-16,\qquad \det B_1=-16,\quad \det B_2=-16,\quad \det B_3=-32
+> $$
+> $$
+> \Longrightarrow\quad \mathbf{x}=\left(\frac{-16}{-16},\ \frac{-16}{-16},\ \frac{-32}{-16}\right)=(1,1,2)\ \checkmark
+> $$
 > （$B_1$ 就是"把第 1 列换成 $\mathbf{b}$"的矩阵 $\begin{bmatrix}5&1&1\\-2&-6&0\\9&7&2\end{bmatrix}$，其余同理。）
 
 > [!warning] 工程上绝不用它解方程
@@ -374,7 +412,9 @@ $$
 > [!tip] 面积定理
 > - $2\times2$：$|\det A|$ 等于以 $A$ 的**两列为两条边**的**平行四边形**（parallelogram）面积；
 > - 三角形 = 平行四边形的一半：
-> $$\text{三角形面积}=\frac{1}{2}\bigl|\det[\mathbf{u}\ \mathbf{v}]\bigr|$$
+> $$
+> \text{三角形面积}=\frac{1}{2}\bigl|\det[\mathbf{u}\ \mathbf{v}]\bigr|
+> $$
 > 其中 $\mathbf{u},\mathbf{v}$ 是从**同一个顶点**出发的两条边向量；
 > - $3\times3$：$|\det A|$ 是以三列为边的**平行六面体**（parallelepiped）体积（下下节）。
 > 三点共线 $\iff$ 面积为零 $\iff$ 两向量相关 $\iff \det=0$——**共线判定就是行列式判定**。
@@ -524,10 +564,14 @@ $$
 
 > [!tip] 三重积定理
 > **三重积**（triple product，也叫混合积 scalar triple product）：
-> $$(\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}=\det\begin{bmatrix}|&|&|\\\mathbf{u}&\mathbf{v}&\mathbf{w}\\|&|&|\end{bmatrix}$$
+> $$
+> (\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}=\det\begin{bmatrix}|&|&|\\\mathbf{u}&\mathbf{v}&\mathbf{w}\\|&|&|\end{bmatrix}
+> $$
 > **几何解释**：$\|\mathbf{u}\times\mathbf{v}\|$ 是**底面积**；$\mathbf{w}$ 在底面法线方向的投影是**高**，即 $\mathbf{w}\cdot\hat{\mathbf{n}}$（$\hat{\mathbf{n}}=(\mathbf{u}\times\mathbf{v})/\|\mathbf{u}\times\mathbf{v}\|$，方向由**右手定则**（right-hand rule）判定）；底乘高 = **平行六面体的体积**。
 > **直接推论**：
-> $$(\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}=0\quad\Longleftrightarrow\quad \mathbf{u},\mathbf{v},\mathbf{w}\ \text{三个向量共面}\quad\Longleftrightarrow\quad \det[\mathbf{u}\ \mathbf{v}\ \mathbf{w}]=0$$
+> $$
+> (\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}=0\quad\Longleftrightarrow\quad \mathbf{u},\mathbf{v},\mathbf{w}\ \text{三个向量共面}\quad\Longleftrightarrow\quad \det[\mathbf{u}\ \mathbf{v}\ \mathbf{w}]=0
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" width="100%" style="max-width:840px" font-family="inherit">
   <defs>

@@ -38,7 +38,9 @@ related: []
 
 > [!info] Def 1 特征值与特征向量
 > 对方阵 $A$，若存在**非零**向量 $\mathbf{x}$ 与数 $\lambda$ 使
-> $$A\mathbf{x}=\lambda\mathbf{x},\qquad \mathbf{x}\ne\mathbf{0}$$
+> $$
+> A\mathbf{x}=\lambda\mathbf{x},\qquad \mathbf{x}\ne\mathbf{0}
+> $$
 > 则称 $\lambda$ 是 $A$ 的**特征值**（eigenvalue），$\mathbf{x}$ 是**属于** $\lambda$ 的**特征向量**（eigenvector）。
 > 换个说法：**$\mathbf{x}$ 就是 $A-\lambda I$ 的零空间里的非零向量**——$\lambda$ 是让 $A-\lambda I$ 变奇异的那几个数。
 
@@ -109,7 +111,9 @@ related: []
 
 > [!tip] 三角矩阵：特征值一眼读出
 > 若 $A$ 是三角矩阵，则 $A-\lambda I$ 仍是三角，行列式 = 对角线之积：
-> $$\det(A-\lambda I)=\prod_i(a_{ii}-\lambda)\quad\Longrightarrow\quad \lambda_i=a_{ii}$$
+> $$
+> \det(A-\lambda I)=\prod_i(a_{ii}-\lambda)\quad\Longrightarrow\quad \lambda_i=a_{ii}
+> $$
 > 这一条配上"消元不改变行列式（第 5 章性质 5）"就非常有用：**消元把 A 变成 U，U 的对角线就是主元，而 U 的特征值是主元**——特征值虽然会被消元改变（$A$ 与 $U$ 一般不相似），但"三角矩阵的特征值 = 对角线"这条读法在半数场景里够快。
 
 ## 特征值的方程
@@ -124,7 +128,9 @@ $$
 
 > [!info] Def 2 特征方程与特征多项式
 > $\lambda$ 是 $A$ 的特征值 $\iff$
-> $$\det(A-\lambda I)=0\qquad\text{（特征方程，characteristic equation）}$$
+> $$
+> \det(A-\lambda I)=0\qquad\text{（特征方程，characteristic equation）}
+> $$
 > 左边 $p(\lambda)=\det(A-\lambda I)$ 是 $\lambda$ 的 $n$ 次多项式，称为**特征多项式**（characteristic polynomial）。它在复数域上恰有 $n$ 个根（按重数计），这 $n$ 个数就是 $A$ 的全部特征值。
 
 $2\times2$ 的情形值得背下来：
@@ -177,9 +183,13 @@ $$
 > 三条常用性质：$\operatorname{tr}(A+B)=\operatorname{tr}A+\operatorname{tr}B$、$\operatorname{tr}(A^T)=\operatorname{tr}A$、**$\operatorname{tr}(AB)=\operatorname{tr}(BA)$**。
 
 > [!tip] 定理 特征值之和与积
-> $$\lambda_1+\lambda_2+\cdots+\lambda_n=\operatorname{tr}(A),\qquad\qquad \lambda_1\lambda_2\cdots\lambda_n=\det A$$
+> $$
+> \lambda_1+\lambda_2+\cdots+\lambda_n=\operatorname{tr}(A),\qquad\qquad \lambda_1\lambda_2\cdots\lambda_n=\det A
+> $$
 > **证明**（一段话）：把特征多项式按根分解
-> $$\det(A-\lambda I)=(\lambda_1-\lambda)(\lambda_2-\lambda)\cdots(\lambda_n-\lambda)$$
+> $$
+> \det(A-\lambda I)=(\lambda_1-\lambda)(\lambda_2-\lambda)\cdots(\lambda_n-\lambda)
+> $$
 > 令 $\lambda=0$，左边是 $\det A$，右边是 $\lambda_1\lambda_2\cdots\lambda_n$；再比较 $\lambda^{n-1}$ 的系数，左边是 $-\operatorname{tr}A$，右边是 $-(\lambda_1+\cdots+\lambda_n)$，即得两式。
 
 **马上验一遍第 5 章那个 $A$**（$A=\begin{bmatrix}2&1&1\\4&-6&0\\-2&7&2\end{bmatrix}$，我们算过 $\operatorname{tr}A=-2$、$\det A=-16$）：
@@ -195,7 +205,9 @@ $$
 - **三角矩阵**：$\lambda_i=a_{ii}$ ⇒ $\det A=$ 对角元之积（第 5 章性质 7 的"为什么"就在这里）；
 - **奇异矩阵**：$\det A=0$ ⇒ 至少一个 $\lambda=0$（$\det A=\prod\lambda_i$）；
 - **投影矩阵**：$\lambda=1$（列空间方向）与 $\lambda=0$（零空间方向）⇒
-  $$\operatorname{tr}(P)=\text{1 的个数}=\dim(\text{列空间})=\operatorname{rank}(P)$$
+  $$
+  \operatorname{tr}(P)=\text{1 的个数}=\dim(\text{列空间})=\operatorname{rank}(P)
+  $$
   —— 第 4 章那句"$\operatorname{rank}(P)=\operatorname{tr}(P)=$ 子空间维数"到此终于有了答案！
 - **幂等矩阵**（$A^2=A$）：$\lambda^2=\lambda\Rightarrow\lambda\in\{0,1\}$——投影矩阵、幂等矩阵的特征值**只可能是 0 或 1**；
 - **相似矩阵**（6.2）：$\operatorname{tr}(M^{-1}AM)=\operatorname{tr}(AMM^{-1})=\operatorname{tr}A$ ⇒ 相似变换保持迹与行列式（也就保持特征值）。
@@ -209,7 +221,9 @@ $$
 
 > [!tip] 旋转矩阵：没有实特征向量的实矩阵
 > 把平面旋转 $90°$：
-> $$Q=\begin{bmatrix}0&-1\\1&0\end{bmatrix},\qquad \det(Q-\lambda I)=\lambda^2+1=0\ \Longrightarrow\ \lambda=i,\ -i$$
+> $$
+> Q=\begin{bmatrix}0&-1\\1&0\end{bmatrix},\qquad \det(Q-\lambda I)=\lambda^2+1=0\ \Longrightarrow\ \lambda=i,\ -i
+> $$
 > **旋转矩阵**（rotation matrix）的几何再清楚不过：**旋转把每个向量都转出了它原来所在的那条直线**，所以没有任何实向量满足 $Q\mathbf{x}=\lambda\mathbf{x}$（除非 $\mathbf{x}=\mathbf{0}$）。
 > 一般角度 $\theta$：$Q=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\Rightarrow\lambda=e^{\pm i\theta}=\cos\theta\pm i\sin\theta$，且 $|\lambda|=1$。
 
@@ -281,15 +295,23 @@ $$
 
 > [!warning] 一般来说：$\lambda(A+B)\ne\lambda(A)+\lambda(B)$，$\lambda(AB)\ne\lambda(A)\lambda(B)$
 > **反例**（两个矩阵都很简单）：$A=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$（$\lambda=1,-1$）、$B=\begin{bmatrix}0&1\\1&0\end{bmatrix}$（$\lambda=1,-1$）：
-> $$A+B=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\Rightarrow\lambda=\pm\sqrt2\quad(\ne 2,0,-2)$$
-> $$AB=\begin{bmatrix}0&1\\-1&0\end{bmatrix}\Rightarrow\lambda=\pm i\quad(\ne\pm1)$$
+> $$
+> A+B=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\Rightarrow\lambda=\pm\sqrt2\quad(\ne 2,0,-2)
+> $$
+> $$
+> AB=\begin{bmatrix}0&1\\-1&0\end{bmatrix}\Rightarrow\lambda=\pm i\quad(\ne\pm1)
+> $$
 > 原因很直白：$B$ 的特征向量与 $A$ 的**不同**，"相加相乘"要在**同一个方向**上才谈得上。
 
 > [!tip] 正确的版本：共享特征向量时才有简单关系
 > 若 $\mathbf{x}$ 同时是 $A$ 与 $B$ 的特征向量（$\lambda_A$、$\lambda_B$），则
-> $$(A+B)\mathbf{x}=(\lambda_A+\lambda_B)\mathbf{x},\qquad (AB)\mathbf{x}=(\lambda_A\lambda_B)\mathbf{x}$$
+> $$
+> (A+B)\mathbf{x}=(\lambda_A+\lambda_B)\mathbf{x},\qquad (AB)\mathbf{x}=(\lambda_A\lambda_B)\mathbf{x}
+> $$
 > 一行验证。**特别地：$A$ 与"自己的函数"永远共享特征向量**，于是 6.1 那张速算表成立：
-> $$\lambda(A^k)=\lambda^k,\quad \lambda(A+cI)=\lambda+c,\quad \lambda(A^{-1})=1/\lambda,\quad \lambda(p(A))=p(\lambda)$$
+> $$
+> \lambda(A^k)=\lambda^k,\quad \lambda(A+cI)=\lambda+c,\quad \lambda(A^{-1})=1/\lambda,\quad \lambda(p(A))=p(\lambda)
+> $$
 > 还有一类常见情形：**$A$、$B$ 对称且 $AB=BA$（可交换）⇒ 它们有一组公共的标准正交特征向量**（6.4 谱定理的推论），此时"相加相乘"的规则可以直接用。
 
 > [!note] 工程含义
@@ -307,7 +329,9 @@ $$
 
 > [!info] Def 4 对角化
 > 若 $A$ 有 $n$ 个**线性无关**的特征向量，则
-> $$A=S\Lambda S^{-1}\qquad\text{（对角化，diagonalization）}$$
+> $$
+> A=S\Lambda S^{-1}\qquad\text{（对角化，diagonalization）}
+> $$
 > 称 $A$ **可对角化**（diagonalizable）。$S$ 的列是特征向量，$\Lambda$ 的对角线是特征值。
 
 **这个式子的意义**：在特征向量这组基下，$A$ 就是对角矩阵——$n$ 维的复杂作用被拆成 $n$ 个**互不干扰**的一维伸缩。于是"求幂、求指数、解微分方程"全部退化成"逐分量算"：
@@ -338,13 +362,17 @@ $$
 
 > [!info] Def 5 相似矩阵
 > 若存在可逆矩阵 $M$ 使
-> $$B=M^{-1}AM$$
+> $$
+> B=M^{-1}AM
+> $$
 > 则称 $A$ 与 $B$ **相似**（similar）。
 
 > [!tip] 定理 相似不变量
 > 相似矩阵有：**相同的特征值、相同的特征多项式、相同的迹、相同的行列式、相同的秩、相同的可对角化性**。
 > **证明一行**：$A\mathbf{x}=\lambda\mathbf{x}$ 两边左乘 $M^{-1}$：
-> $$(M^{-1}AM)(M^{-1}\mathbf{x})=\lambda(M^{-1}\mathbf{x})\ \Longrightarrow\ B(M^{-1}\mathbf{x})=\lambda(M^{-1}\mathbf{x})\ \checkmark$$
+> $$
+> (M^{-1}AM)(M^{-1}\mathbf{x})=\lambda(M^{-1}\mathbf{x})\ \Longrightarrow\ B(M^{-1}\mathbf{x})=\lambda(M^{-1}\mathbf{x})\ \checkmark
+> $$
 > 注意：**特征值相同，特征向量不同**（$A$ 的 $\mathbf{x}$ 对应 $B$ 的 $M^{-1}\mathbf{x}$）。
 
 **例（把矩阵变简单）**：$A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$，取 $M=\begin{bmatrix}1&1\\0&1\end{bmatrix}$：
@@ -440,9 +468,13 @@ $$
 
 > [!tip] 不可对角化时会怎样：Jordan 型
 > 不能对角化的矩阵最接近对角的形式叫 **Jordan 型**（Jordan form）：对角线上放特征值，紧邻的上对角线放 1：
-> $$J=\begin{bmatrix}3&1\\0&3\end{bmatrix}\quad(\text{上例本身就是一个 Jordan 块})$$
+> $$
+> J=\begin{bmatrix}3&1\\0&3\end{bmatrix}\quad(\text{上例本身就是一个 Jordan 块})
+> $$
 > 后果是幂与指数里会多出多项式因子：
-> $$J^k=\begin{bmatrix}3^k&k\,3^{k-1}\\0&3^k\end{bmatrix},\qquad e^{Jt}=e^{3t}\begin{bmatrix}1&t\\0&1\end{bmatrix}$$
+> $$
+> J^k=\begin{bmatrix}3^k&k\,3^{k-1}\\0&3^k\end{bmatrix},\qquad e^{Jt}=e^{3t}\begin{bmatrix}1&t\\0&1\end{bmatrix}
+> $$
 > 通信/控制里这类"临界阻尼"响应 $te^{\lambda t}$ 就来自这里。
 
 > [!warning] 重复特征值不一定是坏事
@@ -459,7 +491,9 @@ $$
 > [!tip] 定理 AB 与 BA 有相同的非零特征值
 > 对任意 $m\times n$ 的 $A$ 与 $n\times m$ 的 $B$（**形状可以完全不同**），$AB$（$m\times m$）与 $BA$（$n\times n$）的非零特征值**完全相同**（重数也一样）。
 > **证明**：设 $AB\mathbf{x}=\lambda\mathbf{x}$ 且 $\lambda\ne0$。两边左乘 $B$：
-> $$BA(B\mathbf{x})=\lambda(B\mathbf{x})$$
+> $$
+> BA(B\mathbf{x})=\lambda(B\mathbf{x})
+> $$
 > 且 $B\mathbf{x}\ne\mathbf{0}$（否则 $\lambda\mathbf{x}=AB\mathbf{x}=\mathbf{0}$，与 $\lambda\ne0$、$\mathbf{x}\ne\mathbf{0}$ 矛盾），所以 $B\mathbf{x}$ 是 $BA$ 的特征向量 ✓
 
 **例（大小完全不同的一对）**：取 $A=\begin{bmatrix}1&2\end{bmatrix}$（$1\times2$）、$B=\begin{bmatrix}1\\2\end{bmatrix}$（$2\times1$）：
@@ -480,7 +514,9 @@ $$
 
 > [!tip] 定理 $d\mathbf{u}/dt=A\mathbf{u}$ 的解
 > **微分方程组**（system of differential equations）：已知 $\mathbf{u}(0)$，方程 $d\mathbf{u}/dt=A\mathbf{u}$ 的解是
-> $$\mathbf{u}(t)=c_1e^{\lambda_1t}\mathbf{x}_1+c_2e^{\lambda_2t}\mathbf{x}_2+\cdots+c_ne^{\lambda_nt}\mathbf{x}_n$$
+> $$
+> \mathbf{u}(t)=c_1e^{\lambda_1t}\mathbf{x}_1+c_2e^{\lambda_2t}\mathbf{x}_2+\cdots+c_ne^{\lambda_nt}\mathbf{x}_n
+> $$
 > 其中 $\mathbf{x}_i$ 是特征向量，常数 $c_i$ 由 $\mathbf{u}(0)=\sum c_i\mathbf{x}_i$ 定出（**把初值展开成特征向量的组合**）。
 > **为什么**：把 $e^{\lambda t}\mathbf{x}$ 求导得 $\lambda e^{\lambda t}\mathbf{x}$，而 $A(e^{\lambda t}\mathbf{x})=\lambda e^{\lambda t}\mathbf{x}$——**求导与乘 A 是同一个操作** ✓
 
@@ -556,7 +592,9 @@ $$
 $$
 
 > [!tip] 定理 $2\times2$ 的稳定性判据
-> $$\text{稳定}\ (\text{两个 }\operatorname{Re}\lambda<0)\quad\Longleftrightarrow\quad \operatorname{tr}A<0\ \ \text{且}\ \ \det A>0$$
+> $$
+> \text{稳定}\ (\text{两个 }\operatorname{Re}\lambda<0)\quad\Longleftrightarrow\quad \operatorname{tr}A<0\ \ \text{且}\ \ \det A>0
+> $$
 > **推导**：$\det A=\lambda_1\lambda_2>0$ 说明两根同号；$\operatorname{tr}A=\lambda_1+\lambda_2<0$ 说明同为负。复数根时 $\operatorname{Re}\lambda=\operatorname{tr}A/2<0$ 也正好是这一条 ✓
 > **分界线**：$\det A=\operatorname{tr}^2A/4$（即 $(\operatorname{tr}A)^2=4\det A$）分开了"实特征值"与"复特征值（振荡）"。
 
@@ -616,11 +654,17 @@ $$
 
 > [!info] Def 6 矩阵指数
 > **矩阵指数**（matrix exponential）：
-> $$e^{At}=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\cdots$$
+> $$
+> e^{At}=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\cdots
+> $$
 > 若 $A$ 可对角化，则它简化成一个非常干净的公式：
-> $$e^{At}=Se^{\Lambda t}S^{-1}=S\begin{bmatrix}e^{\lambda_1t}&&\\&\ddots&\\&&e^{\lambda_nt}\end{bmatrix}S^{-1}$$
+> $$
+> e^{At}=Se^{\Lambda t}S^{-1}=S\begin{bmatrix}e^{\lambda_1t}&&\\&\ddots&\\&&e^{\lambda_nt}\end{bmatrix}S^{-1}
+> $$
 > 于是 $d\mathbf{u}/dt=A\mathbf{u}$ 的解就是
-> $$\mathbf{u}(t)=e^{At}\mathbf{u}(0)$$
+> $$
+> \mathbf{u}(t)=e^{At}\mathbf{u}(0)
+> $$
 
 （把 $A=S\Lambda S^{-1}$ 代入级数：$(S\Lambda S^{-1})^k=S\Lambda^kS^{-1}$，中间项全部对消，得 $Se^{\Lambda t}S^{-1}$ ✓）
 
@@ -683,9 +727,13 @@ $$
 
 > [!tip] 定理 对称矩阵的特征值一定是实数
 > 设 $A\mathbf{x}=\lambda\mathbf{x}$（$\mathbf{x}$ 可以是复向量）。用共轭转置 $\bar{\mathbf{x}}^T$ 左乘：
-> $$\bar{\mathbf{x}}^TA\mathbf{x}=\lambda\,\bar{\mathbf{x}}^T\mathbf{x}$$
+> $$
+> \bar{\mathbf{x}}^TA\mathbf{x}=\lambda\,\bar{\mathbf{x}}^T\mathbf{x}
+> $$
 > 左边是标量，取它的共轭：由于 $A$ 实且对称（$\bar A=A=A^T$），
-> $$\overline{\bar{\mathbf{x}}^TA\mathbf{x}}=\mathbf{x}^T A\bar{\mathbf{x}}=(A^T\mathbf{x})^T\bar{\mathbf{x}}=(A\mathbf{x})^T\bar{\mathbf{x}}=\lambda\,\mathbf{x}^T\bar{\mathbf{x}}=\lambda\,\overline{\bar{\mathbf{x}}^T\mathbf{x}}$$
+> $$
+> \overline{\bar{\mathbf{x}}^TA\mathbf{x}}=\mathbf{x}^T A\bar{\mathbf{x}}=(A^T\mathbf{x})^T\bar{\mathbf{x}}=(A\mathbf{x})^T\bar{\mathbf{x}}=\lambda\,\mathbf{x}^T\bar{\mathbf{x}}=\lambda\,\overline{\bar{\mathbf{x}}^T\mathbf{x}}
+> $$
 > 对比两式（$\bar{\mathbf{x}}^T\mathbf{x}=\sum|x_i|^2>0$）得 $\lambda=\bar\lambda$，**即 $\lambda$ 是实数** ✓
 
 反过来说：**非对称的实矩阵才可能"旋转"**（例如 $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ 的 $\pm i$）。所以"实矩阵的复特征向量"这件事，恰好是"对称性"的反面镜子：**对称 = 一切都是实的、正交的**。
@@ -697,7 +745,9 @@ $$
 
 > [!tip] 定理 谱定理（对称矩阵版）
 > 实对称矩阵 $A$ 存在 $n$ 个**标准正交**的特征向量 $\mathbf{q}_1,\dots,\mathbf{q}_n$（即使特征值有重根）。把它们按列排成 $Q$（于是 $Q^TQ=I$，$Q^{-1}=Q^T$）：
-> $$A=Q\Lambda Q^{T}\qquad\Longleftrightarrow\qquad A=\lambda_1\mathbf{q}_1\mathbf{q}_1^T+\lambda_2\mathbf{q}_2\mathbf{q}_2^T+\cdots+\lambda_n\mathbf{q}_n\mathbf{q}_n^T$$
+> $$
+> A=Q\Lambda Q^{T}\qquad\Longleftrightarrow\qquad A=\lambda_1\mathbf{q}_1\mathbf{q}_1^T+\lambda_2\mathbf{q}_2\mathbf{q}_2^T+\cdots+\lambda_n\mathbf{q}_n\mathbf{q}_n^T
+> $$
 > 右边这个写法叫 $A$ 的**谱分解**（spectral decomposition）。
 
 **两个关键点**：
@@ -737,7 +787,9 @@ $$
 
 > [!info] Def 7 正定矩阵
 > 对称矩阵 $A$ 若对一切 $\mathbf{x}\ne\mathbf{0}$ 都有
-> $$\mathbf{x}^TA\mathbf{x}>0$$
+> $$
+> \mathbf{x}^TA\mathbf{x}>0
+> $$
 > 则称 $A$ 是**正定**的（positive definite），记作 $A>0$。
 > 等价地（下一小节会证）：**$A$ 的所有特征值都大于零**。
 
@@ -784,9 +836,13 @@ $$
 
 > [!tip] 最重要的半正定矩阵：$A^TA$
 > 对**任何**矩阵 $A$（不必方阵）：
-> $$\mathbf{x}^TA^TA\mathbf{x}=(A\mathbf{x})^T(A\mathbf{x})=\|A\mathbf{x}\|^2\ge0$$
+> $$
+> \mathbf{x}^TA^TA\mathbf{x}=(A\mathbf{x})^T(A\mathbf{x})=\|A\mathbf{x}\|^2\ge0
+> $$
 > 所以 $A^TA$ 永远半正定 ✓ 而且：
-> $$A^TA\ \text{正定}\quad\Longleftrightarrow\quad A\ \text{的各列线性无关}\quad\Longleftrightarrow\quad \mathbf{N}(A)=\{\mathbf{0}\}$$
+> $$
+> A^TA\ \text{正定}\quad\Longleftrightarrow\quad A\ \text{的各列线性无关}\quad\Longleftrightarrow\quad \mathbf{N}(A)=\{\mathbf{0}\}
+> $$
 > —— **第 4 章"最小二乘的 $A^TA$ 可逆 $\iff$ 列无关"到这里终于有了名字：$A^TA$ 是正定的。** ✓
 > 同理，**协方差矩阵** $R=E[\mathbf{x}\mathbf{x}^T]$ 半正定（功率不可能为负），"$R$ 正定"意味着各分量"互不冗余"（满秩）✓
 
@@ -879,16 +935,22 @@ $$
 
 > [!tip] 定理 正定 ⟺ 唯一极小值
 > - $A$ **正定** ⇒ $f$ 是"碗形"，有**唯一**极小点 $\mathbf{x}=A^{-1}\mathbf{b}$，最小值
->   $$f_{\min}=c-\frac12\mathbf{b}^TA^{-1}\mathbf{b}$$
+>   $$
+>   f_{\min}=c-\frac12\mathbf{b}^TA^{-1}\mathbf{b}
+>   $$
 > - $A$ **半正定但奇异** ⇒ 有"平坦谷"，极小点有无穷多个（或不存在）；
 > - $A$ **不定** ⇒ 鞍点（某些方向往上、某些往下）。
 > **证明思路**：把 $f$ 在驻点处配方
-> $$f(\mathbf{x})=f_{\min}+\frac12(\mathbf{x}-\mathbf{x}^*)^TA(\mathbf{x}-\mathbf{x}^*)$$
+> $$
+> f(\mathbf{x})=f_{\min}+\frac12(\mathbf{x}-\mathbf{x}^*)^TA(\mathbf{x}-\mathbf{x}^*)
+> $$
 > 后面那一项 $\ge0$（正定），当且仅当 $\mathbf{x}=\mathbf{x}^*$ 取等 ✓
 
 > [!tip] 与第 4 章的接头：法方程就是"碗底"
 > 最小二乘要最小化的正是二次函数
-> $$\|A\mathbf{x}-\mathbf{b}\|^2=\mathbf{x}^TA^TA\mathbf{x}-2\mathbf{b}^TA\mathbf{x}+\mathbf{b}^T\mathbf{b}=\underbrace{\frac12\mathbf{x}^T(2A^TA)\mathbf{x}}_{\text{二次项}}-\underbrace{(2A^T\mathbf{b})^T\mathbf{x}}_{\text{一次项}}+\|\mathbf{b}\|^2$$
+> $$
+> \|A\mathbf{x}-\mathbf{b}\|^2=\mathbf{x}^TA^TA\mathbf{x}-2\mathbf{b}^TA\mathbf{x}+\mathbf{b}^T\mathbf{b}=\underbrace{\frac12\mathbf{x}^T(2A^TA)\mathbf{x}}_{\text{二次项}}-\underbrace{(2A^T\mathbf{b})^T\mathbf{x}}_{\text{一次项}}+\|\mathbf{b}\|^2
+> $$
 > 对照上面的标准形式："$A$" ↦ $A^TA$、"$\mathbf{b}$" ↦ $A^T\mathbf{b}$，于是
 > 1. $A^TA$ **正定**（列无关）⇒ 碗有唯一底 ⇒ 唯一最小二乘解；
 > 2. 驻点条件 $\nabla f=0$ 就是 $A^TA\hat{\mathbf{x}}=A^T\mathbf{b}$——**法方程** ✓

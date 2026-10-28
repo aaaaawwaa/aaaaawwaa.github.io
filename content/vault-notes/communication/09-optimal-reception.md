@@ -43,7 +43,9 @@ related: []
 
 > [!info] Def 1 似然函数
 > **似然函数**（likelihood function）是发送 $s_i$ 条件下接收矢量 $\mathbf{r}$ 的联合概率密度：
-> $$p_n(\mathbf{r}/s_i)=\frac{1}{(\sqrt{2\pi}\sigma_n)^N}\exp\left[-\frac{1}{2\sigma_n^2}\sum_{k=1}^{N}(r_k-s_{ik})^2\right]$$
+> $$
+> p_n(\mathbf{r}/s_i)=\frac{1}{(\sqrt{2\pi}\sigma_n)^N}\exp\left[-\frac{1}{2\sigma_n^2}\sum_{k=1}^{N}(r_k-s_{ik})^2\right]
+> $$
 
 **接收问题的本质**：观测到 $\mathbf{r}$，反推最可能发的是哪个 $s_i$——统计判决问题。
 
@@ -60,13 +62,17 @@ related: []
 
 > [!info] Def 3 最大似然准则
 > **最大似然准则**（maximum likelihood，简称 ML）在等先验条件下选取使**似然函数**最大的 $s_i$：
-> $$\text{判 }s_1\iff p_n(\mathbf{r}/s_1)>p_n(\mathbf{r}/s_2)$$
+> $$
+> \text{判 }s_1\iff p_n(\mathbf{r}/s_1)>p_n(\mathbf{r}/s_2)
+> $$
 
 ## 判决的几何意义——最小距离
 
 高斯白噪声下，似然比较化简为**欧氏距离比较**：
 
-$$\text{判 }s_i\iff\|\mathbf{r}-\mathbf{s}_i\|^2\text{ 最小（最小均方误差）}$$
+$$
+\text{判 }s_i\iff\|\mathbf{r}-\mathbf{s}_i\|^2\text{ 最小（最小均方误差）}
+$$
 
 > [!tip] 一句话
 > **高斯信道最佳接收 = 挑离接收矢量"欧氏距离最近"的发送信号**（等概时）。星座图上点距的意义正在于此（见 [[vault-notes/communication/07-digital-bandpass]] / [[vault-notes/communication/08-advanced-digital-modulation]]）。
@@ -92,7 +98,9 @@ flowchart LR
 
 ## 最佳接收的误码率（普适公式）
 
-$$P_e=\frac{1}{2}\mathrm{erfc}\!\left[\sqrt{\frac{E(1-\rho)}{2n_0}}\right]$$
+$$
+P_e=\frac{1}{2}\mathrm{erfc}\!\left[\sqrt{\frac{E(1-\rho)}{2n_0}}\right]
+$$
 
 - $E$：每码元能量；$n_0$：单边噪声谱密度
 - **$\rho$：两信号波形的相关系数** $\rho=\dfrac{\int_0^{T_B}s_1(t)s_2(t)\,dt}{E}$
@@ -122,7 +130,9 @@ $$P_e=\frac{1}{2}\mathrm{erfc}\!\left[\sqrt{\frac{E(1-\rho)}{2n_0}}\right]$$
 
 输出信噪比（施瓦茨不等式放缩）：
 
-$$r_{0\max}=\frac{2E}{n_0}$$
+$$
+r_{0\max}=\frac{2E}{n_0}
+$$
 
 （**只与信号能量 $E$ 和 $n_0$ 有关，与波形细节无关**！）
 
@@ -130,8 +140,12 @@ $$r_{0\max}=\frac{2E}{n_0}$$
 
 > [!info] Def 5 匹配滤波器
 > **匹配滤波器**（matched filter）是在某一时刻 $t_0$ 使输出信噪比达到最大的线性滤波器：
-> $$H(f)=k\,S^*(f)e^{-j2\pi ft_0}\quad(\text{频谱的复共轭，延迟 }t_0)$$
-> $$h(t)=k\,s(t_0-t)\quad(\text{信号的镜像再平移 }t_0)$$
+> $$
+> H(f)=k\,S^*(f)e^{-j2\pi ft_0}\quad(\text{频谱的复共轭，延迟 }t_0)
+> $$
+> $$
+> h(t)=k\,s(t_0-t)\quad(\text{信号的镜像再平移 }t_0)
+> $$
 
 **物理可实现条件**：$t_0\ge$ 信号结束时刻 $T_B$（否则镜像有未来成分）→ 通常取 $t_0=T_B$。
 
@@ -144,7 +158,9 @@ $$r_{0\max}=\frac{2E}{n_0}$$
 
 ## 匹配滤波器与相关接收机的等价
 
-$$\int_0^{T_B}r(t)s(t)\,dt\quad\Longleftrightarrow\quad r(t)*h(t)\Big|_{t=T_B}$$
+$$
+\int_0^{T_B}r(t)s(t)\,dt\quad\Longleftrightarrow\quad r(t)*h(t)\Big|_{t=T_B}
+$$
 
 > [!tip] 考研实战
 > 常考：给矩形脉冲 $s(t)$（宽 $T_B$）求匹配滤波器 $h(t)$（矩形镜像）、$t_0$、最大输出信噪比 $2E/n_0$、画输出波形（三角/抛物线状自相关）。
@@ -158,13 +174,17 @@ $$\int_0^{T_B}r(t)s(t)\,dt\quad\Longleftrightarrow\quad r(t)*h(t)\Big|_{t=T_B}$$
 
 无 ISI + 匹配滤波（输出信噪比最大）同时成立的**收发滤波器幅频条件**：
 
-$$|T(\omega)|=|R(\omega)|=|H(\omega)|^{1/2}$$
+$$
+|T(\omega)|=|R(\omega)|=|H(\omega)|^{1/2}
+$$
 
 （$H(\omega)$：无 ISI 的总特性，如升余弦滚降）——**发送滤波器 = 接收滤波器 = 总特性的平方根（平方根升余弦 SRRC）**。
 
 误码率（双极性，最佳系统）：
 
-$$P_e=\frac{1}{2}\mathrm{erfc}\!\left(\sqrt{\frac{E}{n_0}}\right)$$
+$$
+P_e=\frac{1}{2}\mathrm{erfc}\!\left(\sqrt{\frac{E}{n_0}}\right)
+$$
 
 ## 非理想信道
 

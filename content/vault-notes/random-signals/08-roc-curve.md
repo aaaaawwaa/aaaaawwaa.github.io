@@ -67,11 +67,15 @@ AUC 把整条曲线压成一个数，便于比较不同检测器，但它忽略�
 
 设 $H_0:x\sim\mathcal{N}(0,\sigma^2)$，$H_1:x\sim\mathcal{N}(\mu,\sigma^2)$，判决门限为 $\gamma$。令 $d=\mu/\sigma$，则
 
-$$P_{fa}=Q\left(\frac{\gamma}{\sigma}\right),\qquad P_d=Q\left(\frac{\gamma-\mu}{\sigma}\right)$$
+$$
+P_{fa}=Q\left(\frac{\gamma}{\sigma}\right),\qquad P_d=Q\left(\frac{\gamma-\mu}{\sigma}\right)
+$$
 
 消去 $\gamma$ 得 ROC 的解析式：
 
-$$P_d=Q\left(Q^{-1}(P_{fa})-d\right)$$
+$$
+P_d=Q\left(Q^{-1}(P_{fa})-d\right)
+$$
 
 $d$ 称为偏移信噪比或可分性指数，$d$ 越大曲线越靠左上。取 $d=2$：
 

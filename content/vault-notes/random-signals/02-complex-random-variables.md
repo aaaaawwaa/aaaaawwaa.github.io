@@ -30,7 +30,9 @@ related: []
 > [!info] 定义 10.1 复随机变量
 > 设 $X,Y$ 为实随机变量，称 $Z=X+jY$ 为**复随机变量**，其中 $j=\sqrt{-1}$。
 > 均值与方差定义为
-> $$\mu_Z=E[Z]=E[X]+jE[Y],\qquad \mathrm{Var}(Z)=E\big[\lvert Z-\mu_Z\rvert^2\big]$$
+> $$
+> \mu_Z=E[Z]=E[X]+jE[Y],\qquad \mathrm{Var}(Z)=E\big[\lvert Z-\mu_Z\rvert^2\big]
+> $$
 
 | 量 | 定义 | 与 $I,Q$ 的关系 |
 | --- | --- | --- |
@@ -72,12 +74,16 @@ related: []
 
 > [!info] 定义 10.3 proper 复高斯
 > 若 $Z\sim\mathcal{CN}(\mu,\sigma_Z^2)$，其密度为
-> $$f_Z(z)=\frac{1}{\pi\sigma_Z^2}\exp\left(-\frac{\lvert z-\mu\rvert^2}{\sigma_Z^2}\right)$$
+> $$
+> f_Z(z)=\frac{1}{\pi\sigma_Z^2}\exp\left(-\frac{\lvert z-\mu\rvert^2}{\sigma_Z^2}\right)
+> $$
 > 其中 $\sigma_Z^2=E[\lvert Z-\mu\rvert^2]$。实部与虚部独立，各服从 $N(\mathrm{Re}\,\mu,\sigma_Z^2/2)$ 与 $N(\mathrm{Im}\,\mu,\sigma_Z^2/2)$。
 
 > [!example] 两路独立高斯的合成
 > 设 $I,Q$ 独立同分布 $N(0,1)$，$Z=I+jQ$。则 $\mu_Z=0$，$\sigma_Z^2=2$，
-> $$E[Z^2]=E[I^2]-E[Q^2]+2jE[IQ]=1-1+0=0$$
+> $$
+> E[Z^2]=E[I^2]-E[Q^2]+2jE[IQ]=1-1+0=0
+> $$
 > 所以 $Z$ 是 proper 的，$Z\sim\mathcal{CN}(0,2)$。
 > 反过来，若 $I\sim N(0,4)$、$Q\sim N(0,1)$，则 $E[Z^2]=3\ne0$，$Z$ 非圆，相位不再均匀，星座图会被"压扁"。
 
@@ -85,7 +91,9 @@ related: []
 
 > [!info] 定义 10.4 复随机向量
 > 对复向量 $\mathbf{Z}=[Z_1,\dots,Z_n]^{T}$，协方差矩阵与伪协方差矩阵分别为
-> $$\mathbf{R}_Z=E\big[(\mathbf{Z}-\boldsymbol{\mu})(\mathbf{Z}-\boldsymbol{\mu})^{H}\big],\qquad \mathbf{P}_Z=E\big[(\mathbf{Z}-\boldsymbol{\mu})(\mathbf{Z}-\boldsymbol{\mu})^{T}\big]$$
+> $$
+> \mathbf{R}_Z=E\big[(\mathbf{Z}-\boldsymbol{\mu})(\mathbf{Z}-\boldsymbol{\mu})^{H}\big],\qquad \mathbf{P}_Z=E\big[(\mathbf{Z}-\boldsymbol{\mu})(\mathbf{Z}-\boldsymbol{\mu})^{T}\big]
+> $$
 > $\mathbf{R}_Z$ 为 Hermitian 半正定矩阵，$\mathbf{P}_Z$ 为复对称矩阵。
 
 | 对象 | 维数关系 | 性质 |
@@ -107,9 +115,13 @@ related: []
 
 > [!example] 增益不平衡导致非圆
 > 设理想基带信号 $Z_0=I_0+jQ_0$ 为 proper，$I_0,Q_0$ 独立同分布 $N(0,1)$。接收机 I 路增益为 $1+\epsilon$，Q 路为 $1-\epsilon$，无相位误差，则
-> $$Z=(1+\epsilon)I_0+j(1-\epsilon)Q_0$$
+> $$
+> Z=(1+\epsilon)I_0+j(1-\epsilon)Q_0
+> $$
 > 计算伪方差：
-> $$E[Z^2]=(1+\epsilon)^2-(1-\epsilon)^2=4\epsilon$$
+> $$
+> E[Z^2]=(1+\epsilon)^2-(1-\epsilon)^2=4\epsilon
+> $$
 > 只要 $\epsilon\ne0$，$Z$ 就非圆；镜像抑制比近似为 $\mathrm{IMRR}\approx1/\epsilon^2$。
 > 工程上 $\epsilon=1\%$ 对应约 $40$ dB 的镜像抑制，足以限制高阶 QAM 的误差矢量幅度。
 

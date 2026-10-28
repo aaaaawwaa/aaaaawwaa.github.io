@@ -49,17 +49,23 @@ related: []
 > [!info] Def 1 联合分布函数
 > **联合分布函数**（joint CDF）：
 
-$$F_{XY}(x,y) = P(X \le x,\ Y \le y)$$
+$$
+F_{XY}(x,y) = P(X \le x,\ Y \le y)
+$$
 
 **联合概率密度**（连续型，$F$ 二阶可导时）：
 
-$$f_{XY}(x,y) = \frac{\partial^2 F_{XY}(x,y)}{\partial x\,\partial y}, \qquad F_{XY}(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u$$
+$$
+f_{XY}(x,y) = \frac{\partial^2 F_{XY}(x,y)}{\partial x\,\partial y}, \qquad F_{XY}(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f_{XY}(u,v)\,\mathrm{d}v\,\mathrm{d}u
+$$
 
 两条基本性质：$f_{XY}(x,y)\ge 0$，且 $\displaystyle\iint_{\mathbb{R}^2} f_{XY}(x,y)\,\mathrm{d}x\,\mathrm{d}y = 1$。
 
 ## 1.2 边缘分布：把另一个变量"积掉"
 
-$$f_X(x) = \int_{-\infty}^{\infty} f_{XY}(x,y)\,\mathrm{d}y, \qquad f_Y(y) = \int_{-\infty}^{\infty} f_{XY}(x,y)\,\mathrm{d}x$$
+$$
+f_X(x) = \int_{-\infty}^{\infty} f_{XY}(x,y)\,\mathrm{d}y, \qquad f_Y(y) = \int_{-\infty}^{\infty} f_{XY}(x,y)\,\mathrm{d}x
+$$
 
 > [!tip] 一句话记忆
 > **联合 → 边缘靠积分，边缘 → 联合需要独立性假设**（一般不能反推）。
@@ -68,14 +74,18 @@ $$f_X(x) = \int_{-\infty}^{\infty} f_{XY}(x,y)\,\mathrm{d}y, \qquad f_Y(y) = \in
 
 $X$ 与 $Y$ **独立** ⟺ 对一切 $x,y$ 有
 
-$$f_{XY}(x,y) = f_X(x)\,f_Y(y) \qquad (\text{或 } F_{XY}=F_X F_Y)$$
+$$
+f_{XY}(x,y) = f_X(x)\,f_Y(y) \qquad (\text{或 } F_{XY}=F_X F_Y)
+$$
 
 > [!warning] 常见误区
 > **不相关 ≠ 独立**（一般情形）。但对**二维高斯**，不相关 $\Leftrightarrow$ 独立 —— 这条性质在 §3.5 生成相关高斯时会用到。
 
 ## 1.4 条件分布
 
-$$f_{Y|X}(y|x) = \frac{f_{XY}(x,y)}{f_X(x)} \quad (f_X(x) > 0)$$
+$$
+f_{Y|X}(y|x) = \frac{f_{XY}(x,y)}{f_X(x)} \quad (f_X(x) > 0)
+$$
 
 这是 [[vault-notes/math/probability/02-conditional-probability-independence|条件概率]] 在连续情形下的对应物（$\frac{\text{联合}}{\text{边缘}}$ 正是 $P(AB)/P(A)$ 的密度版本）。
 
@@ -89,24 +99,34 @@ $$f_{Y|X}(y|x) = \frac{f_{XY}(x,y)}{f_X(x)} \quad (f_X(x) > 0)$$
 > [!important] 一维求分布的三条路（按优先级选用）
 >
 > **① 分布函数法**（永远可用）
-> $$F_Y(y) = P(g(X)\le y) \;\Longrightarrow\; \text{解不等式得 } x \text{ 的范围} \;\Longrightarrow\; \text{用 } F_X \text{ 表示} \;\Longrightarrow\; f_Y = F_Y'$$
+> $$
+> F_Y(y) = P(g(X)\le y) \;\Longrightarrow\; \text{解不等式得 } x \text{ 的范围} \;\Longrightarrow\; \text{用 } F_X \text{ 表示} \;\Longrightarrow\; f_Y = F_Y'
+> $$
 >
 > **② 单调可导公式**（$g$ 严格单调时最快）
-> $$f_Y(y) = f_X\big(h(y)\big)\,\big|h'(y)\big|, \qquad h = g^{-1}$$
+> $$
+> f_Y(y) = f_X\big(h(y)\big)\,\big|h'(y)\big|, \qquad h = g^{-1}
+> $$
 >
 > **③ 非单调：分段求和**（如 $Y=X^2$）
-> $$f_Y(y) = \sum_{i} \frac{f_X(x_i)}{\big|g'(x_i)\big|}, \qquad x_i \text{ 为 } g(x)=y \text{ 的全部实根}$$
+> $$
+> f_Y(y) = \sum_{i} \frac{f_X(x_i)}{\big|g'(x_i)\big|}, \qquad x_i \text{ 为 } g(x)=y \text{ 的全部实根}
+> $$
 
 > [!example] 非单调典型：$Y = X^2$（$X\sim N(0,1)$）
 > 对 $y>0$，方程 $x^2=y$ 有两根 $x_{1,2}=\pm\sqrt y$，且 $|g'|=2\sqrt y$：
-> $$f_Y(y) = \frac{f_X(\sqrt y) + f_X(-\sqrt y)}{2\sqrt y} = \frac{1}{\sqrt{2\pi y}}\,e^{-y/2}, \qquad y>0$$
+> $$
+> f_Y(y) = \frac{f_X(\sqrt y) + f_X(-\sqrt y)}{2\sqrt y} = \frac{1}{\sqrt{2\pi y}}\,e^{-y/2}, \qquad y>0
+> $$
 > 即**自由度为 1 的卡方分布** $\chi^2(1)$ —— 这正是通信中"能量检测"统计量（见 [[vault-notes/math/probability/03-random-variables-distributions]] 例 11）的理论基础。
 
 ## 2.2 二维函数：$Z=g(X,Y)$ 的分布
 
 **分布函数法（通用）**：先算
 
-$$F_Z(z) = \iint_{g(x,y)\le z} f_{XY}(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
+$$
+F_Z(z) = \iint_{g(x,y)\le z} f_{XY}(x,y)\,\mathrm{d}x\,\mathrm{d}y
+$$
 
 再对 $z$ 求导。难点在于**把区域 $g(x,y)\le z$ 画对**。
 
@@ -114,7 +134,9 @@ $$F_Z(z) = \iint_{g(x,y)\le z} f_{XY}(x,y)\,\mathrm{d}x\,\mathrm{d}y$$
 
 对 $Z = X+Y$（$X,Y$ 独立）：
 
-$$\boxed{\;f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,\mathrm{d}x = f_X * f_Y\;}$$
+$$
+\boxed{\;f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,\mathrm{d}x = f_X * f_Y\;}
+$$
 
 > [!important] 几何理解（记这一句就够）
 > 卷积三动作：**把 $f_Y$ 翻转（$z-x$）、平移 $z$、与 $f_X$ 相乘积分**。
@@ -163,11 +185,15 @@ $$\boxed{\;f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,\mathrm{d}x = f_X 
 
 设 $(U,V) = (g_1(X,Y),\ g_2(X,Y))$ 是**一对一**变换，反解出
 
-$$x = x(u,v), \qquad y = y(u,v)$$
+$$
+x = x(u,v), \qquad y = y(u,v)
+$$
 
 则联合密度：
 
-$$\boxed{\;f_{UV}(u,v) = f_{XY}\big(x(u,v),\ y(u,v)\big)\cdot |J|\;}, \qquad J = \det\begin{bmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\end{bmatrix}$$
+$$
+\boxed{\;f_{UV}(u,v) = f_{XY}\big(x(u,v),\ y(u,v)\big)\cdot |J|\;}, \qquad J = \det\begin{bmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\end{bmatrix}
+$$
 
 > [!warning] 三个易错点
 > 1. **$|J|$ 要用绝对值**；$J$ 是**反函数**（$x,y$ 对 $u,v$）的雅可比，别写反方向。
@@ -176,13 +202,21 @@ $$\boxed{\;f_{UV}(u,v) = f_{XY}\big(x(u,v),\ y(u,v)\big)\cdot |J|\;}, \qquad J =
 
 > [!example] 用雅可比法推出瑞利分布（几何来源）⭐
 > 设 $X,Y$ 独立同分布 $N(0,\sigma^2)$（接收信号的同相/正交分量）。作**极坐标变换**：
-> $$x = r\cos\theta, \qquad y = r\sin\theta \quad (r\ge 0,\ 0\le\theta<2\pi)$$
+> $$
+> x = r\cos\theta, \qquad y = r\sin\theta \quad (r\ge 0,\ 0\le\theta<2\pi)
+> $$
 > 雅可比：
-> $$J = \det\begin{bmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta\end{bmatrix} = r\cos^2\theta + r\sin^2\theta = r$$
+> $$
+> J = \det\begin{bmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta\end{bmatrix} = r\cos^2\theta + r\sin^2\theta = r
+> $$
 > 故
-> $$f_{R\Theta}(r,\theta) = f_X(r\cos\theta)\,f_Y(r\sin\theta)\cdot r = \frac{r}{2\pi\sigma^2}\exp\!\left(-\frac{r^2}{2\sigma^2}\right)$$
+> $$
+> f_{R\Theta}(r,\theta) = f_X(r\cos\theta)\,f_Y(r\sin\theta)\cdot r = \frac{r}{2\pi\sigma^2}\exp\!\left(-\frac{r^2}{2\sigma^2}\right)
+> $$
 > 对 $\theta$ 积分掉（被积函数与 $\theta$ 无关，乘 $2\pi$）：
-> $$\boxed{\;f_R(r) = \frac{r}{\sigma^2}\exp\!\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0\;}$$
+> $$
+> \boxed{\;f_R(r) = \frac{r}{\sigma^2}\exp\!\left(-\frac{r^2}{2\sigma^2}\right),\qquad r\ge 0\;}
+> $$
 > **这就是瑞利分布**——[[vault-notes/math/probability/03-random-variables-distributions]] 里那句"瑞利 = 两个独立同方差高斯变量的模"的完整推导。同时可见 $\theta$ 服从**均匀分布**且与 $R$ **独立**，这正是 [[vault-notes/communication/03-random-processes]] 中窄带噪声"包络瑞利、相位均匀、二者独立"的由来。
 
 ## 2.4 顺序统计量与极值 ⭐⭐
@@ -194,15 +228,21 @@ $$\boxed{\;f_{UV}(u,v) = f_{XY}\big(x(u,v),\ y(u,v)\big)\cdot |J|\;}, \qquad J =
 
 **最大值 $Z=\max(X_1,\dots,X_n)$**：
 
-$$F_{max}(z) = P(\text{全部} \le z) = \big[F(z)\big]^n \qquad\Longrightarrow\qquad f_{max}(z) = n\big[F(z)\big]^{n-1}f(z)$$
+$$
+F_{max}(z) = P(\text{全部} \le z) = \big[F(z)\big]^n \qquad\Longrightarrow\qquad f_{max}(z) = n\big[F(z)\big]^{n-1}f(z)
+$$
 
 **最小值 $Z=\min(X_1,\dots,X_n)$**：
 
-$$F_{min}(z) = 1 - \big[1-F(z)\big]^n \qquad\Longrightarrow\qquad f_{min}(z) = n\big[1-F(z)\big]^{n-1}f(z)$$
+$$
+F_{min}(z) = 1 - \big[1-F(z)\big]^n \qquad\Longrightarrow\qquad f_{min}(z) = n\big[1-F(z)\big]^{n-1}f(z)
+$$
 
 **第 $k$ 个次序统计量 $X_{(k)}$**：
 
-$$f_{X_{(k)}}(z) = \frac{n!}{(k-1)!\,(n-k)!}\,\big[F(z)\big]^{k-1}\big[1-F(z)\big]^{n-k}f(z)$$
+$$
+f_{X_{(k)}}(z) = \frac{n!}{(k-1)!\,(n-k)!}\,\big[F(z)\big]^{k-1}\big[1-F(z)\big]^{n-k}f(z)
+$$
 
 > [!tip] 工程解释（可靠性/分集）
 > - **串联系统**（全部元件都得工作）寿命 = $\min$ → 系统比最弱的元件还短命
@@ -221,7 +261,9 @@ $$f_{X_{(k)}}(z) = \frac{n!}{(k-1)!\,(n-k)!}\,\big[F(z)\big]^{k-1}\big[1-F(z)\bi
 
 ### (1) 线性同余发生器 LCG
 
-$$x_{n+1} = (a\,x_n + c) \bmod m, \qquad u_n = x_n/m$$
+$$
+x_{n+1} = (a\,x_n + c) \bmod m, \qquad u_n = x_n/m
+$$
 
 参数选择决定周期。**Park–Miller 最小标准**取 $a=16807$、$m=2^{31}-1$、$c=0$。
 
@@ -251,12 +293,16 @@ x  = rand(1,N)*(b-a)+a;   % 一般区间均匀
 
 > [!info] Def 3 逆变换法（基本定理）
 > 设 $F(x)$ 是任意（连续且严格单调的）分布函数，$U\sim U(0,1)$，则
-> $$X = F^{-1}(U)$$
+> $$
+> X = F^{-1}(U)
+> $$
 > 服从分布 $F$。
 
 **证明（三行）**：
 
-$$P(X \le x) = P\big(F^{-1}(U)\le x\big) = P\big(U \le F(x)\big) = F(x)$$
+$$
+P(X \le x) = P\big(F^{-1}(U)\le x\big) = P\big(U \le F(x)\big) = F(x)
+$$
 
 最后一步用了 $U$ 在 $(0,1)$ 上均匀分布、$F(x)\in[0,1]$ 的性质。∎
 
@@ -777,9 +823,13 @@ $$P(X \le x) = P\big(F^{-1}(U)\le x\big) = P\big(U \le F(x)\big) = F(x)$$
 
 设 $U_1, U_2$ **独立**同服从 $U(0,1)$，令
 
-$$R = \sqrt{-2\ln U_1}, \qquad \Theta = 2\pi U_2$$
+$$
+R = \sqrt{-2\ln U_1}, \qquad \Theta = 2\pi U_2
+$$
 
-$$Z_1 = R\cos\Theta = \sqrt{-2\ln U_1}\,\cos(2\pi U_2), \qquad Z_2 = \sqrt{-2\ln U_1}\,\sin(2\pi U_2)$$
+$$
+Z_1 = R\cos\Theta = \sqrt{-2\ln U_1}\,\cos(2\pi U_2), \qquad Z_2 = \sqrt{-2\ln U_1}\,\sin(2\pi U_2)
+$$
 
 > [!info] Def 5 Box–Muller 变换
 > **$Z_1$ 与 $Z_2$ 是相互独立的标准正态随机变量**，即 $Z_1,Z_2 \overset{iid}{\sim} N(0,1)$。
@@ -839,13 +889,17 @@ $$Z_1 = R\cos\Theta = \sqrt{-2\ln U_1}\,\cos(2\pi U_2), \qquad Z_2 = \sqrt{-2\ln
 > 1. 对 $\Sigma$ 做 **Cholesky 分解**：$\Sigma = LL^{T}$（$L$ 下三角）
 > 2. 抽独立标准正态 $\mathbf{Z}\sim N(\mathbf{0}, I)$
 > 3. 令
-> $$\mathbf{X} = \boldsymbol{\mu} + L\,\mathbf{Z}$$
+> $$
+> \mathbf{X} = \boldsymbol{\mu} + L\,\mathbf{Z}
+> $$
 >
 > **验证**：$E[(\mathbf{X}-\boldsymbol{\mu})(\mathbf{X}-\boldsymbol{\mu})^T] = E[L\mathbf{Z}\mathbf{Z}^T L^T] = L\,I\,L^T = \Sigma$ ✓
 
 **二维显式形式**（$\sigma_1=\sigma_2=1$、相关系数 $\rho$）：
 
-$$L = \begin{bmatrix} 1 & 0 \\ \rho & \sqrt{1-\rho^2}\end{bmatrix} \;\Longrightarrow\; \begin{cases} x_1 = z_1 \\ x_2 = \rho\,z_1 + \sqrt{1-\rho^2}\,z_2\end{cases}$$
+$$
+L = \begin{bmatrix} 1 & 0 \\ \rho & \sqrt{1-\rho^2}\end{bmatrix} \;\Longrightarrow\; \begin{cases} x_1 = z_1 \\ x_2 = \rho\,z_1 + \sqrt{1-\rho^2}\,z_2\end{cases}
+$$
 
 > [!tip] 为什么是 $\sqrt{1-\rho^2}$
 > 必须保证 $x_2$ 的**方差仍为 1**： $\mathrm{Var}(x_2) = \rho^2 + (1-\rho^2) = 1$ ✓
@@ -1661,7 +1715,9 @@ $$L = \begin{bmatrix} 1 & 0 \\ \rho & \sqrt{1-\rho^2}\end{bmatrix} \;\Longrighta
 
 **模型**（[[vault-notes/communication/03-random-processes]]）：$n(t)$ 功率谱密度 $n_0/2$ 平坦、幅度服从高斯分布。**离散仿真**中：
 
-$$n_k = \sqrt{\frac{n_0}{2}}\,z_k, \qquad z_k \overset{iid}{\sim} N(0,1)$$
+$$
+n_k = \sqrt{\frac{n_0}{2}}\,z_k, \qquad z_k \overset{iid}{\sim} N(0,1)
+$$
 
 即：**直接调用 `randn` 并按需缩放**。常用缩放关系：
 - 指定噪声功率 $\sigma_n^2$：$n_k = \sigma_n z_k$
@@ -1694,7 +1750,9 @@ X = fft(nk); P = abs(X).^2/N; P = P(1:floor(N/2));
 
 > [!important] 白噪声"抽样不相关"的严格含义 ⭐（容易想当然）
 > 上面验证的是**离散 i.i.d. 序列**。若要仿真**带限白噪声**（带宽 $B$），必须**先滤波**，此时教科书结论是
-> $$R(\tau) = n_0 B\,\mathrm{Sa}(2\pi B\tau)$$
+> $$
+> R(\tau) = n_0 B\,\mathrm{Sa}(2\pi B\tau)
+> $$
 > 其零点在 $\tau = \dfrac{k}{2B}$ —— 即**每隔 $\dfrac{1}{2B}$ 取样才不相关**，间隔更密时样本是**强相关**的。
 >
 > **实机验证**（用 FFT 理想低通，$B=0.25$，归一化采样率 1）：
@@ -1715,7 +1773,9 @@ X = fft(nk); P = abs(X).^2/N; P = P(1:floor(N/2));
 
 **莱斯**（叠加直射分量 $A$）：
 
-$$r = \sqrt{(A+n_I)^2 + n_Q^2}, \qquad K = \frac{A^2}{2\sigma^2}$$
+$$
+r = \sqrt{(A+n_I)^2 + n_Q^2}, \qquad K = \frac{A^2}{2\sigma^2}
+$$
 
 $K$ 为莱斯因子（直射功率/散射功率）。$K=0$ 时退化为瑞利（见 [[vault-notes/math/probability/03-random-variables-distributions]]）。
 
@@ -1840,7 +1900,9 @@ end
 
 > [!important] 蒙特卡洛的样本量限制 ⭐（仿真报告必写）
 > 误码率估计的**相对标准差**：
-> $$\frac{\sigma_{\hat P_e}}{P_e} \approx \frac{1}{\sqrt{N\,P_e}} \qquad (\text{小概率时})$$
+> $$
+> \frac{\sigma_{\hat P_e}}{P_e} \approx \frac{1}{\sqrt{N\,P_e}} \qquad (\text{小概率时})
+> $$
 >
 > **95% 置信区间半宽**：$\;1.96\sqrt{\dfrac{P_e(1-P_e)}{N}}$
 >
@@ -1866,11 +1928,15 @@ end
 
 $f_X(x)=f_Y(x)=1\ (0<x<1)$。由卷积公式：
 
-$$f_Z(z) = \int_{-\infty}^{\infty} f_X(x)f_Y(z-x)\,\mathrm{d}x$$
+$$
+f_Z(z) = \int_{-\infty}^{\infty} f_X(x)f_Y(z-x)\,\mathrm{d}x
+$$
 
 被积函数非零要求 $0<x<1$ **且** $0<z-x<1$，即 $x\in(\max(0,z-1),\ \min(1,z))$。区间长度即积分值：
 
-$$f_Z(z) = \begin{cases} z, & 0\le z<1 \\ 2-z, & 1\le z\le 2 \\ 0, & \text{其他}\end{cases}$$
+$$
+f_Z(z) = \begin{cases} z, & 0\le z<1 \\ 2-z, & 1\le z\le 2 \\ 0, & \text{其他}\end{cases}
+$$
 
 即**三角分布**（峰值 1 在 $z=1$）。
 
@@ -1885,13 +1951,17 @@ $$f_Z(z) = \begin{cases} z, & 0\le z<1 \\ 2-z, & 1\le z\le 2 \\ 0, & \text{其�
 
 **(1) 串联（全部工作才行）**：寿命 $T=\min T_i$。
 
-$$F_{min}(t) = 1-[1-F(t)]^5 = 1-e^{-5\lambda t}$$
+$$
+F_{min}(t) = 1-[1-F(t)]^5 = 1-e^{-5\lambda t}
+$$
 
 即**仍是参数为 $5\lambda$ 的指数分布**，平均寿命 $1/(5\lambda)=2$ 年 —— 只有单个元件的 1/5。
 
 **(2) 并联（一个工作就行）**：寿命 $T=\max T_i$。
 
-$$F_{max}(t) = (1-e^{-\lambda t})^5, \qquad f_{max}(t) = 5\lambda e^{-\lambda t}(1-e^{-\lambda t})^4$$
+$$
+F_{max}(t) = (1-e^{-\lambda t})^5, \qquad f_{max}(t) = 5\lambda e^{-\lambda t}(1-e^{-\lambda t})^4
+$$
 
 平均寿命 $=\frac{1}{\lambda}\left(1+\frac12+\frac13+\frac14+\frac15\right) = \frac{137}{60\lambda}\approx 22.8$ 年。
 
@@ -1904,11 +1974,15 @@ $$F_{max}(t) = (1-e^{-\lambda t})^5, \qquad f_{max}(t) = 5\lambda e^{-\lambda t}
 
 **解**：作极坐标变换 $x=r\cos\theta, y=r\sin\theta$（$r\ge0, 0\le\theta<2\pi$），反函数唯一，雅可比 $J=r$（推导见 §2.3）。联合密度
 
-$$f_{R\Theta}(r,\theta) = \frac{1}{2\pi\sigma^2}e^{-r^2/(2\sigma^2)}\cdot r$$
+$$
+f_{R\Theta}(r,\theta) = \frac{1}{2\pi\sigma^2}e^{-r^2/(2\sigma^2)}\cdot r
+$$
 
 对 $\theta$ 积分（$0$ 到 $2\pi$）：
 
-$$f_R(r) = \frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}, \qquad r\ge0 \quad\blacksquare$$
+$$
+f_R(r) = \frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}, \qquad r\ge0 \quad\blacksquare
+$$
 
 **副产品**：$f_\Theta(\theta)=\frac{1}{2\pi}$（均匀分布），且 $f_{R\Theta}=f_R f_\Theta$ → **$R$ 与 $\Theta$ 独立**。
 
@@ -1918,7 +1992,9 @@ $$f_R(r) = \frac{r}{\sigma^2}e^{-r^2/(2\sigma^2)}, \qquad r\ge0 \quad\blacksquar
 
 **解**：$F(x)=1-e^{-x^2/(2\sigma^2)}$，令 $u=F(x)$ 反解：
 
-$$x = \sigma\sqrt{-2\ln(1-u)}$$
+$$
+x = \sigma\sqrt{-2\ln(1-u)}
+$$
 
 代码：`y = 1.5*sqrt(-2*log(1-rand(1,N)));`
 
@@ -1961,7 +2037,9 @@ $$x = \sigma\sqrt{-2\ln(1-u)}$$
 
 **解**：
 
-$$L = \mathrm{chol}(\Sigma) = \begin{bmatrix}1 & 0\\ 0.8 & 0.6\end{bmatrix} \;\Longrightarrow\; \begin{cases} x_1 = z_1\\ x_2 = 0.8z_1 + 0.6z_2\end{cases}$$
+$$
+L = \mathrm{chol}(\Sigma) = \begin{bmatrix}1 & 0\\ 0.8 & 0.6\end{bmatrix} \;\Longrightarrow\; \begin{cases} x_1 = z_1\\ x_2 = 0.8z_1 + 0.6z_2\end{cases}
+$$
 
 **验证结果**：样本协方差 $S_{11}=1.0002$、$S_{22}=0.9989$、$S_{12}=0.8000$；样本相关系数 **0.8004** ✓
 
@@ -1973,13 +2051,17 @@ $$L = \mathrm{chol}(\Sigma) = \begin{bmatrix}1 & 0\\ 0.8 & 0.6\end{bmatrix} \;\L
 
 **解**：$r=6$ dB → $r=3.981$，理论
 
-$$P_e = \frac12\mathrm{erfc}(\sqrt{3.981}) = 2.388\times10^{-3}$$
+$$
+P_e = \frac12\mathrm{erfc}(\sqrt{3.981}) = 2.388\times10^{-3}
+$$
 
 仿真得 **2.366×10⁻³**，相对误差 0.9% ✓
 
 **样本量估计**：要求相对标准差 $\dfrac{1}{\sqrt{NP_e}}\le10\%$：
 
-$$N \ge \frac{1}{P_e\,(0.1)^2} = \frac{1}{2.388\times10^{-3}\times0.01} \approx 4.2\times10^4$$
+$$
+N \ge \frac{1}{P_e\,(0.1)^2} = \frac{1}{2.388\times10^{-3}\times0.01} \approx 4.2\times10^4
+$$
 
 即约 **4 万个样本**即可。但若目标是 $P_e=10^{-6}$，则需 $N\ge10^8$ —— 这就是高信噪比区仿真困难的定量原因。
 

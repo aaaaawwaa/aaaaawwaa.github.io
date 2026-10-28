@@ -28,11 +28,17 @@ related: []
 
 > [!info] 定义 1 互相关与互协方差
 > 两个随机过程 $X(t),Y(t)$ 的**互相关函数**定义为
-> $$R_{XY}(t_1,t_2)=E\big[X(t_1)Y^*(t_2)\big]$$
+> $$
+> R_{XY}(t_1,t_2)=E\big[X(t_1)Y^*(t_2)\big]
+> $$
 > 若两者各自 WSS，且互相关只依赖时间差，
-> $$R_{XY}(t,t+\tau)=R_{XY}(\tau)=E\big[X(t+\tau)Y^*(t)\big]$$
+> $$
+> R_{XY}(t,t+\tau)=R_{XY}(\tau)=E\big[X(t+\tau)Y^*(t)\big]
+> $$
 > 则称它们**联合宽平稳**。对应的互协方差为
-> $$C_{XY}(\tau)=R_{XY}(\tau)-\mu_X\mu_Y^*$$
+> $$
+> C_{XY}(\tau)=R_{XY}(\tau)-\mu_X\mu_Y^*
+> $$
 
 离散形式为 $R_{XY}[m]=E[X[n+m]Y^*[n]]$。注意下标顺序：$R_{XY}$ 是“$X$ 在前、$Y$ 共轭在后”，交换顺序会得到共轭反转 $R_{YX}(\tau)=E[Y(t+\tau)X^*(t)]=R_{XY}^*(-\tau)$。
 
@@ -66,14 +72,20 @@ related: []
 
 > [!info] 定义 3 时延估计模型
 > 设
-> $$Y(t)=X(t-D)+N(t)$$
+> $$
+> Y(t)=X(t-D)+N(t)
+> $$
 > 其中 $X(t)$ 与 $N(t)$ 零均值、互不相关。则
-> $$R_{XY}(\tau)=E\big[X(t+\tau)X^*(t-D)\big]=R_X(\tau-D)$$
+> $$
+> R_{XY}(\tau)=E\big[X(t+\tau)X^*(t-D)\big]=R_X(\tau-D)
+> $$
 > 因此 $\lvert R_{XY}(\tau)\rvert$ 的峰值出现在 $\tau=D$。
 
 若 $X(t)$ 是白噪声，$R_X(\tau)=\sigma^2\delta(\tau)$，则 $R_{XY}(\tau)=\sigma^2\delta(\tau-D)$，峰值极其尖锐；若 $X(t)$ 是带限或强相关的，峰值被 $R_X$ 的形状展宽，估计精度下降。此时可用广义互相关相位变换（GCC-PHAT）加权：
 
-$$\hat D=\arg\max_{\tau}\int_{-\infty}^{\infty}\frac{S_{XY}(\omega)}{\lvert S_{XY}(\omega)\rvert}e^{j\omega\tau}\,\mathrm{d}\omega$$
+$$
+\hat D=\arg\max_{\tau}\int_{-\infty}^{\infty}\frac{S_{XY}(\omega)}{\lvert S_{XY}(\omega)\rvert}e^{j\omega\tau}\,\mathrm{d}\omega
+$$
 
 它只保留相位信息，对混响与谱色散更稳健。
 
@@ -86,14 +98,20 @@ $$\hat D=\arg\max_{\tau}\int_{-\infty}^{\infty}\frac{S_{XY}(\omega)}{\lvert S_{X
 
 > [!info] 定义 4 线性系统辨识
 > 设 $Y(t)=h(t)*X(t)+N(t)$，$X$ 与 $N$ 不相关。则
-> $$R_{YX}(\tau)=h(\tau)*R_X(\tau)$$
+> $$
+> R_{YX}(\tau)=h(\tau)*R_X(\tau)
+> $$
 > 频域中
-> $$S_{YX}(\omega)=H(\omega)S_X(\omega)\ \Longrightarrow\ H(\omega)=\frac{S_{YX}(\omega)}{S_X(\omega)}$$
+> $$
+> S_{YX}(\omega)=H(\omega)S_X(\omega)\ \Longrightarrow\ H(\omega)=\frac{S_{YX}(\omega)}{S_X(\omega)}
+> $$
 
 这里 $S_{YX}(\omega)=\int R_{YX}(\tau)e^{-j\omega\tau}\mathrm{d}\tau$ 是互谱。若误用 $S_{XY}$，由于 $S_{XY}=S_{YX}^*$，得到的是 $H^*(\omega)$，相位符号会反。
 
 > [!info] 定义 5 相干函数
-> $$\gamma_{XY}^2(\omega)=\frac{\lvert S_{XY}(\omega)\rvert^2}{S_X(\omega)S_Y(\omega)},\qquad 0\le\gamma_{XY}^2\le1$$
+> $$
+> \gamma_{XY}^2(\omega)=\frac{\lvert S_{XY}(\omega)\rvert^2}{S_X(\omega)S_Y(\omega)},\qquad 0\le\gamma_{XY}^2\le1
+> $$
 > 称为**相干函数**（coherence）。它表示 $Y$ 中由 $X$ 线性解释的功率比例。
 
 | 相干值 | 含义 | 可能原因 |

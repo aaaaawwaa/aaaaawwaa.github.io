@@ -63,7 +63,9 @@ $$
 > | $\mathbf{C}(A)$（列空间） | $n-1=3$ | 满足**基尔霍夫电流定律**的注入电流 $\mathbf{f}$ |
 > | $\mathbf{N}(A^{T})$（左零空间） | $m-n+1=2$ | **环流**（回路电流）✓ |
 > 而 $m-n+1$ 就是**独立回路数**——这正是欧拉公式的线性代数版本：
-> $$n-m+(\text{回路数})=1\quad(\text{连通图})$$
+> $$
+> n-m+(\text{回路数})=1\quad(\text{连通图})
+> $$
 > 本例：$4-5+2=1$ ✓
 
 **两个环流向量**（都验证过 $A^{T}\mathbf{c}=\mathbf{0}$）：
@@ -141,7 +143,9 @@ $$
 
 > [!tip] 定理 节点电位方程
 > 已知外部注入电流 $\mathbf{f}$，求各节点电位 $\mathbf{x}$，只需解
-> $$A^{T}CA\,\mathbf{x}=\mathbf{f}$$
+> $$
+> A^{T}CA\,\mathbf{x}=\mathbf{f}
+> $$
 > - $A^{T}CA$ 是 **$n\times n$ 对称正定**矩阵（在有接地节点的意义上）；
 > - 若不加接地条件，常数向量在它的零空间里（$\mathbf{N}(A)$ 那一维），矩阵**奇异**——这就是"电位需要一个参考点"的代数表述 ✓
 
@@ -150,7 +154,9 @@ $$
 ## 网络和A^T CA
 
 > [!info] Def 2 拉普拉斯矩阵
-> $$L=A^{T}A\qquad(n\times n)$$
+> $$
+> L=A^{T}A\qquad(n\times n)
+> $$
 > - **对角元** $L_{ii}=$ 节点 $i$ 的**度数**（连了几条边）；
 > - **非对角元** $L_{ij}=-1$（$i,j$ 相邻）或 $0$（不相邻）；
 > - **每行之和为零**（正负相消）✓
@@ -370,7 +376,9 @@ $$
 
 > [!info] Def 3 马尔可夫矩阵
 > 元素**非负**、且**每列之和为 1** 的方阵。它的每一列是一个概率分布，$A^k$ 描述 $k$ 步转移。
-> $$A=\begin{bmatrix}0.8&0.3\\0.2&0.7\end{bmatrix}:\quad \text{列和}=1,\ 1\ \checkmark$$
+> $$
+> A=\begin{bmatrix}0.8&0.3\\0.2&0.7\end{bmatrix}:\quad \text{列和}=1,\ 1\ \checkmark
+> $$
 
 > [!tip] 定理 马尔可夫矩阵的谱性质
 > 1. **$\lambda=1$ 一定是特征值**（因为 $A^{T}$ 作用在"全 1 向量"上？—— 更直接：列和为 1 ⇒ $(1,1)^{T}$ 是 $A^{T}$ 的特征向量，故 $1$ 是 $A$ 的特征值）✓
@@ -419,7 +427,9 @@ $A$ 叫**消耗矩阵**（每列 = 生产一单位该产品所需的投入），
 
 > [!tip] 定理 解存在且非负
 > 若 $A$ 非负且每列和 $<1$（或谱半径 $<1$），则
-> $$(I-A)^{-1}=I+A+A^{2}+A^{3}+\cdots\ \text{（全非负）}$$
+> $$
+> (I-A)^{-1}=I+A+A^{2}+A^{3}+\cdots\ \text{（全非负）}
+> $$
 > 于是 $\mathbf{x}=(I-A)^{-1}\mathbf{d}$ 存在、唯一、且**全为正**（需求为正 ⇒ 产出为正，符合经济直觉）✓
 > 几何级数展开还有经济学解释：$I$ 是"直接满足需求"，$A$ 是"第二轮的中间投入"，$A^{2}$ 是"第三轮"…… **每一轮都在减少**（因为 $A^{k}\to0$）。
 
@@ -445,15 +455,21 @@ $$
 
 > [!info] Def 4 线性规划的原问题与对偶问题
 > **原问题**（primal）：
-> $$\min\ \mathbf{c}^{T}\mathbf{x}\quad\text{s.t.}\quad A\mathbf{x}\ge\mathbf{b},\ \ \mathbf{x}\ge\mathbf{0}$$
+> $$
+> \min\ \mathbf{c}^{T}\mathbf{x}\quad\text{s.t.}\quad A\mathbf{x}\ge\mathbf{b},\ \ \mathbf{x}\ge\mathbf{0}
+> $$
 > **对偶问题**（dual）：
-> $$\max\ \mathbf{b}^{T}\mathbf{y}\quad\text{s.t.}\quad A^{T}\mathbf{y}\le\mathbf{c},\ \ \mathbf{y}\ge\mathbf{0}$$
+> $$
+> \max\ \mathbf{b}^{T}\mathbf{y}\quad\text{s.t.}\quad A^{T}\mathbf{y}\le\mathbf{c},\ \ \mathbf{y}\ge\mathbf{0}
+> $$
 > 注意两者的关系：**约束矩阵转置、$\mathbf{b}$ 与 $\mathbf{c}$ 互换、min 与 max 互换、不等号反向** ✓
 
 > [!tip] 定理 对偶定理
 > - **弱对偶**：任何可行 $\mathbf{x}$、$\mathbf{y}$ 都满足 $\mathbf{b}^{T}\mathbf{y}\le\mathbf{c}^{T}\mathbf{x}$（对偶值永远不超过原问题的值）；
 > - **强对偶**：若两者都有可行解，则**最优值相等**：
->   $$\min\mathbf{c}^{T}\mathbf{x}=\max\mathbf{b}^{T}\mathbf{y}$$
+>   $$
+>   \min\mathbf{c}^{T}\mathbf{x}=\max\mathbf{b}^{T}\mathbf{y}
+>   $$
 > - **互补松弛**（complementary slackness）：最优时，$x_j>0$ 的列必然对偶约束**取等**，反之亦然——"**有剩余的方向不值钱**"。
 
 **已验证的例子**：
@@ -558,7 +574,9 @@ $$
 
 > [!info] Def 5 傅里叶级数
 > 周期为 $2\pi$ 的函数可以展开成三角函数基的线性组合：
-> $$f(x)=a_0+\sum_{k=1}^{\infty}\bigl(a_k\cos kx+b_k\sin kx\bigr)$$
+> $$
+> f(x)=a_0+\sum_{k=1}^{\infty}\bigl(a_k\cos kx+b_k\sin kx\bigr)
+> $$
 > - 基向量：$\{1,\cos x,\sin x,\cos2x,\sin2x,\dots\}$（**无穷维的基**）；
 > - 内积：$\langle f,g\rangle=\displaystyle\int_{-\pi}^{\pi}f(x)g(x)\,\mathrm{d}x$；
 > - 这组基**互相正交**：$\int_{-\pi}^{\pi}\cos kx\cos lx\,\mathrm{d}x=0\ (k\ne l)$ ✓
@@ -707,7 +725,9 @@ $$
 
 > [!tip] 定理 矩阵在模 $p$ 下可逆的条件
 > $K$ 在模 $p$ 下可逆 $\iff \det K$ 与 $p$ **互素**：
-> $$\gcd(\det K,\ p)=1$$
+> $$
+> \gcd(\det K,\ p)=1
+> $$
 > 此时 $K^{-1}=\bigl(\det K\bigr)^{-1}\cdot(\text{伴随矩阵})$，全部运算在模 $p$ 下进行 ✓
 > **第 5 章的"逆矩阵公式 $A^{-1}=C^{T}/\det A$"在这里原样使用**——只不过"除以 $\det$"要换成"乘以 $\det$ 在模 $p$ 下的逆元"✓
 

@@ -58,7 +58,9 @@ related: []
 
 > [!info] Def 2 D 倍抽取
 > **$D$ 倍抽取**（decimation by $D$，也称下采样）定义为
-> $$x_d(n)=x(nD),\qquad n=0,1,2,\dots$$
+> $$
+> x_d(n)=x(nD),\qquad n=0,1,2,\dots
+> $$
 > 即每隔 $D$ 个样点取一个，采样率从 $f_s$ 降到 $f_s/D$。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">
@@ -94,14 +96,18 @@ related: []
 
 > [!warning] 抽取不是"简单丢点"
 > 直接丢点会让高频分量折叠到低频（混叠）。正确的抽取必须在**丢点之前**先做抗混叠低通滤波：
-> $$x(n)\ \to\ \boxed{H(z)}\ \to\ \downarrow D\ \to\ x_d(n)$$
+> $$
+> x(n)\ \to\ \boxed{H(z)}\ \to\ \downarrow D\ \to\ x_d(n)
+> $$
 > 滤波器截止频率为 $\pi/D$（归一化到原采样率）。
 
 ## 频域关系
 
 抽取后的频谱是原频谱**展宽 $D$ 倍并叠加**：
 
-$$X_d(e^{j\omega})=\frac{1}{D}\sum_{k=0}^{D-1}X\left(e^{j(\omega-2\pi k)/D}\right)$$
+$$
+X_d(e^{j\omega})=\frac{1}{D}\sum_{k=0}^{D-1}X\left(e^{j(\omega-2\pi k)/D}\right)
+$$
 
 - 原频谱被压缩到 $[-\pi/D,\pi/D]$ 再展宽回 $[-\pi,\pi]$
 - 若原信号带宽超过 $\pi/D$，展宽后的副本会重叠 → **混叠**
@@ -126,7 +132,9 @@ $$X_d(e^{j\omega})=\frac{1}{D}\sum_{k=0}^{D-1}X\left(e^{j(\omega-2\pi k)/D}\righ
 
 > [!info] Def 3 I 倍插值
 > **$I$ 倍插值**（interpolation by $I$，也称上采样）定义为
-> $$x_i(n)=\begin{cases}x(n/I),&n=0,\pm I,\pm2I,\dots\\0,&\text{其他}\end{cases}$$
+> $$
+> x_i(n)=\begin{cases}x(n/I),&n=0,\pm I,\pm2I,\dots\\0,&\text{其他}\end{cases}
+> $$
 > 即在每两个原样点之间插入 $I-1$ 个零，采样率从 $f_s$ 升到 $If_s$。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">
@@ -162,14 +170,18 @@ $$X_d(e^{j\omega})=\frac{1}{D}\sum_{k=0}^{D-1}X\left(e^{j(\omega-2\pi k)/D}\righ
 
 > [!warning] 插零不是"插值"
 > 插零只改变了采样率，频谱会出现**镜像**（imaging）。要得到真正的插值，必须在插零之后做**抗镜像低通滤波**：
-> $$x(n)\ \to\ \uparrow I\ \to\ \boxed{H(z)}\ \to\ x_i(n)$$
+> $$
+> x(n)\ \to\ \uparrow I\ \to\ \boxed{H(z)}\ \to\ x_i(n)
+> $$
 > 滤波器截止频率为 $\pi/I$（归一化到新采样率），并用增益 $I$ 补偿插零造成的能量下降。
 
 ## 频域关系
 
 插值后的频谱是原频谱**压缩 $I$ 倍**：
 
-$$X_i(e^{j\omega})=X(e^{j\omega I})$$
+$$
+X_i(e^{j\omega})=X(e^{j\omega I})
+$$
 
 - 原频谱被压缩到 $[-\pi/I,\pi/I]$，在 $[-\pi,\pi]$ 内出现 $I$ 个镜像
 - 抗镜像滤波器保留基带副本、滤掉镜像
@@ -192,7 +204,9 @@ $$X_i(e^{j\omega})=X(e^{j\omega I})$$
 
 有理数倍采样率转换 $L/M$（从 $f_s$ 变到 $\frac{L}{M}f_s$）：
 
-$$x(n)\ \to\ \uparrow L\ \to\ \boxed{H(z)}\ \to\ \downarrow M\ \to\ y(n)$$
+$$
+x(n)\ \to\ \uparrow L\ \to\ \boxed{H(z)}\ \to\ \downarrow M\ \to\ y(n)
+$$
 
 - 先插值 $L$ 倍，把采样率升到 $Lf_s$
 - 再做低通，截止频率取 $\min(\pi/L,\pi/M)$
@@ -208,9 +222,13 @@ $$x(n)\ \to\ \uparrow L\ \to\ \boxed{H(z)}\ \to\ \downarrow M\ \to\ y(n)$$
 > - 滤波器在抽取器**之后** $\Longleftrightarrow$ 滤波器在抽取器**之前**，但 $H(z)$ 换成 $H(z^D)$
 > - 滤波器在插值器**之前** $\Longleftrightarrow$ 滤波器在插值器**之后**，但 $H(z)$ 换成 $H(z^I)$
 
-$$H(z)\downarrow D\ =\ \downarrow D\,H(z^D)$$
+$$
+H(z)\downarrow D\ =\ \downarrow D\,H(z^D)
+$$
 
-$$H(z)\uparrow I\ =\ \uparrow I\,H(z^I)$$
+$$
+H(z)\uparrow I\ =\ \uparrow I\,H(z^I)
+$$
 
 这两条恒等式是**多相分解**与**高效实现**的理论基础：它让我们可以把滤波器移到低速率侧。
 
@@ -231,7 +249,9 @@ $$H(z)\uparrow I\ =\ \uparrow I\,H(z^I)$$
 
 > [!info] Def 6 多相分解
 > 把滤波器 $H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}$ 按 $n\bmod D$ 分组：
-> $$H(z)=\sum_{k=0}^{D-1}z^{-k}E_k(z^D),\qquad E_k(z)=\sum_{m}h(mD+k)z^{-m}$$
+> $$
+> H(z)=\sum_{k=0}^{D-1}z^{-k}E_k(z^D),\qquad E_k(z)=\sum_{m}h(mD+k)z^{-m}
+> $$
 > 称为 **$D$ 相分解**（polyphase decomposition），$E_k(z)$ 称为第 $k$ 个**多相分量**。
 
 - 每个 $E_k(z)$ 只在原滤波器每 $D$ 个系数中取一个

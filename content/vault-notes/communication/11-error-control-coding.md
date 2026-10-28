@@ -75,7 +75,9 @@ related: []
 
 > [!info] Def 3 分组码
 > **分组码**（block code）$(n,k)$ 把 $k$ 位信息按组编码为 $n$ 位码字，其中 $r=n-k$ 位为监督位：
-> $$[\underbrace{a_{n-1}\cdots a_r}_{k\text{ 信息位}}\ \underbrace{a_{r-1}\cdots a_0}_{r\text{ 监督位}}]$$
+> $$
+> [\underbrace{a_{n-1}\cdots a_r}_{k\text{ 信息位}}\ \underbrace{a_{r-1}\cdots a_0}_{r\text{ 监督位}}]
+> $$
 
 ## 码距与检纠错能力三公式
 
@@ -109,7 +111,9 @@ $$\boxed{\begin{aligned}
 
 > [!info] Def 5 汉明码
 > **汉明码**（Hamming code）是能纠 1 位错的高效线性分组码，满足
-> $$2^r\ge n+1\quad(r\text{ 位监督可指示 }n+1\text{ 种状态})$$
+> $$
+> 2^r\ge n+1\quad(r\text{ 位监督可指示 }n+1\text{ 种状态})
+> $$
 
 例：$(7,4)$ 码（$r=3$，$2^3=8\ge7+1$），$d_0=3$ → 纠 1 错。
 
@@ -117,18 +121,24 @@ $$\boxed{\begin{aligned}
 
 设码组 $A=[a_6a_5a_4a_3a_2a_1a_0]$（前 4 位信息），监督方程（模 2）典型例：
 
-$$\begin{cases}a_2=a_6\oplus a_5\oplus a_4\\a_1=a_6\oplus a_5\oplus a_3\\a_0=a_6\oplus a_4\oplus a_3\end{cases}\quad\Longleftrightarrow\quad\text{监督矩阵 }H=[P\ |\ I_r]$$
+$$
+\begin{cases}a_2=a_6\oplus a_5\oplus a_4\\a_1=a_6\oplus a_5\oplus a_3\\a_0=a_6\oplus a_4\oplus a_3\end{cases}\quad\Longleftrightarrow\quad\text{监督矩阵 }H=[P\ |\ I_r]
+$$
 
 > [!info] Def 6 监督矩阵
 > **监督矩阵**（parity-check matrix）$H$ 是满足 $HA^T=0$ 的 $r\times n$ 矩阵；所有合法码字构成它的零空间。
 
-$$HA^T=0\quad(\text{收码 }R\text{ 无错时})$$
+$$
+HA^T=0\quad(\text{收码 }R\text{ 无错时})
+$$
 
 ## 生成矩阵 G
 
 > [!info] Def 7 生成矩阵
 > **生成矩阵**（generator matrix）$G=[I_k\ |\ Q]$ 的每一行是码空间的一组基；任意码字由信息向量 $M$ 生成：
-> $$A=MG\quad(M\text{ 为 }1\times k\text{ 信息行向量})$$
+> $$
+> A=MG\quad(M\text{ 为 }1\times k\text{ 信息行向量})
+> $$
 
 - $G$ 的行 = 码空间的**基**；$G$ 与 $H$ 关系：$P=Q^T$（典型形式下）
 - **编码步骤（考题套路）**：写监督方程 → 排 $H$ → 得 $G$ → $A=MG$ 列全码表
@@ -137,7 +147,9 @@ $$HA^T=0\quad(\text{收码 }R\text{ 无错时})$$
 
 > [!info] Def 8 伴随式
 > **伴随式**（syndrome）$S$ 是接收码 $R$ 与监督矩阵的乘积：
-> $$S=RH^T=EH^T$$
+> $$
+> S=RH^T=EH^T
+> $$
 > 其中 $R=A\oplus E$，$E$ 为错误图样。$S=0$ 表示（可能）无错；$S\ne0$ 的图案指出错误位置。
 
 - **$S=0$ →（可能）无错**；$S\ne0$ → 有错，**$S$ 的图案指出错误位置**（模 2 加纠正）
@@ -155,7 +167,9 @@ $$HA^T=0\quad(\text{收码 }R\text{ 无错时})$$
 
 > [!info] Def 9 循环码
 > **循环码**（cyclic code）是一类线性分组码：任一码组**循环移位**后仍是码组。码组与**码多项式**一一对应：
-> $$A(x)=a_{n-1}x^{n-1}+\cdots+a_1x+a_0$$
+> $$
+> A(x)=a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+> $$
 > 在模 $x^n+1$ 运算下，$x^iA(x)\equiv A'(x)$（移位 $i$ 次仍是码字）——循环码是多项式环 $(x^n+1)$ 的理想。
 
 ## 生成多项式 g(x)（核心）
@@ -168,7 +182,9 @@ $$HA^T=0\quad(\text{收码 }R\text{ 无错时})$$
 
 **编码方法（除法取余）**：
 
-$$\frac{x^{n-k}M(x)}{g(x)}=Q(x)+\frac{R(x)}{g(x)}\quad\Longrightarrow\quad A(x)=x^{n-k}M(x)+R(x)$$
+$$
+\frac{x^{n-k}M(x)}{g(x)}=Q(x)+\frac{R(x)}{g(x)}\quad\Longrightarrow\quad A(x)=x^{n-k}M(x)+R(x)
+$$
 
 （信息左移 $n-k$ 位 + 余式监督——**系统码**：前 $k$ 位信息原样。）
 
@@ -201,7 +217,9 @@ $(n,k,N)$ 卷积码：每输入 $k$ bit 输出 $n$ bit，约束长度 $N$（编�
 
 **输出方程**（例，生成多项式 $(111,101)$ 即 $g_1=7_{oct},g_2=5_{oct}$）：
 
-$$C_{1,j}=m_j\oplus m_{j-1}\oplus m_{j-2},\qquad C_{2,j}=m_j\oplus m_{j-2}$$
+$$
+C_{1,j}=m_j\oplus m_{j-1}\oplus m_{j-2},\qquad C_{2,j}=m_j\oplus m_{j-2}
+$$
 
 ## 描述工具（三件套）
 

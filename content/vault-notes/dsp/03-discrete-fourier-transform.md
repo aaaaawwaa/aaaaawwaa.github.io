@@ -37,7 +37,9 @@ related: []
 
 DTFT 的定义是
 
-$$X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}$$
+$$
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}
+$$
 
 它有三个让计算机为难的地方：
 
@@ -53,12 +55,16 @@ $$X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}$$
 
 > [!info] Def 1 N 点离散傅里叶变换
 > 设 $x(n)$ 是长度为 $N$ 的有限长序列（$0\le n\le N-1$），定义其 **$N$ 点离散傅里叶变换**（discrete Fourier transform，简称 DFT）为
-> $$X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1$$
+> $$
+> X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1
+> $$
 > 其中 $W_N=e^{-j2\pi/N}$。$X(k)$ 也是长度为 $N$ 的有限长序列。
 
 > [!info] Def 2 离散傅里叶反变换
 > **离散傅里叶反变换**（inverse discrete Fourier transform，简称 IDFT）为
-> $$x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk},\qquad n=0,1,\dots,N-1$$
+> $$
+> x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk},\qquad n=0,1,\dots,N-1
+> $$
 
 两个式子都是**有限项求和**，这就是 DFT 能被计算机实现、并能用 FFT 加速的根本原因。
 
@@ -73,11 +79,15 @@ $$X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}$$
 
 把 $x(n)$ 排成列向量 $\mathbf{x}$，$X(k)$ 排成 $\mathbf{X}$，则
 
-$$\mathbf{X}=\mathbf{W}\mathbf{x},\qquad \mathbf{W}=[W_N^{nk}]_{N\times N}$$
+$$
+\mathbf{X}=\mathbf{W}\mathbf{x},\qquad \mathbf{W}=[W_N^{nk}]_{N\times N}
+$$
 
 $\mathbf{W}$ 是**范德蒙矩阵**，其列向量两两正交：
 
-$$\sum_{n=0}^{N-1}W_N^{nk}W_N^{-nl}=\begin{cases}N,&k=l\\0,&k\ne l\end{cases}$$
+$$
+\sum_{n=0}^{N-1}W_N^{nk}W_N^{-nl}=\begin{cases}N,&k=l\\0,&k\ne l\end{cases}
+$$
 
 因此 $\mathbf{W}^{-1}=\frac{1}{N}\mathbf{W}^*$，反变换就是"共轭转置再除以 $N$"。DFT 本质上是 $\mathbb{C}^N$ 上的一次**正交变换**（差一个 $\sqrt N$ 归一化因子）——这与线性代数里的正交基、傅里叶级数完全同源。
 
@@ -85,7 +95,9 @@ $$\sum_{n=0}^{N-1}W_N^{nk}W_N^{-nl}=\begin{cases}N,&k=l\\0,&k\ne l\end{cases}$$
 
 > [!info] Def 3 DFT 是 DTFT 的频率采样
 > 令 $\omega_k=\dfrac{2\pi k}{N}$，则
-> $$X(k)=X(e^{j\omega})\Big|_{\omega=\omega_k}=X(e^{j2\pi k/N}),\qquad k=0,1,\dots,N-1$$
+> $$
+> X(k)=X(e^{j\omega})\Big|_{\omega=\omega_k}=X(e^{j2\pi k/N}),\qquad k=0,1,\dots,N-1
+> $$
 > 即 **$N$ 点 DFT 就是把 DTFT 在一个 $2\pi$ 周期内等间隔采样 $N$ 个点**。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="100%" style="max-width:760px" font-family="inherit">
@@ -146,7 +158,9 @@ $$\sum_{n=0}^{N-1}W_N^{nk}W_N^{-nl}=\begin{cases}N,&k=l\\0,&k\ne l\end{cases}$$
 
 同样的关系可以写成 $z$ 变换在单位圆上的采样：
 
-$$X(k)=X(z)\Big|_{z=W_N^{-k}}=X(z)\Big|_{z=e^{j2\pi k/N}}$$
+$$
+X(k)=X(z)\Big|_{z=W_N^{-k}}=X(z)\Big|_{z=e^{j2\pi k/N}}
+$$
 
 | 变换 | 自变量 | 时域 | 频域 | 计算方式 |
 | --- | --- | --- | --- | --- |
@@ -163,7 +177,9 @@ $$X(k)=X(z)\Big|_{z=W_N^{-k}}=X(z)\Big|_{z=e^{j2\pi k/N}}$$
 
 DFT 只给出 $0\le n,k\le N-1$ 的主值区，但公式中的 $W_N^{nk}$ 对 $n,k$ 都以 $N$ 为周期。因此 DFT 默认把 $x(n)$ 和 $X(k)$ 都看作**周期为 $N$ 的周期序列**：
 
-$$\tilde x(n)=x((n))_N,\qquad \tilde X(k)=X((k))_N$$
+$$
+\tilde x(n)=x((n))_N,\qquad \tilde X(k)=X((k))_N
+$$
 
 这不是额外假设，而是 DFT 定义自带的性质。它直接导致下一节的"圆周移位"和"圆周卷积"——**所有操作都在一个长度为 $N$ 的圆环上进行，移出右端会从左边回来**。
 
@@ -199,7 +215,9 @@ stem(2*pi*k/N, abs(X), 'r', 'filled');   % DFT 点正好落在 DTFT 曲线上
 
 ## 线性
 
-$$ax_1(n)+bx_2(n)\ \longleftrightarrow\ aX_1(k)+bX_2(k)$$
+$$
+ax_1(n)+bx_2(n)\ \longleftrightarrow\ aX_1(k)+bX_2(k)
+$$
 
 前提是三个序列都取**相同的 $N$ 点**；若长度不同，要先补零到同一长度再相加。
 
@@ -207,10 +225,14 @@ $$ax_1(n)+bx_2(n)\ \longleftrightarrow\ aX_1(k)+bX_2(k)$$
 
 > [!info] Def 4 圆周移位
 > 序列 $x(n)$ 的 **$m$ 点圆周移位**（circular shift）定义为
-> $$x((n-m))_N R_N(n)$$
+> $$
+> x((n-m))_N R_N(n)
+> $$
 > 即先把序列周期延拓，再右移 $m$ 位，最后取主值区。移出右端的样值会从左边"绕回来"。
 
-$$x((n-m))_N R_N(n)\ \longleftrightarrow\ W_N^{mk}X(k)=e^{-j2\pi mk/N}X(k)$$
+$$
+x((n-m))_N R_N(n)\ \longleftrightarrow\ W_N^{mk}X(k)=e^{-j2\pi mk/N}X(k)
+$$
 
 - 时域圆周移位 $m$ 位 ↔ 频域乘线性相位 $e^{-j2\pi mk/N}$
 - 这与 DTFT 的移位性质形式相同，但**移位是圆周的**，不是线性移位
@@ -219,16 +241,22 @@ $$x((n-m))_N R_N(n)\ \longleftrightarrow\ W_N^{mk}X(k)=e^{-j2\pi mk/N}X(k)$$
 
 > [!info] Def 5 圆周卷积
 > 两个长度均为 $N$ 的序列的 **$N$ 点圆周卷积**（circular convolution）定义为
-> $$y(n)=x(n)\circledast h(n)=\sum_{m=0}^{N-1}x(m)\,h((n-m))_N,\qquad 0\le n\le N-1$$
+> $$
+> y(n)=x(n)\circledast h(n)=\sum_{m=0}^{N-1}x(m)\,h((n-m))_N,\qquad 0\le n\le N-1
+> $$
 > 等价地，$y(n)$ 是线性卷积 $x(n)*h(n)$ 以 $N$ 为周期延拓后取主值区。
 
 > [!important] 时域圆周卷积 ↔ 频域相乘（本章主定理）
-> $$x(n)\circledast h(n)\ \longleftrightarrow\ X(k)H(k)$$
+> $$
+> x(n)\circledast h(n)\ \longleftrightarrow\ X(k)H(k)
+> $$
 > 这是 DFT 最重要的性质：**卷积运算在 DFT 域变成逐点乘法**。第 4 章的 FFT 之所以能极大加速卷积，就是因为这条。
 
 **圆周卷积与线性卷积的关系**：
 
-$$y_{\text{circ}}(n)=\sum_{r=-\infty}^{\infty}y_{\text{lin}}(n+rN),\qquad 0\le n\le N-1$$
+$$
+y_{\text{circ}}(n)=\sum_{r=-\infty}^{\infty}y_{\text{lin}}(n+rN),\qquad 0\le n\le N-1
+$$
 
 - 若 $N\ge L_x+L_h-1$，圆周卷积 = 线性卷积（没有"绕回"的混叠）
 - 若 $N<L_x+L_h-1$，圆周卷积会把线性卷积的尾部绕回头部，造成**时域混叠**
@@ -246,7 +274,9 @@ $$y_{\text{circ}}(n)=\sum_{r=-\infty}^{\infty}y_{\text{lin}}(n+rN),\qquad 0\le n
 
 ## 调制（频域圆周移位）
 
-$$W_N^{-mn}x(n)=e^{j2\pi mn/N}x(n)\ \longleftrightarrow\ X((k-m))_N$$
+$$
+W_N^{-mn}x(n)=e^{j2\pi mn/N}x(n)\ \longleftrightarrow\ X((k-m))_N
+$$
 
 时域乘复指数 ↔ 频域圆周移位。这就是"数字混频"在 DFT 域的表述：乘 $e^{j2\pi mn/N}$ 把整段频谱搬移 $m$ 个 bin。
 
@@ -254,7 +284,9 @@ $$W_N^{-mn}x(n)=e^{j2\pi mn/N}x(n)\ \longleftrightarrow\ X((k-m))_N$$
 
 对**实序列** $x(n)$：
 
-$$X(N-k)=X^*(k),\qquad 0\le k\le N-1$$
+$$
+X(N-k)=X^*(k),\qquad 0\le k\le N-1
+$$
 
 - 幅度谱偶对称：$|X(N-k)|=|X(k)|$
 - 相位谱奇对称：$\arg X(N-k)=-\arg X(k)$
@@ -264,13 +296,17 @@ $$X(N-k)=X^*(k),\qquad 0\le k\le N-1$$
 
 ## 帕塞瓦尔定理
 
-$$\sum_{n=0}^{N-1}|x(n)|^2=\frac{1}{N}\sum_{k=0}^{N-1}|X(k)|^2$$
+$$
+\sum_{n=0}^{N-1}|x(n)|^2=\frac{1}{N}\sum_{k=0}^{N-1}|X(k)|^2
+$$
 
 时域能量 = 频域能量（差一个 $1/N$ 的归一化）。这是第 2 章 DTFT 帕塞瓦尔定理的离散有限版本。
 
 ## 对偶性
 
-$$X(n)\ \longleftrightarrow\ N\,x((N-k))_N$$
+$$
+X(n)\ \longleftrightarrow\ N\,x((N-k))_N
+$$
 
 时域与频域在 DFT 中地位对称：**把频谱当序列再做一次 DFT，会得到原序列的翻转（乘 $N$）**。这条性质常用于"用时域方法算频域"或反过来。
 
@@ -295,14 +331,18 @@ DFT 是"对 DTFT 采样"。反过来问：**只给定 $N$ 个频率采样值 $X(
 
 > [!info] Def 6 频率域采样
 > 在 $[0,2\pi)$ 内以 $\omega_k=2\pi k/N$ 对 $X(e^{j\omega})$ 采样，得到 $N$ 个值 $X(k)$；用 IDFT 得到的序列
-> $$x_N(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}$$
+> $$
+> x_N(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}
+> $$
 > 称为 $x(n)$ 的**频率域采样重建**。
 
 ## 时域混叠
 
 设原序列 $x(n)$ 的长度为 $M$。可以证明：
 
-$$x_N(n)=\sum_{r=-\infty}^{\infty}x(n+rN),\qquad 0\le n\le N-1$$
+$$
+x_N(n)=\sum_{r=-\infty}^{\infty}x(n+rN),\qquad 0\le n\le N-1
+$$
 
 即重建序列是原序列以 $N$ 为周期的**周期延拓**的主值区。
 
@@ -313,24 +353,34 @@ $$x_N(n)=\sum_{r=-\infty}^{\infty}x(n+rN),\qquad 0\le n\le N-1$$
 
 > [!info] Def 7 频率采样定理
 > 若序列 $x(n)$ 的长度为 $M$，则其 DTFT 在 $[0,2\pi)$ 内以 $2\pi/N$ 等间隔采样后，能由这 $N$ 个采样值无失真恢复 $x(n)$ 的充要条件是
-> $$N\ge M$$
+> $$
+> N\ge M
+> $$
 > 即**频率采样点数不能少于序列长度**。
 
 > [!example] 时域混叠示例
 > $x(n)=\{1,2,3,4,5,6\}$（$M=6$），只取 $N=4$ 个频率采样点：
-> $$x_N(0)=x(0)+x(4)=1+5=6,\quad x_N(1)=x(1)+x(5)=2+6=8$$
-> $$x_N(2)=x(2)=3,\quad x_N(3)=x(3)=4$$
+> $$
+> x_N(0)=x(0)+x(4)=1+5=6,\quad x_N(1)=x(1)+x(5)=2+6=8
+> $$
+> $$
+> x_N(2)=x(2)=3,\quad x_N(3)=x(3)=4
+> $$
 > 重建得到 $\{6,8,3,4\}$，与原序列不同——高频部分"折叠"回了低频。
 
 ## 重建公式
 
 当 $N\ge M$ 时，可以用频率采样值重建连续的 DTFT：
 
-$$X(e^{j\omega})=\sum_{k=0}^{N-1}X(k)\,\Phi_k(\omega)$$
+$$
+X(e^{j\omega})=\sum_{k=0}^{N-1}X(k)\,\Phi_k(\omega)
+$$
 
 其中 $\Phi_k(\omega)$ 是**内插函数**（Dirichlet 核）：
 
-$$\Phi_k(\omega)=\frac{1}{N}\sum_{n=0}^{N-1}e^{-j(\omega-2\pi k/N)n}=e^{-j(\omega-2\pi k/N)(N-1)/2}\frac{\sin[(\omega-2\pi k/N)N/2]}{N\sin[(\omega-2\pi k/N)/2]}$$
+$$
+\Phi_k(\omega)=\frac{1}{N}\sum_{n=0}^{N-1}e^{-j(\omega-2\pi k/N)n}=e^{-j(\omega-2\pi k/N)(N-1)/2}\frac{\sin[(\omega-2\pi k/N)N/2]}{N\sin[(\omega-2\pi k/N)/2]}
+$$
 
 它在 $\omega=2\pi k/N$ 处为 1、在其他采样点处为 0。这与第 1 章"用 sinc 内插从样值恢复连续信号"完全对偶：**时域用 sinc 内插，频域用 Dirichlet 核内插**。
 
@@ -351,11 +401,15 @@ $$\Phi_k(\omega)=\frac{1}{N}\sum_{n=0}^{N-1}e^{-j(\omega-2\pi k/N)n}=e^{-j(\omeg
 
 $N$ 点 DFT 的第 $k$ 根谱线对应频率
 
-$$f_k=k\frac{f_s}{N},\qquad k=0,1,\dots,N-1$$
+$$
+f_k=k\frac{f_s}{N},\qquad k=0,1,\dots,N-1
+$$
 
 相邻谱线间隔（**频率分辨率**）
 
-$$\Delta f=\frac{f_s}{N}=\frac{1}{NT}=\frac{1}{T_0}$$
+$$
+\Delta f=\frac{f_s}{N}=\frac{1}{NT}=\frac{1}{T_0}
+$$
 
 其中 $T_0=NT$ 是**观测时间**。结论：**分辨率只由观测时间决定，与采样率无关**；想分辨更近的两个频率，只能观察更久，不能靠提高 $f_s$ 或补零。
 
@@ -584,7 +638,9 @@ $$\Delta f=\frac{f_s}{N}=\frac{1}{NT}=\frac{1}{T_0}$$
 4. 逐点相乘：$Y(k)=X(k)H(k)$
 5. 做 $L$ 点 IDFT，得到 $y(n)=x(n)*h(n)$
 
-$$y(n)=\mathrm{IDFT}\big[\mathrm{DFT}_L[x(n)]\cdot\mathrm{DFT}_L[h(n)]\big]$$
+$$
+y(n)=\mathrm{IDFT}\big[\mathrm{DFT}_L[x(n)]\cdot\mathrm{DFT}_L[h(n)]\big]
+$$
 
 > [!example] 补零长度的重要性
 > $x(n)$ 长 4、$h(n)$ 长 3，线性卷积长 $4+3-1=6$。
@@ -598,11 +654,15 @@ $$y(n)=\mathrm{IDFT}\big[\mathrm{DFT}_L[x(n)]\cdot\mathrm{DFT}_L[h(n)]\big]$$
 
 设 $x_1(n),x_2(n)$ 都是实序列，构造
 
-$$x(n)=x_1(n)+j x_2(n)$$
+$$
+x(n)=x_1(n)+j x_2(n)
+$$
 
 做 $N$ 点 DFT 得 $X(k)$，则
 
-$$X_1(k)=\frac{X(k)+X^*((N-k))_N}{2},\qquad X_2(k)=\frac{X(k)-X^*((N-k))_N}{2j}$$
+$$
+X_1(k)=\frac{X(k)+X^*((N-k))_N}{2},\qquad X_2(k)=\frac{X(k)-X^*((N-k))_N}{2j}
+$$
 
 这样一次 FFT 算两个实序列，运算量减半。另一种做法是用 $N/2$ 点复数 FFT 算 $N$ 点实序列 DFT（第 4 章）。
 

@@ -28,7 +28,9 @@ related: []
 
 > [!info] 定义 9.1 一维高斯分布
 > $X\sim N(\mu,\sigma^2)$ 的密度为
-> $$f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),\qquad -\infty<x<\infty$$
+> $$
+> f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),\qquad -\infty<x<\infty
+> $$
 > 标准正态记为 $\Phi(x)$，尾概率记为 $Q(x)=1-\Phi(x)$。
 
 | 性质 | 内容 |
@@ -47,7 +49,9 @@ related: []
 
 > [!info] 定义 9.2 高斯随机向量
 > 若 $\mathbf{X}\in\mathbb{R}^{n}$ 的密度为
-> $$f_{\mathbf{X}}(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\lvert\mathbf{\Sigma}\rvert^{1/2}}\exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{T}\mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
+> $$
+> f_{\mathbf{X}}(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\lvert\mathbf{\Sigma}\rvert^{1/2}}\exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{T}\mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
+> $$
 > 称 $\mathbf{X}\sim N(\boldsymbol{\mu},\mathbf{\Sigma})$，其中 $\mathbf{\Sigma}$ 为对称正定协方差矩阵。
 
 密度只通过二次型 $(\mathbf{x}-\boldsymbol{\mu})^{T}\mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})$ 依赖 $\mathbf{x}$，因此等概率面是以 $\boldsymbol{\mu}$ 为中心的椭球，主轴沿 $\mathbf{\Sigma}$ 的特征向量，半轴长与 $\sqrt{\lambda_i}$ 成正比。
@@ -66,14 +70,20 @@ related: []
 
 > [!info] 定理 9.1 线性变换
 > 若 $\mathbf{X}\sim N(\boldsymbol{\mu},\mathbf{\Sigma})$，$\mathbf{Y}=\mathbf{A}\mathbf{X}+\mathbf{b}$，则
-> $$\mathbf{Y}\sim N\big(\mathbf{A}\boldsymbol{\mu}+\mathbf{b},\ \mathbf{A}\mathbf{\Sigma}\mathbf{A}^{T}\big)$$
+> $$
+> \mathbf{Y}\sim N\big(\mathbf{A}\boldsymbol{\mu}+\mathbf{b},\ \mathbf{A}\mathbf{\Sigma}\mathbf{A}^{T}\big)
+> $$
 > 即使 $\mathbf{A}$ 是降维矩阵、$\mathbf{A}\mathbf{\Sigma}\mathbf{A}^{T}$ 奇异，$\mathbf{Y}$ 仍是高斯的（此时用特征函数定义，密度可能不存在）。
 
 **条件高斯**：把 $\mathbf{X}$ 分块为 $[\mathbf{X}_1;\mathbf{X}_2]$，均值与协方差相应分块，则在 $\mathbf{X}_2=\mathbf{x}_2$ 下
 
-$$E[\mathbf{X}_1\mid\mathbf{X}_2=\mathbf{x}_2]=\boldsymbol{\mu}_1+\mathbf{\Sigma}_{12}\mathbf{\Sigma}_{22}^{-1}(\mathbf{x}_2-\boldsymbol{\mu}_2)$$
+$$
+E[\mathbf{X}_1\mid\mathbf{X}_2=\mathbf{x}_2]=\boldsymbol{\mu}_1+\mathbf{\Sigma}_{12}\mathbf{\Sigma}_{22}^{-1}(\mathbf{x}_2-\boldsymbol{\mu}_2)
+$$
 
-$$\mathrm{Cov}(\mathbf{X}_1\mid\mathbf{X}_2)=\mathbf{\Sigma}_{11}-\mathbf{\Sigma}_{12}\mathbf{\Sigma}_{22}^{-1}\mathbf{\Sigma}_{21}$$
+$$
+\mathrm{Cov}(\mathbf{X}_1\mid\mathbf{X}_2)=\mathbf{\Sigma}_{11}-\mathbf{\Sigma}_{12}\mathbf{\Sigma}_{22}^{-1}\mathbf{\Sigma}_{21}
+$$
 
 > [!tip] 条件高斯的三个读法
 > 1. 条件均值是 $\mathbf{x}_2$ 的**仿射函数**，斜率 $\mathbf{\Sigma}_{12}\mathbf{\Sigma}_{22}^{-1}$ 就是线性 MMSE 的系数；
@@ -103,7 +113,9 @@ $$\mathrm{Cov}(\mathbf{X}_1\mid\mathbf{X}_2)=\mathbf{\Sigma}_{11}-\mathbf{\Sigma
 > [!info] 定义 9.3 复高斯
 > 若 $Z=X+jY$ 且 $(X,Y)$ 联合高斯，称 $Z$ 为**复高斯**随机变量。
 > 若进一步 $E[(Z-\mu_Z)^2]=0$（零均值时即 $E[Z^2]=0$，等价于 $X,Y$ 独立且方差相等），称 $Z$ 为 **proper** 复高斯（关于均值圆对称），记 $Z\sim\mathcal{CN}(\mu_Z,\sigma_Z^2)$，其密度为
-> $$f_Z(z)=\frac{1}{\pi\sigma_Z^2}\exp\left(-\frac{\lvert z-\mu_Z\rvert^2}{\sigma_Z^2}\right)$$
+> $$
+> f_Z(z)=\frac{1}{\pi\sigma_Z^2}\exp\left(-\frac{\lvert z-\mu_Z\rvert^2}{\sigma_Z^2}\right)
+> $$
 
 在 IQ 接收机中，基带噪声常写成 $Z=I+jQ$。若 $I,Q$ 独立同分布 $N(0,\sigma^2)$，则 $E[\lvert Z\rvert^2]=2\sigma^2$，即复噪声功率是单支路的两倍。
 
@@ -123,44 +135,62 @@ $$\mathrm{Cov}(\mathbf{X}_1\mid\mathbf{X}_2)=\mathbf{\Sigma}_{11}-\mathbf{\Sigma
 
 > [!example] 题目
 > 设随机变量 $X_1,X_2,X_3$ 是相互独立的标准正态分布随机变量，求随机变量
-> $$Y_1=\frac{1}{\sqrt{2}}(X_1-X_2),\qquad Y_2=\frac{1}{\sqrt{6}}(X_1+X_2-2X_3),\qquad Y_3=\frac{1}{\sqrt{3}}(X_1+X_2+X_3)$$
+> $$
+> Y_1=\frac{1}{\sqrt{2}}(X_1-X_2),\qquad Y_2=\frac{1}{\sqrt{6}}(X_1+X_2-2X_3),\qquad Y_3=\frac{1}{\sqrt{3}}(X_1+X_2+X_3)
+> $$
 > 的联合概率密度函数，以及随机向量 $(Y_1,Y_2,Y_3)^{T}$ 的均值向量和协方差矩阵。
 
 **解**：
 
 把三个式子写成矩阵形式 $\mathbf{Y}=\mathbf{Q}\mathbf{X}$，其中
 
-$$\mathbf{Q}=\begin{bmatrix}\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}&0\\\frac{1}{\sqrt{6}}&\frac{1}{\sqrt{6}}&-\frac{2}{\sqrt{6}}\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}\end{bmatrix}$$
+$$
+\mathbf{Q}=\begin{bmatrix}\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}&0\\\frac{1}{\sqrt{6}}&\frac{1}{\sqrt{6}}&-\frac{2}{\sqrt{6}}\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}\end{bmatrix}
+$$
 
 先验证 $\mathbf{Q}$ 是正交矩阵。记三行依次为 $\mathbf{q}_1,\mathbf{q}_2,\mathbf{q}_3$。两两内积为
 
-$$\mathbf{q}_1^{T}\mathbf{q}_2=\frac{1}{\sqrt{12}}-\frac{1}{\sqrt{12}}+0=0,\qquad \mathbf{q}_1^{T}\mathbf{q}_3=\frac{1}{\sqrt{6}}-\frac{1}{\sqrt{6}}+0=0$$
+$$
+\mathbf{q}_1^{T}\mathbf{q}_2=\frac{1}{\sqrt{12}}-\frac{1}{\sqrt{12}}+0=0,\qquad \mathbf{q}_1^{T}\mathbf{q}_3=\frac{1}{\sqrt{6}}-\frac{1}{\sqrt{6}}+0=0
+$$
 
-$$\mathbf{q}_2^{T}\mathbf{q}_3=\frac{1}{\sqrt{18}}+\frac{1}{\sqrt{18}}-\frac{2}{\sqrt{18}}=0$$
+$$
+\mathbf{q}_2^{T}\mathbf{q}_3=\frac{1}{\sqrt{18}}+\frac{1}{\sqrt{18}}-\frac{2}{\sqrt{18}}=0
+$$
 
 各行范数平方为
 
-$$\lVert\mathbf{q}_1\rVert^{2}=\frac{1}{2}+\frac{1}{2}=1,\qquad \lVert\mathbf{q}_2\rVert^{2}=\frac{1}{6}+\frac{1}{6}+\frac{4}{6}=1,\qquad \lVert\mathbf{q}_3\rVert^{2}=\frac{1}{3}+\frac{1}{3}+\frac{1}{3}=1$$
+$$
+\lVert\mathbf{q}_1\rVert^{2}=\frac{1}{2}+\frac{1}{2}=1,\qquad \lVert\mathbf{q}_2\rVert^{2}=\frac{1}{6}+\frac{1}{6}+\frac{4}{6}=1,\qquad \lVert\mathbf{q}_3\rVert^{2}=\frac{1}{3}+\frac{1}{3}+\frac{1}{3}=1
+$$
 
 所以 $\mathbf{Q}\mathbf{Q}^{T}=\mathbf{I}_3$，$\mathbf{Q}$ 为正交矩阵，且 $\lvert\det\mathbf{Q}\rvert=1$。
 
 $\mathbf{X}\sim N(\mathbf{0},\mathbf{I}_3)$，由正文定理 9.1，高斯向量经线性变换仍是高斯向量，均值与协方差分别为
 
-$$\boldsymbol{\mu}_Y=\mathbf{Q}\boldsymbol{\mu}_X=\mathbf{0},\qquad \mathbf{C}_Y=\mathbf{Q}\mathbf{I}_3\mathbf{Q}^{T}=\mathbf{Q}\mathbf{Q}^{T}=\mathbf{I}_3$$
+$$
+\boldsymbol{\mu}_Y=\mathbf{Q}\boldsymbol{\mu}_X=\mathbf{0},\qquad \mathbf{C}_Y=\mathbf{Q}\mathbf{I}_3\mathbf{Q}^{T}=\mathbf{Q}\mathbf{Q}^{T}=\mathbf{I}_3
+$$
 
 于是 $\mathbf{Y}\sim N(\mathbf{0},\mathbf{I}_3)$，联合密度为
 
-$$f_{\mathbf{Y}}(\mathbf{y})=\frac{1}{(2\pi)^{3/2}\lvert\mathbf{I}_3\rvert^{1/2}}\exp\left(-\frac{1}{2}\mathbf{y}^{T}\mathbf{I}_3^{-1}\mathbf{y}\right)=\frac{1}{(2\pi)^{3/2}}\exp\left(-\frac{y_1^{2}+y_2^{2}+y_3^{2}}{2}\right)$$
+$$
+f_{\mathbf{Y}}(\mathbf{y})=\frac{1}{(2\pi)^{3/2}\lvert\mathbf{I}_3\rvert^{1/2}}\exp\left(-\frac{1}{2}\mathbf{y}^{T}\mathbf{I}_3^{-1}\mathbf{y}\right)=\frac{1}{(2\pi)^{3/2}}\exp\left(-\frac{y_1^{2}+y_2^{2}+y_3^{2}}{2}\right)
+$$
 
 即
 
-$$f_{Y_1Y_2Y_3}(y_1,y_2,y_3)=\frac{1}{(2\pi)^{3/2}}e^{-\frac{y_1^{2}+y_2^{2}+y_3^{2}}{2}}$$
+$$
+f_{Y_1Y_2Y_3}(y_1,y_2,y_3)=\frac{1}{(2\pi)^{3/2}}e^{-\frac{y_1^{2}+y_2^{2}+y_3^{2}}{2}}
+$$
 
 协方差矩阵 $\mathbf{C}_Y=\mathbf{I}_3$ 表明 $\mathrm{Var}(Y_i)=1$、$\mathrm{Cov}(Y_i,Y_j)=0$（$i\neq j$）。$\mathbf{Y}$ 是联合高斯的，而联合高斯下不相关等价于独立，所以 $Y_1,Y_2,Y_3$ 是相互独立的标准正态变量。
 
 用变量替换复核。反变换为 $\mathbf{X}=\mathbf{Q}^{T}\mathbf{Y}$，且 $\lvert\det\mathbf{Q}\rvert=1$，故
 
-$$f_{\mathbf{Y}}(\mathbf{y})=f_{\mathbf{X}}(\mathbf{Q}^{T}\mathbf{y})\lvert\det\mathbf{Q}\rvert^{-1}=\frac{1}{(2\pi)^{3/2}}e^{-\frac{1}{2}\lVert\mathbf{Q}^{T}\mathbf{y}\rVert^{2}}=\frac{1}{(2\pi)^{3/2}}e^{-\frac{\lVert\mathbf{y}\rVert^{2}}{2}}$$
+$$
+f_{\mathbf{Y}}(\mathbf{y})=f_{\mathbf{X}}(\mathbf{Q}^{T}\mathbf{y})\lvert\det\mathbf{Q}\rvert^{-1}=\frac{1}{(2\pi)^{3/2}}e^{-\frac{1}{2}\lVert\mathbf{Q}^{T}\mathbf{y}\rVert^{2}}=\frac{1}{(2\pi)^{3/2}}e^{-\frac{\lVert\mathbf{y}\rVert^{2}}{2}}
+$$
 
 最后一步用到正交性 $\lVert\mathbf{Q}^{T}\mathbf{y}\rVert^{2}=\mathbf{y}^{T}\mathbf{Q}\mathbf{Q}^{T}\mathbf{y}=\lVert\mathbf{y}\rVert^{2}$。正交变换既保长度又保体积，所以密度表达式里不出现额外的雅可比因子。
 

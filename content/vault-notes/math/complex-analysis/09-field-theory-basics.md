@@ -53,9 +53,13 @@ related: []
 
 ## 向量代数复习
 
-$$\mathbf{A}\cdot\mathbf{B}=A_xB_x+A_yB_y+A_zB_z$$
+$$
+\mathbf{A}\cdot\mathbf{B}=A_xB_x+A_yB_y+A_zB_z
+$$
 
-$$\mathbf{A}\times\mathbf{B}=\begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\A_x&A_y&A_z\\B_x&B_y&B_z\end{vmatrix}$$
+$$
+\mathbf{A}\times\mathbf{B}=\begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\A_x&A_y&A_z\\B_x&B_y&B_z\end{vmatrix}
+$$
 
 - 点积：标量；叉积：向量
 - $\mathbf{A}\cdot\mathbf{B}=|\mathbf{A}||\mathbf{B}|\cos\theta$；$|\mathbf{A}\times\mathbf{B}|=|\mathbf{A}||\mathbf{B}|\sin\theta$
@@ -127,12 +131,16 @@ $$\mathbf{A}\times\mathbf{B}=\begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}
 
 > [!info] Def 2 方向导数
 > 标量场 $\varphi$ 在点 $P$ 沿单位方向 $\mathbf{e}_l$ 的**方向导数**为
-> $$\frac{\partial\varphi}{\partial l}=\lim_{t\to0}\frac{\varphi(P+t\mathbf{e}_l)-\varphi(P)}{t}$$
+> $$
+> \frac{\partial\varphi}{\partial l}=\lim_{t\to0}\frac{\varphi(P+t\mathbf{e}_l)-\varphi(P)}{t}
+> $$
 > 它表示 $\varphi$ 沿该方向的变化率。
 
 **计算公式**：
 
-$$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varphi|\cos\theta$$
+$$
+\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varphi|\cos\theta
+$$
 
 其中 $\theta$ 是 $\nabla\varphi$ 与 $\mathbf{e}_l$ 的夹角。
 
@@ -140,7 +148,9 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!info] Def 3 梯度
 > 标量场 $\varphi$ 的**梯度**（gradient）为
-> $$\operatorname{grad}\varphi=\nabla\varphi=\left(\frac{\partial\varphi}{\partial x},\frac{\partial\varphi}{\partial y},\frac{\partial\varphi}{\partial z}\right)$$
+> $$
+> \operatorname{grad}\varphi=\nabla\varphi=\left(\frac{\partial\varphi}{\partial x},\frac{\partial\varphi}{\partial y},\frac{\partial\varphi}{\partial z}\right)
+> $$
 > 它是一个向量场。
 
 **三条核心性质**：
@@ -150,14 +160,20 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 3. **等值面**：$\nabla\varphi$ 垂直于等值面 $\varphi=\text{const}$
 
 > [!important] 方向导数 = 梯度在方向上的投影
-> $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l$$
+> $$
+> \frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l
+> $$
 > 当 $\mathbf{e}_l$ 与 $\nabla\varphi$ 同向时取最大值 $|\nabla\varphi|$；垂直时为 0（沿等值面方向）。
 
 > [!example] 梯度计算
 > $\varphi=x^2y+yz^3$，求 $\nabla\varphi$ 在 $(1,2,-1)$ 的值。
-> $$\nabla\varphi=(2xy,\ x^2+z^3,\ 3yz^2)$$
+> $$
+> \nabla\varphi=(2xy,\ x^2+z^3,\ 3yz^2)
+> $$
 > 在 $(1,2,-1)$：
-> $$\nabla\varphi=(4,\ 1-1,\ 3\cdot2\cdot1)=(4,0,6)$$
+> $$
+> \nabla\varphi=(4,\ 1-1,\ 3\cdot2\cdot1)=(4,0,6)
+> $$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="100%" style="max-width:760px" font-family="inherit">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
@@ -200,7 +216,9 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!info] Def 4 通量
 > 向量场 $\mathbf{A}$ 穿过有向曲面 $S$ 的**通量**（flux）为
-> $$\Phi=\iint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iint_S\mathbf{A}\cdot\mathbf{n}\,\mathrm{d}S$$
+> $$
+> \Phi=\iint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iint_S\mathbf{A}\cdot\mathbf{n}\,\mathrm{d}S
+> $$
 > 其中 $\mathbf{n}$ 为曲面单位法向量。
 
 物理意义：通量表示"穿过曲面的场的总量"。例如流速场穿过曲面的通量 = 单位时间通过该面的流体体积。
@@ -209,7 +227,9 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!info] Def 5 散度
 > 向量场 $\mathbf{A}$ 的**散度**（divergence）为
-> $$\operatorname{div}\mathbf{A}=\nabla\cdot\mathbf{A}=\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}$$
+> $$
+> \operatorname{div}\mathbf{A}=\nabla\cdot\mathbf{A}=\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}
+> $$
 > 它是一个标量场。
 
 **物理意义**：散度是"单位体积的通量源强度"。
@@ -220,12 +240,16 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!important] 高斯定理（散度定理）
 > 设 $S$ 是包围体积 $V$ 的闭曲面，取外法向，则
-> $$\oiint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iiint_V\nabla\cdot\mathbf{A}\,\mathrm{d}V$$
+> $$
+> \oiint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}=\iiint_V\nabla\cdot\mathbf{A}\,\mathrm{d}V
+> $$
 > **边界上的通量 = 内部散度的体积分。**
 
 > [!example] 散度计算
 > $\mathbf{A}=(x^2y,\ yz,\ xz^2)$，求 $\nabla\cdot\mathbf{A}$。
-> $$\nabla\cdot\mathbf{A}=2xy+z+2xz$$
+> $$
+> \nabla\cdot\mathbf{A}=2xy+z+2xz
+> $$
 
 > [!example] 高斯定理验证
 > $\mathbf{A}=(x,y,z)$（径向场），$S$ 为半径 $R$ 的球面。
@@ -238,7 +262,9 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!info] Def 6 环量
 > 向量场 $\mathbf{A}$ 沿有向闭曲线 $C$ 的**环量**（circulation）为
-> $$\Gamma=\oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}$$
+> $$
+> \Gamma=\oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}
+> $$
 
 物理意义：环量表示场沿闭曲线的"旋转趋势"。例如流速场沿闭曲线的环量 = 沿该回路的流体旋转强度。
 
@@ -246,12 +272,16 @@ $$\frac{\partial\varphi}{\partial l}=\nabla\varphi\cdot\mathbf{e}_l=|\nabla\varp
 
 > [!info] Def 7 旋度
 > 向量场 $\mathbf{A}$ 的**旋度**（curl）为
-> $$\operatorname{curl}\mathbf{A}=\nabla\times\mathbf{A}=\begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\A_x&A_y&A_z\end{vmatrix}$$
+> $$
+> \operatorname{curl}\mathbf{A}=\nabla\times\mathbf{A}=\begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\A_x&A_y&A_z\end{vmatrix}
+> $$
 > 它是一个向量场。
 
 展开：
 
-$$\nabla\times\mathbf{A}=\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z},\ \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x},\ \frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right)$$
+$$
+\nabla\times\mathbf{A}=\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z},\ \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x},\ \frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right)
+$$
 
 **物理意义**：旋度是"单位面积的环量"，描述场的局部旋转。
 
@@ -260,13 +290,19 @@ $$\nabla\times\mathbf{A}=\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_
 
 > [!important] 斯托克斯定理
 > 设 $S$ 是以闭曲线 $C$ 为边界的有向曲面，$C$ 的方向与 $S$ 的法向成右手螺旋，则
-> $$\oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}=\iint_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}$$
+> $$
+> \oint_C\mathbf{A}\cdot\mathrm{d}\mathbf{l}=\iint_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}
+> $$
 > **边界上的环量 = 内部旋度的通量。**
 
 > [!example] 旋度计算
 > $\mathbf{A}=(yz,\ xz,\ xy)$，求 $\nabla\times\mathbf{A}$。
-> $$\nabla\times\mathbf{A}=\left(\frac{\partial(xy)}{\partial y}-\frac{\partial(xz)}{\partial z},\ \frac{\partial(yz)}{\partial z}-\frac{\partial(xy)}{\partial x},\ \frac{\partial(xz)}{\partial x}-\frac{\partial(yz)}{\partial y}\right)$$
-> $$=(x-x,\ y-y,\ z-z)=(0,0,0)$$
+> $$
+> \nabla\times\mathbf{A}=\left(\frac{\partial(xy)}{\partial y}-\frac{\partial(xz)}{\partial z},\ \frac{\partial(yz)}{\partial z}-\frac{\partial(xy)}{\partial x},\ \frac{\partial(xz)}{\partial x}-\frac{\partial(yz)}{\partial y}\right)
+> $$
+> $$
+> =(x-x,\ y-y,\ z-z)=(0,0,0)
+> $$
 > 故 $\mathbf{A}$ 是无旋场；事实上 $\mathbf{A}=\nabla(xyz)$。
 
 ## 三个重要恒等式
@@ -283,35 +319,57 @@ $$\nabla\times\mathbf{A}=\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_
 
 > [!example] 验证恒等式
 > $\varphi=x^2yz$，验证 $\nabla\times(\nabla\varphi)=0$。
-> $$\nabla\varphi=(2xyz,\ x^2z,\ x^2y)$$
-> $$\nabla\times\nabla\varphi=\left(\frac{\partial(x^2y)}{\partial y}-\frac{\partial(x^2z)}{\partial z},\ \frac{\partial(2xyz)}{\partial z}-\frac{\partial(x^2y)}{\partial x},\ \frac{\partial(x^2z)}{\partial x}-\frac{\partial(2xyz)}{\partial y}\right)$$
+> $$
+> \nabla\varphi=(2xyz,\ x^2z,\ x^2y)
+> $$
+> $$
+> \nabla\times\nabla\varphi=\left(\frac{\partial(x^2y)}{\partial y}-\frac{\partial(x^2z)}{\partial z},\ \frac{\partial(2xyz)}{\partial z}-\frac{\partial(x^2y)}{\partial x},\ \frac{\partial(x^2z)}{\partial x}-\frac{\partial(2xyz)}{\partial y}\right)
+> $$
 > $$=(x^2-x^2,\ 2xy-2xy,\ 2xz-2xz)=(0,0,0)$$ ✓
 
 # 5. 例题
 
 > [!example] 例 1：方向导数
 > $\varphi=x^2+y^2+z^2$，求在 $(1,1,1)$ 沿 $\mathbf{e}_l=\frac{1}{\sqrt3}(1,1,1)$ 的方向导数。
-> $$\nabla\varphi=(2x,2y,2z)\big|_{(1,1,1)}=(2,2,2)$$
-> $$\frac{\partial\varphi}{\partial l}=(2,2,2)\cdot\frac{1}{\sqrt3}(1,1,1)=\frac{6}{\sqrt3}=2\sqrt3$$
+> $$
+> \nabla\varphi=(2x,2y,2z)\big|_{(1,1,1)}=(2,2,2)
+> $$
+> $$
+> \frac{\partial\varphi}{\partial l}=(2,2,2)\cdot\frac{1}{\sqrt3}(1,1,1)=\frac{6}{\sqrt3}=2\sqrt3
+> $$
 > 最大方向导数 $|\nabla\varphi|=\sqrt{12}=2\sqrt3$，方向正是 $\frac{1}{\sqrt3}(1,1,1)$。
 
 > [!example] 例 2：散度与高斯定理
 > $\mathbf{A}=(x^3,y^3,z^3)$，$S$ 为球面 $x^2+y^2+z^2=R^2$。求通量。
-> $$\nabla\cdot\mathbf{A}=3(x^2+y^2+z^2)=3r^2$$
-> $$\iiint_V3r^2\,dV=3\int_0^R r^2\cdot4\pi r^2\,dr=\frac{12\pi R^5}{5}$$
+> $$
+> \nabla\cdot\mathbf{A}=3(x^2+y^2+z^2)=3r^2
+> $$
+> $$
+> \iiint_V3r^2\,dV=3\int_0^R r^2\cdot4\pi r^2\,dr=\frac{12\pi R^5}{5}
+> $$
 
 > [!example] 例 3：旋度与斯托克斯定理
 > $\mathbf{A}=(-y,x,0)$（绕 z 轴旋转的场），$C$ 为 $xy$ 平面内半径 $R$ 的圆。求环量。
-> $$\nabla\times\mathbf{A}=(0,0,2)$$
-> $$\oint_C\mathbf{A}\cdot d\mathbf{l}=\iint_S(0,0,2)\cdot(0,0,1)\,dS=2\pi R^2$$
+> $$
+> \nabla\times\mathbf{A}=(0,0,2)
+> $$
+> $$
+> \oint_C\mathbf{A}\cdot d\mathbf{l}=\iint_S(0,0,2)\cdot(0,0,1)\,dS=2\pi R^2
+> $$
 > 直接验证：$d\mathbf{l}=(-R\sin\theta,R\cos\theta,0)d\theta$，$\mathbf{A}=(-R\sin\theta,R\cos\theta,0)$，被积函数 $R^2$，积分 $2\pi R^2$ ✓
 
 > [!example] 例 4：保守场与势函数
 > 判断 $\mathbf{A}=(2xy,\ x^2+2yz,\ y^2)$ 是否为保守场；若是，求势函数。
-> $$\nabla\times\mathbf{A}=\left(\frac{\partial(y^2)}{\partial y}-\frac{\partial(x^2+2yz)}{\partial z},\ \frac{\partial(2xy)}{\partial z}-\frac{\partial(y^2)}{\partial x},\ \frac{\partial(x^2+2yz)}{\partial x}-\frac{\partial(2xy)}{\partial y}\right)$$
-> $$=(2y-2y,\ 0-0,\ 2x-2x)=(0,0,0)$$
+> $$
+> \nabla\times\mathbf{A}=\left(\frac{\partial(y^2)}{\partial y}-\frac{\partial(x^2+2yz)}{\partial z},\ \frac{\partial(2xy)}{\partial z}-\frac{\partial(y^2)}{\partial x},\ \frac{\partial(x^2+2yz)}{\partial x}-\frac{\partial(2xy)}{\partial y}\right)
+> $$
+> $$
+> =(2y-2y,\ 0-0,\ 2x-2x)=(0,0,0)
+> $$
 > 无旋，存在势函数 $\varphi$。由 $\varphi_x=2xy$，$\varphi=x^2y+f(y,z)$；由 $\varphi_y=x^2+2yz$，得 $f_y=2yz$，$f=yz^2+g(z)$；由 $\varphi_z=y^2$，得 $g'(z)=0$。
-> $$\varphi=x^2y+yz^2+C$$
+> $$
+> \varphi=x^2y+yz^2+C
+> $$
 
 > [!example] 例 5：电磁场的两个方程
 > 静电场 $\mathbf{E}=-\nabla V$（无旋），故 $\nabla\times\mathbf{E}=0$。

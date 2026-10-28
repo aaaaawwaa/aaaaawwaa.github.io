@@ -155,7 +155,9 @@ CLKFB ────────────────────────�
 
 ### 5.2 频率换算
 
-$$f_{VCO}=f_{CLKIN}\times\frac{M}{D},\qquad f_{CLKOUTk}=\frac{f_{VCO}}{O_k},\qquad f_{CLKFBOUT}=\frac{f_{VCO}}{M}$$
+$$
+f_{VCO}=f_{CLKIN}\times\frac{M}{D},\qquad f_{CLKOUTk}=\frac{f_{VCO}}{O_k},\qquad f_{CLKFBOUT}=\frac{f_{VCO}}{M}
+$$
 
 课件例子：$f_{CLKIN}=100$ MHz，$D=1$，$M=10$ → $f_{VCO}=1$ GHz；再取 $O_0=20$ → $f_{CLKOUT0}=50$ MHz。
 
@@ -163,7 +165,9 @@ $$f_{VCO}=f_{CLKIN}\times\frac{M}{D},\qquad f_{CLKOUTk}=\frac{f_{VCO}}{O_k},\qqu
 
 VCO 的 8 个相位抽头把 VCO 周期**均分**成 8 份，因此：
 
-$$\Delta\varphi_{\text{粗}} = \frac{360°}{8}=45°\quad\Rightarrow\quad \Delta t = \frac{45°}{360°}\cdot T_{OUT}=\frac{T_{OUT}}{8}$$
+$$
+\Delta\varphi_{\text{粗}} = \frac{360°}{8}=45°\quad\Rightarrow\quad \Delta t = \frac{45°}{360°}\cdot T_{OUT}=\frac{T_{OUT}}{8}
+$$
 
 - 50 MHz 输出（$T=20$ ns）：一个抽头 = $20/8 = 2.5$ ns，90° = 2 个抽头 = 5 ns。
 - 180° 不需要抽头：直接用反相输出 `CLKOUT0B`。

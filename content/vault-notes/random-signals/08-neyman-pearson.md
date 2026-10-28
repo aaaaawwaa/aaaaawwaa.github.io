@@ -37,23 +37,33 @@ related: []
 
 把约束优化写成
 
-$$\max_{\mathcal{R}_1}P_d\quad\text{s.t.}\quad P_{fa}\le\alpha$$
+$$
+\max_{\mathcal{R}_1}P_d\quad\text{s.t.}\quad P_{fa}\le\alpha
+$$
 
 引入乘子 $\lambda\ge0$，构造
 
-$$J=P_m+\lambda(P_{fa}-\alpha)$$
+$$
+J=P_m+\lambda(P_{fa}-\alpha)
+$$
 
 把 $P_m=1-\int_{\mathcal{R}_1}f_1$ 与 $P_{fa}=\int_{\mathcal{R}_1}f_0$ 代入，并利用 $\int_{\mathcal{R}_0}f_1=1-\int_{\mathcal{R}_1}f_1$，得
 
-$$J=\lambda(1-\alpha)+\int_{\mathcal{R}_0}\left(f_1-\lambda f_0\right)d\mathbf{x}$$
+$$
+J=\lambda(1-\alpha)+\int_{\mathcal{R}_0}\left(f_1-\lambda f_0\right)d\mathbf{x}
+$$
 
 要让 $J$ 最小，应把被积函数为负的点全部放进 $\mathcal{R}_0$，即
 
-$$\mathcal{R}_0=\{\mathbf{x}:f_1(\mathbf{x})<\lambda f_0(\mathbf{x})\}\quad\Longleftrightarrow\quad\Lambda(\mathbf{x})<\lambda$$
+$$
+\mathcal{R}_0=\{\mathbf{x}:f_1(\mathbf{x})<\lambda f_0(\mathbf{x})\}\quad\Longleftrightarrow\quad\Lambda(\mathbf{x})<\lambda
+$$
 
 于是最优检验仍是似然比检验：
 
-$$\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\lambda$$
+$$
+\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\lambda
+$$
 
 乘子 $\lambda$ 就是门限，由约束取等号确定：$P_{fa}(\lambda)=\alpha$。
 
@@ -67,11 +77,15 @@ $$\Lambda(\mathbf{x})\underset{H_0}{\overset{H_1}{\gtrless}}\lambda$$
 > [!example] 高斯均值检测的 NP 门限
 > $H_0:x\sim\mathcal{N}(0,\sigma^2)$，$H_1:x\sim\mathcal{N}(\mu,\sigma^2)$。判决为 $x>\gamma$，且 $P_{fa}=Q(\gamma/\sigma)$。给定 $\alpha$，门限为
 >
-> $$\gamma=\sigma Q^{-1}(\alpha)$$
+> $$
+> \gamma=\sigma Q^{-1}(\alpha)
+> $$
 >
 > 检测概率为
 >
-> $$P_d=Q\left(Q^{-1}(\alpha)-\frac{\mu}{\sigma}\right)$$
+> $$
+> P_d=Q\left(Q^{-1}(\alpha)-\frac{\mu}{\sigma}\right)
+> $$
 >
 > 取 $\mu/\sigma=2$、$\alpha=10^{-3}$，则 $Q^{-1}(\alpha)=3.090$，$P_d=Q(1.090)\approx0.138$。若把 $\alpha$ 放宽到 $10^{-2}$，门限降到 $2.326\sigma$，$P_d$ 升到 $Q(0.326)\approx0.372$。
 

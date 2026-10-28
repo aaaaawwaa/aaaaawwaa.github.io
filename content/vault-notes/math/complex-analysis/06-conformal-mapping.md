@@ -41,7 +41,9 @@ related: []
 
 **局部行为**：
 
-$$f(z)-f(z_0)\approx f'(z_0)(z-z_0)$$
+$$
+f(z)-f(z_0)\approx f'(z_0)(z-z_0)
+$$
 
 - 模：$|f(z)-f(z_0)|\approx|f'(z_0)|\,|z-z_0|$ → **伸缩率** $|f'(z_0)|$
 - 辐角：$\arg[f(z)-f(z_0)]\approx\arg f'(z_0)+\arg(z-z_0)$ → **旋转角** $\arg f'(z_0)$
@@ -89,22 +91,30 @@ $$f(z)-f(z_0)\approx f'(z_0)(z-z_0)$$
 ## 定义与基本性质
 
 > [!info] Def 2 分式线性映射
-> $$w=\frac{az+b}{cz+d},\qquad ad-bc\ne0$$
+> $$
+> w=\frac{az+b}{cz+d},\qquad ad-bc\ne0
+> $$
 > 称为**分式线性映射**（fractional linear transformation），也称 **Möbius 变换**。
 
 **四条基本性质**：
 
 1. **一一对应**：逆映射仍是分式线性映射
-   $$z=\frac{-dw+b}{cw-a}$$
+   $$
+   z=\frac{-dw+b}{cw-a}
+   $$
 2. **复合封闭**：两个分式线性映射的复合仍是分式线性映射
 3. **保圆性**：把**圆或直线**映成**圆或直线**（直线看作过无穷远点的圆）
 4. **保交比**：交比在映射下不变
 
 > [!info] Def 3 交比
 > 四个点 $z_1,z_2,z_3,z_4$ 的**交比**（cross-ratio）为
-> $$(z_1,z_2;z_3,z_4)=\frac{(z_1-z_3)(z_2-z_4)}{(z_1-z_4)(z_2-z_3)}$$
+> $$
+> (z_1,z_2;z_3,z_4)=\frac{(z_1-z_3)(z_2-z_4)}{(z_1-z_4)(z_2-z_3)}
+> $$
 > 分式线性映射保持交比不变：
-> $$(w_1,w_2;w_3,w_4)=(z_1,z_2;z_3,z_4)$$
+> $$
+> (w_1,w_2;w_3,w_4)=(z_1,z_2;z_3,z_4)
+> $$
 
 ## 三类基本映射
 
@@ -125,14 +135,20 @@ $$f(z)-f(z_0)\approx f'(z_0)(z-z_0)$$
 
 分式线性映射由**三对对应点**唯一确定：
 
-$$\frac{w-w_1}{w-w_2}\cdot\frac{w_3-w_2}{w_3-w_1}=\frac{z-z_1}{z-z_2}\cdot\frac{z_3-z_2}{z_3-z_1}$$
+$$
+\frac{w-w_1}{w-w_2}\cdot\frac{w_3-w_2}{w_3-w_1}=\frac{z-z_1}{z-z_2}\cdot\frac{z_3-z_2}{z_3-z_1}
+$$
 
 > [!example] 上半平面 → 单位圆
 > 把上半平面 $\operatorname{Im}z>0$ 映成单位圆 $|w|<1$，且 $z=i$ 映到 $w=0$。
 > 取 $z_1=0\mapsto w_1=1$，$z_2=1\mapsto w_2=-1$，$z_3=i\mapsto w_3=0$，可得
-> $$w=\frac{z-i}{z+i}$$
+> $$
+> w=\frac{z-i}{z+i}
+> $$
 > 验证：实轴 $z=x$ 上
-> $$|w|=\frac{|x-i|}{|x+i|}=1$$
+> $$
+> |w|=\frac{|x-i|}{|x+i|}=1
+> $$
 > 故实轴映成单位圆；上半平面映成单位圆内部。
 
 > [!example] 上半平面 → 上半平面
@@ -168,7 +184,9 @@ $z=x+iy$ → $w=e^x e^{iy}$。
 
 指数函数的逆：把角域/上半平面映回带域。主值支：
 
-$$w=\ln z=\ln|z|+i\operatorname{Arg}z,\qquad -\pi<\operatorname{Arg}z<\pi$$
+$$
+w=\ln z=\ln|z|+i\operatorname{Arg}z,\qquad -\pi<\operatorname{Arg}z<\pi
+$$
 
 - 上半平面 → 带域 $0<\operatorname{Im}w<\pi$
 - 角域 → 水平带域
@@ -176,9 +194,13 @@ $$w=\ln z=\ln|z|+i\operatorname{Arg}z,\qquad -\pi<\operatorname{Arg}z<\pi$$
 ## 儒可夫斯基变换
 
 > [!info] Def 4 儒可夫斯基变换
-> $$w=z+\frac1z$$
+> $$
+> w=z+\frac1z
+> $$
 > 称为**儒可夫斯基变换**（Joukowski transform）。它把圆 $|z|=r$ 映成椭圆：
-> $$u=\left(r+\frac1r\right)\cos\theta,\qquad v=\left(r-\frac1r\right)\sin\theta$$
+> $$
+> u=\left(r+\frac1r\right)\cos\theta,\qquad v=\left(r-\frac1r\right)\sin\theta
+> $$
 > 把过 $\pm1$ 的圆映成**翼型**（airfoil），是空气动力学的经典工具。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="100%" style="max-width:720px" font-family="inherit">
@@ -205,7 +227,9 @@ $$w=\ln z=\ln|z|+i\operatorname{Arg}z,\qquad -\pi<\operatorname{Arg}z<\pi$$
 
 > [!example] 圆 → 椭圆
 > $|z|=2$ 经 $w=z+1/z$：
-> $$u=\frac52\cos\theta,\qquad v=\frac32\sin\theta$$
+> $$
+> u=\frac52\cos\theta,\qquad v=\frac32\sin\theta
+> $$
 > 即椭圆 $\dfrac{u^2}{(5/2)^2}+\dfrac{v^2}{(3/2)^2}=1$。
 
 ## 常用映射速查
@@ -228,17 +252,23 @@ $$w=\ln z=\ln|z|+i\operatorname{Arg}z,\qquad -\pi<\operatorname{Arg}z<\pi$$
 > [!example] 例 2：分式线性映射
 > 把上半平面映成单位圆，并使 $z=i\mapsto w=0$、$z=0\mapsto w=1$。
 > 设 $w=e^{i\alpha}\dfrac{z-i}{z+i}$。代入 $z=0$：
-> $$1=e^{i\alpha}\frac{-i}{i}=-e^{i\alpha}\ \Longrightarrow\ e^{i\alpha}=-1$$
+> $$
+> 1=e^{i\alpha}\frac{-i}{i}=-e^{i\alpha}\ \Longrightarrow\ e^{i\alpha}=-1
+> $$
 > 故 $w=-\dfrac{z-i}{z+i}=\dfrac{i-z}{z+i}$。
 
 > [!example] 例 3：带域映射
 > 把带域 $0<\operatorname{Im}z<\pi$ 映成单位圆。
 > 先用 $e^z$ 映成上半平面，再用 $\dfrac{w-i}{w+i}$ 映成单位圆：
-> $$W=\frac{e^z-i}{e^z+i}$$
+> $$
+> W=\frac{e^z-i}{e^z+i}
+> $$
 
 > [!example] 例 4：儒可夫斯基
 > 求 $|z|=3$ 在 $w=z+1/z$ 下的像。
-> $$u=3+\frac13=\frac{10}{3},\qquad v=3-\frac13=\frac83$$
+> $$
+> u=3+\frac13=\frac{10}{3},\qquad v=3-\frac13=\frac83
+> $$
 > 椭圆 $\dfrac{u^2}{(10/3)^2}+\dfrac{v^2}{(8/3)^2}=1$。
 
 > [!tip] 本章收官

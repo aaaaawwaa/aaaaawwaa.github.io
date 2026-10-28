@@ -44,11 +44,15 @@ related: []
 
 **解法很朴素**：给它乘一个**衰减因子** $r^{-n}$，把发散的级数"压"成收敛的：
 
-$$\sum_{n=-\infty}^{\infty}\big\lvert x(n)\,r^{-n}\big\rvert<\infty\quad\text{对某些 }r\text{ 成立}$$
+$$
+\sum_{n=-\infty}^{\infty}\big\lvert x(n)\,r^{-n}\big\rvert<\infty\quad\text{对某些 }r\text{ 成立}
+$$
 
 把 $r^{-n}$ 与 DTFT 的 $e^{-j\omega n}$ 合并，就得到一个以**复数** $z=re^{j\omega}$ 为自变量的函数：
 
-$$r^{-n}e^{-j\omega n}=\big(re^{j\omega}\big)^{-n}=z^{-n}$$
+$$
+r^{-n}e^{-j\omega n}=\big(re^{j\omega}\big)^{-n}=z^{-n}
+$$
 
 这就是 z 变换。**它不是新发明的技巧，而是"给 DTFT 加一个可调的衰减旋钮"**——旋钮转对了级数就收敛，转错了就发散，所以"哪些 $z$ 能收敛"（收敛域）成了这个变换不可分割的一部分。
 
@@ -56,34 +60,50 @@ $$r^{-n}e^{-j\omega n}=\big(re^{j\omega}\big)^{-n}=z^{-n}$$
 
 > [!info] Def 1 双边 z 变换
 > 序列 $x(n)$ 的**双边 z 变换**（bilateral z-transform）定义为
-> $$X(z)=\mathcal{Z}[x(n)]=\sum_{n=-\infty}^{\infty}x(n)\,z^{-n}$$
+> $$
+> X(z)=\mathcal{Z}[x(n)]=\sum_{n=-\infty}^{\infty}x(n)\,z^{-n}
+> $$
 > 其中 $z$ 为复变量。使该级数收敛的 $z$ 的集合称为**收敛域**（region of convergence，简称 **ROC**），记作 $R_x$。
 >
 > 逆变换（由 $X(z)$ 与 ROC 还原 $x(n)$）为围线积分：
-> $$x(n)=\frac{1}{2\pi j}\oint_{C}X(z)\,z^{\,n-1}\,dz$$
+> $$
+> x(n)=\frac{1}{2\pi j}\oint_{C}X(z)\,z^{\,n-1}\,dz
+> $$
 > $C$ 是 ROC 内一条逆时针绕原点的闭合曲线。
 
 > [!warning] 为什么 $X(z)$ 单独不够用 —— 本章第一纪律
 > 同一个 $X(z)$ 可以对应**不同的序列**：
-> $$x_1(n)=a^nu(n)\ \Longrightarrow\ X_1(z)=\frac{1}{1-az^{-1}},\ \lvert z\rvert>\lvert a\rvert$$
-> $$x_2(n)=-a^nu(-n-1)\ \Longrightarrow\ X_2(z)=\frac{1}{1-az^{-1}},\ \lvert z\rvert<\lvert a\rvert$$
+> $$
+> x_1(n)=a^nu(n)\ \Longrightarrow\ X_1(z)=\frac{1}{1-az^{-1}},\ \lvert z\rvert>\lvert a\rvert
+> $$
+> $$
+> x_2(n)=-a^nu(-n-1)\ \Longrightarrow\ X_2(z)=\frac{1}{1-az^{-1}},\ \lvert z\rvert<\lvert a\rvert
+> $$
 > **函数表达式完全相同，序列完全不同**（一个是右边序列、一个是左边序列）。所以：
-> $$\text{序列}\ \Longleftrightarrow\ \big(X(z),\ \text{ROC}\big)\ \text{这一对}$$
+> $$
+> \text{序列}\ \Longleftrightarrow\ \big(X(z),\ \text{ROC}\big)\ \text{这一对}
+> $$
 > 做题时给出 $X(z)$ 而不给 ROC，等于没给答案；反过来"求反变换"的题，**先看 ROC 再动笔**。
 
 ## 单边 z 变换
 
 > [!info] Def 2 单边 z 变换
-> $$X_1(z)=\mathcal{Z}_1[x(n)]=\sum_{n=0}^{\infty}x(n)\,z^{-n}$$
+> $$
+> X_1(z)=\mathcal{Z}_1[x(n)]=\sum_{n=0}^{\infty}x(n)\,z^{-n}
+> $$
 > 它只"看见" $n\ge0$ 的部分，因此**天然用于"给定初始条件求系统响应"的差分方程问题**（第 1 章 3 节的差分解法在这里变得非常机械）。
 
 单边变换的移位性质与双边不同（**这是它唯一需要注意的地方**）：
 
-$$x(n-m)\ \longleftrightarrow\ z^{-m}X_1(z)+\sum_{k=1}^{m}x(-k)\,z^{-(m-k)}$$
+$$
+x(n-m)\ \longleftrightarrow\ z^{-m}X_1(z)+\sum_{k=1}^{m}x(-k)\,z^{-(m-k)}
+$$
 
 特别地：
 
-$$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightarrow\ zX_1(z)-z\,x(0)$$
+$$
+x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightarrow\ zX_1(z)-z\,x(0)
+$$
 
 > [!tip] 单边 z 变换解差分方程的三步法
 > 1. 对差分方程两边取单边 z 变换（移位项会自动带出 $y(-1),y(-2),\dots$）；
@@ -146,17 +166,23 @@ $$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightar
 
 > [!note] 展开流程（第 3～8 步）与系数求法
 > 3. **比较次数**：记 $F(z)=\dfrac{P(z)}{Q(z)}$。$\deg P<\deg Q$ 时直接展开；$\deg P\ge\deg Q$ 时先做多项式长除法
->    $$F(z)=S(z)+\frac{R(z)}{Q(z)},\qquad \deg R<\deg Q$$
+>    $$
+>    F(z)=S(z)+\frac{R(z)}{Q(z)},\qquad \deg R<\deg Q
+>    $$
 >    只对真分式 $R/Q$ 展开，多项式部分乘回 $z$ 后单独写成 $\delta(n)$ 及其移位项。
 > 4. **分母因式分解**：$Q(z)=\prod_i (z-p_i)^{r_i}$，并记下每个极点的重数。实系数多项式若有复极点，必成共轭对出现，可先合成二阶项处理。
 > 5. **写展开式**：单极点写 $\dfrac{A_i}{z-p_i}$；$r$ 重极点必须**写满**从一次到 $r$ 次的所有项
->    $$\frac{A_1}{z-a}+\frac{A_2}{(z-a)^2}+\cdots+\frac{A_r}{(z-a)^r}$$
+>    $$
+>    \frac{A_1}{z-a}+\frac{A_2}{(z-a)^2}+\cdots+\frac{A_r}{(z-a)^r}
+>    $$
 >    漏掉任何一阶，通分比较时系数就会全错。
 > 6. **求系数**（按极点类型选方法）：
 >    - **遮盖法**（简单极点）：$A_i=\lim\limits_{z\to p_i}(z-p_i)F(z)$，即遮住 $(z-p_i)$ 后令 $z=p_i$；
 >    - **通分比较系数**：通分后比对同次幂，解线性方程组——通用但最慢；
 >    - **重极点导数法**：令 $G(z)=(z-a)^{r}F(z)$，则
->      $$A_{r-k}=\left.\frac{1}{k!}\frac{d^{k}G(z)}{dz^{k}}\right|_{z=a},\qquad k=0,1,\dots,r-1$$
+>      $$
+>      A_{r-k}=\left.\frac{1}{k!}\frac{d^{k}G(z)}{dz^{k}}\right|_{z=a},\qquad k=0,1,\dots,r-1
+>      $$
 > 7. **乘回 $z$**：$X(z)=zF(z)$，每项变成 $\dfrac{A_i z}{z-p_i}$ 或常数项，可直接对照表 2-1。
 > 8. **按 ROC 定左右**：
 >
@@ -168,11 +194,17 @@ $$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightar
 > ROC 在最外层极点之外 → 各项全取右边；在最内层极点之内 → 全取左边；夹在相邻两个极点之间 → 两侧分别取右、左，得到**双边序列**。**ROC 不含任何极点**，每一项取左还是取右必须服从题目给定的 ROC，不能只看代数式。
 
 > [!example] 例：同一个 $X(z)$，三种 ROC，三个序列
-> $$X(z)=\frac{1}{\big(1-0.5z^{-1}\big)\big(1-2z^{-1}\big)}$$
+> $$
+> X(z)=\frac{1}{\big(1-0.5z^{-1}\big)\big(1-2z^{-1}\big)}
+> $$
 > **① 部分分式**（对 $z^{-1}$ 展开，令 $u=z^{-1}$）：
-> $$\frac{1}{(1-0.5u)(1-2u)}=\frac{A}{1-0.5u}+\frac{B}{1-2u}$$
+> $$
+> \frac{1}{(1-0.5u)(1-2u)}=\frac{A}{1-0.5u}+\frac{B}{1-2u}
+> $$
 > 通分比较：$A+B=1$、$-2A-0.5B=0$，解得 $A=-\frac13$、$B=\frac43$，即
-> $$X(z)=\frac{-1/3}{1-0.5z^{-1}}+\frac{4/3}{1-2z^{-1}}$$
+> $$
+> X(z)=\frac{-1/3}{1-0.5z^{-1}}+\frac{4/3}{1-2z^{-1}}
+> $$
 > **② 极点**：$z=0.5$ 与 $z=2$，把 $z$ 平面分成三段，对应三个不同序列：
 >
 > | ROC | 极点 $0.5$ | 极点 $2$ | $x(n)$ |
@@ -186,16 +218,26 @@ $$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightar
 > [!example] 例：含多项式项时，结果里会出现 $\delta(n)$
 > 求 $X(z)=\dfrac{2+\frac13z^{-1}+z^{-2}}{1+\frac73z^{-1}-2z^{-2}}$ 的反变换（与上例的区别：分子、分母同为 $z$ 的二次式，属于**假分式**，结果里会多出冲激项）。
 > **① 清负幂**（分子分母同乘 $z^{2}$）：
-> $$X(z)=\frac{2z^{2}+\frac13z+1}{z^{2}+\frac73z-2}=\frac{2z^{2}+\frac13z+1}{\left(z-\frac23\right)(z+3)}$$
+> $$
+> X(z)=\frac{2z^{2}+\frac13z+1}{z^{2}+\frac73z-2}=\frac{2z^{2}+\frac13z+1}{\left(z-\frac23\right)(z+3)}
+> $$
 > **② 除以 $z$**：
-> $$F(z)=\frac{X(z)}{z}=\frac{2z^{2}+\frac13z+1}{z\left(z-\frac23\right)(z+3)}$$
+> $$
+> F(z)=\frac{X(z)}{z}=\frac{2z^{2}+\frac13z+1}{z\left(z-\frac23\right)(z+3)}
+> $$
 > 分子 2 次、分母 3 次，是真分式，**不需要长除法**。
 > **③ 写展开式**（极点 $0,\ \frac23,\ -3$ 全为简单极点）：
-> $$F(z)=\frac{A}{z}+\frac{B}{z-\frac23}+\frac{C}{z+3}$$
+> $$
+> F(z)=\frac{A}{z}+\frac{B}{z-\frac23}+\frac{C}{z+3}
+> $$
 > **④ 遮盖法求系数**：
-> $$A=\left.\frac{2z^{2}+\frac13z+1}{\left(z-\frac23\right)(z+3)}\right|_{z=0}=-\frac12,\qquad B=\left.\frac{2z^{2}+\frac13z+1}{z(z+3)}\right|_{z=\frac23}=\frac{19}{22},\qquad C=\left.\frac{2z^{2}+\frac13z+1}{z\left(z-\frac23\right)}\right|_{z=-3}=\frac{18}{11}$$
+> $$
+> A=\left.\frac{2z^{2}+\frac13z+1}{\left(z-\frac23\right)(z+3)}\right|_{z=0}=-\frac12,\qquad B=\left.\frac{2z^{2}+\frac13z+1}{z(z+3)}\right|_{z=\frac23}=\frac{19}{22},\qquad C=\left.\frac{2z^{2}+\frac13z+1}{z\left(z-\frac23\right)}\right|_{z=-3}=\frac{18}{11}
+> $$
 > **⑤ 乘回 $z$**：
-> $$X(z)=-\frac12+\frac{19}{22}\cdot\frac{z}{z-\frac23}+\frac{18}{11}\cdot\frac{z}{z+3}$$
+> $$
+> X(z)=-\frac12+\frac{19}{22}\cdot\frac{z}{z-\frac23}+\frac{18}{11}\cdot\frac{z}{z+3}
+> $$
 > 常数项 $-\frac12$ 对应 $-\frac12\delta(n)$——**最容易漏的一项**，它来自 $A/z$ 乘回 $z$。（$\frac{z}{z-a}$ 项在 $n=0$ 也各取 1，所以 $\delta(n)$ 的**总**系数不是 $-\frac12$，见 ⑦ 的校验。）
 > **⑥ 按 ROC 写出三种 $x(n)$**：
 >
@@ -242,7 +284,9 @@ $$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightar
 
 > [!tip] 三条最常用的性质，各自都对应一个"工程动作"
 > 1. **时域卷积定理**（本章最重要的公式）：
->    $$x(n)*h(n)\ \longleftrightarrow\ X(z)H(z)$$
+>    $$
+>    x(n)*h(n)\ \longleftrightarrow\ X(z)H(z)
+>    $$
 >    **时域里最麻烦的运算，在 z 域里是最简单的乘法。** 整个第 3、4 章（DFT、FFT）的动机都可以用这一条概括：**想办法在有限长序列上重现这个"卷积变乘法"**。
 > 2. **乘指数性质** $a^nx(n)\leftrightarrow X(z/a)$：它把"通带中心搬到某处"这件事变成"极零点整幅缩放/旋转"——调制、变频、滤波器频率搬移全靠这条。
 > 3. **乘 $n$ 性质** $nx(n)\leftrightarrow -z\frac{dX}{dz}$：一阶系统的"斜坡响应"、差分方程的重复极点都靠它。
@@ -275,9 +319,13 @@ $$x(n-1)\ \longleftrightarrow\ z^{-1}X_1(z)+x(-1)\qquad x(n+1)\ \longleftrightar
 
 > [!example] 推导样本：为什么 $a^nu(n)$ 是 $\dfrac{1}{1-az^{-1}}$，而 $-a^nu(-n-1)$ 也是？
 > **右边序列**（$n\ge0$，等比级数，公比 $az^{-1}$）：
-> $$X_1(z)=\sum_{n=0}^{\infty}a^{n}z^{-n}=\frac{1}{1-az^{-1}},\qquad \lvert az^{-1}\rvert<1\Rightarrow\lvert z\rvert>\lvert a\rvert$$
+> $$
+> X_1(z)=\sum_{n=0}^{\infty}a^{n}z^{-n}=\frac{1}{1-az^{-1}},\qquad \lvert az^{-1}\rvert<1\Rightarrow\lvert z\rvert>\lvert a\rvert
+> $$
 > **左边序列**（$n\le-1$，令 $m=-n$）：
-> $$X_2(z)=-\sum_{n=-\infty}^{-1}a^{n}z^{-n}=-\sum_{m=1}^{\infty}a^{-m}z^{m}=-\frac{z/a}{1-z/a}=\frac{1}{1-az^{-1}},\qquad \lvert z\rvert<\lvert a\rvert$$
+> $$
+> X_2(z)=-\sum_{n=-\infty}^{-1}a^{n}z^{-n}=-\sum_{m=1}^{\infty}a^{-m}z^{m}=-\frac{z/a}{1-z/a}=\frac{1}{1-az^{-1}},\qquad \lvert z\rvert<\lvert a\rvert
+> $$
 > **表达式完全一样，ROC 一个在内一个在外**——这正是 Def 1 后那条警告的具体实例。
 
 > [!note] 分母多项式与极点：从 $X(z)$ 直读 ROC
@@ -316,11 +364,15 @@ simplify(X - 1/(1 - 0.5*z^-1))     % → 0
 
 第 1 章说过：抽样信号是 $x_a(t)$ 乘冲激串后的结果。现在对它做 Laplace 变换：
 
-$$\hat{X}_a(s)=\int_{-\infty}^{\infty}\Big[\sum_{n=-\infty}^{\infty}x_a(nT)\,\delta(t-nT)\Big]e^{-st}dt=\sum_{n=-\infty}^{\infty}x_a(nT)\,e^{-snT}$$
+$$
+\hat{X}_a(s)=\int_{-\infty}^{\infty}\Big[\sum_{n=-\infty}^{\infty}x_a(nT)\,\delta(t-nT)\Big]e^{-st}dt=\sum_{n=-\infty}^{\infty}x_a(nT)\,e^{-snT}
+$$
 
 把 $x_a(nT)$ 记作序列 $x(n)$，并令 $z=e^{sT}$：
 
-$$\hat{X}_a(s)=\sum_{n=-\infty}^{\infty}x(n)\,\big(e^{sT}\big)^{-n}=X(z)\Big\lvert_{z=e^{sT}}$$
+$$
+\hat{X}_a(s)=\sum_{n=-\infty}^{\infty}x(n)\,\big(e^{sT}\big)^{-n}=X(z)\Big\lvert_{z=e^{sT}}
+$$
 
 > [!tip] 这一行把三件事一次说清
 > 1. **z 变换就是"抽样信号的 Laplace 变换"**：$z=e^{sT}$，别无其它；
@@ -333,7 +385,9 @@ $$\hat{X}_a(s)=\sum_{n=-\infty}^{\infty}x(n)\,\big(e^{sT}\big)^{-n}=X(z)\Big\lve
 
 把 $s=\sigma+j\Omega$ 代入：
 
-$$z=e^{(\sigma+j\Omega)T}=e^{\sigma T}\cdot e^{j\Omega T}\quad\Longrightarrow\quad \lvert z\rvert=e^{\sigma T},\qquad \angle z=\Omega T=\omega$$
+$$
+z=e^{(\sigma+j\Omega)T}=e^{\sigma T}\cdot e^{j\Omega T}\quad\Longrightarrow\quad \lvert z\rvert=e^{\sigma T},\qquad \angle z=\Omega T=\omega
+$$
 
 于是**实部 $\sigma$ 管模值，虚部 $\Omega$ 管角度**，一对一地给出下图：
 
@@ -395,7 +449,9 @@ $$z=e^{(\sigma+j\Omega)T}=e^{\sigma T}\cdot e^{j\Omega T}\quad\Longrightarrow\qu
 
 $\angle z=\Omega T$ 只由 $\Omega$ 模 $2\pi/T$ 决定，因此
 
-$$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow\ \ \text{同一个 }z$$
+$$
+\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow\ \ \text{同一个 }z
+$$
 
 **$s$ 平面上一整条宽 $2\pi/T$ 的横带，都被映成同一张 z 平面**；$\Omega$ 从 $-\infty$ 走到 $+\infty$，$z$ 就在单位圆上一圈一圈地绕。
 
@@ -424,7 +480,9 @@ $$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow
 
 > [!note] 双线性变换：另一种"不必绕圈"的映射（第 6 章预告）
 > $z=e^{sT}$ 的缺点是**多值**（会混叠）。工程上设计 IIR 滤波器时常用**双线性变换**（bilinear transform）：
-> $$s=\frac{2}{T}\cdot\frac{z-1}{z+1}\qquad\Longleftrightarrow\qquad z=\frac{1+\frac{sT}{2}}{1-\frac{sT}{2}}$$
+> $$
+> s=\frac{2}{T}\cdot\frac{z-1}{z+1}\qquad\Longleftrightarrow\qquad z=\frac{1+\frac{sT}{2}}{1-\frac{sT}{2}}
+> $$
 > 它把整个 $j\Omega$ 轴**单值**映到单位圆（不混叠），代价是**频率非线性畸变**（$\Omega=\frac{2}{T}\tan\frac{\omega}{2}$，需要"预畸变"校正）。**"不混叠"与"频率线性"不可兼得**，这是第 6 章脉冲响应不变法与双线性变换法之争的数学根源。
 
 # 3. 离散时间傅里叶变换(DTFT)--序列的傅里叶变换
@@ -433,9 +491,13 @@ $$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow
 
 > [!info] Def 4 离散时间傅里叶变换
 > 序列 $x(n)$ 的**离散时间傅里叶变换**（discrete-time Fourier transform，简称 DTFT）为
-> $$X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)\,e^{-j\omega n}$$
+> $$
+> X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)\,e^{-j\omega n}
+> $$
 > 反变换（**IDTFT**）为
-> $$x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})\,e^{j\omega n}\,d\omega$$
+> $$
+> x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})\,e^{j\omega n}\,d\omega
+> $$
 > $\omega$ 是**数字频率**（无量纲），$X(e^{j\omega})$ 是 $\omega$ 的**连续、以 $2\pi$ 为周期**的复函数。
 
 三种"存在条件"对应三类序列（**命题前必须先判断序列属于哪一类**）：
@@ -447,9 +509,13 @@ $$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow
 | 周期／常数等功率序列 | 功率序列 | 必须**带冲激**（如 $\cos\omega_0 n$ 的谱是 $\delta$ 谱线） |
 
 > [!tip] 与 z 变换的关系（本章第二个核心公式）
-> $$X(e^{j\omega})=X(z)\Big\lvert_{z=e^{j\omega}}$$
+> $$
+> X(e^{j\omega})=X(z)\Big\lvert_{z=e^{j\omega}}
+> $$
 > **DTFT 就是 z 变换在单位圆上的截面。** 由此立刻得到一条判据：
-> $$\text{单位圆} \subset \text{ROC}\quad\Longleftrightarrow\quad \sum\lvert x(n)\rvert<\infty\quad\Longleftrightarrow\quad \text{DTFT 连续存在}$$
+> $$
+> \text{单位圆} \subset \text{ROC}\quad\Longleftrightarrow\quad \sum\lvert x(n)\rvert<\infty\quad\Longleftrightarrow\quad \text{DTFT 连续存在}
+> $$
 > 所以"某序列的 DTFT 是否存在"这类题，等价于"**看它 z 变换的极点在不在单位圆内**"——第 4 节和第 6、7 章会一直用这条。
 >
 > 反过来，DTFT 也解释了 z 变换的**周期性**：$X(e^{j\omega})=X(e^{j(\omega+2\pi)})$，因为 $z=e^{j\omega}$ 转一圈回到原处。
@@ -487,14 +553,18 @@ $$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow
 | 帕塞瓦尔 | $\displaystyle\sum_{n}\lvert x(n)\rvert^{2}$ | $\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}\lvert X(e^{j\omega})\rvert^{2}d\omega$ |
 
 > [!tip] 两条"对偶"关系，是全书最漂亮的一处对称
-> $$\text{时域卷积}\ \longleftrightarrow\ \text{频域相乘}\qquad\qquad \text{时域相乘（加窗）}\ \longleftrightarrow\ \text{频域卷积（平滑／泄漏）}$$
+> $$
+> \text{时域卷积}\ \longleftrightarrow\ \text{频域相乘}\qquad\qquad \text{时域相乘（加窗）}\ \longleftrightarrow\ \text{频域卷积（平滑／泄漏）}
+> $$
 > 这条对称在第 3、4 章会反复出现：**DFT 是"时域周期延拓 + 频域采样"的双重对称**，而 FFT 只是它的快速算法。
 
 ## 共轭对称性与实序列的频谱
 
 > [!info] Def 5 共轭对称性的基本关系
 > 对**任意复序列** $x(n)$，设 $X(e^{j\omega})=\mathrm{DTFT}[x(n)]$，则
-> $$x^{*}(n)\ \longleftrightarrow\ X^{*}(e^{-j\omega}),\qquad x^{*}(-n)\ \longleftrightarrow\ X^{*}(e^{j\omega})$$
+> $$
+> x^{*}(n)\ \longleftrightarrow\ X^{*}(e^{-j\omega}),\qquad x^{*}(-n)\ \longleftrightarrow\ X^{*}(e^{j\omega})
+> $$
 > 简写为 $x^{*}(n)\leftrightarrow X^{*}(-\omega)$、$x^{*}(-n)\leftrightarrow X^{*}(\omega)$（记 $X(\omega)\triangleq X(e^{j\omega})$）。
 > 两条可以合读为：**时域"共轭" ↔ 频域"共轭 + 翻频"；时域"翻频 + 共轭" ↔ 频域"共轭"**——共轭与翻转在时域、频域之间正好互换。
 
@@ -514,12 +584,16 @@ $$\Omega\ \text{与}\ \Omega+\frac{2\pi}{T}k=\Omega+k\Omega_s\ \ \Longrightarrow
 
 > [!note] 由此得到：共轭对称分量与共轭反对称分量
 > 任何序列都可唯一分解为
-> $$x(n)=x_e(n)+x_o(n),\qquad x_e(n)=\frac{1}{2}\big[x(n)+x^{*}(-n)\big],\qquad x_o(n)=\frac{1}{2}\big[x(n)-x^{*}(-n)\big]$$
+> $$
+> x(n)=x_e(n)+x_o(n),\qquad x_e(n)=\frac{1}{2}\big[x(n)+x^{*}(-n)\big],\qquad x_o(n)=\frac{1}{2}\big[x(n)-x^{*}(-n)\big]
+> $$
 > 其中 $x_e(n)$ 称为**共轭对称分量**（conjugate-symmetric part，$x_e(n)=x_e^{*}(-n)$），$x_o(n)$ 称为**共轭反对称分量**（conjugate-antisymmetric part，$x_o(n)=-x_o^{*}(-n)$）。
 
 对**实序列** $x(n)$（工程中最常见），有 $x^{*}(n)=x(n)$，代入 Def 5 第一条即得
 
-$$X(e^{j\omega})=X^{*}(e^{-j\omega})\qquad\Longleftrightarrow\qquad X(e^{-j\omega})=X^{*}(e^{j\omega})$$
+$$
+X(e^{j\omega})=X^{*}(e^{-j\omega})\qquad\Longleftrightarrow\qquad X(e^{-j\omega})=X^{*}(e^{j\omega})
+$$
 
 两式只是把 $\omega$ 换成 $-\omega$，**完全等价**。令 $X(e^{j\omega})=R(\omega)+jI(\omega)$，就得到实序列频谱的全部对称性：
 
@@ -545,11 +619,15 @@ $$X(e^{j\omega})=X^{*}(e^{-j\omega})\qquad\Longleftrightarrow\qquad X(e^{-j\omeg
 
 ## 帕塞瓦尔定理与能量谱密度
 
-$$\sum_{n=-\infty}^{\infty}\lvert x(n)\rvert^{2}=\frac{1}{2\pi}\int_{-\pi}^{\pi}\big\lvert X(e^{j\omega})\big\rvert^{2}d\omega$$
+$$
+\sum_{n=-\infty}^{\infty}\lvert x(n)\rvert^{2}=\frac{1}{2\pi}\int_{-\pi}^{\pi}\big\lvert X(e^{j\omega})\big\rvert^{2}d\omega
+$$
 
 定义**能量谱密度**（energy spectral density）：
 
-$$S_{xx}(e^{j\omega})=\big\lvert X(e^{j\omega})\big\rvert^{2},\qquad \sum_n\lvert x(n)\rvert^{2}=\frac{1}{2\pi}\int_{-\pi}^{\pi}S_{xx}(e^{j\omega})\,d\omega$$
+$$
+S_{xx}(e^{j\omega})=\big\lvert X(e^{j\omega})\big\rvert^{2},\qquad \sum_n\lvert x(n)\rvert^{2}=\frac{1}{2\pi}\int_{-\pi}^{\pi}S_{xx}(e^{j\omega})\,d\omega
+$$
 
 > [!note] 与通信方向的接口
 > 这条就是 [[vault-notes/communication/02-deterministic-signals]] 里帕塞瓦尔定理的离散版：**"时域能量 = 频域能量"**，且**能量谱密度只由幅频决定、与相位无关**（相位携带的是"形状/时延"信息，不携带能量信息）。多径信道只改变相位时，能量守恒；而均衡器"补相位"不消耗能量，这也是它最容易做数值不稳的原因。
@@ -582,14 +660,20 @@ max(abs(X(1:10) - conj(fliplr(X(12:end)))))       % ≈ 0，只需存一半
 
 > [!info] Def 6 频率响应
 > 令 LSI 系统的输入为复指数 $x(n)=e^{j\omega n}$，则
-> $$y(n)=\sum_{m=-\infty}^{\infty}h(m)\,e^{j\omega(n-m)}=e^{j\omega n}\underbrace{\sum_{m=-\infty}^{\infty}h(m)e^{-j\omega m}}_{\text{与 }n\text{ 无关}}\triangleq H(e^{j\omega})\,e^{j\omega n}$$
+> $$
+> y(n)=\sum_{m=-\infty}^{\infty}h(m)\,e^{j\omega(n-m)}=e^{j\omega n}\underbrace{\sum_{m=-\infty}^{\infty}h(m)e^{-j\omega m}}_{\text{与 }n\text{ 无关}}\triangleq H(e^{j\omega})\,e^{j\omega n}
+> $$
 > 即**输出仍是同一个复指数，只是被复常数 $H(e^{j\omega})$ 乘了一下**：
-> $$e^{j\omega n}\ \xrightarrow{\ \text{LSI}\ }\ H(e^{j\omega})\,e^{j\omega n}$$
+> $$
+> e^{j\omega n}\ \xrightarrow{\ \text{LSI}\ }\ H(e^{j\omega})\,e^{j\omega n}
+> $$
 > $H(e^{j\omega})$ 称为系统的**频率响应**（frequency response）。上式说明 $e^{j\omega n}$ 是 LSI 系统的**特征函数**（eigenfunction），$H(e^{j\omega})$ 是对应的**特征值**（eigenvalue）。
 
 > [!tip] 这一句话是整个频域分析的地基，它带来的三条推论
 > 1. **正弦进、正弦出，频率不变**：
->    $$A\cos(\omega_0 n+\varphi)\ \longrightarrow\ \lvert H(e^{j\omega_0})\rvert\,A\cos\big(\omega_0 n+\varphi+\arg H(e^{j\omega_0})\big)$$
+>    $$
+>    A\cos(\omega_0 n+\varphi)\ \longrightarrow\ \lvert H(e^{j\omega_0})\rvert\,A\cos\big(\omega_0 n+\varphi+\arg H(e^{j\omega_0})\big)
+>    $$
 >    系统对每个频率只做两件事：**改幅度、改相位**。
 > 2. **LSI 系统不会产生新频率**（不产生谐波、不产生互调）。反过来说：**只要输出里出现了输入没有的频率，系统必定非线性**——这是判别线性最省事的频域方法（工程里用双音测试看互调分量）。
 > 3. **"设计滤波器"= 设计 $H(e^{j\omega})$ 这条曲线**：想要什么形状，就造什么极零点。第 6、7 章做的全部事情就是"给定希望的 $\lvert H\rvert$ 曲线，反求 $H(z)$ 的系数"。
@@ -598,12 +682,16 @@ max(abs(X(1:10) - conj(fliplr(X(12:end)))))       % ≈ 0，只需存一半
 
 > [!info] Def 7 系统函数
 > 在**零状态**条件下，输出的 z 变换与输入的 z 变换之比
-> $$H(z)=\frac{Y(z)}{X(z)}\Big\lvert_{\text{零状态}}\qquad\Longleftrightarrow\qquad \mathcal{Z}[h(n)]=H(z)$$
+> $$
+> H(z)=\frac{Y(z)}{X(z)}\Big\lvert_{\text{零状态}}\qquad\Longleftrightarrow\qquad \mathcal{Z}[h(n)]=H(z)
+> $$
 > 称为系统的**系统函数**（system function，也称转移函数）。它就是冲激响应的 z 变换，因此**$h(n)$ 与 $H(z)$（含 ROC）是一一对应的**。
 
 由差分方程直接读出 $H(z)$（**最常用的一个动作**）：对 $\sum\limits_{k=0}^{N}a_ky(n-k)=\sum\limits_{r=0}^{M}b_rx(n-r)$ 两边取 z 变换并用时移性质：
 
-$$H(z)=\frac{\sum\limits_{r=0}^{M}b_rz^{-r}}{\sum\limits_{k=0}^{N}a_kz^{-k}}=\frac{b_0\prod\limits_{r=1}^{M}\big(1-c_rz^{-1}\big)}{a_0\prod\limits_{k=1}^{N}\big(1-d_kz^{-1}\big)}$$
+$$
+H(z)=\frac{\sum\limits_{r=0}^{M}b_rz^{-r}}{\sum\limits_{k=0}^{N}a_kz^{-k}}=\frac{b_0\prod\limits_{r=1}^{M}\big(1-c_rz^{-1}\big)}{a_0\prod\limits_{k=1}^{N}\big(1-d_kz^{-1}\big)}
+$$
 
 - $c_r$：**零点**（zero）；
 - $d_k$：**极点**（pole）——它们只需把分母因式分解就能读出；
@@ -621,7 +709,9 @@ $$H(z)=\frac{\sum\limits_{r=0}^{M}b_rz^{-r}}{\sum\limits_{k=0}^{N}a_kz^{-k}}=\fr
 
 ## 幅频、相频、群延迟
 
-$$H(e^{j\omega})=\big\lvert H(e^{j\omega})\big\rvert\,e^{j\varphi(\omega)}$$
+$$
+H(e^{j\omega})=\big\lvert H(e^{j\omega})\big\rvert\,e^{j\varphi(\omega)}
+$$
 
 | 量 | 定义 | 工程意义 |
 | --- | --- | --- |
@@ -630,7 +720,9 @@ $$H(e^{j\omega})=\big\lvert H(e^{j\omega})\big\rvert\,e^{j\varphi(\omega)}$$
 | **群延迟** | $\tau_g(\omega)=-\dfrac{d\varphi(\omega)}{d\omega}$（单位：**样点**） | 窄带信号**包络**的实际延迟 |
 
 > [!info] Def 8 群延迟
-> $$\tau_g(\omega)=-\frac{d\arg H(e^{j\omega})}{d\omega}$$
+> $$
+> \tau_g(\omega)=-\frac{d\arg H(e^{j\omega})}{d\omega}
+> $$
 > 物理含义：**以 $\omega$ 为中心的窄带（包络缓慢变化）信号经过系统后，包络被延迟了 $\tau_g(\omega)$ 个样点**。
 > - $\tau_g$ 为**常数** ⟺ 所有频率延迟相同 ⟺ 波形不发生"相位失真"（形状保持）。理想延迟系统 $H(z)=z^{-n_0}$ 的 $\tau_g=n_0$ 就是这样。
 > - 群延迟为**负**意味着"包络超前"，物理上只能靠对某一参考的相位定义实现（如全通均衡器在部分频段）。
@@ -641,7 +733,9 @@ $$H(e^{j\omega})=\big\lvert H(e^{j\omega})\big\rvert\,e^{j\varphi(\omega)}$$
 
 > [!example] 例：一阶系统的群延迟
 > 对 $H(z)=\dfrac{1}{1-az^{-1}}$（$a$ 实，$\lvert a\rvert<1$），可算得
-> $$\tau_g(\omega)=\frac{a\cos\omega-a^{2}}{1-2a\cos\omega+a^{2}}$$
+> $$
+> \tau_g(\omega)=\frac{a\cos\omega-a^{2}}{1-2a\cos\omega+a^{2}}
+> $$
 > - 直流处：$\tau_g(0)=\dfrac{a}{1-a}$。取 $a=0.9$ 得 $\tau_g(0)=9$ 个样点；
 > - 校验：$h(n)=0.9^nu(n)$ 的"重心"（一阶矩）为 $\dfrac{\sum n\,a^n}{\sum a^n}=\dfrac{a/(1-a)^{2}}{1/(1-a)}=\dfrac{a}{1-a}=9$ ✓
 >
@@ -673,11 +767,15 @@ $$H(e^{j\omega})=\big\lvert H(e^{j\omega})\big\rvert\,e^{j\varphi(\omega)}$$
 
 把 $H(e^{j\omega})$ 写成"从各零点／极点指向单位圆工作点的矢量"之比：
 
-$$H(e^{j\omega})=A\,\frac{\prod_{r}\big(e^{j\omega}-c_r\big)}{\prod_{k}\big(e^{j\omega}-d_k\big)},\qquad A=\frac{b_0}{a_0}\ \text{（含可能的 }z^{-(M-N)}\text{ 因子）}$$
+$$
+H(e^{j\omega})=A\,\frac{\prod_{r}\big(e^{j\omega}-c_r\big)}{\prod_{k}\big(e^{j\omega}-d_k\big)},\qquad A=\frac{b_0}{a_0}\ \text{（含可能的 }z^{-(M-N)}\text{ 因子）}
+$$
 
 于是
 
-$$\big\lvert H(e^{j\omega})\big\rvert=\lvert A\rvert\,\frac{\prod_r\lvert\vec{q}_r\rvert}{\prod_k\lvert\vec{p}_k\rvert},\qquad \arg H(e^{j\omega})=\arg A+\sum_r\arg\vec{q}_r-\sum_k\arg\vec{p}_k$$
+$$
+\big\lvert H(e^{j\omega})\big\rvert=\lvert A\rvert\,\frac{\prod_r\lvert\vec{q}_r\rvert}{\prod_k\lvert\vec{p}_k\rvert},\qquad \arg H(e^{j\omega})=\arg A+\sum_r\arg\vec{q}_r-\sum_k\arg\vec{p}_k
+$$
 
 其中 $\vec{q}_r$ 是"从零点 $c_r$ 指向工作点 $e^{j\omega}$"的矢量，$\vec{p}_k$ 同理。
 
@@ -708,7 +806,9 @@ $$\big\lvert H(e^{j\omega})\big\rvert=\lvert A\rvert\,\frac{\prod_r\lvert\vec{q}
 
 **一阶低通／高通**：$H(z)=\dfrac{1}{1-az^{-1}}$（$\lvert a\rvert<1$），极点在 $z=a$。
 
-$$\big\lvert H(e^{j0})\big\rvert=\frac{1}{1-a},\qquad \big\lvert H(e^{j\pi})\big\rvert=\frac{1}{1+a}$$
+$$
+\big\lvert H(e^{j0})\big\rvert=\frac{1}{1-a},\qquad \big\lvert H(e^{j\pi})\big\rvert=\frac{1}{1+a}
+$$
 
 - $0<a<1$：直流增益最大、$\pi$ 处最小 → **低通**；
 - $-1<a<0$：反过来 → **高通**；
@@ -765,7 +865,9 @@ $$\big\lvert H(e^{j0})\big\rvert=\frac{1}{1-a},\qquad \big\lvert H(e^{j\pi})\big
 > [!info] Def 9 全通系统
 > 幅频恒为常数的系统：$\big\lvert H_{ap}(e^{j\omega})\big\rvert=1,\ \forall\omega$。
 > 一阶全通的标准形式（极点在 $z=a$、零点在 $z=1/a$，二者互为倒数共轭）：
-> $$H_{ap}(z)=\frac{z^{-1}-a}{1-az^{-1}},\qquad \lvert a\rvert<1$$
+> $$
+> H_{ap}(z)=\frac{z^{-1}-a}{1-az^{-1}},\qquad \lvert a\rvert<1
+> $$
 > **只改相位、不改幅度**，因此专用于**相位均衡**（把非线性相位"拉平"，或合成 90° 相移网络）。
 
 > [!info] Def 10 最小相位系统
@@ -775,7 +877,9 @@ $$\big\lvert H(e^{j0})\big\rvert=\frac{1}{1-a},\qquad \big\lvert H(e^{j\pi})\big
 > 3. 其相位变化量（相位滞后）最小。
 >
 > 任何有理系统都可分解为
-> $$H(z)=H_{\min}(z)\cdot H_{ap}(z)$$
+> $$
+> H(z)=H_{\min}(z)\cdot H_{ap}(z)
+> $$
 > **"幅频"归最小相位部分，"多余相位"归全通部分。** 这就是通信里**信道均衡**的标准做法：把信道 $H_{ch}$ 分解后，用 $1/H_{\min}$（通道补偿）+ 全通（相位拉平）完成均衡。
 
 > [!note] 与第 6、7 章的接口
@@ -844,7 +948,9 @@ max(abs(abs(Hap) - 1))                         % ≈ 1e-16
 
 ## 线性：一条判据，两个秒判
 
-$$T[a\,x_1(n)+b\,x_2(n)]=a\,T[x_1(n)]+b\,T[x_2(n)]$$
+$$
+T[a\,x_1(n)+b\,x_2(n)]=a\,T[x_1(n)]+b\,T[x_2(n)]
+$$
 
 **检验动作**：把输出里的 $x$ 全部换成 $a x_1+b x_2$，看能否把 $a,b$ 提出来。
 
@@ -862,7 +968,9 @@ $$T[a\,x_1(n)+b\,x_2(n)]=a\,T[x_1(n)]+b\,T[x_2(n)]$$
 
 ## 移不变：只看有没有"显式时间"
 
-$$T[x(n-n_0)]=y(n-n_0)\qquad\forall n_0$$
+$$
+T[x(n-n_0)]=y(n-n_0)\qquad\forall n_0
+$$
 
 **检验动作**：分别算 $y(n-n_0)$ 与 $T[x(n-n_0)]$，两者相同才是移不变。
 

@@ -52,7 +52,9 @@ related: []
 
 > [!info] Def 1 线性组合
 > 取两个数 $c,d$，用向量加法与数乘造出的
-> $$c\mathbf{v}+d\mathbf{w}=c\begin{bmatrix}1\\1\end{bmatrix}+d\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}c+2d\\c+3d\end{bmatrix}$$
+> $$
+> c\mathbf{v}+d\mathbf{w}=c\begin{bmatrix}1\\1\end{bmatrix}+d\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}c+2d\\c+3d\end{bmatrix}
+> $$
 > 称为 $\mathbf{v}$ 与 $\mathbf{w}$ 的**线性组合**（linear combination）。$c,d$ 可以取任意实数（含负数、0）。
 
 注意：$c\mathbf{v}$ 本身就是**只有一个向量**的特殊线性组合。
@@ -75,7 +77,9 @@ related: []
 
 > [!info] Def 2 点积（内积）
 > 向量 $\mathbf{v}=(v_1,v_2)$ 与 $\mathbf{w}=(w_1,w_2)$ 的**点积**（dot product，也叫内积 inner product）记为 $\mathbf{v}\cdot\mathbf{w}$，其定义**是一个数**：
-> $$\mathbf{v}\cdot\mathbf{w}=v_1w_1+v_2w_2$$
+> $$
+> \mathbf{v}\cdot\mathbf{w}=v_1w_1+v_2w_2
+> $$
 > $n$ 维时逐项相乘再相加：$\mathbf{v}\cdot\mathbf{w}=\sum_{i=1}^{n}v_iw_i$。
 
 点积的性质（$c$ 是任意实数）：
@@ -88,7 +92,9 @@ related: []
 | 自点积非负 | $\mathbf{v}\cdot\mathbf{v}\ge 0$，且 $=0$ **当且仅当** $\mathbf{v}=\mathbf{0}$ |
 
 > [!tip] 点积的几何意思
-> $$\mathbf{v}\cdot\mathbf{w}=\|\mathbf{v}\|\,\|\mathbf{w}\|\cos\theta$$
+> $$
+> \mathbf{v}\cdot\mathbf{w}=\|\mathbf{v}\|\,\|\mathbf{w}\|\cos\theta
+> $$
 > 它衡量的是两个向量**方向的一致程度**：同向为正、垂直为零、反向为负。**长度与角度都被它一个数打包了**，这是点积最重要的地位——后面所有"正交""投影""最小二乘""相关解调"都从这里出发。
 >
 > **垂直判据**：$\mathbf{v}\cdot\mathbf{w}=0\iff$ 两向量**正交**（orthogonal，垂直）。垂直时夹角余弦为 0，与长度无关。
@@ -97,7 +103,9 @@ related: []
 
 > [!info] Def 3 长度（模）
 > $n$ 维向量 $\mathbf{v}$ 的**长度**（length，也叫模 norm）$\|\mathbf{v}\|$ 等于 $\mathbf{v}\cdot\mathbf{v}$ 的算术平方根：
-> $$\|\mathbf{v}\|=\sqrt{\mathbf{v}\cdot\mathbf{v}}=\left(v_1^2+v_2^2+\cdots+v_n^2\right)^{1/2}$$
+> $$
+> \|\mathbf{v}\|=\sqrt{\mathbf{v}\cdot\mathbf{v}}=\left(v_1^2+v_2^2+\cdots+v_n^2\right)^{1/2}
+> $$
 
 - 二维、三维就是**勾股定理**：$\|(3,4)\|=\sqrt{9+16}=5$，$\|(1,2,2)\|=\sqrt{1+4+4}=3$
 - 零向量的长度为 0；其余向量长度恒为正（这就是点积性质中"自点积非负"的直接后果）
@@ -107,7 +115,9 @@ related: []
 
 把任意非零向量**单位化**，得到与它同向的单位向量（习惯写成 $\mathbf{u}$ 或戴帽子 $\hat{\mathbf{v}}$）：
 
-$$\mathbf{u}=\frac{\mathbf{v}}{\|\mathbf{v}\|},\qquad \left\|\frac{\mathbf{v}}{\|\mathbf{v}\|}\right\|=1$$
+$$
+\mathbf{u}=\frac{\mathbf{v}}{\|\mathbf{v}\|},\qquad \left\|\frac{\mathbf{v}}{\|\mathbf{v}\|}\right\|=1
+$$
 
 > [!example] 单位化
 > $\mathbf{v}=(3,4)$，$\|\mathbf{v}\|=5$，则 $\mathbf{u}=\left(\tfrac35,\tfrac45\right)$。
@@ -118,7 +128,9 @@ $$\mathbf{u}=\frac{\mathbf{v}}{\|\mathbf{v}\|},\qquad \left\|\frac{\mathbf{v}}{\
 
 > [!tip] 结论：余弦公式
 > 非零向量 $\mathbf{v},\mathbf{w}$ 的夹角 $\theta\ (0\le\theta\le\pi)$ 由下式确定：
-> $$\cos\theta=\frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\,\|\mathbf{w}\|}$$
+> $$
+> \cos\theta=\frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\,\|\mathbf{w}\|}
+> $$
 > 分母的 $\|\mathbf{v}\|\|\mathbf{w}\|$ 是**归一化因子**——把点积里的"长度影响"除掉，剩下的纯方向量就是 $\cos\theta$。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 220" width="100%" style="max-width:430px" font-family="inherit">
@@ -161,7 +173,9 @@ $$\mathbf{u}=\frac{\mathbf{v}}{\|\mathbf{v}\|},\qquad \left\|\frac{\mathbf{v}}{\
 
 ### 施瓦茨不等式
 
-$$|\mathbf{v}\cdot\mathbf{w}|\le\|\mathbf{v}\|\,\|\mathbf{w}\|$$
+$$
+|\mathbf{v}\cdot\mathbf{w}|\le\|\mathbf{v}\|\,\|\mathbf{w}\|
+$$
 
 **等号成立当且仅当 $\mathbf{v}$ 与 $\mathbf{w}$ 平行**（成倍数关系，含其中一个为零向量）。
 
@@ -169,32 +183,44 @@ $$|\mathbf{v}\cdot\mathbf{w}|\le\|\mathbf{v}\|\,\|\mathbf{w}\|$$
 
 > [!example] 证明（作差法，Strang 的漂亮技巧）
 > 对任意实数 $t$，非负量 $\|\mathbf{v}-t\mathbf{w}\|^2\ge 0$ 恒成立。展开：
-> $$\|\mathbf{v}\|^2-2t(\mathbf{v}\cdot\mathbf{w})+t^2\|\mathbf{w}\|^2\ge 0$$
+> $$
+> \|\mathbf{v}\|^2-2t(\mathbf{v}\cdot\mathbf{w})+t^2\|\mathbf{w}\|^2\ge 0
+> $$
 > 这是关于 $t$ 的开口向上抛物线，最小值在 $t=\dfrac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{w}\|^2}$ 处取到。代入得
-> $$\|\mathbf{v}\|^2-\frac{(\mathbf{v}\cdot\mathbf{w})^2}{\|\mathbf{w}\|^2}\ge 0\ \Longrightarrow\ (\mathbf{v}\cdot\mathbf{w})^2\le\|\mathbf{v}\|^2\|\mathbf{w}\|^2$$
+> $$
+> \|\mathbf{v}\|^2-\frac{(\mathbf{v}\cdot\mathbf{w})^2}{\|\mathbf{w}\|^2}\ge 0\ \Longrightarrow\ (\mathbf{v}\cdot\mathbf{w})^2\le\|\mathbf{v}\|^2\|\mathbf{w}\|^2
+> $$
 > 两边开方即得。$\blacksquare$
 >
 > **另一种证法**：直接由 $\cos\theta$ 的定义 + $|\cos\theta|\le 1$。但那样是循环论证（余弦的存在性依赖于这个不等式），所以这里用代数法更严谨。
 
 ### 三角不等式
 
-$$\|\mathbf{v}+\mathbf{w}\|\le\|\mathbf{v}\|+\|\mathbf{w}\|$$
+$$
+\|\mathbf{v}+\mathbf{w}\|\le\|\mathbf{v}\|+\|\mathbf{w}\|
+$$
 
 **三角不等式**（triangle inequality）的几何语言即"**两边之和大于第三边**"：走 $\mathbf{v}$ 再走 $\mathbf{w}$ 的折线，不比直接走 $\mathbf{v}+\mathbf{w}$ 短。
 
 > [!example] 证明（用施瓦茨不等式）
-> $$\|\mathbf{v}+\mathbf{w}\|^2=\|\mathbf{v}\|^2+2\,\mathbf{v}\cdot\mathbf{w}+\|\mathbf{w}\|^2\le\|\mathbf{v}\|^2+2\|\mathbf{v}\|\|\mathbf{w}\|+\|\mathbf{w}\|^2=\bigl(\|\mathbf{v}\|+\|\mathbf{w}\|\bigr)^2$$
+> $$
+> \|\mathbf{v}+\mathbf{w}\|^2=\|\mathbf{v}\|^2+2\,\mathbf{v}\cdot\mathbf{w}+\|\mathbf{w}\|^2\le\|\mathbf{v}\|^2+2\|\mathbf{v}\|\|\mathbf{w}\|+\|\mathbf{w}\|^2=\bigl(\|\mathbf{v}\|+\|\mathbf{w}\|\bigr)^2
+> $$
 > 中间那步正是把 $\mathbf{v}\cdot\mathbf{w}$ 换成上界 $\|\mathbf{v}\|\|\mathbf{w}\|$。$\blacksquare$
 
 ### 由它推出的：几何平均数 ≤ 算术平均数
 
 取 $\mathbf{v}=(a,b)$、$\mathbf{w}=(b,a)$（各分量非负），则
 
-$$\mathbf{v}\cdot\mathbf{w}=2ab,\qquad \|\mathbf{v}\|=\|\mathbf{w}\|=\sqrt{a^2+b^2}$$
+$$
+\mathbf{v}\cdot\mathbf{w}=2ab,\qquad \|\mathbf{v}\|=\|\mathbf{w}\|=\sqrt{a^2+b^2}
+$$
 
 施瓦茨不等式给出 $2ab\le a^2+b^2$。令 $a=\sqrt{x}$、$b=\sqrt{y}\ (x,y\ge 0)$，即得
 
-$$\sqrt{xy}\le\frac{x+y}{2}$$
+$$
+\sqrt{xy}\le\frac{x+y}{2}
+$$
 
 这就是中学的"**几何平均 ≤ 算术平均**"，是施瓦茨不等式在二维的一个特例。可见这条不等式不是孤立技巧，而是内积空间的普遍性质——**"长度"这一概念在任意维数下必须满足约束，施瓦茨不等式就是那个约束**。
 
@@ -227,7 +253,9 @@ $$
 | **矩阵形式** | $A\mathbf{x}=\mathbf{b}$ | 输入 $\mathbf{x}$、输出 $\mathbf{b}$ 的一条"线性变换" | 一次性处理全部信息 |
 
 > [!tip] 关键结论（把 1.1 和 1.3 连起来）
-> $$A\mathbf{x}=x_1\mathbf{a}_1+x_2\mathbf{a}_2+\cdots+x_n\mathbf{a}_n$$
+> $$
+> A\mathbf{x}=x_1\mathbf{a}_1+x_2\mathbf{a}_2+\cdots+x_n\mathbf{a}_n
+> $$
 > 即 **$A\mathbf{x}$ 就是 A 的列向量以 $x_i$ 为系数的线性组合**。
 >
 > 于是"解方程组"这件事翻译成人话就是：
@@ -247,23 +275,31 @@ $$
 
 > [!info] Def 5 逆矩阵
 > 对方阵 $A$，若存在方阵 $A^{-1}$ 使得
-> $$A^{-1}A=I\quad\text{且}\quad AA^{-1}=I$$
+> $$
+> A^{-1}A=I\quad\text{且}\quad AA^{-1}=I
+> $$
 > 则称 $A$ **可逆（非奇异）**，$A^{-1}$ 为 $A$ 的**逆矩阵**（inverse matrix）。不存在的称 $A$ **不可逆（奇异，singular）**。
 
 $2\times2$ 的公式（务必背下）：
 
-$$A=\begin{bmatrix}a&b\\c&d\end{bmatrix},\qquad A^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$$
+$$
+A=\begin{bmatrix}a&b\\c&d\end{bmatrix},\qquad A^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}
+$$
 
 记忆法：**主对角线交换、副对角线变号、整体除以行列式**。分母 $ad-bc$ 就是 $2\times2$ 的**行列式**（determinant）$\det A$（第 5 章详谈）。
 
 > [!example] 求逆
 > $A=\begin{bmatrix}2&1\\1&3\end{bmatrix}$，$\det A=2\cdot3-1\cdot1=5\ne 0$，故可逆：
-> $$A^{-1}=\frac15\begin{bmatrix}3&-1\\-1&2\end{bmatrix}$$
+> $$
+> A^{-1}=\frac15\begin{bmatrix}3&-1\\-1&2\end{bmatrix}
+> $$
 > 验算：$\frac15\begin{bmatrix}2&1\\1&3\end{bmatrix}\begin{bmatrix}3&-1\\-1&2\end{bmatrix}=\frac15\begin{bmatrix}5&0\\0&5\end{bmatrix}=I$ ✓
 
 **解方程组**：若 $A$ 可逆，则 $A\mathbf{x}=\mathbf{b}$ 两边左乘 $A^{-1}$ 得**唯一解**
 
-$$\mathbf{x}=A^{-1}\mathbf{b}$$
+$$
+\mathbf{x}=A^{-1}\mathbf{b}
+$$
 
 注意"左乘"不能写成 $\mathbf{b}A^{-1}$——矩阵乘法不满足交换律。
 
@@ -312,20 +348,26 @@ C\mathbf{x}=\begin{bmatrix}x_2-x_1\\x_3-x_2\\x_1-x_3\end{bmatrix}$$
 </svg>
 
 > [!tip] 核心观察：绕环一周，差分的和恒为零
-> $$(x_2-x_1)+(x_3-x_2)+(x_1-x_3)=0$$
+> $$
+> (x_2-x_1)+(x_3-x_2)+(x_1-x_3)=0
+> $$
 > 这不是巧合，而是**"回到原处"的代数表达**——和爬山绕一圈净爬升为零是一回事。
 >
 > 于是 $C$ 的三行**线性相关**（第 1 行 + 第 2 行 + 第 3 行 = 零向量），$\operatorname{rank}C=3-1=2$，$C$ 一定**奇异**。
 
 **$C\mathbf{x}=\mathbf{0}$ 意味着什么？** 所有差分都为零 $\Rightarrow$ $x_1=x_2=x_3$（全是同一个常数）。所以
 
-$$C\mathbf{x}=\mathbf{0}\ \text{的全部解}=\left\{c\begin{bmatrix}1\\1\\1\end{bmatrix}:c\in\mathbb{R}\right\}$$
+$$
+C\mathbf{x}=\mathbf{0}\ \text{的全部解}=\left\{c\begin{bmatrix}1\\1\\1\end{bmatrix}:c\in\mathbb{R}\right\}
+$$
 
 零空间不是单个零向量，而是**一条直线**——这正是奇异矩阵的画像。**"所有点等电位"是唯一能让全部回路电压为零的状态**，对应物理里的基尔霍夫电压定律（KVL）。
 
 > [!example] 对比：把环路切开，矩阵就"满"了
 > 去掉最后那个"绕回"的方程，只保留两条差分，得到 $2\times3$ 的**单向差分矩阵**
-> $$D=\begin{bmatrix}-1&1&0\\0&-1&1\end{bmatrix}$$
+> $$
+> D=\begin{bmatrix}-1&1&0\\0&-1&1\end{bmatrix}
+> $$
 > 它的两行线性无关，秩为 2，**没有多余约束**。此时只要再补一个初始条件（例如 $x_1=0$），方程就有唯一解。
 >
 > 这就是差分方程与微分方程都必须配"**初始条件**"的线性代数解释：**未知量个数减秩 = 自由变量的个数**。
