@@ -348,13 +348,15 @@ $$
 第 2 章用高斯-约当求逆，现在用代数余子式写出**显式公式**。
 
 > [!tip] 逆矩阵的公式
-> $$A^{-1}=\frac{C^{T}}{\det A}=\frac{1}{\det A}
+> $$
+> A^{-1}=\frac{C^{T}}{\det A}=\frac{1}{\det A}
 > \begin{bmatrix}
 > C_{11}&C_{21}&\cdots&C_{n1}\\
 > C_{12}&C_{22}&\cdots&C_{n2}\\
 > \vdots&\vdots&&\vdots\\
 > C_{1n}&C_{2n}&\cdots&C_{nn}
-> \end{bmatrix}$$
+> \end{bmatrix}
+> $$
 > **验证一句话**：$AC^{T}=(\det A)I$。
 > - 对角线元：$\sum_j a_{ij}C_{ij}=\det A$（**展开定理**）；
 > - 非对角元：$\sum_j a_{kj}C_{ij}=0$（**错行公式**，等于两行相同的行列式）。
@@ -494,9 +496,11 @@ $$
 
 > [!info] Def 3 叉积
 > **叉积**（cross product）：对 $\mathbf{u}=(u_1,u_2,u_3)$、$\mathbf{v}=(v_1,v_2,v_3)$，
-> $$\mathbf{u}\times\mathbf{v}=
+> $$
+> \mathbf{u}\times\mathbf{v}=
 > \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix}
-> =\begin{bmatrix}u_2v_3-u_3v_2\\u_3v_1-u_1v_3\\u_1v_2-u_2v_1\end{bmatrix}$$
+> =\begin{bmatrix}u_2v_3-u_3v_2\\u_3v_1-u_1v_3\\u_1v_2-u_2v_1\end{bmatrix}
+> $$
 > （把第一行当作"符号占位"的 $\mathbf{i},\mathbf{j},\mathbf{k}$，按第一行展开这个 $3\times3$ 行列式，得到的就是上面这个向量。）
 
 它的三条性质全都能用行列式的性质一眼看穿：

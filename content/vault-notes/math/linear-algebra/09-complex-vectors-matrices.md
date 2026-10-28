@@ -144,9 +144,11 @@ $$
 极形式把"乘法"这件麻烦事变成两个简单动作。
 
 > [!tip] 定理 模相乘、幅角相加
-> $$(r_1e^{j\theta_1})(r_2e^{j\theta_2})=r_1r_2\,e^{j(\theta_1+\theta_2)}
+> $$
+> (r_1e^{j\theta_1})(r_2e^{j\theta_2})=r_1r_2\,e^{j(\theta_1+\theta_2)}
 > \qquad\qquad
-> \frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}e^{j(\theta_1-\theta_2)}$$
+> \frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}e^{j(\theta_1-\theta_2)}
+> $$
 > $$
 > (re^{j\theta})^{n}=r^{n}e^{jn\theta}\qquad\text{（棣莫弗定理 de Moivre）}
 > $$
@@ -350,13 +352,15 @@ $$
 
 > [!info] Def 7 傅里叶矩阵
 > **傅里叶矩阵**（Fourier matrix）：
-> $$F_n=\begin{bmatrix}
+> $$
+> F_n=\begin{bmatrix}
 > 1&1&1&\cdots&1\\
 > 1&\omega&\omega^{2}&\cdots&\omega^{n-1}\\
 > 1&\omega^{2}&\omega^{4}&\cdots&\omega^{2(n-1)}\\
 > \vdots&\vdots&\vdots&&\vdots\\
 > 1&\omega^{n-1}&\omega^{2(n-1)}&\cdots&\omega^{(n-1)^{2}}
-> \end{bmatrix},\qquad (F)_{jk}=\omega^{jk}$$
+> \end{bmatrix},\qquad (F)_{jk}=\omega^{jk}
+> $$
 > - $F$ 是**对称**的（$\omega^{jk}=\omega^{kj}$）；
 > - **列与列正交**：$F^{H}F=nI$ ⇒ $\dfrac{1}{\sqrt n}F$ 是**酉矩阵** ✓（$n=2,4,8$ 均已验证）
 > - **离散傅里叶变换**（discrete Fourier transform，简称 DFT）：$\mathbf{y}=F\mathbf{c}$；**逆变换**：$\mathbf{c}=\dfrac1nF^{H}\mathbf{y}$ ✓

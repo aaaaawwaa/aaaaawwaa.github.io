@@ -81,11 +81,13 @@ related: []
 
 ## 码距与检纠错能力三公式
 
-$$\boxed{\begin{aligned}
+$$
+\boxed{\begin{aligned}
 &\text{检 }e\text{ 个错：}&&d_0\ge e+1\\
 &\text{纠 }t\text{ 个错：}&&d_0\ge2t+1\\
 &\text{同时纠 }t\text{ 检 }e\ (e>t)：&&d_0\ge e+t+1
-\end{aligned}}$$
+\end{aligned}}
+$$
 
 > [!example] 直观理解
 > 码距 3：可纠 1 错（两个纠错圆不重叠），或检 2 错；

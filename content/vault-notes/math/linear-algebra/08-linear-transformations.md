@@ -428,8 +428,10 @@ $$
 
 > [!tip] 定理 若尔当标准形
 > 任何方阵 $A$ 都相似于一个"近似对角"的矩阵 $J$：
-> $$J=\begin{bmatrix}\lambda&1&&\\&\lambda&\ddots&\\&&\ddots&1\\&&&\lambda\end{bmatrix}
-> \quad\text{或由多个这样的块拼成},\qquad M^{-1}AM=J$$
+> $$
+> J=\begin{bmatrix}\lambda&1&&\\&\lambda&\ddots&\\&&\ddots&1\\&&&\lambda\end{bmatrix}
+> \quad\text{或由多个这样的块拼成},\qquad M^{-1}AM=J
+> $$
 > - 对角线上放特征值，**紧邻的上对角线放 1**（其余为 0）；
 > - 可对角化 $\iff$ 所有块都是 $1\times1$；
 > - **相似分类的完整答案**：两个矩阵相似 $\iff$ 它们的若尔当形相同（不计块的排列）✓

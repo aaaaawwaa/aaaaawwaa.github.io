@@ -338,10 +338,12 @@ $$
 
 > [!info] Def 8 格型结构
 > **格型结构**（lattice structure）用一组**反射系数** $k_i$ 把滤波器表示成多级格型节：
-> $$\begin{aligned}
+> $$
+> \begin{aligned}
 > f_m(n)&=f_{m-1}(n)+k_m\,g_{m-1}(n-1)\\
 > g_m(n)&=k_m\,f_{m-1}(n)+g_{m-1}(n-1)
-> \end{aligned}$$
+> \end{aligned}
+> $$
 > 其中 $f_m$ 为前向误差，$g_m$ 为后向误差，$k_m$ 为反射系数。
 
 - FIR 格型的**前向误差** $f_M(n)$ 就是滤波输出

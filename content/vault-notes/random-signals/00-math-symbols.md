@@ -59,18 +59,24 @@ related: []
 
 本库统一采用**角频率 $\omega$（rad/s）**，连续傅里叶变换对为
 
-$$X(\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}\,\mathrm{d}t,\qquad
-x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{j\omega t}\,\mathrm{d}\omega$$
+$$
+X(\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}\,\mathrm{d}t,\qquad
+x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{j\omega t}\,\mathrm{d}\omega
+$$
 
 离散时间傅里叶变换（DTFT）为
 
-$$X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-j\omega n},\qquad
-x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n}\,\mathrm{d}\omega$$
+$$
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-j\omega n},\qquad
+x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n}\,\mathrm{d}\omega
+$$
 
 DFT 采用正变换不除 $N$、反变换除 $N$ 的约定：
 
-$$X[k]=\sum_{n=0}^{N-1}x[n]e^{-j2\pi kn/N},\qquad
-x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]e^{j2\pi kn/N}$$
+$$
+X[k]=\sum_{n=0}^{N-1}x[n]e^{-j2\pi kn/N},\qquad
+x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]e^{j2\pi kn/N}
+$$
 
 > [!warning] $\omega$ 与 $f$ 的换算
 > $\omega=2\pi f$。本库默认双边功率谱 $S_X(\omega)$；若用 $S_X(f)$，则

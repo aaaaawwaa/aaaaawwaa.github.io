@@ -178,8 +178,10 @@ related: []
 
 > [!tip] 为什么正交化这么重要：它决定了"条件数"
 > QR 分解得到的 $Q$ 满足 $\lVert Q\rVert_2=1$、$\operatorname{cond}(Q)=1$——**正交变换不放大误差**（第 4、9 章）。所以
-> $$\text{用 QR/SVD 做最小二乘}:\ \operatorname{cond}=\operatorname{cond}(A);\qquad
-> \text{用 }A^{T}A:\ \operatorname{cond}=\operatorname{cond}(A)^{2}$$
+> $$
+> \text{用 QR/SVD 做最小二乘}:\ \operatorname{cond}=\operatorname{cond}(A);\qquad
+> \text{用 }A^{T}A:\ \operatorname{cond}=\operatorname{cond}(A)^{2}
+> $$
 > 这就是"别用 $A^{T}A$"的严格理由 ✓（也正是第 4 章那条警告的数值版）
 
 # 2. 范数与条件数
@@ -200,9 +202,11 @@ related: []
 ## 矩阵A的条件数
 
 > [!info] Def 3 条件数
-> $$\operatorname{cond}(A)=\lVert A\rVert\,\lVert A^{-1}\rVert
+> $$
+> \operatorname{cond}(A)=\lVert A\rVert\,\lVert A^{-1}\rVert
 > \quad\Longrightarrow\quad
-> \boxed{\ \operatorname{cond}_2(A)=\frac{\sigma_1}{\sigma_n}\ }$$
+> \boxed{\ \operatorname{cond}_2(A)=\frac{\sigma_1}{\sigma_n}\ }
+> $$
 > （$\sigma_1,\sigma_n$ 是最大/最小奇异值，$A$ 可逆时；$\operatorname{cond}\ge1$，奇异/奇异矩阵 $\operatorname{cond}=\infty$）
 
 > [!tip] 定理 条件数 = 相对误差的放大倍数

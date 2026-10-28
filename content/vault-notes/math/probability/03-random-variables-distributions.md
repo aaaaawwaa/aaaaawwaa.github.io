@@ -862,9 +862,11 @@ $$
 
 $X$ 的可能取值为 $0,1,2$。
 
-$$P(X=0)=\frac{\binom{2}{2}}{\binom{5}{2}}=\frac{1}{10},\qquad
+$$
+P(X=0)=\frac{\binom{2}{2}}{\binom{5}{2}}=\frac{1}{10},\qquad
 P(X=1)=\frac{\binom{3}{1}\binom{2}{1}}{\binom{5}{2}}=\frac{6}{10},\qquad
-P(X=2)=\frac{\binom{3}{2}}{\binom{5}{2}}=\frac{3}{10}$$
+P(X=2)=\frac{\binom{3}{2}}{\binom{5}{2}}=\frac{3}{10}
+$$
 
 验证:$\frac{1}{10}+\frac{6}{10}+\frac{3}{10}=1$ ✓
 

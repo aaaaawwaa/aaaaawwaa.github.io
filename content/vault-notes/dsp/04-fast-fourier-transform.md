@@ -139,10 +139,12 @@ $$
 
 > [!info] Def 2 蝶形运算
 > 上面两式构成一个**蝶形运算**（butterfly）：
-> $$\begin{aligned}
+> $$
+> \begin{aligned}
 > X(k)&=X_1(k)+W_N^kX_2(k)\\
 > X(k+N/2)&=X_1(k)-W_N^kX_2(k)
-> \end{aligned}$$
+> \end{aligned}
+> $$
 > 它只需要**一次复数乘**（$W_N^kX_2(k)$）和**两次复数加**，同时算出两个输出。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">

@@ -24,11 +24,11 @@
     "build:site": "npx quartz build",
     "plugins:install": "npx quartz plugin install",
     "plugins:offline": "npx tsx scripts/provision-plugins.ts",
-    "audit": "node scripts/audit-site.mjs",
+    "audit": "node scripts/audit-site.mjs && node scripts/check-math-render.mjs",
     "topics:build": "node scripts/build-topic-guides.mjs",
     "verify": "node scripts/build-topic-guides.mjs --check && npm run check:public && node scripts/check-links-source.mjs && npm run build:site && npm run audit",
     "check:public": "node scripts/check-public.mjs --content content",
-    "test:public": "node --test scripts/sync-public.test.mjs scripts/check-public.test.mjs scripts/fourier-lab.test.mjs",
+    "test:public": "node --test scripts/sync-public.test.mjs scripts/check-public.test.mjs scripts/fourier-lab.test.mjs scripts/check-math-render.test.mjs",
     "sync:preview": "node scripts/sync-public.mjs --vault ../通信方向 --site . --manifest public-notes.json",
     "sync:apply": "node scripts/sync-public.mjs --vault ../通信方向 --site . --manifest public-notes.json --apply"
   },

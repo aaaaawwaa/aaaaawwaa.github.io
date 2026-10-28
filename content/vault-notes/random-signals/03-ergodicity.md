@@ -56,8 +56,10 @@ related: []
 
 有限时长估计量为 $\bar X_T=\frac{1}{T}\int_0^T X(t)\,\mathrm{d}t$。它显然是无偏的：$E[\bar X_T]=\mu_X$。关键在于方差：
 
-$$\mathrm{Var}(\bar X_T)=\frac{1}{T^2}\int_0^T\int_0^T C_X(t_2-t_1)\,\mathrm{d}t_1\mathrm{d}t_2
-=\frac{2}{T}\int_0^T\left(1-\frac{\tau}{T}\right)C_X(\tau)\,\mathrm{d}\tau$$
+$$
+\mathrm{Var}(\bar X_T)=\frac{1}{T^2}\int_0^T\int_0^T C_X(t_2-t_1)\,\mathrm{d}t_1\mathrm{d}t_2
+=\frac{2}{T}\int_0^T\left(1-\frac{\tau}{T}\right)C_X(\tau)\,\mathrm{d}\tau
+$$
 
 > [!info] 定义 3 均值遍历的充分条件
 > 若 $C_X(\tau)=R_X(\tau)-\lvert\mu_X\rvert^2\to0$（$\tau\to\infty$），则 $\mathrm{Var}(\bar X_T)\to0$，从而 $\bar X_T\to\mu_X$（均方），过程均值各态历经。

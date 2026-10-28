@@ -96,8 +96,10 @@ $$
 
 > [!tip] 定理 最佳低秩逼近（Eckart–Young）
 > 设 $A_k=\sum_{i=1}^{k}\sigma_i\mathbf{u}_i\mathbf{v}_i^{T}$（只留前 $k$ 层），则 $A_k$ 是**所有秩不超过 $k$ 的矩阵中离 $A$ 最近的那个**，且误差就是被丢掉的那些奇异值：
-> $$\text{谱范数误差}\quad\|A-A_k\|_2=\sigma_{k+1},\qquad
-> \text{Frobenius 误差}\quad\|A-A_k\|_F=\sqrt{\sigma_{k+1}^2+\cdots+\sigma_r^2}$$
+> $$
+> \text{谱范数误差}\quad\|A-A_k\|_2=\sigma_{k+1},\qquad
+> \text{Frobenius 误差}\quad\|A-A_k\|_F=\sqrt{\sigma_{k+1}^2+\cdots+\sigma_r^2}
+> $$
 > **这句话的份量**：**低秩近似**（low-rank approximation）不是"碰巧好用"的启发式，而是**数学上最优**的——没有任何秩 $k$ 矩阵能比它更接近 $A$。
 
 **数值验证**（$A=\begin{bmatrix}3&0&1\\0&2&0\\1&0&3\end{bmatrix}$，$\sigma=(4,2,2)$）：
@@ -189,14 +191,20 @@ $$
 > [!tip] 手算 SVD 的标准流程（$A=\begin{bmatrix}2&2\\-1&1\end{bmatrix}$）
 > 1. **算 $A^TA$**：$\begin{bmatrix}2&-1\\2&1\end{bmatrix}\begin{bmatrix}2&2\\-1&1\end{bmatrix}=\begin{bmatrix}5&3\\3&5\end{bmatrix}$；
 > 2. **求它的特征值与特征向量**：$(\lambda-8)(\lambda-2)=0$，$\lambda=8,2$ ⇒
->    $$\sigma_1=2\sqrt2,\quad \mathbf{v}_1=\frac{1}{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix};\qquad
->    \sigma_2=\sqrt2,\quad \mathbf{v}_2=\frac{1}{\sqrt2}\begin{bmatrix}1\\-1\end{bmatrix}$$
+>    $$
+>    \sigma_1=2\sqrt2,\quad \mathbf{v}_1=\frac{1}{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix};\qquad
+>    \sigma_2=\sqrt2,\quad \mathbf{v}_2=\frac{1}{\sqrt2}\begin{bmatrix}1\\-1\end{bmatrix}
+>    $$
 > 3. **用 $\mathbf{u}_i=A\mathbf{v}_i/\sigma_i$ 求左奇异向量**：
->    $$A\mathbf{v}_1=\frac{1}{\sqrt2}\begin{bmatrix}4\\0\end{bmatrix}=2\sqrt2\begin{bmatrix}1\\0\end{bmatrix}\Rightarrow\mathbf{u}_1=\begin{bmatrix}1\\0\end{bmatrix},\qquad
->    A\mathbf{v}_2=\frac{1}{\sqrt2}\begin{bmatrix}0\\-2\end{bmatrix}=\sqrt2\begin{bmatrix}0\\-1\end{bmatrix}\Rightarrow\mathbf{u}_2=\begin{bmatrix}0\\-1\end{bmatrix}$$
+>    $$
+>    A\mathbf{v}_1=\frac{1}{\sqrt2}\begin{bmatrix}4\\0\end{bmatrix}=2\sqrt2\begin{bmatrix}1\\0\end{bmatrix}\Rightarrow\mathbf{u}_1=\begin{bmatrix}1\\0\end{bmatrix},\qquad
+>    A\mathbf{v}_2=\frac{1}{\sqrt2}\begin{bmatrix}0\\-2\end{bmatrix}=\sqrt2\begin{bmatrix}0\\-1\end{bmatrix}\Rightarrow\mathbf{u}_2=\begin{bmatrix}0\\-1\end{bmatrix}
+>    $$
 > 4. **拼起来**：
->    $$A=\underbrace{\begin{bmatrix}1&0\\0&-1\end{bmatrix}}_{U}\underbrace{\begin{bmatrix}2\sqrt2&0\\0&\sqrt2\end{bmatrix}}_{\Sigma}
->    \underbrace{\frac{1}{\sqrt2}\begin{bmatrix}1&1\\1&-1\end{bmatrix}}_{V^{T}}\ \checkmark$$
+>    $$
+>    A=\underbrace{\begin{bmatrix}1&0\\0&-1\end{bmatrix}}_{U}\underbrace{\begin{bmatrix}2\sqrt2&0\\0&\sqrt2\end{bmatrix}}_{\Sigma}
+>    \underbrace{\frac{1}{\sqrt2}\begin{bmatrix}1&1\\1&-1\end{bmatrix}}_{V^{T}}\ \checkmark
+>    $$
 > （$AA^T=\begin{bmatrix}8&0\\0&2\end{bmatrix}$ 恰好是对角的，所以 $U$ 直接就是坐标轴——**符号由 $A\mathbf{v}_i=\sigma_i\mathbf{u}_i$ 定死**，$\mathbf{u}_2$ 必须取 $(0,-1)$ 而不是 $(0,1)$ ✓）
 
 > [!warning] 算 SVD 时不要真的去组 $A^TA$
@@ -303,9 +311,11 @@ $$
 第 6 章说"对称矩阵的谱决定性态"。对一般矩阵，**奇异值就是它的"谱"**，而且三个常用指标都由 $\sigma$ 直接读出：
 
 > [!info] Def 2 三个由奇异值定义的量
-> $$\operatorname{rank}(A)=\#\{\sigma_i>0\},\qquad
+> $$
+> \operatorname{rank}(A)=\#\{\sigma_i>0\},\qquad
 > \|A\|_2=\sigma_1\ (\text{谱范数，spectral norm}),\qquad
-> \|A\|_F=\sqrt{\sigma_1^2+\cdots+\sigma_r^2}\ (\text{Frobenius 范数})$$
+> \|A\|_F=\sqrt{\sigma_1^2+\cdots+\sigma_r^2}\ (\text{Frobenius 范数})
+> $$
 > $$
 > \operatorname{cond}(A)=\frac{\sigma_1}{\sigma_r}\qquad(\text{条件数，方阵可逆时})
 > $$

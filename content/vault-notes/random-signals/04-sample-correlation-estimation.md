@@ -47,15 +47,19 @@ related: []
 
 对 WSS 过程，`biased` 估计的期望为
 
-$$E\big[\hat R[m]\big]=\frac{1}{N}\sum_{n=0}^{N-\lvert m\rvert-1}R[m]
-=\left(1-\frac{\lvert m\rvert}{N}\right)R[m]$$
+$$
+E\big[\hat R[m]\big]=\frac{1}{N}\sum_{n=0}^{N-\lvert m\rvert-1}R[m]
+=\left(1-\frac{\lvert m\rvert}{N}\right)R[m]
+$$
 
 偏差为 $-\frac{\lvert m\rvert}{N}R[m]$，等效于给真实相关函数乘了一个三角窗（Bartlett 窗）。当 $N\gg\lvert m\rvert$ 时偏差可忽略；当 $\lvert m\rvert$ 接近 $N$ 时，估计必然被压向零。
 
 方差没有简单的通用公式。对零均值高斯白噪声：
 
-$$\mathrm{Var}\big(\hat R[0]\big)\approx\frac{2\sigma^4}{N},\qquad
-\mathrm{Var}\big(\hat R[m]\big)\approx\frac{\sigma^4}{N}\quad(m\ne0)$$
+$$
+\mathrm{Var}\big(\hat R[0]\big)\approx\frac{2\sigma^4}{N},\qquad
+\mathrm{Var}\big(\hat R[m]\big)\approx\frac{\sigma^4}{N}\quad(m\ne0)
+$$
 
 对一般有色过程，协方差近似满足 Bartlett 公式：
 

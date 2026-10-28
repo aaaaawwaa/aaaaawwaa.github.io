@@ -133,8 +133,10 @@ $$
 
 以理想低通（截止 $\omega_c$）为例：
 
-$$h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
-=\frac{\sin[\omega_c(n-\alpha)]}{\pi(n-\alpha)},\qquad \alpha=\frac{M}{2}$$
+$$
+h_d(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\omega})e^{j\omega n}d\omega
+=\frac{\sin[\omega_c(n-\alpha)]}{\pi(n-\alpha)},\qquad \alpha=\frac{M}{2}
+$$
 
 这是一个以 $\alpha$ 为中心的 sinc 序列，**无限长且非因果**；乘窗并移位后得到因果 FIR。
 

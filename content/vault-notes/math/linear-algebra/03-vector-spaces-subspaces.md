@@ -275,7 +275,8 @@ $$
 > [!tip] 秩一矩阵 = 两个向量的外积
 > 秩 1 的矩阵总能写成**一列乘一行** $A=\mathbf{u}\mathbf{v}^T$——所有列都是 $\mathbf{u}$ 的倍数，所有行都是 $\mathbf{v}^T$ 的倍数。
 > 例：
-> $$\begin{bmatrix}1&3&10\\2&6&20\\3&9&30\end{bmatrix}
+> $$
+> \begin{bmatrix}1&3&10\\2&6&20\\3&9&30\end{bmatrix}
 > =\begin{bmatrix}1\\2\\3\end{bmatrix}\begin{bmatrix}1&3&10\end{bmatrix}
 > $$
 > （验证：$(1,2,3)\times1,(1,2,3)\times3,(1,2,3)\times10$——每一列都是 $(1,2,3)$ 的身影。）
@@ -378,9 +379,11 @@ $$
 $$
 
 > [!tip] 全解定理（本章主公式之一）
-> $$\boxed{\ \mathbf{x}=\mathbf{x}_p+\mathbf{x}_n\ }\qquad
+> $$
+> \boxed{\ \mathbf{x}=\mathbf{x}_p+\mathbf{x}_n\ }\qquad
 > \text{即}\qquad
-> \mathbf{x}=\begin{bmatrix}-2\\0\\1\end{bmatrix}+t\begin{bmatrix}-3\\1\\0\end{bmatrix}$$
+> \mathbf{x}=\begin{bmatrix}-2\\0\\1\end{bmatrix}+t\begin{bmatrix}-3\\1\\0\end{bmatrix}
+> $$
 > 一句话证明：$A(\mathbf{x}_p+\mathbf{x}_n)=\mathbf{b}+\mathbf{0}=\mathbf{b}$；反过来，任何解减掉 $\mathbf{x}_p$ 必在零空间里。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" width="100%" style="max-width:840px" font-family="inherit">

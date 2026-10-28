@@ -189,7 +189,7 @@ CLOAD OUT 0 20fF
 ### 5.4 相关公式
 
 $$
-t_{pHL}=\frac{t_{PHL1}+t_{PHL2}}{2}\ \text{（按边沿的 50% 点到 50% 点）},\qquad t_p=\frac{t_{pHL}+t_{pLH}}{2}
+t_{pHL}=\frac{t_{PHL1}+t_{PHL2}}{2}\ \text{（按边沿的 50\% 点到 50\% 点）},\qquad t_p=\frac{t_{pHL}+t_{pLH}}{2}
 $$
 
 一阶估算（把 MOS 看成恒流源给 $C_L$ 充放电）：

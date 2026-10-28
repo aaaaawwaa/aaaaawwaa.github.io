@@ -326,8 +326,10 @@ $$
 
 > [!example] 双线性变换的一阶低通
 > $H_a(s)=\dfrac{\Omega_c}{s+\Omega_c}$，代入 $s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}$：
-> $$H(z)=\frac{\Omega_c(1+z^{-1})}{\frac{2}{T}(1-z^{-1})+\Omega_c(1+z^{-1})}
-> =\frac{\Omega_c T(1+z^{-1})}{(2+\Omega_cT)+( \Omega_cT-2)z^{-1}}$$
+> $$
+> H(z)=\frac{\Omega_c(1+z^{-1})}{\frac{2}{T}(1-z^{-1})+\Omega_c(1+z^{-1})}
+> =\frac{\Omega_c T(1+z^{-1})}{(2+\Omega_cT)+( \Omega_cT-2)z^{-1}}
+> $$
 > 分子分母同除 $(2+\Omega_cT)$，得到标准一阶数字低通形式。
 > 预畸变：$\Omega_c=\frac{2}{T}\tan\frac{\omega_c}{2}$，这样数字截止频率正好是 $\omega_c$。
 

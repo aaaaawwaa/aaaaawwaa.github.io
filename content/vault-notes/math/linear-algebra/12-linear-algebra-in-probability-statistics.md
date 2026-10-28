@@ -367,8 +367,10 @@ $$
 
 > [!tip] 定理 加权正规方程
 > **加权最小二乘**（weighted least squares）：
-> $$\min_{\mathbf{x}}\ (A\mathbf{x}-\mathbf{b})^{T}W(A\mathbf{x}-\mathbf{b})
-> \qquad\Longrightarrow\qquad \boxed{\ A^{T}WA\,\hat{\mathbf{x}}=A^{T}W\mathbf{b}\ }$$
+> $$
+> \min_{\mathbf{x}}\ (A\mathbf{x}-\mathbf{b})^{T}W(A\mathbf{x}-\mathbf{b})
+> \qquad\Longrightarrow\qquad \boxed{\ A^{T}WA\,\hat{\mathbf{x}}=A^{T}W\mathbf{b}\ }
+> $$
 > 推导与第 4 章一字不差（只是把内积换成 $W$-内积）：误差要垂直于 $WA$ 的列空间 ✓
 > - $W=I$ ⇒ 退化成第 4 章的普通最小二乘 ✓
 > - $W$ 对角时，$w_i$ 就是"第 $i$ 个观测的权重/可信度"✓

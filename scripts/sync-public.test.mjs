@@ -165,3 +165,21 @@ test('multiple math expressions on one prose line are not merged into a display 
   const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
   assert.ok(out.includes(source));
 });
+test('splits attached multiline display delimiters without swallowing following prose', async t => {
+  const f=await fixture(t);
+  const source=['> $$\\begin{aligned}', '> x&=y\\\\', '> \\end{aligned}$$', '> Explanation remains outside math.'].join('\n');
+  await writeFile(path.join(f.vault,'a.md'),source);
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.ok(out.includes('> $$\n> \\begin{aligned}'));
+  assert.ok(out.includes('> \\end{aligned}\n> $$\n> Explanation'));
+});
+test('escapes percent text inside display math without double escaping', async t => {
+  const f=await fixture(t);
+  await writeFile(path.join(f.vault,'a.md'),'$$\\text{50% and 20\\%}$$');
+  await manifest(f,[{source:'a.md',destination:'vault-notes/a.md'}]);
+  const result=run(f,true); assert.equal(result.status,0,result.stderr);
+  const out=await readFile(path.join(f.content,'vault-notes/a.md'),'utf8');
+  assert.ok(out.includes('\\text{50\\% and 20\\%}'));
+});

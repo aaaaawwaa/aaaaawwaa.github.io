@@ -323,8 +323,10 @@ $$
 
 **循环差分矩阵**（把 $x=(x_1,x_2,x_3)$ 变成"绕环一圈的三个差"）：
 
-$$C=\begin{bmatrix}-1&1&0\\0&-1&1\\1&0&-1\end{bmatrix},\qquad
-C\mathbf{x}=\begin{bmatrix}x_2-x_1\\x_3-x_2\\x_1-x_3\end{bmatrix}$$
+$$
+C=\begin{bmatrix}-1&1&0\\0&-1&1\\1&0&-1\end{bmatrix},\qquad
+C\mathbf{x}=\begin{bmatrix}x_2-x_1\\x_3-x_2\\x_1-x_3\end{bmatrix}
+$$
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 250" width="100%" style="max-width:380px" font-family="inherit">
   <defs>

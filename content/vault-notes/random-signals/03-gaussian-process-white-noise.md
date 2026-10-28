@@ -31,8 +31,10 @@ related: []
 
 若协方差矩阵 $\mathbf{C}$ 非奇异，$n$ 维密度为
 
-$$f(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\lvert\mathbf{C}\rvert^{1/2}}
-\exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\mathbf{C}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right]$$
+$$
+f(\mathbf{x})=\frac{1}{(2\pi)^{n/2}\lvert\mathbf{C}\rvert^{1/2}}
+\exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\mathbf{C}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right]
+$$
 
 高斯过程的重要封闭性：
 

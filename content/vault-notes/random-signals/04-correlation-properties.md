@@ -80,8 +80,10 @@ $$
 
 > [!info] 定义 5 维纳–辛钦定理
 > 若 $R_X$ 绝对可积，则
-> $$S_X(\omega)=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau,\qquad
-> R_X(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_X(\omega)e^{j\omega\tau}\,\mathrm{d}\omega$$
+> $$
+> S_X(\omega)=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau,\qquad
+> R_X(\tau)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_X(\omega)e^{j\omega\tau}\,\mathrm{d}\omega
+> $$
 > $S_X(\omega)$ 为实、非负；实过程还满足 $S_X(-\omega)=S_X(\omega)$。
 
 对可微过程，相关函数与导数过程满足 $R_{X'}(\tau)=-R_X''(\tau)$ 且 $R_X''(0)=-E[\lvert X'(t)\rvert^2]\le0$。因此 $R_X$ 在原点附近必须是向下凹的；若某候选函数在 $0$ 处向上凹，它不可能来自均方可微过程。

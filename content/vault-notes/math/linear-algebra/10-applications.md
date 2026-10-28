@@ -593,9 +593,11 @@ $$
 把"求系数"这件事看作**投影**（第 4 章）：
 
 > [!tip] 定理 傅里叶系数 = 投影坐标
-> $$a_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}f\,\mathrm{d}x,\qquad
+> $$
+> a_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}f\,\mathrm{d}x,\qquad
 > a_k=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx\,\mathrm{d}x,\qquad
-> b_k=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\,\mathrm{d}x$$
+> b_k=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\,\mathrm{d}x
+> $$
 > 每个系数就是 $f$ 在那个基方向上的**投影**：$c_k=\dfrac{\langle f,\phi_k\rangle}{\langle\phi_k,\phi_k\rangle}$ ✓
 > **正交性让"求系数"不需要解方程组**——这是第 4 章"标准正交基"在函数空间的翻版。
 
@@ -677,16 +679,22 @@ $$
 
 > [!tip] 技巧：加一维，把平移变线性
 > **齐次坐标**（homogeneous coordinates）：给向量**加一个恒为 1 的分量**，于是 $n$ 维的问题变成 $n+1$ 维的**线性**问题：
-> $$\text{平移}(t_x,t_y):\ \begin{bmatrix}1&0&t_x\\0&1&t_y\\0&0&1\end{bmatrix}
-> \begin{bmatrix}x\\y\\1\end{bmatrix}=\begin{bmatrix}x+t_x\\y+t_y\\1\end{bmatrix}\ \checkmark$$
-> $$\text{旋转 }\theta:\ \begin{bmatrix}\cos\theta&-\sin\theta&0\\\sin\theta&\cos\theta&0\\0&0&1\end{bmatrix},\qquad
-> \text{缩放}(s_x,s_y):\ \begin{bmatrix}s_x&0&0\\0&s_y&0\\0&0&1\end{bmatrix}$$
+> $$
+> \text{平移}(t_x,t_y):\ \begin{bmatrix}1&0&t_x\\0&1&t_y\\0&0&1\end{bmatrix}
+> \begin{bmatrix}x\\y\\1\end{bmatrix}=\begin{bmatrix}x+t_x\\y+t_y\\1\end{bmatrix}\ \checkmark
+> $$
+> $$
+> \text{旋转 }\theta:\ \begin{bmatrix}\cos\theta&-\sin\theta&0\\\sin\theta&\cos\theta&0\\0&0&1\end{bmatrix},\qquad
+> \text{缩放}(s_x,s_y):\ \begin{bmatrix}s_x&0&0\\0&s_y&0\\0&0&1\end{bmatrix}
+> $$
 > **代价**：多一维；**回报**：平移也变成了"乘矩阵"，于是所有变换可以**统一地复合**（矩阵相乘）✓
 
 > [!tip] 复合顺序不能换（第 8 章的非交换性）
 > **先平移 $(2,3)$ 再旋转 $90°$**：
-> $$R\,T=\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\end{bmatrix}\begin{bmatrix}1&0&2\\0&1&3\\0&0&1\end{bmatrix}
-> =\begin{bmatrix}0&-1&-3\\1&0&2\\0&0&1\end{bmatrix}$$
+> $$
+> R\,T=\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\end{bmatrix}\begin{bmatrix}1&0&2\\0&1&3\\0&0&1\end{bmatrix}
+> =\begin{bmatrix}0&-1&-3\\1&0&2\\0&0&1\end{bmatrix}
+> $$
 > 作用于点 $(1,1)$：先平移得 $(3,4)$，再转 $90°$ 得 $(-4,3)$ ✓ 与矩阵乘法结果一致 ✓
 > **先旋转再平移**会得到完全不同的结果——所以图形学里"变换的顺序"是关键参数（渲染管线里叫 **变换栈**）。
 

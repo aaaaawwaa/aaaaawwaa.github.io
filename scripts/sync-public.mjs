@@ -73,12 +73,26 @@ async function main() {
     if(x.kind==='asset') { if(x.source.toLowerCase().endsWith('.svg') && unsafeSvg(data.toString('utf8'))) throw new Error(`SVG 含活动内容或外部引用：${x.source}`); outputs.push({x,data}); continue; }
     let text=data.toString('utf8');
     const findings=scanText(text); if(findings.length) secrets.push({file:x.source,types:findings});
-    let inFence=false;
+    let inFence=false, inDisplayMath=false;
     text=text.split('\n').map(line=>{
       if (/^\s*(```|~~~)/.test(line)) {inFence=!inFence;return line;} if(inFence) return line;
+      // Percent is literal text inside \text{}, not a TeX comment.
+      if (inDisplayMath || /^\s*(?:>\s*)*\$\$/.test(line)) {
+        line=line.replace(/\\text\{[^{}]*\}/g, text=>text.replace(/(?<!\\)%/g,'\\%'));
+      }
       // Normalize Obsidian's single-line display math for the site, preserving blockquote prefixes.
       const displayMath=line.match(/^(\s*(?:>\s*)*)\$\$(.+?)\$\$\s*$/);
       if (displayMath && !displayMath[2].includes('$$')) return `${displayMath[1]}$$\n${displayMath[1]}${displayMath[2]}\n${displayMath[1]}$$`;
+      if (inDisplayMath) {
+        const closing=line.match(/^(\s*(?:>\s*)*)(.*?)\$\$\s*$/);
+        if (closing) { inDisplayMath=false; return closing[2].trim() ? `${closing[1]}${closing[2]}\n${closing[1]}$$` : line; }
+        return line;
+      }
+      const opening=line.match(/^(\s*(?:>\s*)*)\$\$(.*)$/);
+      if (opening && !opening[2].includes('$$')) {
+        inDisplayMath=true;
+        return opening[2].trim() ? `${opening[1]}$$\n${opening[1]}${opening[2]}` : line;
+      }
       const saved=[]; line=line.replace(/`[^`]*`/g,m=>{saved.push(m);return `@@WIKICODE${saved.length-1}@@`;});
       line=line.replace(/(!?)\[\[([^\]]+)\]\]/g,(all,embed,inner)=>{
         const escapedPipe=inner.includes('\\|');
