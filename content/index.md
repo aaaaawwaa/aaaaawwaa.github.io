@@ -10,7 +10,7 @@ tags:
   <div class="lt-eyebrow">A NOTEBOOK FOR ENGINEERING MINDS</div>
   <h1>LumenTrace<span style="color:var(--lt-accent)">.</span></h1>
   <div class="lt-subtitle">循着知识的脉络，理解工程。</div>
-  <p class="lt-lead">一份持续生长的电子信息工程 Wiki。从一个概念出发，沿着公式、代码与实验，把零散的知识连成自己的理解。</p>
+  <p class="lt-lead">一份持续生长的电子信息工程 Wiki：195 篇课程笔记已融合为 52 篇主题文章，从一个概念出发，沿着公式、代码与实验，把零散的知识连成自己的理解。</p>
   <div class="lt-actions">
     <a class="lt-button" href="./maps/knowledge-network">按知识主题开始阅读 <span aria-hidden="true">↗</span></a>
     <a class="lt-button secondary" href="./maps/knowledge-network">探索知识网络 <span aria-hidden="true">→</span></a>
@@ -32,10 +32,11 @@ tags:
 
 <div class="lt-section-head"><h2 id="start-reading">从这里开始读</h2><span>SELECTED NOTES</span></div>
 <div class="lt-feature-list">
-  <a class="lt-feature" href="./signal-processing/"><span><strong>数字信号处理学习路径</strong><small>从离散系统、频谱到数字滤波器</small></span><span aria-hidden="true">→</span></a>
-  <a class="lt-feature" href="./signal-processing/dft-and-fft"><span><strong>DFT 与 FFT</strong><small>把离散频谱、分辨率和实际代码连接起来</small></span><span aria-hidden="true">→</span></a>
-  <a class="lt-feature" href="./digital-systems/fsm-design"><span><strong>有限状态机设计</strong><small>用状态、转换条件和输出关系组织数字逻辑</small></span><span aria-hidden="true">→</span></a>
-  <a class="lt-feature" href="./maps/"><span><strong>跨学科导航</strong><small>回到知识地图，寻找下一步学习的方向</small></span><span aria-hidden="true">→</span></a>
+  <a class="lt-feature" href="./signal-processing/"><span><strong>数字信号处理学习路径</strong><small>从离散系统、频谱到数字滤波器与多抽样率</small></span><span aria-hidden="true">→</span></a>
+  <a class="lt-feature" href="./signal-processing/random-processes"><span><strong>随机信号处理</strong><small>从相关函数、功率谱到维纳滤波与信号检测</small></span><span aria-hidden="true">→</span></a>
+  <a class="lt-feature" href="./communication/digital-modulation-qpsk"><span><strong>数字调制与误码率</strong><small>星座图、QPSK/16QAM 与最佳接收</small></span><span aria-hidden="true">→</span></a>
+  <a class="lt-feature" href="./digital-systems/timing-analysis-and-constraints"><span><strong>静态时序分析</strong><small>建立/保持时间方程与时序约束</small></span><span aria-hidden="true">→</span></a>
+  <a class="lt-feature" href="./maps/knowledge-network"><span><strong>跨学科知识网络</strong><small>看数学、信号、通信与数字系统如何互相支撑</small></span><span aria-hidden="true">→</span></a>
 </div>
 
 <p class="lt-note">这里收录经过整理的学习笔记与示例。借助左侧目录、全文搜索与右侧关系图谱，在不同主题之间继续探索。</p>
