@@ -15,7 +15,7 @@
 | MATLAB | 2 | 2 | 0 | 0 | 1 篇（MATLAB 与 DSP 实验） | [matlab.md](./fusion/matlab.md) |
 | FPGA / Verilog / 时序 | 45 | 43 | 1 | 1 | 7 篇（Verilog 基础、时序逻辑、FSM、架构与 EDA、Vivado、时序约束、接口与 AD9361） | [fpga.md](./fusion/fpga.md) |
 | 知识地图 | 5 | 0 | 5 | 0 | 2 篇（知识网络、学习路径） | [maps.md](./fusion/maps.md) |
-| **合计** | **195** | **176** | **18** | **1** | **52 篇主题/专题文章** | —— |
+| **合计** | **195** | **176** | **18** | **1** | **42 篇主题文章**（另有 5 篇原有示例/项目页） | —— |
 
 > 统计口径：明细台账按源笔记逐条登记；"部分融合"多为地图/导读/实验入口类笔记（其结构已并入正文，但不逐题搬运）。排除 1 篇为只有 frontmatter 的空笔记。
 
@@ -37,7 +37,7 @@
 | `npm run verify`（本地提交树） | 773 页、0 断链、0 KaTeX 错误节点、108 Mermaid、817 表格、243 代码块、22911 KaTeX 标记 |
 | 提交 | `437a482`（docs 记录提交前为 6 个主题提交：b7155e4、1c7084a、66186f3、817c7c7、665f032、437a482） |
 | GitHub Actions | 运行 [40659262571](https://github.com/aaaaawwaa/aaaaawwaa.github.io/actions/runs/40659262571)：build 与 deploy 均 success |
-| 线上抽查（HTTPS） | 首页显示"195 篇已融合为 52 篇"；`/signal-processing/` 列出 15 篇；Z 变换页 173 处 KaTeX、0 错误节点、6 张表；QPSK 页 127 公式 + Mermaid；时序页 4 张 SVG/PNG 图 0 加载失败；contentIndex 682 条且含新文章 slug |
+| 线上抽查（HTTPS） | 首页文案、`/signal-processing/` 15 篇、Z 变换页 173 处 KaTeX/0 错误节点/6 张表、QPSK 页 127 公式 + Mermaid、时序页 4 图 0 加载失败、contentIndex 682 条含新 slug 均已核对（首页文章数文案在首次部署中误写为 52，已更正为实际 42 篇并重新部署验证） |
 
 ### 已知差异（待核验）
 

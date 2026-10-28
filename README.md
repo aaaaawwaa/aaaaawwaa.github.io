@@ -5,7 +5,7 @@
 - **站点框架**：[Quartz v5.0.0](https://quartz.jzhao.xyz/)（面向 Obsidian 的静态站点生成器）
 - **内容格式**：Obsidian Flavored Markdown + LaTeX + Mermaid
 - **线上地址**：<https://aaaaawwaa.github.io/>（GitHub Pages + GitHub Actions，HTTPS）
-- **已发布内容**：195 篇学习笔记 + 60 张图表（`content/vault-notes/`）+ **52 篇融合后的主题文章**（`content/<主题>/`）
+- **已发布内容**：195 篇学习笔记 + 60 张图表（`content/vault-notes/`）+ **42 篇融合后的主题文章**（`content/<主题>/`）
 - **本地运行**：Node.js ≥ 22、npm ≥ 10.9.2
 
 ---
@@ -160,6 +160,6 @@ npm run verify
 - [TEST-REPORT.md](./TEST-REPORT.md)：测试证据、已知问题、后续计划
 - [notes/sync-and-publish.md](./notes/sync-and-publish.md)：同步发布细则
 - [notes/fusion/SPEC.md](./notes/fusion/SPEC.md)：内容融合规范
-- [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)：融合总台账（195 篇笔记 → 52 篇文章）
+- [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)：融合总台账（195 篇笔记 → 42 篇文章）
 - [notes/quartz5-capabilities.md](./notes/quartz5-capabilities.md)：Quartz 5 能力调研
 - Quartz 官方文档：<https://quartz.jzhao.xyz/>

@@ -245,7 +245,7 @@ npm run dev                 # http://localhost:8080
 | 指标 | 数值 |
 | --- | --- |
 | 参与融合的公开笔记 | 195 篇（8 个学科方向） |
-| 新增/重写的主题文章 | **52 篇**（DSP 7、随机信号 8、通信 8、数学 9、MATLAB 1、数字系统 7、知识地图 2，另含公式速查等） |
+| 新增/重写的主题文章 | **42 篇**（DSP 7、随机信号 8、通信 8、数学 9、MATLAB 1、数字系统 7、知识地图 2），站点另有 5 篇原有示例/项目页 |
 | 台账 | `notes/topic-fusion-ledger.md` + `notes/fusion/*.md`（按源笔记逐条登记） |
 | 构建 | 253 个 Markdown → **773 个 HTML 页面**、1528 个文件 |
 | 富内容 | KaTeX 标记 22889、Mermaid 108、代码块 243、表格 817、Callout 2161 |
@@ -276,7 +276,7 @@ npm run dev                 # http://localhost:8080
 | --- | --- |
 | 推送提交 | `437a482`（六个主题提交合并后） |
 | Actions 运行 | [40659262571](https://github.com/aaaaawwaa/aaaaawwaa.github.io/actions/runs/40659262571)：build ✓ / deploy ✓ |
-| 线上首页 | <https://aaaaawwaa.github.io/> 显示"195 篇已融合为 52 篇" |
+| 线上首页 | <https://aaaaawwaa.github.io/> 显示"195 篇已融合为 42 篇" |
 | 线上正文抽查 | Z 变换（173 KaTeX、0 错误节点、6 表）、QPSK（127 公式、Mermaid）、时序约束（4 图 0 失败）、特征值/SVD、知识网络 |
 | 搜索索引 | `/static/contentIndex.json` 682 条，包含 `signal-processing/z-transform-and-dtft`、`communication/digital-modulation-qpsk`、`mathematics/eigenvalues-svd` |
 

@@ -10,7 +10,7 @@ tags:
   <div class="lt-eyebrow">A NOTEBOOK FOR ENGINEERING MINDS</div>
   <h1>LumenTrace<span style="color:var(--lt-accent)">.</span></h1>
   <div class="lt-subtitle">循着知识的脉络，理解工程。</div>
-  <p class="lt-lead">一份持续生长的电子信息工程 Wiki：195 篇课程笔记已融合为 52 篇主题文章，从一个概念出发，沿着公式、代码与实验，把零散的知识连成自己的理解。</p>
+  <p class="lt-lead">一份持续生长的电子信息工程 Wiki：195 篇课程笔记已融合为 42 篇主题文章，从一个概念出发，沿着公式、代码与实验，把零散的知识连成自己的理解。</p>
   <div class="lt-actions">
     <a class="lt-button" href="./maps/knowledge-network">按知识主题开始阅读 <span aria-hidden="true">↗</span></a>
     <a class="lt-button secondary" href="./maps/knowledge-network">探索知识网络 <span aria-hidden="true">→</span></a>
