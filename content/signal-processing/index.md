@@ -1,59 +1,60 @@
 ---
 title: 信号处理
-description: 从线性时不变系统、卷积与采样定理出发，进入 DFT 与 FFT 的离散频谱分析世界。
+description: 从离散时间信号与系统出发，经 Z 变换、DTFT、DFT/FFT，到数字滤波器结构、IIR/FIR 设计与多抽样率，再到随机信号与统计信号处理的完整学习路径。
 tags:
   - signal-processing
   - index
 ---
 
-## 学习范围
-
-信号处理研究如何用数学工具描述、变换与分析随时间变化的物理量。本分类从连续与离散信号的基本概念出发，覆盖线性时不变（LTI）系统的冲激响应与卷积、傅里叶变换的频域视角、采样定理与混叠，最后进入离散傅里叶变换（DFT）与快速傅里叶变换（FFT）的实现。
-
-学习顺序：先建立「时域卷积等价于频域相乘」的直觉，再理解采样率与带宽的约束，最后用代码观察频谱泄漏与频率分辨率。
+信号处理研究如何用数学工具描述、变换与分析随时间变化的物理量。对电子工程而言，它同时是**通信系统的数学语言**（调制、滤波、检测）和**FPGA 实时实现的算法来源**（FFT、FIR、抽取）。
 
 > [!tip] 一句话抓住重点
 > 频域分析的价值在于：很多在时域看起来复杂的运算（卷积、微分、滤波），在频域里只是加法与乘法。
 
-## 数字信号处理的学习路径
+## 学习路径
 
-数字信号处理以序列为对象：先理解信号如何采样、系统如何用卷积描述，再把问题搬到频域，最后设计实际滤波器。这条路径融合了 Obsidian 中的课程笔记和本站的专题讲解。
+下面 15 篇文章构成一条从"序列"到"统计信号处理"的路线。每篇都包含定义、适用条件、推导或例题、易错点，并在文末链接到 Obsidian 中的详细笔记。
 
-### 1. 离散时间与系统
+### 第一阶段：连续与离散的桥
 
-序列用整数下标描述采样结果；线性时不变系统由单位冲激响应决定，输出通过卷积求得。采样连接连续时间与离散时间，但采样率不足会造成混叠。深入阅读：[[vault-notes/dsp/01-discrete-time-systems|离散时间信号与系统]]。
+1. [[signal-processing/signals-and-systems-intro|离散时间信号、系统与采样]] —— 序列与数字频率、LTI 系统与卷积、差分方程、抽样定理与混叠、sinc 重建。**这是全部分支的前置**。
 
-### 2. 从 Z 变换到 DFT 和 FFT
+### 第二阶段：变换域
 
-Z 变换用复平面描述离散系统；DTFT 描述连续频率上的响应；DFT 在有限个频率点上计算，而 FFT 是加速 DFT 的算法。本站 [[signal-processing/dft-and-fft|DFT 与 FFT 专题]]将两篇笔记的关键关系、圆周卷积和蝶形运算串在一起。详细推导：[[vault-notes/dsp/02-z-transform-and-dtft|Z 变换与 DTFT]]、[[vault-notes/dsp/03-discrete-fourier-transform|DFT]]、[[vault-notes/dsp/04-fast-fourier-transform|FFT]]。
+2. [[signal-processing/z-transform-and-dtft|Z 变换与 DTFT]] —— 收敛域决定序列、反变换、s-z 映射、系统函数 $H(z)$、零极点与因果稳定性、DTFT 与频率响应。
+3. [[signal-processing/dft-and-fft|DFT 与 FFT]] —— 频域采样得到 DFT、圆周卷积与补零条件、分辨率/泄漏/栅栏效应、基 2 蝶形与位倒序、重叠相加/保留。
 
-### 3. 数字滤波器
+### 第三阶段：滤波器
 
-滤波器用差分方程与结构图实现频率选择。IIR 借助反馈以较低阶数实现选择性，但需要检查稳定性；FIR 没有输出反馈，可以设计精确线性相位，通常需要较高阶数。深入阅读：[[vault-notes/dsp/05-filter-structures|基本结构]]、[[vault-notes/dsp/06-iir-filter-design|IIR 设计]]、[[vault-notes/dsp/07-fir-filter-design|FIR 设计]]。
+4. [[signal-processing/digital-filter-structures|数字滤波器结构]] —— 直接型 I/II、级联、并联、转置、频率采样型、格型；结构选择与有限字长影响。
+5. [[signal-processing/iir-filter-design|IIR 滤波器设计]] —— 巴特沃斯/切比雪夫原型、脉冲响应不变法、双线性变换与预畸变、高通/带通变换。
+6. [[signal-processing/fir-filter-design|FIR 滤波器设计]] —— 线性相位条件与四种类型、窗函数法、频率采样法、等波纹最优设计、IIR/FIR 对比。
+7. [[signal-processing/multirate-dsp|多抽样率数字信号处理]] —— 抽取与插值、诺贝尔恒等式、多相分解、分数倍重采样、滤波器组与 OFDM。
 
-### 4. 多抽样率
+### 第四阶段：随机与统计
 
-抽取降低采样率之前要考虑抗混叠滤波；插值提高采样率后要抑制成像频谱。深入阅读：[[vault-notes/dsp/08-multirate-sampling|序列的抽取和插值]]。
-## 本分类文章
+8. [[signal-processing/random-processes|随机过程与随机信号]] —— 随机变量回顾、样本函数、平稳性、各态历经、均值与相关函数。
+9. [[signal-processing/correlation-and-power-spectrum|相关函数与功率谱]] —— 自/互相关、样本估计、维纳–辛钦、白噪声与有色噪声、互谱与 PSD 估计。
+10. [[signal-processing/random-signals-through-systems|随机信号通过线性系统]] —— 输出均值与相关、$S_Y=\lvert H\rvert^2S_X$、噪声带宽、ADC 量化噪声、AWGN 与 SNR。
+11. [[signal-processing/statistical-estimation-filtering|统计估计与最优滤波]] —— 偏差方差与 CRLB、最大似然与最小二乘、MMSE/LMMSE、维纳滤波、卡尔曼滤波。
+12. [[signal-processing/adaptive-filtering-and-spectral-estimation|自适应滤波与参数化谱估计]] —— LMS/RLS 在线跟踪、AR/MA/ARMA 建模、MUSIC/ESPRIT 超分辨。
+13. [[signal-processing/signal-detection-theory|信号检测理论]] —— 似然比、Neyman–Pearson、匹配滤波、ROC、M 元检测与误码率。
+14. [[signal-processing/random-signal-experiments|随机信号处理 MATLAB 实验]] —— 六个可运行实验与预期现象。
+15. [[signal-processing/random-signals-formula-sheet|随机信号公式速查与易错点]] —— 一页式公式表、易混淆概念与高频错因。
 
-- [[signal-processing/signals-and-systems-intro|信号与系统导论]]：LTI 系统、卷积、采样定理与混叠。
-- [[signal-processing/dft-and-fft|DFT 与 FFT]]：离散频谱的定义、频率分辨率与 FFT 实现。
+## 与其他学科的连接
 
-## 跨学科关联
+- **通信**：[[communication/index|通信原理]] 的调制、最佳接收与噪声性能都建立在本分类之上；5G 的 OFDM 与信道估计直接用到 DFT 与多抽样率。
+- **数学**：[[mathematics/linear-algebra-basics|线性代数]] 解释 DFT 是正交变换、滤波器设计中的矩阵方程；[[mathematics/probability-overview|概率论]] 是随机信号的语言；[[mathematics/complex-analysis|复变函数]] 支撑 z 变换与留数反变换。
+- **FPGA**：[[digital-systems/index|数字系统]] 里用 Verilog 实现 FIR/FFT 需要理解定点、流水线与吞吐率；MATLAB 原型见 [[programming/matlab-for-dsp|MATLAB 与 DSP 实验]]。
+- **交互实验**：[[interactive-labs/fourier-series-lab|傅里叶级数实验]]。
 
-- [[mathematics/linear-algebra-basics|线性代数基础]]：DFT 是一组正交基上的投影，用酉矩阵语言描述最清晰。
-- [[communication/analog-modulation-am|模拟调制 AM]]：调制本质上是频谱搬移，理解频谱才能理解 AM 与频分复用。
-- [[interactive-labs/fourier-series-lab|傅里叶级数实验]]：用可运行的脚本观察方波的部分和逼近。
+## 学习方法
 
-## 软硬件结合
-
-信号处理算法的落地方式有两种：在 CPU/GPU 上用 [[programming/python-numpy-dsp|Python NumPy]] 验证，或在 FPGA 上用 [[digital-systems/verilog-sequential-logic|Verilog 时序逻辑]] 实现实时流水线。前者关注数值与精度，后者关注时钟、面积与吞吐率。
-
-## 相关阅读
-
-- [[signal-processing/signals-and-systems-intro|信号与系统导论]]
-- [[signal-processing/dft-and-fft|DFT 与 FFT]]
-- [[maps/knowledge-network|跨学科知识网络]]
+1. 先读"为什么需要"（每篇开头），再读定义与条件；
+2. 每个公式自己推一遍最简单的例子（如 $N=4$ 的 DFT、二阶系统）；
+3. 用 MATLAB/Python 复现文中代码，改参数观察现象；
+4. 遇到"看起来矛盾"的结论，回到适用条件检查（例如补零 vs 分辨率）。
 
 <!-- topic-index:start -->
 ## 数字信号处理知识点索引
