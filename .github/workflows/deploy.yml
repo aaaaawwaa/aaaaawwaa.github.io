@@ -33,6 +33,8 @@ jobs:
         run: npm run check:public
       - name: Check topic coverage
         run: node scripts/build-topic-guides.mjs --check
+      - name: Check folder localization
+        run: node scripts/build-folder-indexes.mjs --check
       - name: Check content links (case-sensitive)
         run: node scripts/check-links-source.mjs
       - name: Install Quartz plugins

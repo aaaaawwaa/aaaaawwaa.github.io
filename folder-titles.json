@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "note": "目录显示名映射：URL 与磁盘 slug 保持不变，只改用户可见的中文名称。manual=true 表示人工维护的入口页，生成器只校验不覆盖。source 为 Obsidian 源库目录名，用于核对。",
+  "folders": {
+    "vault-notes": {
+      "title": "学习笔记库",
+      "manual": true,
+      "source": "各学科目录聚合（无同名源目录）",
+      "description": "从 Obsidian 知识库筛选同步的电子信息工程学习笔记目录。"
+    },
+    "vault-notes/communication": {
+      "title": "通信原理",
+      "source": "通信原理",
+      "description": "通信原理 16 篇：确知信号、随机过程、信道、模拟与数字调制、编码、同步与公式速查。"
+    },
+    "vault-notes/dsp": {
+      "title": "数字信号处理",
+      "source": "数字信号处理",
+      "description": "数字信号处理 8 篇：离散时间系统、Z 变换与 DTFT、DFT/FFT、滤波器结构、IIR/FIR 设计与多抽样率。"
+    },
+    "vault-notes/random-signals": {
+      "title": "随机信号处理",
+      "source": "随机信号处理",
+      "description": "随机信号处理 61 篇：概率预备、随机过程、相关函数与功率谱、估计与滤波、检测理论与 MATLAB 实验。"
+    },
+    "vault-notes/digital-modulation": {
+      "title": "数字调制",
+      "source": "数字调制",
+      "description": "数字调制：数字通信系统的基本组成与信号流转。"
+    },
+    "vault-notes/5g": {
+      "title": "5G",
+      "source": "5G",
+      "description": "5G 与 6G 22 篇：基础框架、核心架构、协议栈、物理层流程与工程仿真。"
+    },
+    "vault-notes/fpga": {
+      "title": "FPGA",
+      "source": "FPGA",
+      "description": "FPGA 45 篇：Verilog 语法、Vivado 开发流程、静态时序分析与 AD9361 等接口。"
+    },
+    "vault-notes/math": {
+      "title": "数学基础",
+      "source": "线性代数 / 概率论与数理统计 / 复变函数与场论（聚合层）",
+      "description": "数学基础：线性代数、概率论与数理统计、复变函数与场论三个源目录的聚合入口。"
+    },
+    "vault-notes/math/linear-algebra": {
+      "title": "线性代数",
+      "source": "线性代数",
+      "description": "线性代数 12 篇：向量与方程组、正交投影、特征值与 SVD、线性变换与数值稳定性。"
+    },
+    "vault-notes/math/probability": {
+      "title": "概率论与数理统计",
+      "source": "概率论与数理统计",
+      "description": "概率论与数理统计 12 篇：随机变量、数字特征、抽样分布、参数估计与假设检验。"
+    },
+    "vault-notes/math/complex-analysis": {
+      "title": "复变函数与场论",
+      "source": "复变函数与场论",
+      "description": "复变函数与场论 11 篇：解析函数、留数、傅里叶与拉普拉斯变换、场论与边值问题。"
+    },
+    "vault-notes/matlab": {
+      "title": "Matlab",
+      "source": "Matlab",
+      "description": "Matlab 2 篇：工具笔记与实验六的数字信号系统设计。"
+    },
+    "vault-notes/maps": {
+      "title": "知识地图",
+      "source": "03-Maps",
+      "description": "知识地图 5 篇：采样量化、傅里叶分析、数字通信、随机信号、线性系统与滤波。"
+    },
+    "vault-notes/fpga/architecture": {
+      "title": "FPGA结构",
+      "source": "FPGA结构",
+      "description": "FPGA 结构 3 篇：UART/RS232、FIFO 核与 PLL IP 核。"
+    },
+    "vault-notes/fpga/basics": {
+      "title": "基础概念",
+      "source": "基础概念",
+      "description": "基础概念 2 篇：EDA 概述与 FPGA/CPLD 元件概述。"
+    },
+    "vault-notes/fpga/sta": {
+      "title": "分析理论",
+      "source": "分析理论",
+      "description": "分析理论 8 篇：设计实现流程、器件与时钟资源、时序分析与约束。"
+    },
+    "vault-notes/fpga/verilog": {
+      "title": "Verilog基础语法",
+      "source": "Verilog基础语法",
+      "description": "Verilog 基础语法：组合逻辑与时序逻辑两大部分。"
+    },
+    "vault-notes/fpga/verilog/combinational": {
+      "title": "组合逻辑",
+      "source": "组合逻辑",
+      "description": "组合逻辑 5 篇：多路选择器、3-8 译码器、半加器/全加器与 Latch 避免。"
+    },
+    "vault-notes/fpga/verilog/sequential": {
+      "title": "时序逻辑",
+      "source": "时序逻辑",
+      "description": "时序逻辑 10 篇：寄存器、阻塞与非阻塞赋值、计数器、分频、按键消抖、流水灯与状态机。"
+    },
+    "vault-notes/fpga/vivado": {
+      "title": "vivado开发",
+      "source": "vivado开发",
+      "description": "Vivado 开发 2 篇：Flow Navigator 与设计流程总览。"
+    },
+    "vault-notes/fpga/vivado/base": {
+      "title": "BASE",
+      "source": "BASE",
+      "description": "BASE 10 篇：Vivado 基础设计流程十章。"
+    },
+    "vault-notes/fpga/ad9361": {
+      "title": "AD9361",
+      "source": "AD9361",
+      "description": "AD9361 4 篇：内部结构、数字接口、IQ 信号与实验。"
+    },
+    "vault-notes/5g/fundamentals": {
+      "title": "5G基础与框架",
+      "source": "5G基础与框架",
+      "description": "5G 基础与框架 3 篇：4G 到 5G 的演进、历史与应用、学习指南。"
+    },
+    "vault-notes/5g/engineering-simulation": {
+      "title": "5G工程仿真",
+      "source": "5G工程仿真",
+      "description": "5G 工程仿真 2 篇：工程仿真方法与信号塔实践。"
+    },
+    "vault-notes/5g/architecture": {
+      "title": "5G核心架构与规范",
+      "source": "5G核心架构与规范",
+      "description": "5G 核心架构与规范 3 篇：分层总览、5GC 与 NG-RAN 架构。"
+    },
+    "vault-notes/5g/protocols": {
+      "title": "OSI分类",
+      "source": "OSI分类（含 L1–L4 子目录）",
+      "description": "OSI 分类 5 篇：物理层、数据链路层、网络层与传输层。"
+    },
+    "vault-notes/5g/phy": {
+      "title": "5G物理层与底层技术",
+      "source": "5G物理层与底层技术 / 5G空口技术",
+      "description": "5G 物理层与底层技术 6 篇：小区搜索、测量与移动性、随机接入、物理信道、空口图解与接入流程。"
+    },
+    "vault-notes/5g/6g": {
+      "title": "6G网络架构",
+      "source": "6G网络架构",
+      "description": "6G 网络架构 1 篇：6G 网络架构展望。"
+    }
+  }
+}
