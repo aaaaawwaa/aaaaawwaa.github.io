@@ -7,7 +7,10 @@ tags:
   - power-spectral-density
 ---
 
-统计量定义好了，下一个问题是：只有一条有限长记录时，能不能估计它们？**各态历经**给出“时间平均代替集合平均”的条件，**样本相关函数**给出估计量；**维纳–辛钦定理**再把相关函数与功率谱连成一对傅里叶变换。本文走完这条链路，并说明周期图为什么不是一致估计、Welch 如何用方差换平滑。
+上一篇 [[signal-processing/random-processes|随机过程与随机信号]] 定义了随机过程、样本函数与集合统计量，并给出宽平稳判据；但它只**预告**了各态历经与功率谱。本文接着回答：只有一条有限长记录时，能不能估计这些统计量？**各态历经**给出“时间平均代替集合平均”的条件，**样本相关函数**给出估计量；**维纳–辛钦定理**再把相关函数与功率谱连成一对傅里叶变换。最后说明周期图为什么不是一致估计、Welch 如何用方差换平滑。
+
+> [!note] 两个问题的顺序
+> 各态历经回答「单条记录能否代表集合」，维纳–辛钦回答「二阶相关与谱的关系」。后者只要求过程宽平稳，**不要求各态历经**；前者是估计的前提，不是谱定理的前提。
 
 ## 各态历经：一条记录能否代表全体
 
@@ -226,7 +229,8 @@ trapz(f, pxx)                                    % 应约等于时域方差
 
 ## 前置与下一步
 
-- **前置**：[[signal-processing/random-processes|随机过程与随机信号]]；[[mathematics/probability-overview|概率论概览]]。
+- **前置**：[[signal-processing/random-processes|随机过程与随机信号]]（随机过程、样本函数、均值/方差/自相关、宽平稳三步判定）；[[mathematics/probability-overview|概率论概览]]（期望、方差、大数定律）。
+- **动手**：[[interactive-labs/random-processes-lab|随机过程与样本函数实验]] 可先建立「集合平均 vs 时间平均」的直观，再读本文的估计量。
 - **下一步**：[[signal-processing/random-signals-through-systems|随机信号通过线性系统]]、[[signal-processing/statistical-estimation-filtering|统计估计与最优滤波]]、[[signal-processing/signal-detection-theory|信号检测理论]]、[[signal-processing/random-signal-experiments|MATLAB 实验]]、[[signal-processing/random-signals-formula-sheet|公式速查]]。
 - **相关主题**：[[signal-processing/dft-and-fft|DFT 与 FFT]]（离散频率轴、泄漏与窗函数）。
 

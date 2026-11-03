@@ -33,7 +33,7 @@ tags:
 
 ### 第四阶段：随机与统计
 
-8. [[signal-processing/random-processes|随机过程与随机信号]] —— 随机变量回顾、样本函数、平稳性、各态历经、均值与相关函数。
+8. [[signal-processing/random-processes|随机过程与随机信号]] —— 随机变量回顾、样本函数、集合平均、二阶统计与宽平稳判定。
 9. [[signal-processing/correlation-and-power-spectrum|相关函数与功率谱]] —— 自/互相关、样本估计、维纳–辛钦、白噪声与有色噪声、互谱与 PSD 估计。
 10. [[signal-processing/random-signals-through-systems|随机信号通过线性系统]] —— 输出均值与相关、$S_Y=\lvert H\rvert^2S_X$、噪声带宽、ADC 量化噪声、AWGN 与 SNR。
 11. [[signal-processing/statistical-estimation-filtering|统计估计与最优滤波]] —— 偏差方差与 CRLB、最大似然与最小二乘、MMSE/LMMSE、维纳滤波、卡尔曼滤波。

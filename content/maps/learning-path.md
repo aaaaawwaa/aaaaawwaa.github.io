@@ -49,6 +49,7 @@ graph TD
 
 - 核心内容：平稳性、相关函数与功率谱、白噪声与通过线性系统、维纳/卡尔曼滤波、匹配滤波与检测。
 - 对应文章：[[signal-processing/random-processes|随机过程与随机信号]]、[[signal-processing/random-signals-through-systems|随机信号通过线性系统]]、[[signal-processing/statistical-estimation-filtering|统计估计与最优滤波]]、[[signal-processing/signal-detection-theory|信号检测理论]]。
+- 阅读顺序与依赖：先 [[signal-processing/random-processes|随机过程与随机信号]]（定义、样本函数、二阶统计、WSS 判定）→ [[signal-processing/correlation-and-power-spectrum|相关函数与功率谱]]（各态历经是**估计条件**；维纳–辛钦只需 WSS，不要求各态历经）→ [[signal-processing/random-signals-through-systems|随机信号通过线性系统]]。想先建立「样本函数 / 集合平均」的直觉，可打开 [[interactive-labs/random-processes-lab|随机过程与样本函数实验]]。
 - 交付成果：能推导白噪声通过 RC 低通后的输出功率，并说明匹配滤波为什么在采样时刻信噪比最大。
 
 ### 阶段 4：数字系统与 RTL

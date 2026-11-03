@@ -15,6 +15,7 @@ tags:
 ## 本分类文章
 
 - [[interactive-labs/fourier-series-lab|傅里叶级数实验]]：方波的部分和逼近、吉布斯过冲与三次谐波的影响。
+- [[interactive-labs/random-processes-lab|随机过程与样本函数实验]]：随机相位余弦的多条样本路径、固定时刻截面与反正弦分布，集合均值与样本方差（分母 $M-1$）。
 
 ## 跨学科关联
 
