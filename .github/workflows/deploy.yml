@@ -35,6 +35,8 @@ jobs:
         run: node scripts/build-topic-guides.mjs --check
       - name: Check folder localization
         run: node scripts/build-folder-indexes.mjs --check
+      - name: Check learning map
+        run: node scripts/validate-learning-map.mjs
       - name: Check content links (case-sensitive)
         run: node scripts/check-links-source.mjs
       - name: Install Quartz plugins

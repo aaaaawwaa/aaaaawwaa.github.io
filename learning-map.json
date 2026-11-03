@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "topic": "random-processes",
+  "overview": {
+    "page": "signal-processing/random-processes",
+    "label": "随机过程与随机信号"
+  },
+  "bridge": {
+    "page": "signal-processing/random-processes",
+    "anchor": "concept-bridge-autocorrelation",
+    "label": "概念学习卡 · 自相关函数",
+    "note": "卡内三层深度与两个前置补救都在同一页；锚点回到原位置。"
+  },
+  "concepts": [
+    {
+      "id": "random-process",
+      "title": "随机过程与样本函数",
+      "type": "concept",
+      "overviewPage": "signal-processing/random-processes",
+      "sourcePage": "vault-notes/random-signals/03-definition-and-sample-functions",
+      "prerequisites": [],
+      "learningModes": [
+        "intuition",
+        "derivation",
+        "reference"
+      ],
+      "rescueAnchor": "concept-bridge-random-process",
+      "rescueSummary": "固定时刻得到随机变量，固定一次实验得到样本函数；集合平均跨样本，时间平均跨时间。"
+    },
+    {
+      "id": "expectation",
+      "title": "数学期望",
+      "type": "prerequisite",
+      "overviewPage": "signal-processing/random-processes",
+      "sourcePage": "vault-notes/random-signals/02-expectation-variance",
+      "prerequisites": [],
+      "learningModes": [
+        "intuition",
+        "derivation",
+        "reference"
+      ],
+      "rescueAnchor": "concept-bridge-expectation",
+      "rescueSummary": "数学期望是按概率加权的平均；对随机相位这类连续变量要用积分，且要求期望存在。"
+    },
+    {
+      "id": "autocorrelation",
+      "title": "自相关函数",
+      "type": "concept",
+      "overviewPage": "signal-processing/random-processes",
+      "sourcePage": "vault-notes/random-signals/04-autocorrelation-autocovariance",
+      "prerequisites": [
+        "random-process",
+        "expectation"
+      ],
+      "learningModes": [
+        "intuition",
+        "derivation",
+        "reference"
+      ],
+      "relatedLabPage": "interactive-labs/random-processes-lab",
+      "rescueAnchor": "concept-bridge-autocorrelation",
+      "rescueSummary": "比较同一随机过程在两个时刻的取值，并对乘积取集合平均；宽平稳时只依赖时间差。"
+    }
+  ]
+}
