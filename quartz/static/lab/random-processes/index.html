@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>随机过程与样本函数实验 · LumenTrace</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f8faf9;--panel:#fff;--ink:#203b35;--muted:#587169;--accent:#287969;--line:#dfe9e4;--ideal:#ad7845}
+    @media(prefers-color-scheme:dark){:root{--bg:#151d1f;--panel:#1b2325;--ink:#dfebe5;--muted:#a6b9af;--accent:#8cd3bc;--line:#344543;--ideal:#d5ae7b}}
+    :root[data-theme="light"]{--bg:#f8faf9;--panel:#fff;--ink:#203b35;--muted:#587169;--accent:#287969;--line:#dfe9e4;--ideal:#ad7845}
+    :root[data-theme="dark"]{--bg:#151d1f;--panel:#1b2325;--ink:#dfebe5;--muted:#a6b9af;--accent:#8cd3bc;--line:#344543;--ideal:#d5ae7b}
+    *{box-sizing:border-box}body{margin:0;padding:clamp(10px,2vw,18px);background:var(--bg);color:var(--ink);font:15px/1.7 'Microsoft YaHei',sans-serif}
+    main{max-width:920px;margin:auto}.eyebrow{font:600 11px monospace;letter-spacing:.16em;color:var(--accent)}h1{font-size:clamp(21px,3.4vw,28px);line-height:1.3;margin:4px 0 2px}p{color:var(--muted);margin:.5rem 0}.panel{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:clamp(12px,2.2vw,18px)}
+    .lede{max-width:78ch;font-size:14px}
+    .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 16px;align-items:end}
+    .field{display:flex;flex-direction:column;gap:4px;min-width:0}.field.narrow{max-width:220px}
+    .field label{font-weight:600;font-size:12.5px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}.field output{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+    input[type=range]{width:100%;margin:0;height:28px;accent-color:var(--accent)}
+    input[type=number],select{font:inherit;font-size:14px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:2px 8px;height:28px;width:100%}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;align-content:end}button{background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}button:hover{border-color:var(--accent);color:var(--accent)}
+    button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .legend{display:flex;gap:8px 16px;flex-wrap:wrap;color:var(--muted);font-size:11.5px;margin:10px 0 4px}.legend span{display:inline-flex;align-items:center}.legend i{display:inline-block;width:18px;margin-right:5px}
+    .legend i.path{border-top:3px solid var(--muted);opacity:.55}.legend i.focus{border-top:3px solid var(--accent)}.legend i.cursor{border-top:3px dashed var(--ink);opacity:.8}.legend i.bars{height:9px;background:var(--accent);opacity:.35;border:1px solid var(--accent)}.legend i.theory{border-top:3px solid var(--ideal)}
+    canvas{display:block;width:100%;height:clamp(175px,19vh,280px);touch-action:pan-y}#histogram{height:clamp(145px,14vh,210px)}
+    .formula{font-family:Georgia,serif;font-size:14.5px;color:var(--ink);margin:8px 0 0}.note{font-size:12.5px;max-width:80ch;margin:.45rem 0}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px 14px;margin:8px 0 0;padding:9px 0 0;border-top:1px dashed var(--line)}
+    .stats div{display:flex;flex-direction:column;gap:1px}.stats dt{font-size:11.5px;color:var(--muted)}.stats dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;font-size:14px}
+    @media(min-width:601px) and (max-width:819px){canvas{height:clamp(170px,17vh,240px)}#histogram{height:clamp(138px,13vh,190px)}}
+    @media(max-width:600px){canvas{height:clamp(170px,18vh,240px)}#histogram{height:clamp(140px,14vh,195px)}.controls{grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}.legend{gap:6px 12px}.field.narrow{max-width:none}}
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">INTERACTIVE LAB / RANDOM SIGNALS</div>
+  <h1>随机过程与样本函数</h1>
+  <p class="lede">M 条样本路径共用确定的 A 与 f<sub>0</sub>，各自带一个抽定后沿时间不再改变的相位 θ<sub>m</sub>：移动游标就能看到"一条波形"如何变成"一组随机变量"。</p>
+  <section class="panel" aria-label="随机过程与样本函数实验">
+    <div class="controls">
+      <div class="field">
+        <label for="count">路径条数 M <output id="count-out" for="count">8</output></label>
+        <input id="count" type="range" min="1" max="40" step="1" value="8">
+      </div>
+      <div class="field">
+        <label for="cursor">游标时刻 t* <output id="cursor-out" for="cursor">0.500 s</output></label>
+        <input id="cursor" type="range" min="0" max="1" step="0.001" value="0.5">
+      </div>
+      <div class="field">
+        <label for="amplitude">幅度 A <output id="amplitude-out" for="amplitude">1.00 V</output></label>
+        <input id="amplitude" type="range" min="0" max="2" step="0.05" value="1">
+      </div>
+      <div class="field narrow">
+        <label for="seed">随机种子 <output id="seed-out" for="seed">2026</output></label>
+        <input id="seed" type="number" min="0" max="2147483646" step="1" value="2026" inputmode="numeric">
+      </div>
+      <div class="field narrow">
+        <label for="highlight">高亮路径</label>
+        <select id="highlight" aria-label="选择要高亮的样本路径"></select>
+      </div>
+      <div class="actions">
+        <button id="resample" type="button">重新采样</button>
+        <button id="reset" type="button">重置</button>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><i class="path"></i>样本路径</span>
+      <span><i class="focus"></i>高亮路径</span>
+      <span><i class="cursor"></i>时刻游标 t*</span>
+      <span><i class="bars"></i>经验直方图</span>
+      <span><i class="theory"></i>反正弦理论密度</span>
+    </div>
+
+    <canvas id="paths" width="900" height="300" tabindex="0" role="img"
+      aria-label="M 条随机相位余弦样本路径、当前时刻游标与各路径交点；获得焦点后可用左右方向键移动游标"></canvas>
+
+    <canvas id="histogram" width="900" height="220" role="img"
+      aria-label="游标时刻 M 个样本值的经验直方图与反正弦理论密度曲线"></canvas>
+    <p class="note" id="histogram-note">柱高为归一化频数（密度），曲线为反正弦密度；x→±A 处发散。</p>
+
+    <p class="formula">x<sub>m</sub>(t) = A cos(2π f<sub>0</sub>t + θ<sub>m</sub>)，θ<sub>m</sub> ~ U[0, 2π)，f<sub>0</sub> = 1.5 Hz，T = 1 s</p>
+    <p class="note">移动游标、改高亮都不换样本；改 M 保留已有路径的相位；只有改种子或点"重新采样"才换一组相位。有限样本下经验均值与方差会围绕理论值波动，M 越大波动越小。</p>
+
+    <dl class="stats">
+      <div><dt>路径条数 M</dt><dd id="stat-m">8</dd></div>
+      <div><dt>游标时刻 t*</dt><dd id="stat-t">0.500 s</dd></div>
+      <div><dt>幅度 A</dt><dd id="stat-a">1.00 V</dd></div>
+      <div><dt>随机种子</dt><dd id="stat-seed">2026</dd></div>
+      <div><dt>经验均值（M 个样本）</dt><dd id="stat-mean">—</dd></div>
+      <div><dt>理论均值 E[X(t)]</dt><dd id="stat-mean-theory">0 V</dd></div>
+      <div><dt>经验方差（分母 M−1）</dt><dd id="stat-var">—</dd></div>
+      <div><dt>理论方差 A²/2</dt><dd id="stat-var-theory">0.5 V²</dd></div>
+    </dl>
+  </section>
+</main><script type="module" src="./random-processes-lab.mjs"></script></body></html>
