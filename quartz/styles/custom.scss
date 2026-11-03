@@ -156,3 +156,122 @@ article a.lt-feature:hover { border-color: var(--lt-line); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+/* =============================================================================
+   P1 · 阅读导航与视觉（2026-11 · 随机过程试点范围内实测）
+   约定：只用 Quartz 既有类名与既有 CSS 变量（--lt-*、--highlight、--lt-line…）；
+        不引入依赖、不放大字号、不隐藏必要导航。
+   右栏顺序由 quartz.config.yaml 的 layout.priority 决定：
+        table-of-contents 10 → graph 30 → backlinks 50（均为 position: right）。
+   ========================================================================== */
+
+/* 1) 中文长文正文：行高、段距与宽屏行宽。
+      只约束文字块；表格 / 块级公式 / 插图保持整栏宽度。 */
+body:not([data-slug="index"]) article p { margin: 1.15rem 0; line-height: 1.95; }
+@media (min-width: 1200px) {
+  body:not([data-slug="index"]) article
+    :is(.markdown-preview-view, .markdown-rendered)
+    > :is(p, ul, ol, h2, h3, h4, blockquote, details, .callout) { max-width: 44rem; }
+}
+
+/* 2) 块级公式与宽表格：就地横向滚动，避免整页横向溢出。 */
+article .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
+article .table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+article .table-container > table { margin: 0; }
+
+/* 3) 标题层级与 Callout 的垂直节奏。 */
+article h2 { margin-top: 2.75rem; margin-bottom: .9rem; }
+article h3 { margin-top: 2rem; margin-bottom: .6rem; }
+article h4 { margin-top: 1.5rem; margin-bottom: .45rem; font-size: .98rem; color: var(--lt-ink); }
+article .callout { margin: 1.3rem 0; }
+article .callout > .callout-title { padding: .8rem 0; }
+article .callout > .callout-content > :first-child { margin-top: 0; }
+article .callout > .callout-content > :last-child { margin-bottom: .9rem; }
+
+/* 4) 渐进推导用的语义折叠：details.lt-steps（无脚本也能展开）。 */
+article details > summary { cursor: pointer; color: var(--lt-ink); }
+article details > summary:hover { color: var(--lt-accent); }
+article details > summary:focus-visible { outline: 2px solid var(--lt-accent); outline-offset: 4px; }
+article details.lt-steps {
+  margin: 1.3rem 0; padding: 0 1rem;
+  border: 1px solid var(--lt-line); border-radius: 10px; background: var(--lt-surface);
+}
+article details.lt-steps > summary { padding: .8rem 0; font-weight: 500; }
+article details.lt-steps > summary::marker { color: var(--lt-accent); }
+article details.lt-steps[open] > summary { border-bottom: 1px solid var(--lt-line); margin-bottom: 1rem; }
+article details.lt-steps > :last-child { margin-bottom: 1rem; }
+
+/* 5) 交互实验 iframe：宽度自适应；窄屏加高，避免裁掉手机上的控件。 */
+article iframe.lt-lab-frame {
+  display: block; width: 100%; max-width: 100%; height: 1000px;
+  margin: 1.4rem 0; border: 1px solid var(--lt-line); border-radius: 12px;
+  background: var(--lt-surface); box-shadow: var(--lt-shadow);
+}
+@media (max-width: 800px) {
+  article iframe.lt-lab-frame { height: 1240px; border-radius: 10px; }
+}
+@media (max-width: 600px) {
+  article iframe.lt-lab-frame { height: 1700px; }
+}
+
+/* 6) 右栏 · 目录：桌面可滚动，当前小节可辨认。
+      插件给"已滚过的小节"加 .in-view（table-of-contents/dist/index.js:320），
+      这里取其中最后一个（= 正在读的小节）做强调，不额外注入脚本。 */
+@media (min-width: 1200px) {
+  .sidebar.right > .toc > ul.toc-content {
+    max-height: 34vh; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  }
+}
+.sidebar.right .toc > ul.toc-content > li > a {
+  display: block; padding: .12rem 0 .12rem .5rem;
+  border-left: 2px solid transparent; border-radius: 0 4px 4px 0;
+  opacity: 1; color: var(--lt-muted); line-height: 1.55;
+}
+.sidebar.right .toc > ul.toc-content > li > a:hover { color: var(--lt-ink); }
+.sidebar.right .toc > ul.toc-content > li:has(> a.in-view):not(:has(~ li > a.in-view)) > a {
+  color: var(--lt-ink); font-weight: 500;
+  border-left-color: var(--lt-accent); background: var(--highlight);
+}
+
+/* 7) 右栏 · 图谱与反向链接降为次级视觉层级（只调字号/边框/亮度；不隐藏、不替代语义折叠）。
+      图谱画布高度由脚本固定为 Math.max(容器高, 250)（graph/dist/index.js:317），
+      故不改 .graph-outer 高度，避免画布被裁切。 */
+.sidebar.right .graph > h3,
+.sidebar.right .backlinks > h3 {
+  font-size: .68rem; font-weight: 500; letter-spacing: .14em; color: var(--lt-muted);
+}
+.sidebar.right .graph > .graph-outer { border-color: var(--lt-line); border-radius: 10px; }
+.sidebar.right .backlinks > ul.overflow > li > a { font-size: .78rem; line-height: 1.55; color: var(--lt-muted); }
+.sidebar.right .backlinks > ul.overflow > li > a:hover { color: var(--lt-accent); }
+
+/* 8) 窄屏：右栏目录仍可达。
+      Quartz 默认在 <1200px 把 .sidebar.right > .toc 设为 display:none；
+      这里让它独占一整行显示（图谱/反链照旧并排），并给折叠态补上隐藏规则。 */
+@media (max-width: 1199.98px) {
+  .page > #quartz-body .sidebar.right { flex-wrap: wrap; align-items: flex-start; }
+  .page > #quartz-body .sidebar.right > .toc {
+    display: flex; flex: 1 1 100%; width: 100%; max-height: none;
+    margin: 0 0 .6rem;
+  }
+  .page > #quartz-body .sidebar.right > .toc > ul.toc-content {
+    max-height: 36vh; overflow-y: auto; overscroll-behavior: contain;
+  }
+  .page > #quartz-body .sidebar.right > .toc > ul.toc-content.collapsed { display: none; }
+}
+
+/* 9) 窄屏收尾：富内容不产生整页横向滚动。 */
+@media (max-width: 800px) {
+  article .table-container { margin: .9rem 0; }
+  article .callout { margin: 1.1rem 0; }
+  article details.lt-steps { margin: 1.1rem 0; padding: 0 .8rem; }
+  article details.lt-steps > summary { padding: .7rem 0; font-size: .95rem; }
+}

@@ -81,7 +81,7 @@ plugins:
     order: 50
     layout:
       position: right
-      priority: 30
+      priority: 10
   - source: "github:quartz-community/crawl-links"
     enabled: true
     options:
@@ -138,6 +138,8 @@ plugins:
     enabled: true
   - source: "github:quartz-community/explorer"
     enabled: true
+    options:
+      folderDefaultState: "collapsed"
     layout:
       position: left
       priority: 50
@@ -145,7 +147,7 @@ plugins:
     enabled: true
     layout:
       position: right
-      priority: 10
+      priority: 30
   - source: "github:quartz-community/search"
     enabled: true
     layout:
