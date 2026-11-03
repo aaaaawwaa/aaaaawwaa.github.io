@@ -109,3 +109,19 @@
 - **未执行构建/verify**：按任务约定由 Lead 统一验证；本批未运行 MATLAB，文中仿真数值均为理论预期或源笔记给出的典型量级，已明确标注“预期结果不是实测记录”。
 - 随机信号侧 8 篇正文大小：`random-processes` 约 15.9 KB（另有约 5 KB 自动索引区块）、`correlation-and-power-spectrum` 16.0 KB、`random-signals-through-systems` 16.1 KB、`statistical-estimation-filtering` 14.7 KB、`adaptive-filtering-and-spectral-estimation` 15.3 KB、`signal-detection-theory` 16.1 KB、`random-signal-experiments` 15.0 KB、`random-signals-formula-sheet` 12.7 KB。三篇处在 16 KB 上限附近；如需压缩，可优先删减“接收机同步误差”“链路预算”与“白噪声噪声带宽”的工程细节。
 - `index.md` 正被 DSP 批次同步编辑（其台账 `notes/fusion/dsp.md` 也记录了索引改动），本批采用“读后立即写”的最小改动，仅替换第四阶段清单与文章总数；若合并时出现覆盖，以“DSP 7 篇 + 随机信号 8 篇、共 15 篇”为准。
+
+## 2026-11 教学结构修订（随机过程试点）
+
+本轮未改来源白名单与摘录范围，只调整人工主题文章的结构与表述；上表的“来源→章节”映射整体仍然成立，变化如下：
+
+- `random-processes` 重组为「一条曲线不是整个过程 → 定义 → 固定时刻统计 → 平稳性 → 渐进推导 → 相关函数约定 → 深入阅读 → 自检 → 错误清单 → 依赖与下一步」。
+  - 条件高斯、复随机变量 proper、MMSE/卡尔曼的段落由正文主体压缩为 7.1/7.2 扩展层，保留公式与前置条件，详细推导指向 `statistical-estimation-filtering` 与对应 `vault-notes`；
+  - 各态历经与 PSD 估计明确交给 `correlation-and-power-spectrum`，本文只保留预告；
+  - 新增随机相位正弦的三层推导（直观 / 逐步 / 结果）与 3 道自检题（答案折叠）；
+  - 表述更正：proper 与圆对称分开、非零均值 proper 复高斯相位不均匀、复高斯需说明伪协方差、均匀载波相位只消去与载波相关的循环项、“高斯唯一例外”改为带条件表述、统一 $R_X(t_1,t_2)=E[X(t_1)X^*(t_2)]$；
+  - 新增依赖说明：各态历经是估计条件，维纳–辛钦只要求 WSS。
+- `correlation-and-power-spectrum` 补充与上一篇的边界、各态历经与 WK 的顺序说明，并回链本实验页。
+- 新增 `content/interactive-labs/random-processes-lab.md` 与静态实验 `quartz/static/lab/random-processes/`（同一模型：$M$ 条样本路径、固定时刻经验分布、集合均值/方差、可复现种子）。
+- 审校记录见 `notes/teaching-optimization/math-review.md`；设计见 `notes/teaching-optimization-2026-11.md`。
+
+状态口径不变：本轮是同一批来源的正文重组与纠错，不改变各条“正文完成/部分融合”的判定；新增实验页不计入来源笔记融合数。
