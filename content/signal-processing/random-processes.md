@@ -285,6 +285,88 @@ $$
 
 三个量别混：**平均功率** $R_X(0)$ 含直流；**方差** $C_X(0)$ 只含起伏；**自相关** $R_X(\tau)$ 描述不同时刻的相似性，量纲是功率。$P_X=R_X(0)=\lvert\mu_X\rvert^2+\sigma_X^2$，$C_X(\tau)=R_X(\tau)-\lvert\mu_X\rvert^2$；只有 $\mu_X=0$ 时 $R_X=C_X$。归一化相关 $\rho_X(\tau)=C_X(\tau)/C_X(0)$ 需 $C_X(0)>0$，且 $\lvert\rho_X(\tau)\rvert\le1$。实过程的三者都可以是实数；复过程保留共轭后 $R_X(-\tau)=R_X^*(\tau)$。若采用相反约定（共轭在第一个因子），$R_X$ 与本文互为共轭，谱的相位符号也随之改变——引用教材前先核对。
 
+<a id="concept-bridge-autocorrelation"></a>
+
+### 6.1 学习卡：自相关函数（看不明白时先停在这里）
+
+> [!abstract] 一句话与主线位置
+> 自相关函数衡量**同一个随机过程**在两个时刻取值之间的统计联系，宽平稳时只由时间差决定。
+> 主线位置：随机过程（§2）→ 固定时刻统计（§3）→ 宽平稳（§4）→ 本节 → 功率谱（下一篇）。
+
+> [!tip] 直觉（只是直觉，不是定义）
+> 把一条样本波形复制一份、在时间轴上平移 $\tau$，再与原件逐点相乘：两者越「同相」，乘积在**跨实现**上的平均就越大。注意：平移的是同一条样本函数，取平均时跨的却是不同随机实现。
+
+<details class="lt-steps lt-bridge" id="concept-bridge-steps">
+<summary>② 公式看不懂？逐个认符号，再看四步推导</summary>
+
+定义（宽平稳、复过程）
+
+$$
+R_X(\tau)=E\big[X(t+\tau)X^*(t)\big]
+$$
+
+- $X(t)$：固定时刻 $t$ 的随机变量，不是某一条样本函数；
+- $t+\tau$ 与 $t$：两个观察时刻，$\tau$ 是时间差；
+- $X^*(t)$：复共轭；实过程共轭无影响，复过程漏掉共轭会改变结果；
+- $E[\cdot]$：**集合平均**——固定两个时刻，把所有随机实现的乘积按概率加权平均。
+
+四步：
+
+1. 固定 $t$ 与 $t+\tau$，写下乘积 $X(t+\tau)X^*(t)$；
+2. 对乘积取集合平均，得到二元函数 $R_X(t+\tau,t)$；
+3. 若过程宽平稳（均值恒定、自相关只依赖时间差），记 $R_X(\tau)=R_X(t+\tau,t)$；
+4. 不满足 WSS 时不能写成 $R_X(\tau)$，只能保留两个绝对时刻。
+
+**必要条件**：$E\lvert X(t)\rvert^2<\infty$ 且二阶矩不依赖绝对时刻；否则「自相关」可能不存在或只有二元形式。若把单条记录的时间平均当成上面的 $E[\cdot]$，必须另加各态历经条件（见下一篇）。
+
+[回到自相关卡](#concept-bridge-autocorrelation)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-deep">
+<summary>③ 想去更深处：完整笔记与后续专题</summary>
+
+- 完整推导与例子：[[vault-notes/random-signals/04-autocorrelation-autocovariance|自相关与自协方差（详细笔记）]]；
+- 相关函数的性质与估计：[[vault-notes/random-signals/04-correlation-properties|相关函数的性质]]、[[vault-notes/random-signals/04-sample-correlation-estimation|样本相关函数估计]]；
+- 后续主线：[[signal-processing/correlation-and-power-spectrum|相关函数与功率谱]]（各态历经、维纳–辛钦、周期图/Welch）；
+- 先建立「样本路径 vs 集合」的直观：[[interactive-labs/random-processes-lab|随机过程与样本函数实验]]。
+
+[回到自相关卡](#concept-bridge-autocorrelation)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-expectation">
+<summary>救命入口：数学期望到底是什么？（同页补一个前置，不必跳走）</summary>
+
+期望就是**按概率加权的平均**：离散情形 $E[X]=\sum_k x_kP(X=x_k)$，连续情形 $E[X]=\int x f_X(x)\,\mathrm{d}x$。
+
+两个小例子：
+
+- 抛硬币型：$P(X=1)=P(X=-1)=1/2$，则 $E[X]=0$；单次观测当然不是 $0$，期望是**跨实现**的平均。
+- 随机相位：$E[\cos(\omega_0t+\Theta)]=\frac{1}{2\pi}\int_0^{2\pi}\cos(\omega_0t+\theta)\,\mathrm{d}\theta=0$（§5 已算过这个积分），与 $t$ 无关。
+
+**必要条件**：期望要存在（一阶矩有限，连续情形绝对可积）；要谈方差与自相关，还需要 $E\lvert X\rvert^2<\infty$。若期望不存在，后续所有「减去均值」的推导都不成立。
+
+- 完整材料：[[vault-notes/random-signals/02-expectation-variance|数学期望与方差（详细笔记）]]；
+- 主线对照：上方「3. 固定时刻的随机变量与集合平均」。
+
+[回到自相关卡](#concept-bridge-autocorrelation)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-random-process">
+<summary>救命入口：样本函数与集合平均分不清？（同页补一个前置）</summary>
+
+两副面孔：固定时刻 $t$、变化实验编号 $\omega$，得到**随机变量** $X(t)$；固定一次实验 $\omega$、变化时间 $t$，得到**样本函数** $x(t)=X(t,\omega)$。
+
+- **集合平均**：跨所有可能实现（不同 $\omega$）取平均——本文的 $E[\cdot]$、$\mu_X$、$R_X$ 都是这个意思；
+- **时间平均**：沿一条样本函数对时间积分——它能不能代表集合平均，是**各态历经**要回答的问题，本文不假设它成立。
+
+实验里的每条曲线都是一条样本函数；统计量是对所有曲线的平均。
+
+- 完整材料：[[vault-notes/random-signals/03-definition-and-sample-functions|随机过程的定义与样本函数]]；
+- 主线对照：上方「1. 一条曲线不是整个过程」与「3. 固定时刻的随机变量与集合平均」。
+
+[回到自相关卡](#concept-bridge-autocorrelation)
+</details>
+
 > [!note] 为什么零延迟最大
 > 由柯西–施瓦茨不等式，$\lvert E[X(t+\tau)X^*(t)]\rvert\le\sqrt{E\lvert X(t+\tau)\rvert^2\,E\lvert X(t)\rvert^2}=R_X(0)$。直观上，同一时刻的信号与自身最相似；延迟越大，相关性一般越弱（周期信号除外，它会在周期整数倍处恢复峰值）。
 
