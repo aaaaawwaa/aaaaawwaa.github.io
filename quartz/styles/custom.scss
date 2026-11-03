@@ -275,3 +275,29 @@ article iframe.lt-lab-frame {
   article details.lt-steps { margin: 1.1rem 0; padding: 0 .8rem; }
   article details.lt-steps > summary { padding: .7rem 0; font-size: .95rem; }
 }
+
+/* 10) 学习桥接卡 · .lt-bridge：原生 details，无 JS 也能展开阅读。
+      只作用于带 .lt-bridge 的卡片，不改全局 details/.lt-steps；锚点用 scroll-margin 抵消粘性头部。
+      对应单一数据源：learning-map.json；校验：npm run map:check。 */
+article [id^="concept-bridge-"] { scroll-margin-top: 5.5rem; }
+article a[id^="concept-bridge-"] { display: block; height: 0; }
+article details.lt-bridge {
+  margin: 1.1rem 0; padding: 0 1rem;
+  border: 1px solid var(--lt-line); border-radius: 10px;
+  background: var(--lt-surface);
+}
+article details.lt-bridge > summary {
+  padding: .75rem 0; font-weight: 600; color: var(--lt-ink);
+}
+article details.lt-bridge > summary:hover { color: var(--lt-accent); }
+article details.lt-bridge > summary:focus-visible { outline: 2px solid var(--lt-accent); outline-offset: 3px; }
+article details.lt-bridge[open] > summary { border-bottom: 1px solid var(--lt-line); margin-bottom: .8rem; }
+article details.lt-bridge > p, article details.lt-bridge > ul, article details.lt-bridge > ol { margin: .6rem 0; }
+article details.lt-bridge .katex-display { overflow-x: auto; }
+article details.lt-bridge a[href^="#concept-bridge-"] {
+  display: inline-block; margin: .35rem 0 .7rem; font-size: .85rem; color: var(--lt-accent);
+}
+@media (max-width: 800px) {
+  article details.lt-bridge { padding: 0 .8rem; }
+  article details.lt-bridge > summary { font-size: .95rem; }
+}

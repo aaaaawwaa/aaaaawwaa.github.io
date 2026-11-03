@@ -41,6 +41,7 @@ LumenTrace-Wiki/
 ├── quartz.lock.json              # 插件版本锁
 ├── public-notes.json             # ★ 发布白名单：Vault 笔记 → 站点路径映射
 ├── folder-titles.json            # ★ 目录中文显示名映射（URL/slug 不变，见 notes/folder-localization.md）
+├── learning-map.json             # ★ 学习桥接概念映射（单一数据源，见 notes/learning-bridge.md）
 ├── scripts/
 │   ├── sync-public.mjs           # 单向同步器（预览 / 写入）
 │   ├── check-public.mjs          # 公开内容扫描（凭据、草稿标记、文件类型）
@@ -120,6 +121,14 @@ npm run verify
 - 命令：`npm run folders:build` 生成/更新；`npm run folders:check` 只校验（`npm run verify` 与 CI 都会执行）。生成页带固定标记，人工 `index.md` 会被拒绝覆盖。
 - 细节与新增目录流程：[notes/folder-localization.md](./notes/folder-localization.md)。
 
+## 3.3 学习桥接（概念卡）
+
+融合主题文章里的关键概念（试点：`random-processes` 的自相关）提供**同页三层阅读**：默认一句话 + 直觉，展开是符号与四步推导，再展开是完整笔记与后续；缺前置（数学期望、样本函数）时在同页补一个知识点并可锚点回到卡片。全程用原生 `<details>`，无 JS 也能读。
+
+- 单一数据源：[learning-map.json](./learning-map.json)（概念 id、`prerequisites` DAG、`overviewPage`/`sourcePage`、`rescueAnchor`）。
+- 校验：`npm run map:check` → [scripts/validate-learning-map.mjs](./scripts/validate-learning-map.mjs)；测试 [scripts/learning-map.test.mjs](./scripts/learning-map.test.mjs) 并入 `npm run test:public`。
+- 细节、维护流程与下一阶段：[notes/learning-bridge.md](./notes/learning-bridge.md)。
+
 ---
 
 ## 4. 站点配置与设计
@@ -163,6 +172,7 @@ npm run verify
 | `npm run check:public` | 公开内容敏感项扫描 |
 | `npm run topics:build` / `topics:build --check` | 生成 / 校验主题索引区块（195 篇归属） |
 | `npm run folders:build` / `folders:check` | 生成 / 校验目录中文 index 页（目录树、面包屑、目录页标题） |
+| `npm run map:check` | 校验学习桥接映射（id/DAG/页面存在/卡片锚点） |
 | `npm run audit` | 产物自检（断链、索引、Mermaid/KaTeX/代码块、KaTeX 错误节点、RSS/sitemap） |
 | `npm run test:public` | 同步器与扫描器单元测试 |
 | `npm run plugins:install` / `plugins:offline` | 插件安装（在线 / 离线） |
@@ -176,6 +186,7 @@ npm run verify
 - [TEST-REPORT.md](./TEST-REPORT.md)：测试证据、已知问题、后续计划
 - [notes/sync-and-publish.md](./notes/sync-and-publish.md)：同步发布细则
 - [notes/folder-localization.md](./notes/folder-localization.md)：目录中文显示名机制
+- [notes/learning-bridge.md](./notes/learning-bridge.md)：学习桥接概念卡与映射
 - [notes/fusion/SPEC.md](./notes/fusion/SPEC.md)：内容融合规范
 - [notes/topic-fusion-ledger.md](./notes/topic-fusion-ledger.md)：融合总台账（195 篇笔记 → 42 篇文章）
 - [notes/quartz5-capabilities.md](./notes/quartz5-capabilities.md)：Quartz 5 能力调研

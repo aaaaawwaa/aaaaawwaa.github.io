@@ -83,6 +83,15 @@
 - 新增目录时：同步笔记 → 在 `folder-titles.json` 为**新目录及其父目录**补 `title`/`source`/`description` → `npm run folders:build` → `npm run verify`。缺少映射会让 `verify` 与 CI 失败。
 - 不要把品牌/技术缩写强行翻译（5G、FPGA、AD9361、BASE、Vivado、Matlab 保持原样）；插件系统文案（Explorer 等）不属于本机制。
 
+### 3.0.3 学习桥接卡（概念卡）
+
+融合文章中的关键概念可用原生 `<details class="lt-steps lt-bridge">` 提供“直觉 / 推导 / 深入笔记”三层，并在同页补一个前置（不新建页面、不改 `content/vault-notes/**`）。
+
+- 概念关系以仓库根目录 `learning-map.json` 为唯一来源；卡片与 JSON 通过锚点 id 对齐（`concept-bridge-*`）。
+- 改映射或卡片后运行 `npm run map:check`（`npm run verify` 与 CI 都会跑）；测试见 `scripts/learning-map.test.mjs`。
+- 卡片内统计口径：自相关需说明共轭约定、WSS 条件与期望存在性；不得把单条记录的时间平均写成集合平均。
+- JS 增强视图未实现前，不要删除卡片里的原生 `<details>` 兜底内容。
+
 ### 3.1 命名（强制）
 
 - 目录名与文件名：**小写英文 + 短横线**，例：`signal-processing/dft-and-fft.md`
