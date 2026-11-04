@@ -172,3 +172,13 @@ test("every bridge card page exposes the three-depth switcher", () => {
     assert.ok(radios >= 3, page + " exposes " + radios + " depth radios (expected >= 3)");
   }
 });
+test("depth radios are isolated per card with their own form owner", () => {
+  const map = JSON.parse(fs.readFileSync(path.join(repoRoot, "learning-map.json"), "utf8"));
+  for (const concept of map.concepts) {
+    const page = concept.bridgePage || concept.overviewPage;
+    const source = fs.readFileSync(path.join(repoRoot, "content", page + ".md"), "utf8");
+    const tabs = (source.match(/class="lt-depth-tabs"/g) || []).length;
+    const forms = (source.match(/class="lt-depth-form"/g) || []).length;
+    assert.equal(forms, tabs, page + ": every depth-tabs block needs its own form (popover clones would otherwise merge radio groups)");
+  }
+});

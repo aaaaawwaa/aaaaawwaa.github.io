@@ -11,6 +11,8 @@
 - 形式：融合文章里的**概念学习卡**（当前三张：`random-processes` §6.1 自相关、`correlation-and-power-spectrum` 功率谱/维纳–辛钦、`z-transform-and-dtft` §5 DTFT）。默认可见：一句话 + 主线位置 + 直觉；原生 `<details class="lt-steps lt-bridge">` 承载“符号与推导”“深入笔记与后续”“前置补救”。
 - 无脚本可读：`<details>` 是原生可展开元素；卡内公式由站点 KaTeX 预渲染，不依赖运行时 JS。
 - 深度切换：卡顶三个原生 radio（① 直觉 / ② 推导 / ③ 深入）配合 CSS `:has()` 显隐三个面板；不依赖 JS，SPA 导航天然可用。不支持 `:has()` 的浏览器忽略显隐规则，三个面板同时显示，内容不丢。
+- radio 隔离：每组 radio 放在独立 `<form class="lt-depth-form">` 里。原因：Quartz 的同页链接悬浮预览会克隆整篇 article，若所有 radio 共用 `name`，预览里的副本会与正文加入同一 radio 分组并取消正文选中；form owner 隔离后两边互不影响（2026-11-04 review 问题 1）。
+- 回归：`scripts/markdown-table-links.test.mjs` 防止表格双链别名竖线未转义（review 问题 4）；实验页在 `pageshow(persisted)` 时重建监听（review 补充风险）。
 - 返回原位置：每张子卡末尾有 `[回到自相关卡](#concept-bridge-autocorrelation)`；卡片锚点稳定，配合 `scroll-margin-top` 抵消粘性头部。
 - 不做的部分：不引入 JS 状态机、不改 Quartz 核心、不新增页面、不改 `content/vault-notes/**`。
 

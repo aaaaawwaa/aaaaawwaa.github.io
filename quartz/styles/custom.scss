@@ -305,6 +305,7 @@ article details.lt-bridge a[href^="#concept-bridge-"] {
 /* 11) 学习桥接卡：深度切换（原生 radio + CSS，无 JS；SPA 导航不受影响）。
       可选：① 直觉 / ② 推导 / ③ 深入；不支持 :has() 的浏览器会忽略下方显隐规则，
       三个面板同时显示 —— 回退为“完整可读”，不丢内容。 */
+article form.lt-depth-form { margin: 0; padding: 0; }
 article .lt-depth-tabs {
   display: flex; flex-wrap: wrap; align-items: center; gap: .45rem;
   margin: .7rem 0 .25rem;
