@@ -649,14 +649,33 @@ function destroy() {
 
 /* ----------------------------------------------------------------- 启动 -- */
 
-// 从 BFCache 恢复：pagehide 已 destroy，需重建控件监听与渲染。
+// 从 BFCache 恢复：pagehide 已 destroy，需要重建监听；控件与相位按恢复前的状态保留。
 function handlePageShow(event) {
   if (!event.persisted || !destroyed) return;
   destroyed = false;
-  bootstrap();
+  bootstrap({ preserve: true });
 }
 
-function bootstrap() {
+// 恢复时不重置控件：把 DOM 里仍保留的值读回 state，再按同一 seed 重建相位（确定性）。
+function restoreFromControls() {
+  const paths = Number(els.paths.value);
+  state.paths = Number.isFinite(paths) ? clamp(Math.trunc(paths), 1, MAX_PATHS) : DEFAULTS.paths;
+  const cursor = Number(els.cursor.value);
+  state.cursor = Number.isFinite(cursor) ? clamp(cursor, 0, WINDOW_S) : DEFAULTS.cursor;
+  const amplitude = Number(els.amplitude.value);
+  state.amplitude = Number.isFinite(amplitude) ? clamp(amplitude, 0, 2) : DEFAULTS.amplitude;
+  const seed = Number(els.seed.value);
+  state.seed = Number.isFinite(seed) ? Math.trunc(seed) : DEFAULTS.seed;
+  const highlight = Number(els.highlight.value);
+  state.highlight = Number.isFinite(highlight) ? clamp(Math.trunc(highlight) - 1, 0, state.paths - 1) : DEFAULTS.highlight;
+  els.paths.value = String(state.paths);
+  els.cursor.value = String(state.cursor);
+  els.amplitude.value = String(state.amplitude);
+  els.seed.value = String(state.seed);
+  rebuildHighlightOptions();
+}
+
+function bootstrap(options = {}) {
   if (window.__ltRandomProcessesLab && typeof window.__ltRandomProcessesLab.destroy === 'function') {
     window.__ltRandomProcessesLab.destroy();
   }
@@ -686,7 +705,11 @@ function bootstrap() {
 
   if (!els.pathsCanvas || !els.histCanvas || !els.paths) return;
 
-  resetControlsToDefaults();
+  if (options.preserve) {
+    restoreFromControls();
+  } else {
+    resetControlsToDefaults();
+  }
   regenerate();
   watchTheme();
   bindControls();
