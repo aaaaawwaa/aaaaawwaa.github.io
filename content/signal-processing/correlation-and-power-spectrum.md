@@ -138,6 +138,59 @@ $$
 
 RC 低通 $H(\omega)=1/(1+j\omega RC)$ 是“白谱变洛伦兹形、$\delta$ 相关变指数相关”的标准范例，下一篇文章会反复用它计算噪声功率。
 
+<a id="concept-bridge-power-spectrum"></a>
+
+### 学习卡：功率谱与维纳–辛钦（看不懂时停在这里）
+
+> [!abstract] 一句话与主线位置
+> 功率谱密度 $S_X(\omega)$ 描述平均功率怎样分布在频率上；宽平稳时它就是自相关 $R_X(\tau)$ 的傅里叶变换。
+> 主线位置：自相关（[[signal-processing/random-processes#concept-bridge-autocorrelation|概念卡]]）→ 宽平稳 → 维纳–辛钦 → 周期图/Welch（本节后半）。
+
+> [!tip] 直觉（只是直觉，不是定义）
+> 自相关回答「两个时刻有多像」，是对**时间差**的函数；功率谱回答「这份相似性里，各频率各占多少功率」，是对**频率**的函数。两者是同一信息的两副面孔：总功率 $R_X(0)$ 等于谱的面积。
+
+<details class="lt-steps lt-bridge" id="concept-bridge-power-spectrum-steps">
+<summary>② 符号与适用条件：维纳–辛钦到底要求什么</summary>
+
+$$
+S_X(\omega)=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}\,\mathrm{d}\tau,\qquad R_X(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_X(\omega)\,\mathrm{d}\omega
+$$
+
+- $R_X(\tau)=E[X(t+\tau)X^*(t)]$：宽平稳自相关，必须满足均值恒定、二阶矩有限；
+- $S_X(\omega)$：双边功率谱密度，单位 $\mathrm{V^2/Hz}$；实过程为偶函数、非负；
+- **成立条件**：过程宽平稳，且 $R_X$ 绝对可积（$\int\lvert R_X(\tau)\rvert\,\mathrm{d}\tau<\infty$）；不满足时（直流、周期分量）PSD 仍存在，但要按广义函数/谱测度理解，出现 $\delta$；
+- **不需要**各态历经；各态历经只回答「一条记录的时间平均能否估计这些量」。
+
+单边/双边：本库默认双边；实过程只画 $f\ge0$ 时单边谱为 $2S_X(f)$。白噪声双边 $N_0/2$、单边 $N_0$，混用差 3 dB。
+
+离散时间：$S_X(e^{j\omega})=\sum_m R_X[m]e^{-j\omega m}$，以 $2\pi$ 为周期，功率为 $\frac{1}{2\pi}\int_{-\pi}^{\pi}S_X(e^{j\omega})\,\mathrm{d}\omega$。
+
+[回到功率谱卡](#concept-bridge-power-spectrum)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-power-spectrum-deep">
+<summary>③ 想去更深处：完整笔记与后续</summary>
+
+- 完整材料：[[vault-notes/random-signals/05-wiener-khinchin|维纳–辛钦定理]]、[[vault-notes/random-signals/05-power-spectral-density|功率谱密度]]、[[vault-notes/random-signals/05-psd-numerical-estimation|功率谱数值估计]]；
+- 谱估计的方差问题：本文「谱估计：周期图与 Welch」；
+- 后续主线：[[signal-processing/random-signals-through-systems|随机信号通过线性系统]]（$S_Y=\lvert H\rvert^2S_X$）。
+
+[回到功率谱卡](#concept-bridge-power-spectrum)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-power-spectrum-prereq">
+<summary>救命入口：自相关没看明白？（跳到自相关概念卡，再回来）</summary>
+
+功率谱的输入只有两样：**宽平稳**与**自相关**。如果这两者之一不清楚，先补：
+
+- 自相关：固定两个时刻、取乘积、做**集合平均**；宽平稳时只依赖时间差 $\tau$；
+- 常见混淆：把一条记录的时间平均当成集合平均（那需要各态历经，不是 WK 的前提）。
+
+[[signal-processing/random-processes#concept-bridge-autocorrelation|打开「自相关函数」概念卡]]（另一页，含直觉、四步推导与前置补救）；读完用浏览器返回，或点下面的链接回到本卡。
+
+[回到功率谱卡](#concept-bridge-power-spectrum)
+</details>
+
 ## 白噪声、带限白噪声与有色噪声
 
 “白”指功率谱在所有频率上一样平，像白光包含全部可见光频率；“高斯”约束幅度分布，两者互相独立——存在高斯有色噪声，也存在均匀分布的白噪声。

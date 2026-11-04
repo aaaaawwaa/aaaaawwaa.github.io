@@ -123,6 +123,46 @@ $$
 
 实序列的共轭对称性解释了为什么工程上只画 $0\sim f_s/2$ 的单边谱并乘 2，见 [[signal-processing/dft-and-fft|DFT 与 FFT]] 的幅度归一化一节。
 
+<a id="concept-bridge-dtft"></a>
+
+### 学习卡：DTFT 与连续频率（看不懂时停在这里）
+
+> [!abstract] 一句话与主线位置
+> DTFT 就是**单位圆上的 z 变换**：令 $z=e^{j\omega}$，得到连续的、以 $2\pi$ 为周期的频谱。
+> 主线位置：z 变换与收敛域（§1）→ 反变换（§2）→ 本节 DTFT → 频率响应 $H(e^{j\omega})$（§6）。
+
+> [!tip] 直觉（只是直觉，不是定义）
+> z 变换是复平面上的函数；把自变量限制在单位圆 $\lvert z\rvert=1$ 上走一圈，就得到 DTFT。步进一圈对应数字角频率 $\omega$ 从 $-\pi$ 到 $\pi$；再走一圈还是同一段频谱——这就是 $2\pi$ 周期性。
+
+<details class="lt-steps lt-bridge" id="concept-bridge-dtft-steps">
+<summary>② 符号、存在条件与四个必记性质</summary>
+
+$$
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-j\omega n},\qquad \omega\in(-\pi,\pi]
+$$
+
+- $x[n]$：离散时间序列（不是连续信号）；
+- $e^{-j\omega n}$：数字频率为 $\omega$（弧度/样本）的复指数；
+- 周期：$X(e^{j(\omega+2\pi)})=X(e^{j\omega})$，所以画 $[-\pi,\pi)$ 就够；
+- 存在条件：序列绝对可和（$\sum\lvert x[n]\rvert<\infty$），或能量有限且允许均方收敛；
+- 实序列：$X(e^{-j\omega})=X^*(e^{j\omega})$，幅度偶、相位奇；
+- 帕塞瓦尔：$\sum_n\lvert x[n]\rvert^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert X(e^{j\omega})\rvert^2\,\mathrm{d}\omega$，能量按频率分配。
+
+与 DFT 的分工：DTFT 是**连续频率**、无限长；DFT 在 $\omega=2\pi k/N$ 上采样，得到有限个点。补零只插值、不提高分辨率（见 [[signal-processing/dft-and-fft|DFT 与 FFT]]）。
+
+[回到 DTFT 卡](#concept-bridge-dtft)
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-dtft-deep">
+<summary>③ 想去更深处：完整笔记与相关主线</summary>
+
+- 三套傅里叶变换的统一视角：[[vault-notes/random-signals/01-fourier-and-lti|傅里叶变换与线性时不变系统]]；
+- 频率轴与泄漏：[[signal-processing/dft-and-fft|DFT 与 FFT]]；抽样与周期延拓：[[signal-processing/multirate-dsp|多抽样率数字信号处理]]；
+- 随机信号的谱：[[signal-processing/correlation-and-power-spectrum#concept-bridge-power-spectrum|功率谱概念卡]]（DTFT 把相关函数变成谱密度）。
+
+[回到 DTFT 卡](#concept-bridge-dtft)
+</details>
+
 ## 6. 系统函数 $H(z)$ 与频率响应
 
 ### 6.1 复指数是特征函数
