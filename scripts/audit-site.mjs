@@ -140,7 +140,23 @@ if (indexFile) {
   indexHasChinese = /[\u4e00-\u9fa5]/.test(raw)
 }
 
+// 教学页最终产物检查：依赖表双链必须生成 <a>（GFM 表格里未转义竖线会把链接拆没），
+// 功率谱直觉卡必须写明角频率积分的 1/(2π) 归一化。
+const rpPath = path.join(PUBLIC, "signal-processing", "random-processes.html")
+const psdPath = path.join(PUBLIC, "signal-processing", "correlation-and-power-spectrum.html")
+let dependencyLinkOk = false
+let psdNormalizationOk = false
+if (fs.existsSync(rpPath)) {
+  const html = fs.readFileSync(rpPath, "utf8")
+  dependencyLinkOk = !/<td>[^<]*\[\[/.test(html) && /href="[^"]*random-signals-through-systems"/.test(html)
+}
+if (fs.existsSync(psdPath)) {
+  psdNormalizationOk = fs.readFileSync(psdPath, "utf8").includes("谱面积除以")
+}
+
 const checks = [
+  ["依赖表双链已生成链接", dependencyLinkOk, "random-signals-through-systems"],
+  ["功率谱直觉含 1/(2π) 归一化", psdNormalizationOk, "谱面积除以 2π"],
   ["页面数量 > 0", stats.pages > 0, `${stats.pages} 个 HTML 页面`],
   ["站内断链为 0", stats.brokenLinks.length === 0, `${stats.brokenLinks.length} 个断链`],
   ["内容索引存在（搜索 + 图谱）", Boolean(indexFile), indexFile ?? "未找到 contentIndex.json"],

@@ -61,6 +61,15 @@
 - 推广到功率谱、DTFT：同一卡片模板 + `learning-map.json` 增加节点；先做映射与锚点，再决定是否统一组件化。
 - 若要做语义图谱：在现有映射基础上扩展 `prerequisites` 与跨主题边，仍以本 JSON 为唯一来源。
 
-## 8. 回退
+## 8. 第一阶段验证记录（2026-11-04 review 收尾）
+
+- 预览只读：`.popover-inner .lt-depth-tabs { display: none }`；真实浏览器回归 `npm run check:popover` 覆盖三张卡（正文选中保持、面板显隐不变、预览无切换条）。
+- radio 隔离：每张卡独立 `<form class="lt-depth-form">`，预览克隆为独立 form owner；静态测试校验“每组 tabs 都有 form”。
+- 键盘：radio 可聚焦，方向键切换（实测 ArrowDown 从 ① 到 ②）；SPA 导航后新卡仍可切换。
+- 无 `:has()` 回退：三个面板默认 `open`，显隐规则整体失效时内容完整可读（静态测试校验）。
+- 实验 BFCache：`pageshow(persisted)` 重建监听；恢复前设置的 paths/cursor/amplitude/seed/highlight 保留，相位由同一种子确定性重建；`scripts/random-processes-lab-lifecycle.test.mjs` 覆盖“非默认参数 → pagehide/pageshow → 值保留、监听器唯一、控件仍可操作”。真实浏览器是否命中 BFCache 仍未确认（事件序列不等同于浏览器命中）。
+- 产物回归：`audit-site.mjs` 增加“依赖表双链已生成链接”“功率谱直觉含 1/(2π)”两项；`npm run test:public` 61 项。
+
+## 9. 回退
 
 - 删除三篇文章里的 `concept-bridge-*` 卡片、`learning-map.json`、`scripts/validate-learning-map.mjs`、`scripts/learning-map.test.mjs` 与 `custom.scss` 第 10 节；从 `package.json` 的 `verify`/`test:public` 移除对应命令与测试，CI 删除 “Check learning map” 步骤。

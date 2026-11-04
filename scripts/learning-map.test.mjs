@@ -182,3 +182,12 @@ test("depth radios are isolated per card with their own form owner", () => {
     assert.equal(forms, tabs, page + ": every depth-tabs block needs its own form (popover clones would otherwise merge radio groups)");
   }
 });
+test("without :has() support every depth panel stays expanded and readable", () => {
+  const map = JSON.parse(fs.readFileSync(path.join(repoRoot, "learning-map.json"), "utf8"));
+  for (const concept of map.concepts) {
+    const page = concept.bridgePage || concept.overviewPage;
+    const source = fs.readFileSync(path.join(repoRoot, "content", page + ".md"), "utf8");
+    const openPanels = (source.match(/<details class="lt-steps lt-bridge" id="[^"]*-(?:intuition|steps|deep)" open>/g) || []).length;
+    assert.equal(openPanels, 3, page + ": intuition/steps/deep panels must be open for the no-:has fallback");
+  }
+});
