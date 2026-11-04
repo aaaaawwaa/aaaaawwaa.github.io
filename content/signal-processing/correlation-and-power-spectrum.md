@@ -146,6 +146,7 @@ RC 低通 $H(\omega)=1/(1+j\omega RC)$ 是“白谱变洛伦兹形、$\delta$ �
 > 功率谱密度 $S_X(\omega)$ 描述平均功率怎样分布在频率上；宽平稳时它就是自相关 $R_X(\tau)$ 的傅里叶变换。
 > 主线位置：自相关（[[signal-processing/random-processes#concept-bridge-autocorrelation|概念卡]]）→ 宽平稳 → 维纳–辛钦 → 周期图/Welch（本节后半）。
 
+<form class="lt-depth-form">
 <div class="lt-depth-tabs" role="group" aria-label="选择讲解深度">
   <input class="lt-depth lt-depth-psd d1" type="radio" name="depth-psd" id="depth-psd-1" checked>
   <label for="depth-psd-1">① 直觉</label>
@@ -154,11 +155,12 @@ RC 低通 $H(\omega)=1/(1+j\omega RC)$ 是“白谱变洛伦兹形、$\delta$ �
   <input class="lt-depth lt-depth-psd d3" type="radio" name="depth-psd" id="depth-psd-3">
   <label for="depth-psd-3">③ 深入</label>
 </div>
+</form>
 
 <details class="lt-steps lt-bridge" id="concept-bridge-power-spectrum-intuition" open>
 <summary>① 直觉（不是定义）</summary>
 
-自相关回答「两个时刻有多像」，是对**时间差**的函数；功率谱回答「这份相似性里，各频率各占多少功率」，是对**频率**的函数。两者是同一信息的两副面孔：总功率 $R_X(0)$ 等于谱的面积。
+自相关回答「两个时刻有多像」，是对**时间差**的函数；功率谱回答「这份相似性里，各频率各占多少功率」，是对**频率**的函数。两者是同一信息的两副面孔：总功率 $R_X(0)$ 等于**谱面积除以 $2\pi$**——本文用角频率 $\omega$ 约定，积分要带 $\frac{1}{2\pi}$；若改用 $f=\omega/2\pi$ 作自变量，则面积本身等于功率。
 
 </details>
 

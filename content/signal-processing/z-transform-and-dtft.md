@@ -131,6 +131,7 @@ $$
 > DTFT 就是**单位圆上的 z 变换**：令 $z=e^{j\omega}$，得到连续的、以 $2\pi$ 为周期的频谱。
 > 主线位置：z 变换与收敛域（§1）→ 反变换（§2）→ 本节 DTFT → 频率响应 $H(e^{j\omega})$（§6）。
 
+<form class="lt-depth-form">
 <div class="lt-depth-tabs" role="group" aria-label="选择讲解深度">
   <input class="lt-depth lt-depth-dtft d1" type="radio" name="depth-dtft" id="depth-dtft-1" checked>
   <label for="depth-dtft-1">① 直觉</label>
@@ -139,6 +140,7 @@ $$
   <input class="lt-depth lt-depth-dtft d3" type="radio" name="depth-dtft" id="depth-dtft-3">
   <label for="depth-dtft-3">③ 深入</label>
 </div>
+</form>
 
 <details class="lt-steps lt-bridge" id="concept-bridge-dtft-intuition" open>
 <summary>① 直觉（不是定义）</summary>

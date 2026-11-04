@@ -184,7 +184,8 @@ $$
 检验 WSS 只需三步：二阶矩是否有限、均值是否为常数、$R_X(t_1,t_2)$ 是否只依赖 $t_1-t_2$。任一步失败，就不能使用 $R_X(\tau)$ 与 $S_X(\omega)$ 这套工具。
 
 > [!warning] 均值恒定不等于宽平稳
-> 令 $X(t)=\sigma(t)W(t)$，$W(t)$ 是零均值、单位方差的白噪声，$\sigma(t)>0$ 是确定性函数。则 $\mu_X(t)=0$ 恒定，但 $R_X(t_1,t_2)=\sigma(t_1)\sigma(t_2)\delta(t_1-t_2)$ 依赖绝对时刻，方差 $\sigma^2(t)$ 也随时间变化——所以它不是 WSS。判断平稳必须同时检查均值与相关函数。
+> 令 $X[n]=\sigma[n]W[n]$，$W[n]$ 为零均值、单位方差、独立同分布的白噪声**序列**，$\sigma[n]>0$ 是确定性序列。则 $\mu_X[n]=0$ 恒定，但 $R_X[m,n]=\sigma[m]\sigma[n]\delta[m-n]$（Kronecker $\delta$）依赖绝对时刻，方差 $\sigma^2[n]$ 也随时间变化——所以它不是 WSS。判断平稳必须同时检查均值与相关函数。
+> （理想连续时间白噪声是广义过程，点值方差不是有限常数，不宜用来构造这个「有限二阶矩」反例；离散时间版本没有这个问题。）
 
 宽平稳但非严平稳的例子：$X(t)=A\cos\omega_0t+B\sin\omega_0t$，$A,B$ 零均值、不相关、方差均为 $1$，但 $A$ 等概率取 $\pm1$、$B$ 服从拉普拉斯分布。此时 $\mu_X=0$、$R_X(\tau)=\cos\omega_0\tau$ 满足 WSS，而 $t=0$ 与 $t=\pi/(2\omega_0)$ 的一维分布不同。反过来，随机相位正弦既严平稳又宽平稳——时间平移等价于相位平移，均匀分布在相位平移下不变。
 
@@ -293,6 +294,7 @@ $$
 > 自相关函数衡量**同一个随机过程**在两个时刻取值之间的统计联系，宽平稳时只由时间差决定。
 > 主线位置：随机过程（§2）→ 固定时刻统计（§3）→ 宽平稳（§4）→ 本节 → 功率谱（下一篇）。
 
+<form class="lt-depth-form">
 <div class="lt-depth-tabs" role="group" aria-label="选择讲解深度">
   <input class="lt-depth lt-depth-ac d1" type="radio" name="depth-ac" id="depth-ac-1" checked>
   <label for="depth-ac-1">① 直觉</label>
@@ -301,6 +303,7 @@ $$
   <input class="lt-depth lt-depth-ac d3" type="radio" name="depth-ac" id="depth-ac-3">
   <label for="depth-ac-3">③ 深入</label>
 </div>
+</form>
 
 <details class="lt-steps lt-bridge" id="concept-bridge-intuition" open>
 <summary>① 直觉（不是定义）</summary>
@@ -446,7 +449,7 @@ $$
 
 > [!question]- 判断依据（先独立思考再展开）
 > 1. 过程是所有样本函数的族；一条曲线只是一个实现，无法给出跨实现的均值、方差与分布，也无法证明严格平稳——单条记录最多提供否证线索（例如样本统计随时间漂移）。只有集合统计量才对应过程本身。
-> 2. 反例：$X(t)=\sigma(t)W(t)$，$W$ 为零均值单位方差白噪声、$\sigma(t)$ 随时间变化。均值恒为 $0$，但 $R_X(t_1,t_2)=\sigma(t_1)\sigma(t_2)\delta(t_1-t_2)$ 依赖绝对时刻、方差也随时间变化，违反「自相关只依赖时间差」。
+> 2. 反例（离散时间）：$X[n]=\sigma[n]W[n]$，$W[n]$ 为零均值单位方差、独立同分布的白噪声序列，$\sigma[n]$ 随时间变化。均值恒为 $0$，但 $R_X[m,n]=\sigma[m]\sigma[n]\delta[m-n]$ 依赖绝对时刻、方差也随时间变化，违反「自相关只依赖时间差」。
 > 3. $\int_0^{2\pi}\cos(\varphi+2\theta)\,\mathrm{d}\theta=0$，因为被积函数在区间上正好走两个完整周期。若 $\Theta\sim U[0,\pi/2]$，$E[\cos(\omega_0t+\Theta)]$ 是 $t$ 的函数（不再恒为 $0$），均值不恒定，因此不是 WSS。
 
 ## 9. 常见错误清单
@@ -470,7 +473,7 @@ $$
 | 一、二阶统计 → 宽平稳 | 概念前置 | WSS 只是对均值与自相关的约束 |
 | 宽平稳 → 维纳–辛钦 → 功率谱 | 定理适用条件 | WK 需要 WSS 的自相关可变换（绝对可积或广义谱），**不要求各态历经** |
 | 宽平稳 + 各态历经 → 用时间平均估计 | 估计条件 | 各态历经是「单条记录能否代表集合」的条件，不是谱定理的前提 |
-| 宽平稳 → 通过线性系统 → 输出统计 | 应用去向 | 见 [[signal-processing/random-signals-through-systems|随机信号通过线性系统]] |
+| 宽平稳 → 通过线性系统 → 输出统计 | 应用去向 | 见 [[signal-processing/random-signals-through-systems\|随机信号通过线性系统]] |
 
 - **下一步**：[[signal-processing/correlation-and-power-spectrum|相关函数与功率谱]]——各态历经、样本估计、维纳–辛钦与谱估计；再往后是 [[signal-processing/random-signals-through-systems|随机信号通过线性系统]]、[[signal-processing/statistical-estimation-filtering|统计估计与最优滤波]]、[[signal-processing/signal-detection-theory|信号检测理论]]、[[signal-processing/random-signal-experiments|MATLAB 实验]]、[[signal-processing/random-signals-formula-sheet|公式速查]]。
 - **动手**：[[interactive-labs/random-processes-lab|随机过程与样本函数实验]]——观察多条样本路径、固定时刻的分布、集合均值与方差。
