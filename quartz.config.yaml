@@ -140,6 +140,23 @@ plugins:
     enabled: true
     options:
       folderDefaultState: "collapsed"
+      # 根因：同步笔记文件名带 00/01/… 数字前缀，但 Explorer 默认按显示标题（中文拼音）排序，
+      # 因此侧栏看起来乱序。这里对带数字前缀的文件按数值排序，其余仍按显示名排序；
+      # 该函数由 Explorer 序列化到浏览器执行（data-data-fns），不引入额外脚本。
+      sortFn: >-
+        (a, b) => {
+          if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1;
+          if (!a.isFolder) {
+            const an = /^(\d+)(?:[-_.]|$)/.exec(a.slugSegment || "");
+            const bn = /^(\d+)(?:[-_.]|$)/.exec(b.slugSegment || "");
+            if (an && bn) {
+              if (Number(an[1]) !== Number(bn[1])) return Number(an[1]) - Number(bn[1]);
+              return (a.slugSegment || "").localeCompare(b.slugSegment || "", "en", { numeric: true, sensitivity: "base" });
+            }
+            if (!!an !== !!bn) return an ? -1 : 1;
+          }
+          return (a.displayName || "").localeCompare(b.displayName || "", "zh-CN", { numeric: true, sensitivity: "base" });
+        }
     layout:
       position: left
       priority: 50
@@ -223,22 +240,3 @@ plugins:
   - source: "github:quartz-community/spacer"
     enabled: true
     options: {}
-    order: 25
-    layout:
-      position: left
-      priority: 25
-      display: mobile-only
-  - source: "github:quartz-community/bases-page"
-    enabled: true
-    options: {}
-    order: 50
-  - source: "github:quartz-community/note-properties"
-    enabled: true
-    options:
-      includeAll: false
-      includedProperties:
-        - description
-        - aliases
-      excludedProperties: []
-      hidePropertiesView: true
-      delimiters: ---
