@@ -329,6 +329,11 @@ article input.lt-depth:focus-visible + label { outline: 2px solid var(--lt-accen
   article input.lt-depth + label { min-height: 2.3rem; padding: .45rem .8rem; }
 }
 
+/* 悬浮预览只读：popover 克隆整篇 article，切档控件在克隆里不可用（label/for 与面板 id 已加前缀），
+   因此隐藏切档条；三个面板按默认展开呈现，作为只读预览。 */
+.popover-inner .lt-depth-tabs { display: none; }
+.popover-inner .lt-depth-form { margin: 0; }
+
 /* 面板显隐：① 直觉 / ② 推导 / ③ 深入 */
 article:has(.lt-depth-ac.d1:checked) #concept-bridge-steps,
 article:has(.lt-depth-ac.d1:checked) #concept-bridge-deep { display: none; }
