@@ -131,10 +131,23 @@ $$
 > DTFT 就是**单位圆上的 z 变换**：令 $z=e^{j\omega}$，得到连续的、以 $2\pi$ 为周期的频谱。
 > 主线位置：z 变换与收敛域（§1）→ 反变换（§2）→ 本节 DTFT → 频率响应 $H(e^{j\omega})$（§6）。
 
-> [!tip] 直觉（只是直觉，不是定义）
-> z 变换是复平面上的函数；把自变量限制在单位圆 $\lvert z\rvert=1$ 上走一圈，就得到 DTFT。步进一圈对应数字角频率 $\omega$ 从 $-\pi$ 到 $\pi$；再走一圈还是同一段频谱——这就是 $2\pi$ 周期性。
+<div class="lt-depth-tabs" role="group" aria-label="选择讲解深度">
+  <input class="lt-depth lt-depth-dtft d1" type="radio" name="depth-dtft" id="depth-dtft-1" checked>
+  <label for="depth-dtft-1">① 直觉</label>
+  <input class="lt-depth lt-depth-dtft d2" type="radio" name="depth-dtft" id="depth-dtft-2">
+  <label for="depth-dtft-2">② 推导</label>
+  <input class="lt-depth lt-depth-dtft d3" type="radio" name="depth-dtft" id="depth-dtft-3">
+  <label for="depth-dtft-3">③ 深入</label>
+</div>
 
-<details class="lt-steps lt-bridge" id="concept-bridge-dtft-steps">
+<details class="lt-steps lt-bridge" id="concept-bridge-dtft-intuition" open>
+<summary>① 直觉（不是定义）</summary>
+
+z 变换是复平面上的函数；把自变量限制在单位圆 $\lvert z\rvert=1$ 上走一圈，就得到 DTFT。步进一圈对应数字角频率 $\omega$ 从 $-\pi$ 到 $\pi$；再走一圈还是同一段频谱——这就是 $2\pi$ 周期性。
+
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-dtft-steps" open>
 <summary>② 符号、存在条件与四个必记性质</summary>
 
 $$
@@ -153,7 +166,7 @@ $$
 [回到 DTFT 卡](#concept-bridge-dtft)
 </details>
 
-<details class="lt-steps lt-bridge" id="concept-bridge-dtft-deep">
+<details class="lt-steps lt-bridge" id="concept-bridge-dtft-deep" open>
 <summary>③ 想去更深处：完整笔记与相关主线</summary>
 
 - 三套傅里叶变换的统一视角：[[vault-notes/random-signals/01-fourier-and-lti|傅里叶变换与线性时不变系统]]；

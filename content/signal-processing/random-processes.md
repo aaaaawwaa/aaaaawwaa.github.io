@@ -293,10 +293,23 @@ $$
 > 自相关函数衡量**同一个随机过程**在两个时刻取值之间的统计联系，宽平稳时只由时间差决定。
 > 主线位置：随机过程（§2）→ 固定时刻统计（§3）→ 宽平稳（§4）→ 本节 → 功率谱（下一篇）。
 
-> [!tip] 直觉（只是直觉，不是定义）
-> 把一条样本波形复制一份、在时间轴上平移 $\tau$，再与原件逐点相乘：两者越「同相」，乘积在**跨实现**上的平均就越大。注意：平移的是同一条样本函数，取平均时跨的却是不同随机实现。
+<div class="lt-depth-tabs" role="group" aria-label="选择讲解深度">
+  <input class="lt-depth lt-depth-ac d1" type="radio" name="depth-ac" id="depth-ac-1" checked>
+  <label for="depth-ac-1">① 直觉</label>
+  <input class="lt-depth lt-depth-ac d2" type="radio" name="depth-ac" id="depth-ac-2">
+  <label for="depth-ac-2">② 推导</label>
+  <input class="lt-depth lt-depth-ac d3" type="radio" name="depth-ac" id="depth-ac-3">
+  <label for="depth-ac-3">③ 深入</label>
+</div>
 
-<details class="lt-steps lt-bridge" id="concept-bridge-steps">
+<details class="lt-steps lt-bridge" id="concept-bridge-intuition" open>
+<summary>① 直觉（不是定义）</summary>
+
+把一条样本波形复制一份、在时间轴上平移 $\tau$，再与原件逐点相乘：两者越「同相」，乘积在**跨实现**上的平均就越大。注意：平移的是同一条样本函数，取平均时跨的却是不同随机实现。
+
+</details>
+
+<details class="lt-steps lt-bridge" id="concept-bridge-steps" open>
 <summary>② 公式看不懂？逐个认符号，再看四步推导</summary>
 
 定义（宽平稳、复过程）
@@ -322,7 +335,7 @@ $$
 [回到自相关卡](#concept-bridge-autocorrelation)
 </details>
 
-<details class="lt-steps lt-bridge" id="concept-bridge-deep">
+<details class="lt-steps lt-bridge" id="concept-bridge-deep" open>
 <summary>③ 想去更深处：完整笔记与后续专题</summary>
 
 - 完整推导与例子：[[vault-notes/random-signals/04-autocorrelation-autocovariance|自相关与自协方差（详细笔记）]]；
