@@ -240,3 +240,22 @@ plugins:
   - source: "github:quartz-community/spacer"
     enabled: true
     options: {}
+    order: 25
+    layout:
+      position: left
+      priority: 25
+      display: mobile-only
+  - source: "github:quartz-community/bases-page"
+    enabled: true
+    options: {}
+    order: 50
+  - source: "github:quartz-community/note-properties"
+    enabled: true
+    options:
+      includeAll: false
+      includedProperties:
+        - description
+        - aliases
+      excludedProperties: []
+      hidePropertiesView: true
+      delimiters: ---
