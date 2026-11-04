@@ -492,6 +492,8 @@ $$
 
 实验的完整说明（控件、估计量定义、边界与推导）见 [[interactive-labs/random-processes-lab|实验页]]；它只做固定时刻的集合统计，不计算时间平均，因此不能用来证明各态历经——那条链路由下一篇接手。
 
+想进一步看「均值/方差恒定是否足够判定 WSS」，打开 [[interactive-labs/stationarity-lab|宽平稳与非平稳对比实验]]：同一条时间轴上对比随机相位正弦与零均值随机游走的均值、方差随时间变化。
+
 ## 来源与延伸阅读
 
 - 符号与路线：[[vault-notes/random-signals/00-math-symbols|数学符号约定]]、[[vault-notes/random-signals/00-knowledge-map|知识地图]]。
