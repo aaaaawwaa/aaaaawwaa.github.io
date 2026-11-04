@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "topic": "random-processes",
+  "topic": "signal-processing",
   "overview": {
     "page": "signal-processing/random-processes",
     "label": "随机过程与随机信号"
@@ -60,6 +60,41 @@
       "relatedLabPage": "interactive-labs/random-processes-lab",
       "rescueAnchor": "concept-bridge-autocorrelation",
       "rescueSummary": "比较同一随机过程在两个时刻的取值，并对乘积取集合平均；宽平稳时只依赖时间差。"
+    },
+    {
+      "id": "power-spectrum",
+      "title": "功率谱与维纳–辛钦",
+      "type": "concept",
+      "overviewPage": "signal-processing/correlation-and-power-spectrum",
+      "sourcePage": "vault-notes/random-signals/05-wiener-khinchin",
+      "prerequisites": [
+        "autocorrelation"
+      ],
+      "learningModes": [
+        "intuition",
+        "derivation",
+        "reference"
+      ],
+      "bridgePage": "signal-processing/correlation-and-power-spectrum",
+      "bridgeAnchor": "concept-bridge-power-spectrum",
+      "rescueAnchor": "concept-bridge-power-spectrum-prereq",
+      "rescueSummary": "宽平稳时，功率谱是自相关的傅里叶变换；自相关不清就先补自相关概念卡。"
+    },
+    {
+      "id": "dtft",
+      "title": "DTFT 与连续频率",
+      "type": "concept",
+      "overviewPage": "signal-processing/z-transform-and-dtft",
+      "sourcePage": "vault-notes/random-signals/01-fourier-and-lti",
+      "prerequisites": [],
+      "learningModes": [
+        "intuition",
+        "derivation",
+        "reference"
+      ],
+      "bridgePage": "signal-processing/z-transform-and-dtft",
+      "bridgeAnchor": "concept-bridge-dtft",
+      "rescueSummary": "DTFT 是单位圆上的 z 变换：连续频率、以 2π 为周期；与 DFT 的离散频率分工要分清。"
     }
   ]
 }

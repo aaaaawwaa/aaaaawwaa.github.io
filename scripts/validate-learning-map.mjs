@@ -60,7 +60,13 @@ const concepts = Array.isArray(data.concepts) ? data.concepts : [];
 if (concepts.length === 0) fail("concepts must be a non-empty array");
 const byId = new Map();
 const requiredModes = ["intuition", "derivation", "reference"];
-const bridgePageText = bridge && pageExists(bridge.page) ? fs.readFileSync(pageFile(bridge.page), "utf8") : "";
+const pageTextCache = new Map();
+function pageText(slug) {
+  if (!pageTextCache.has(slug)) {
+    pageTextCache.set(slug, pageExists(slug) ? fs.readFileSync(pageFile(slug), "utf8") : "");
+  }
+  return pageTextCache.get(slug);
+}
 
 for (let i = 0; i < concepts.length; i++) {
   const concept = concepts[i];
@@ -82,10 +88,22 @@ for (let i = 0; i < concepts.length; i++) {
     fail(at + ".learningModes missing intuition/derivation/reference");
   }
   if (typeof concept.rescueSummary !== "string" || concept.rescueSummary.trim() === "") fail(at + ".rescueSummary missing");
+  const conceptBridgePage = concept.bridgePage || concept.overviewPage;
+  let conceptBridgeAnchor = concept.bridgeAnchor;
+  if (!conceptBridgeAnchor && bridge && conceptBridgePage === bridge.page) conceptBridgeAnchor = bridge.anchor;
+  if (concept.bridgePage !== undefined) {
+    if (!isSlug(concept.bridgePage)) fail(at + ".bridgePage invalid");
+    else if (!pageExists(concept.bridgePage)) fail(at + ".bridgePage has no Markdown: " + concept.bridgePage);
+  }
+  if (typeof conceptBridgeAnchor !== "string" || !slugPattern.test(conceptBridgeAnchor)) {
+    fail(at + ".bridgeAnchor missing for " + conceptBridgePage);
+  } else if (pageExists(conceptBridgePage) && !pageText(conceptBridgePage).includes('id="' + conceptBridgeAnchor + '"')) {
+    fail(at + ".bridgeAnchor missing in " + conceptBridgePage + ": " + conceptBridgeAnchor);
+  }
   if (concept.rescueAnchor !== undefined) {
     if (typeof concept.rescueAnchor !== "string" || !slugPattern.test(concept.rescueAnchor)) fail(at + ".rescueAnchor invalid");
-    else if (bridgePageText && !bridgePageText.includes('id="' + concept.rescueAnchor + '"')) {
-      fail(at + ".rescueAnchor missing in bridge page: " + concept.rescueAnchor);
+    else if (pageExists(conceptBridgePage) && !pageText(conceptBridgePage).includes('id="' + concept.rescueAnchor + '"')) {
+      fail(at + ".rescueAnchor missing in " + conceptBridgePage + ": " + concept.rescueAnchor);
     }
   }
   if (typeof concept.id === "string") byId.set(concept.id, concept);

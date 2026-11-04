@@ -131,3 +131,33 @@ test("a missing bridge anchor is rejected", () => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /bridge anchor missing/);
 });
+
+test("a per-concept bridge page without its own anchor is rejected", () => {
+  const fixture = makeFixture();
+  const map = fixture.map;
+  fs.mkdirSync(path.join(fixture.root, "content", "signal-processing"), { recursive: true });
+  fs.writeFileSync(path.join(fixture.root, "content", "signal-processing", "second-page.md"), "# second\n");
+  map.concepts.push({
+    id: "second-concept",
+    title: "第二概念",
+    overviewPage: "signal-processing/second-page",
+    sourcePage: "vault-notes/random-signals/02-expectation-variance",
+    prerequisites: ["expectation"],
+    learningModes: ["intuition", "derivation", "reference"],
+    rescueSummary: "测试用。",
+  });
+  fs.writeFileSync(path.join(fixture.root, "learning-map.json"), JSON.stringify(map));
+  const result = runValidator(["--repo", "."], fixture.root);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /bridgeAnchor missing for signal-processing\/second-page/);
+});
+
+test("a rescue anchor missing from the concept bridge page is rejected", () => {
+  const fixture = makeFixture();
+  const map = fixture.map;
+  map.concepts[1].rescueAnchor = "concept-bridge-not-there";
+  fs.writeFileSync(path.join(fixture.root, "learning-map.json"), JSON.stringify(map));
+  const result = runValidator(["--repo", "."], fixture.root);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /rescueAnchor missing in signal-processing\/random-processes/);
+});

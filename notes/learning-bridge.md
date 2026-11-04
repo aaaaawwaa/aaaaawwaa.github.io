@@ -8,7 +8,7 @@
 
 ## 2. 实现方式（无 JS 优先）
 
-- 形式：`random-processes.md` §6.1 的**概念学习卡**。默认可见：一句话 + 主线位置 + 直觉；三个原生 `<details class="lt-steps lt-bridge">` 分别承载“符号与四步推导”“深入笔记与后续”“前置补救”。
+- 形式：融合文章里的**概念学习卡**（当前三张：`random-processes` §6.1 自相关、`correlation-and-power-spectrum` 功率谱/维纳–辛钦、`z-transform-and-dtft` §5 DTFT）。默认可见：一句话 + 主线位置 + 直觉；原生 `<details class="lt-steps lt-bridge">` 承载“符号与推导”“深入笔记与后续”“前置补救”。
 - 无脚本可读：`<details>` 是原生可展开元素；卡内公式由站点 KaTeX 预渲染，不依赖运行时 JS。
 - 返回原位置：每张子卡末尾有 `[回到自相关卡](#concept-bridge-autocorrelation)`；卡片锚点稳定，配合 `scroll-margin-top` 抵消粘性头部。
 - 不做的部分：不引入 JS 状态机、不改 Quartz 核心、不新增页面、不改 `content/vault-notes/**`。
@@ -24,7 +24,8 @@
 | `overviewPage` | 读者学习主线页（融合文章） |
 | `sourcePage` | 已发布的完整笔记（`content/**.md` 的 slug） |
 | `prerequisites` | 前置 id，必须存在、不得自依赖、整体为 DAG |
-| `rescueAnchor` | 卡内“前置补救”块的锚点 id |
+| `bridgePage` / `bridgeAnchor` | 概念卡所在页与卡片锚点；不同文章各用各的锚点（缺省回退到全局 `bridge`） |
+| `rescueAnchor` | 卡内“前置补救”块的锚点 id（在该概念的卡片页内校验） |
 | `relatedLabPage` | 可选，相关交互实验页 |
 
 ## 4. 校验与测试
@@ -40,12 +41,22 @@
 3. 改标题/锚点：同时改 JSON 与正文，避免锚点脱管；不要手改 `content/vault-notes/**`。
 4. 公式与统计口径：保留集合平均与时间平均的区分；自相关必须说明共轭、WSS 条件与期望存在性。
 
-## 6. 下一阶段（未实施）
+## 6. 当前覆盖（本轮推广）
+
+| 概念 | 文章 / 锚点 | 前置 | 深入材料 |
+| --- | --- | --- | --- |
+| 自相关 | `random-processes` · `concept-bridge-autocorrelation` | 随机过程、数学期望 | 04 自相关笔记、功率谱文章、实验 |
+| 功率谱 / 维纳–辛钦 | `correlation-and-power-spectrum` · `concept-bridge-power-spectrum` | 自相关（跨页跳回自相关概念卡） | 05 维纳–辛钦 / PSD / 数值估计笔记 |
+| DTFT | `z-transform-and-dtft` · `concept-bridge-dtft` | z 变换与单位圆（同页 §1） | 01 傅里叶与 LTI 笔记、DFT/FFT、多抽样率 |
+
+一致性：每张卡的锚点与 `learning-map.json` 的 `bridgeAnchor` 一致；跨页“救命入口”用绝对路径 + `#锚点`，返回链接用本页锚点，不依赖 JS。
+
+## 7. 下一阶段（未实施）
 
 - JS 增强：同页“深度切换器 + 前置栈 + 返回恢复”。需按 Quartz 5 SPA 生命周期（导航后重新挂载、卸载清理）实现；当前原生 details 已满足无 JS 验收，故本轮不引入脚本。
 - 推广到功率谱、DTFT：同一卡片模板 + `learning-map.json` 增加节点；先做映射与锚点，再决定是否统一组件化。
 - 若要做语义图谱：在现有映射基础上扩展 `prerequisites` 与跨主题边，仍以本 JSON 为唯一来源。
 
-## 7. 回退
+## 8. 回退
 
-- 删除 `random-processes.md` §6.1 卡片、`learning-map.json`、`scripts/validate-learning-map.mjs`、`scripts/learning-map.test.mjs` 与 `custom.scss` 第 10 节；从 `package.json` 的 `verify`/`test:public` 移除对应命令与测试，CI 删除 “Check learning map” 步骤。
+- 删除三篇文章里的 `concept-bridge-*` 卡片、`learning-map.json`、`scripts/validate-learning-map.mjs`、`scripts/learning-map.test.mjs` 与 `custom.scss` 第 10 节；从 `package.json` 的 `verify`/`test:public` 移除对应命令与测试，CI 删除 “Check learning map” 步骤。
