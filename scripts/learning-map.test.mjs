@@ -161,3 +161,14 @@ test("a rescue anchor missing from the concept bridge page is rejected", () => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /rescueAnchor missing in signal-processing\/random-processes/);
 });
+
+test("every bridge card page exposes the three-depth switcher", () => {
+  const map = JSON.parse(fs.readFileSync(path.join(repoRoot, "learning-map.json"), "utf8"));
+  for (const concept of map.concepts) {
+    const page = concept.bridgePage || concept.overviewPage;
+    const source = fs.readFileSync(path.join(repoRoot, "content", page + ".md"), "utf8");
+    assert.match(source, /class="lt-depth-tabs"/, page + " is missing depth tabs");
+    const radios = (source.match(/class="lt-depth /g) || []).length;
+    assert.ok(radios >= 3, page + " exposes " + radios + " depth radios (expected >= 3)");
+  }
+});

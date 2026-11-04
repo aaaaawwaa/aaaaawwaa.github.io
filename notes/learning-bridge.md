@@ -10,6 +10,7 @@
 
 - 形式：融合文章里的**概念学习卡**（当前三张：`random-processes` §6.1 自相关、`correlation-and-power-spectrum` 功率谱/维纳–辛钦、`z-transform-and-dtft` §5 DTFT）。默认可见：一句话 + 主线位置 + 直觉；原生 `<details class="lt-steps lt-bridge">` 承载“符号与推导”“深入笔记与后续”“前置补救”。
 - 无脚本可读：`<details>` 是原生可展开元素；卡内公式由站点 KaTeX 预渲染，不依赖运行时 JS。
+- 深度切换：卡顶三个原生 radio（① 直觉 / ② 推导 / ③ 深入）配合 CSS `:has()` 显隐三个面板；不依赖 JS，SPA 导航天然可用。不支持 `:has()` 的浏览器忽略显隐规则，三个面板同时显示，内容不丢。
 - 返回原位置：每张子卡末尾有 `[回到自相关卡](#concept-bridge-autocorrelation)`；卡片锚点稳定，配合 `scroll-margin-top` 抵消粘性头部。
 - 不做的部分：不引入 JS 状态机、不改 Quartz 核心、不新增页面、不改 `content/vault-notes/**`。
 
@@ -53,7 +54,8 @@
 
 ## 7. 下一阶段（未实施）
 
-- JS 增强：同页“深度切换器 + 前置栈 + 返回恢复”。需按 Quartz 5 SPA 生命周期（导航后重新挂载、卸载清理）实现；当前原生 details 已满足无 JS 验收，故本轮不引入脚本。
+- 跨页“前置栈”与多步返回：当读者连续打开多个前置卡时，用纯 URL/锚点或轻量脚本维护返回链；当前单步返回（本卡锚点 + 浏览器返回）已够用。
+- 若将来引入脚本：必须按 Quartz 5 SPA 生命周期实现（导航后重挂载、卸载清理），且保留无 JS 的 radio/details 兜底。
 - 推广到功率谱、DTFT：同一卡片模板 + `learning-map.json` 增加节点；先做映射与锚点，再决定是否统一组件化。
 - 若要做语义图谱：在现有映射基础上扩展 `prerequisites` 与跨主题边，仍以本 JSON 为唯一来源。
 

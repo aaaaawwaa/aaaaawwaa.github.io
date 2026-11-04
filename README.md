@@ -123,7 +123,7 @@ npm run verify
 
 ## 3.3 学习桥接（概念卡）
 
-融合主题文章里的关键概念（自相关、功率谱/维纳–辛钦、DTFT 三张卡）提供**同页三层阅读**：默认一句话 + 直觉，展开是符号与四步推导，再展开是完整笔记与后续；缺前置（数学期望、样本函数）时在同页补一个知识点并可锚点回到卡片。全程用原生 `<details>`，无 JS 也能读。
+融合主题文章里的关键概念（自相关、功率谱/维纳–辛钦、DTFT 三张卡）提供**同页三层阅读**：默认一句话 + 直觉，展开是符号与四步推导，再展开是完整笔记与后续；缺前置（数学期望、样本函数）时在同页补一个知识点并可锚点回到卡片。卡顶提供 ① 直觉 / ② 推导 / ③ 深入 三档切换（原生 radio + CSS，无 JS），面板内容用原生 `<details>`，无 JS/SPA 导航都可用。
 
 - 单一数据源：[learning-map.json](./learning-map.json)（概念 id、`prerequisites` DAG、`overviewPage`/`sourcePage`、`bridgePage`/`bridgeAnchor`、`rescueAnchor`）。
 - 校验：`npm run map:check` → [scripts/validate-learning-map.mjs](./scripts/validate-learning-map.mjs)；测试 [scripts/learning-map.test.mjs](./scripts/learning-map.test.mjs) 并入 `npm run test:public`。

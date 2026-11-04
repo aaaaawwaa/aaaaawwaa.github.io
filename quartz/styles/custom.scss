@@ -301,3 +301,51 @@ article details.lt-bridge a[href^="#concept-bridge-"] {
   article details.lt-bridge { padding: 0 .8rem; }
   article details.lt-bridge > summary { font-size: .95rem; }
 }
+
+/* 11) 学习桥接卡：深度切换（原生 radio + CSS，无 JS；SPA 导航不受影响）。
+      可选：① 直觉 / ② 推导 / ③ 深入；不支持 :has() 的浏览器会忽略下方显隐规则，
+      三个面板同时显示 —— 回退为“完整可读”，不丢内容。 */
+article .lt-depth-tabs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .45rem;
+  margin: .7rem 0 .25rem;
+}
+article input.lt-depth {
+  position: absolute; width: 1px; height: 1px; margin: 0; padding: 0;
+  opacity: 0; pointer-events: none;
+}
+article input.lt-depth + label {
+  display: inline-flex; align-items: center; gap: .25rem;
+  padding: .32rem .72rem; border: 1px solid var(--lt-line); border-radius: 999px;
+  font-size: .82rem; line-height: 1.2; color: var(--lt-muted);
+  background: var(--lt-surface); cursor: pointer; user-select: none;
+}
+article input.lt-depth:checked + label {
+  color: var(--lt-ink); border-color: var(--lt-accent); background: var(--highlight);
+  font-weight: 600;
+}
+article input.lt-depth:focus-visible + label { outline: 2px solid var(--lt-accent); outline-offset: 2px; }
+@media (max-width: 600px) {
+  article input.lt-depth + label { min-height: 2.3rem; padding: .45rem .8rem; }
+}
+
+/* 面板显隐：① 直觉 / ② 推导 / ③ 深入 */
+article:has(.lt-depth-ac.d1:checked) #concept-bridge-steps,
+article:has(.lt-depth-ac.d1:checked) #concept-bridge-deep { display: none; }
+article:has(.lt-depth-ac.d2:checked) #concept-bridge-intuition,
+article:has(.lt-depth-ac.d2:checked) #concept-bridge-deep { display: none; }
+article:has(.lt-depth-ac.d3:checked) #concept-bridge-intuition,
+article:has(.lt-depth-ac.d3:checked) #concept-bridge-steps { display: none; }
+
+article:has(.lt-depth-psd.d1:checked) #concept-bridge-power-spectrum-steps,
+article:has(.lt-depth-psd.d1:checked) #concept-bridge-power-spectrum-deep { display: none; }
+article:has(.lt-depth-psd.d2:checked) #concept-bridge-power-spectrum-intuition,
+article:has(.lt-depth-psd.d2:checked) #concept-bridge-power-spectrum-deep { display: none; }
+article:has(.lt-depth-psd.d3:checked) #concept-bridge-power-spectrum-intuition,
+article:has(.lt-depth-psd.d3:checked) #concept-bridge-power-spectrum-steps { display: none; }
+
+article:has(.lt-depth-dtft.d1:checked) #concept-bridge-dtft-steps,
+article:has(.lt-depth-dtft.d1:checked) #concept-bridge-dtft-deep { display: none; }
+article:has(.lt-depth-dtft.d2:checked) #concept-bridge-dtft-intuition,
+article:has(.lt-depth-dtft.d2:checked) #concept-bridge-dtft-deep { display: none; }
+article:has(.lt-depth-dtft.d3:checked) #concept-bridge-dtft-intuition,
+article:has(.lt-depth-dtft.d3:checked) #concept-bridge-dtft-steps { display: none; }
