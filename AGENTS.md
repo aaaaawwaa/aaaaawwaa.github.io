@@ -130,7 +130,7 @@ tags 用小写英文短横线；不要新增未使用的 tag。
 | Callout | `> [!note]` / `[!tip]` / `[!warning]` | Obsidian 原生语法 |
 | 图片/附件 | 放入 `content/<分类>/assets/` 后 `![](./assets/xxx.png)` | 附件**必须**白名单挑选（见第 4 节） |
 | WaveDrom 时序图 | **不支持原生渲染** | 预渲染成 SVG 后当图片插入（与 Vault 约定一致） |
-| 交互 HTML 实验 | `quartz/static/lab/<name>/index.html` → `/static/lab/<name>/` | 用 iframe 或普通链接嵌入，加 `sandbox` |
+| 交互 HTML 实验 | `quartz/static/lab/<name>/index.html` → `/static/lab/<name>/` | 用 iframe 或普通链接嵌入，加 `sandbox`；数学逻辑放同目录 `*-math.mjs` 并用 node 测试覆盖，Canvas 逻辑单独 `*-lab.mjs`；新增实验需同步实验页与 `content/interactive-labs/index.md`，并在 `test:public` 注册测试 |
 
 ### 3.5 中文与数字排版
 
@@ -198,21 +198,3 @@ config: 启用 tag-list 插件
 style: 调整移动端标题字号
 fix: 修正 dft-and-fft 中的链接
 docs: 补充部署回滚步骤
-chore: 升级 Quartz 到 vX.Y.Z
-```
-
-提交前：`npm run verify` 通过；不要提交 `public/`、`.quartz/`、`node_modules/`、`_scratch/`。
-
----
-
-## 8. 常见错误与正确做法
-
-| 错误做法 | 正确做法 |
-| --- | --- |
-| 在 `quartz.config.yaml` 写 `@quartz-community/explorer` | 写 `github:quartz-community/explorer` |
-| 双链写 `[[Signal-Processing/DFT-and-FFT]]` | 写 `[[signal-processing/dft-and-fft]]`（大小写必须与文件一致） |
-| 内容文件用 `Signals-and-Systems.md` | 用 `signals-and-systems.md` |
-| 直接改 `quartz/` 里的组件做样式 | 优先写 `quartz/styles/custom.scss` |
-| 把整个 Vault 复制进 `content/` | 白名单挑目录 + 附件 |
-| 把 `public/` 提交进仓库 | 保持 gitignore，部署平台构建 |
-| 声称"部署完成"但没有构建日志/访问地址 | 提供实际 URL 与验证证据 |

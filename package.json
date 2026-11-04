@@ -32,7 +32,7 @@
     "verify": "node scripts/build-topic-guides.mjs --check && node scripts/build-folder-indexes.mjs --check && node scripts/validate-learning-map.mjs && npm run check:public && node scripts/check-links-source.mjs && npm run build:site && npm run audit",
     "check:public": "node scripts/check-public.mjs --content content",
     "check:popover": "node scripts/bridge-popover-check.mjs",
-    "test:public": "node --test scripts/sync-public.test.mjs scripts/check-public.test.mjs scripts/fourier-lab.test.mjs scripts/check-math-render.test.mjs scripts/folder-indexes.test.mjs scripts/random-processes-lab.test.mjs scripts/learning-map.test.mjs scripts/markdown-table-links.test.mjs scripts/random-processes-lab-lifecycle.test.mjs",
+    "test:public": "node --test scripts/sync-public.test.mjs scripts/check-public.test.mjs scripts/fourier-lab.test.mjs scripts/check-math-render.test.mjs scripts/folder-indexes.test.mjs scripts/random-processes-lab.test.mjs scripts/learning-map.test.mjs scripts/markdown-table-links.test.mjs scripts/random-processes-lab-lifecycle.test.mjs scripts/stationarity-lab.test.mjs",
     "sync:preview": "node scripts/sync-public.mjs --vault ../通信方向 --site . --manifest public-notes.json",
     "sync:apply": "node scripts/sync-public.mjs --vault ../通信方向 --site . --manifest public-notes.json --apply"
   },
