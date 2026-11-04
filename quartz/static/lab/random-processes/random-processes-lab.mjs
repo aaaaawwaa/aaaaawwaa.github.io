@@ -48,6 +48,7 @@ const state = {
 
 const cleanups = [];
 let destroyed = false;
+let bfcacheHandlerBound = false;
 let pendingFrame = 0;
 let seriesCache = { key: '', series: [] };
 
@@ -648,6 +649,13 @@ function destroy() {
 
 /* ----------------------------------------------------------------- 启动 -- */
 
+// 从 BFCache 恢复：pagehide 已 destroy，需重建控件监听与渲染。
+function handlePageShow(event) {
+  if (!event.persisted || !destroyed) return;
+  destroyed = false;
+  bootstrap();
+}
+
 function bootstrap() {
   if (window.__ltRandomProcessesLab && typeof window.__ltRandomProcessesLab.destroy === 'function') {
     window.__ltRandomProcessesLab.destroy();
@@ -685,6 +693,10 @@ function bootstrap() {
   bindResize();
   window.addEventListener('pagehide', destroy, { once: true });
   cleanups.push(() => window.removeEventListener('pagehide', destroy));
+  if (!bfcacheHandlerBound) {
+    bfcacheHandlerBound = true;
+    window.addEventListener('pageshow', handlePageShow);
+  }
   window.__ltRandomProcessesLab = { destroy };
   render();
 }
