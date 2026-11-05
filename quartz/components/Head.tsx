@@ -5,6 +5,32 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../../.quartz/plugins"
+
+// 首次加载时 Explorer 会对“当前页”调用 scrollIntoView，连带把整页滚走。
+// 这里加一段只在首次加载执行、且用户未主动滚动/无锚点时生效的“回到顶部”保护；
+// SPA 导航不重新执行，也不影响锚点跳转。
+const LT_SCROLL_GUARD = `(function () {
+  try {
+    if (location.hash) return;
+    var moved = false;
+    var mark = function () { moved = true; };
+    ["wheel", "touchstart", "touchmove", "mousedown", "pointerdown", "keydown"].forEach(function (type) {
+      window.addEventListener(type, mark, { passive: true, once: true, capture: true });
+    });
+    var reset = function () {
+      if (moved || location.hash) return;
+      if (window.scrollY > 0) window.scrollTo(0, 0);
+    };
+    window.addEventListener("load", function () {
+      reset();
+      setTimeout(reset, 300);
+      setTimeout(reset, 1000);
+      setTimeout(reset, 2000);
+      setTimeout(reset, 3500);
+    });
+  } catch (error) { /* 保护失败不影响页面 */ }
+})();`;
+
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
@@ -85,6 +111,7 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
+        <script dangerouslySetInnerHTML={{ __html: LT_SCROLL_GUARD }} />
 
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
