@@ -355,3 +355,27 @@ article:has(.lt-depth-dtft.d2:checked) #concept-bridge-dtft-intuition,
 article:has(.lt-depth-dtft.d2:checked) #concept-bridge-dtft-deep { display: none; }
 article:has(.lt-depth-dtft.d3:checked) #concept-bridge-dtft-intuition,
 article:has(.lt-depth-dtft.d3:checked) #concept-bridge-dtft-steps { display: none; }
+
+/* 12) 顶部搜索框：把 Quartz 官方 search 组件移到 beforeBody，并呈现为阅读页顶部的宽搜索条。
+      点击后仍是官方全屏搜索层（输入关键词 → 结果 → 跳转），SPA 与键盘行为不变。 */
+.search { width: 100%; max-width: none; margin: .35rem 0 1.1rem; }
+.search > .search-button {
+  width: 100%; height: 2.9rem; padding: 0 .85rem;
+  border: 1px solid var(--lt-line); border-radius: 12px;
+  background: var(--lt-surface); box-shadow: var(--lt-shadow);
+  justify-content: flex-start; gap: .5rem;
+}
+.search > .search-button:hover { border-color: var(--lt-accent); }
+.search > .search-button > p {
+  font-size: 0; line-height: 1;
+}
+.search > .search-button > p::after {
+  content: "搜索笔记标题或关键词（如：自相关、维纳–辛钦、AD9361）";
+  font-size: .92rem; color: var(--lt-muted); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; display: block; max-width: 100%;
+}
+@media (max-width: 800px) {
+  .search { margin: .3rem 0 .9rem; }
+  .search > .search-button { height: 2.6rem; border-radius: 10px; }
+  .search > .search-button > p::after { content: "搜索笔记标题或关键词…"; font-size: .88rem; }
+}

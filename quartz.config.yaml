@@ -167,12 +167,11 @@ plugins:
       priority: 30
   - source: "github:quartz-community/search"
     enabled: true
+    # 搜索框放在正文顶部（面包屑之前），便于在阅读页直接按关键词跳转笔记；
+    # 组件本身仍是 Quartz 官方 search（按钮 + 全屏输入层），仅调整布局位置。
     layout:
-      position: left
-      priority: 20
-      group: toolbar
-      groupOptions:
-        grow: true
+      position: beforeBody
+      priority: 1
   - source: "github:quartz-community/backlinks"
     enabled: true
     layout:
