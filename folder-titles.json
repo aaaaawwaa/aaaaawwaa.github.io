@@ -16,7 +16,7 @@
     "vault-notes/dsp": {
       "title": "数字信号处理",
       "source": "数字信号处理",
-      "description": "数字信号处理 8 篇：离散时间系统、Z 变换与 DTFT、DFT/FFT、滤波器结构、IIR/FIR 设计与多抽样率。"
+      "description": "数字信号处理 9 篇：傅里叶公式速查、离散时间系统、Z 变换与 DTFT、DFT/FFT、滤波器结构、IIR/FIR 设计与多抽样率。"
     },
     "vault-notes/random-signals": {
       "title": "随机信号处理",

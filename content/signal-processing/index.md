@@ -61,6 +61,7 @@ tags:
 
 ### 数字信号处理
 
+- [[vault-notes/dsp/00-fourier-formulas|傅里叶变换的基本公式汇总(包括正反)]]
 - [[vault-notes/dsp/01-discrete-time-systems|离散时间信号与系统]]
 - [[vault-notes/dsp/02-z-transform-and-dtft|Z变换与离散时间傅里叶变换(DTFT)]]
 - [[vault-notes/dsp/03-discrete-fourier-transform|离散傅里叶变换(DFT)]]

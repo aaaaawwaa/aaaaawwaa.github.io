@@ -14,180 +14,104 @@ prerequisites: []
 related: []
 ---
 
-> [!abstract] 本章在讲什么
-> 第 3 章的 DFT 是"能算"的，但**直接算太慢**：$N$ 点需要 $N^2$ 次复数乘。本章把它降到 $N\log_2N$：
-> - **4.1 引言**：FFT 不是一种新的变换，而是 DFT 的**快速算法**；它的出现让实时频谱分析、OFDM、雷达、图像处理成为可能。
-> - **4.2 直接计算 DFT 的运算量及减少运算量的基本途径**：先数清楚"慢在哪"，再利用 $W_N$ 的周期性与半周期反转，把大问题拆成小问题。
-> - **4.3 按时间抽取（DIT）的基-2 FFT**：按 $n$ 的奇偶把序列一分为二，递归下去，得到蝶形运算与位倒序输入。
-> - **4.4 按频率抽取（DIF）的基-2 FFT**：按 $k$ 的奇偶把输出一分为二，蝶形在前、位倒序在后。
-> - **4.5 快速傅里叶反变换（IFFT）**：用"共轭 + FFT + 共轭 + 除以 $N$"直接复用 FFT 程序。
-> - **4.6 线性卷积与线性相关的 FFT 算法**：补零后用 FFT 算线性卷积；长序列用重叠相加/重叠保留。
->
-> 一句话主线：**FFT 的全部魔法只有一条——把 $N$ 点 DFT 拆成两个 $N/2$ 点 DFT，而"拆"的依据是 $W_N^{k+N/2}=-W_N^k$；递归 $\log_2N$ 次后，$N^2$ 变成 $N\log_2N$。**
+## 本章主线
 
-> [!note] 记号约定
-> - $N=2^L$：基-2 FFT 的点数；$L=\log_2N$ 为级数
-> - $W_N=e^{-j2\pi/N}$：旋转因子；$W_N^{k+N/2}=-W_N^k$
-> - $x_1(r)=x(2r)$：偶序号子序列；$x_2(r)=x(2r+1)$：奇序号子序列
-> - **蝶形**（butterfly）：一次复数乘 + 两次复数加的运算单元
-> - **位倒序**（bit-reversal）：把下标写成 $L$ 位二进制后左右翻转
-> - 复数乘 = 4 次实数乘 + 2 次实数加；复数加 = 2 次实数加（本节运算量按复数运算计）
+- **输入条件**：$N$ 点 DFT 直接计算要 $N^2$ 次复数乘，$N=1024$ 时上百万次，实时系统跑不动。
+- **核心机制**：把 $N$ 点拆成两个 $N/2$ 点，拆的依据是 $W_N^{k+N/2}=-W_N^k$，递归 $\log_2N$ 次。
+- **输出结果**：同一变换降到 $\frac N2\log_2N$ 次复乘，且能原地运算，OFDM、雷达、图像处理由此落地。
 
-# 1. 引言
+FFT 不是新的变换，只是 **DFT 的快速算法**。全部魔法只有一条：**把 $N$ 点 DFT 拆成两个 $N/2$ 点 DFT**。
 
-DFT 的定义是
+### 记号约定
+
+| 记号 | 含义 |
+| --- | --- |
+| $N=2^L$ | 点数；$L=\log_2N$ 为级数 |
+| $W_N=e^{-j2\pi/N}$ | 旋转因子，$W_N^{k+N/2}=-W_N^k$ |
+| $x_1(r)=x(2r)$、$x_2(r)=x(2r+1)$ | 偶、奇序号子序列 |
+| 蝶形 | 一次复乘 + 两次复加的运算单元 |
+| 位倒序 | 下标写成 $L$ 位二进制后左右翻转 |
+
+计数约定：一次复乘 = 4 实乘 + 2 实加，一次复加 = 2 实加，本章运算量一律按**复数**计。
+
+## 1. 引言：直接算 DFT 有多贵
+
+DFT 的每一项都要把整个序列与旋转因子逐点相乘再累加，$N$ 个频率点各做一遍，于是乘法次数是 $N$ 的平方——这就是"慢"的全部来源。
 
 $$
 X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad k=0,1,\dots,N-1
 $$
 
-直接计算时：
+- 每个 $X(k)$：$N$ 次复乘、$N-1$ 次复加
+- 全部 $N$ 个 $X(k)$：$N^2$ 次复乘、$N(N-1)$ 次复加，复杂度 $O(N^2)$
 
-- 每个 $X(k)$ 需要 $N$ 次复数乘、$N-1$ 次复数加
-- 全部 $N$ 个 $X(k)$ 需要 $N^2$ 次复数乘、$N(N-1)$ 次复数加
-- 所以直接 DFT 的复杂度是 $O(N^2)$
-
-| $N$ | 直接 DFT 复数乘 | FFT 复数乘（$N/2\log_2N$） | 加速比 |
+| $N$ | 直接 DFT 复乘 | FFT 复乘 $\frac N2\log_2N$ | 加速比 |
 | --- | --- | --- | --- |
 | 64 | 4096 | 192 | 21× |
 | 256 | 65536 | 1024 | 64× |
-| 1024 | 1,048,576 | 5120 | 205× |
-| 4096 | 16,777,216 | 24,576 | 683× |
+| 1024 | 1048576 | 5120 | 205× |
+| 4096 | 16777216 | 24576 | 683× |
 
-> [!info] Def 1 快速傅里叶变换
-> **快速傅里叶变换**（fast Fourier transform，简称 FFT）是一类**计算 DFT 的快速算法**的总称，不是新的变换。最常用的是 1965 年 Cooley–Tukey 提出的基-2 算法，它把 $N$ 点 DFT 的复杂度从 $O(N^2)$ 降到 $O(N\log_2N)$。
+## 2. 减少运算量的三条途径
 
-> [!note] FFT 的历史小注
-> 高斯在 1805 年就手算过类似的分治算法，但未发表；1965 年 Cooley 与 Tukey 为计算核试验数据重新发现，并随计算机普及而成为数字信号处理的基石。今天几乎所有"频谱"相关的工程——OFDM、5G、雷达、MRI、音频——底层都在调用 FFT。
+慢的根因是"同一个旋转因子被反复重算"，所以三条途径都在利用 $W_N$ 自身的结构：对称性让一次乘法喂两个输出，周期性让乘积可以查表，分治让大问题变成小问题。
 
-# 2. 直接计算 DFT 的运算量及减少运算量的基本途径
+### 途径一：对称性
 
-## 运算量
-
-一次复数乘需要 4 次实数乘 + 2 次实数加；一次复数加需要 2 次实数加。直接 DFT：
+半周期反转意味着"后半圈的旋转因子"不必再算，取负号即可。这是蝶形能省一半乘法的直接依据。
 
 $$
-N^2\ \text{复数乘},\qquad N(N-1)\ \text{复数加}
+W_N^{k+N/2}=e^{-j2\pi k/N}e^{-j\pi}=-W_N^k
 $$
 
-当 $N$ 很大时，$N^2$ 是灾难性的。
+### 途径二：周期性
 
-## 减少运算量的三条途径
-
-### 途径一：利用 $W_N$ 的对称性
-
-$$
-W_N^{k+N/2}=e^{-j2\pi(k+N/2)/N}=e^{-j2\pi k/N}\cdot e^{-j\pi}=-W_N^k
-$$
-
-这条性质让"半个旋转因子"可以免费得到，是蝶形运算的核心。
-
-### 途径二：利用 $W_N$ 的周期性
+指数对 $N$ 取模后取值不变，所以只有 $N$ 种不同的旋转因子，可以预先算成一张表反复使用。
 
 $$
 W_N^{nk}=W_N^{nk\bmod N}
 $$
 
-很多乘积会重复出现，可以预先算好一张表（旋转因子表），避免重复计算。
+### 途径三：分治
 
-### 途径三：分治（divide and conquer）
-
-把 $N$ 点 DFT 拆成若干个更小的 DFT，递归计算。拆分方式有两种：
+把 $N$ 点 DFT 拆成若干更小的 DFT 递归求解，按"拆谁"分成两类，两者互为转置、运算量相同，只是数据排列顺序不同。
 
 | 拆分方式 | 名称 | 特点 |
 | --- | --- | --- |
-| 按 $n$ 的奇偶拆 | **按时间抽取**（decimation in time，简称 DIT） | 输入位倒序，输出自然序 |
-| 按 $k$ 的奇偶拆 | **按频率抽取**（decimation in frequency，简称 DIF） | 输入自然序，输出位倒序 |
+| 按 $n$ 的奇偶拆 | 按时间抽取 DIT | 输入位倒序，输出自然序 |
+| 按 $k$ 的奇偶拆 | 按频率抽取 DIF | 输入自然序，输出位倒序 |
 
-> [!tip] 一句话记住 DIT 与 DIF
-> **DIT：先拆输入（时间），蝶形在最后；DIF：先拆输出（频率），蝶形在最前。**
-> 两者互为转置，运算量完全相同，只是数据排列顺序不同。
+一句话记：**DIT 先拆输入、蝶形在最后；DIF 先拆输出、蝶形在最前。**
 
-# 3. 按时间抽取（DIT）的基-2 FFT 算法
+## 3. 按时间抽取（DIT）的基-2 FFT
 
-## 奇偶分解
+### 奇偶分解与蝶形
 
-设 $N=2^L$。把 $x(n)$ 按 $n$ 的奇偶分成两组：
+把序列按序号奇偶分成两半后，两个子 DFT 各自只处理 $N/2$ 点，再用一个旋转因子把两半合起来。合并时利用 $W_N^{k+N/2}=-W_N^k$，一次乘法就同时得到两个输出——这一步就是"蝶形"。
 
 $$
-x_1(r)=x(2r),\qquad x_2(r)=x(2r+1),\qquad r=0,1,\dots,\frac{N}{2}-1
+x_1(r)=x(2r),\quad x_2(r)=x(2r+1),\quad r=0,1,\dots,\tfrac N2-1
 $$
 
-则
-
-$$
-X(k)=\sum_{r=0}^{N/2-1}x_1(r)W_N^{2rk}+W_N^k\sum_{r=0}^{N/2-1}x_2(r)W_N^{2rk}
-$$
-
-利用 $W_N^2=W_{N/2}$：
+两个子序列各长 $N/2$，各自的 DFT 记作 $X_1(k)$、$X_2(k)$，整段展开只是这两支的组合。旋转因子只作用在奇数序号那一支上，再对 $k$ 分段使用半周期反转就能得到蝶形。
 
 $$
 X(k)=\underbrace{\sum_{r=0}^{N/2-1}x_1(r)W_{N/2}^{rk}}_{X_1(k)}+W_N^k\underbrace{\sum_{r=0}^{N/2-1}x_2(r)W_{N/2}^{rk}}_{X_2(k)}
 $$
 
-即
+于是前一半与后一半只差一个符号，蝶形的两个输出可以一次算出。若分开算两式，需要乘两次旋转因子；利用反转性质，第二次乘法退化成取负号，乘法次数直接减半。
 
 $$
-X(k)=X_1(k)+W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1
+X(k)=X_1(k)+W_N^kX_2(k);\qquad X\!\left(k+\tfrac N2\right)=X_1(k)-W_N^kX_2(k)
 $$
 
-再由 $W_N^{k+N/2}=-W_N^k$，得到后半段：
+### 递归分解与位倒序
 
-$$
-X\left(k+\frac{N}{2}\right)=X_1(k)-W_N^kX_2(k),\qquad k=0,1,\dots,\frac{N}{2}-1
-$$
-
-> [!info] Def 2 蝶形运算
-> 上面两式构成一个**蝶形运算**（butterfly）：
-> $$
-> \begin{aligned}
-> X(k)&=X_1(k)+W_N^kX_2(k)\\
-> X(k+N/2)&=X_1(k)-W_N^kX_2(k)
-> \end{aligned}
-> $$
-> 它只需要**一次复数乘**（$W_N^kX_2(k)$）和**两次复数加**，同时算出两个输出。
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">
-  <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
-  <text x="40.0" y="100.0" text-anchor="start" font-size="13" fill="var(--text-normal,#1f2328)" font-weight="normal">x(n)</text>
-  <text x="40.0" y="210.0" text-anchor="start" font-size="13" fill="var(--text-normal,#1f2328)" font-weight="normal">x(n+N/2)</text>
-  <line x1="110.0" y1="95.0" x2="250.0" y2="95.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="110.0" y1="205.0" x2="250.0" y2="205.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="95.0" x2="250.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="150.0" x2="420.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="205.0" x2="250.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="250.0" x2="320.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <rect x="320.0" y="232.0" width="70.0" height="36.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="355.0" y="254.2" text-anchor="middle" font-size="12" fill="var(--text-normal,#1f2328)">W_N^k</text>
-  <line x1="390.0" y1="250.0" x2="420.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="420.0" y1="250.0" x2="420.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <circle cx="470.0" cy="150.0" r="11.0" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="462.0" y1="150.0" x2="478.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.0"/>
-  <line x1="470.0" y1="142.0" x2="470.0" y2="158.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.0"/>
-  <line x1="420.0" y1="150.0" x2="459.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="481.0" y1="150.0" x2="560.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4" marker-end="url(#ar)"/>
-  <line x1="470.0" y1="161.0" x2="470.0" y2="210.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="470.0" y1="210.0" x2="560.0" y2="210.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4" marker-end="url(#ar)"/>
-  <text x="590.0" y="155.0" text-anchor="start" font-size="12" fill="var(--text-normal,#1f2328)" font-weight="normal">X(k) = x(n) + W_N^k x(n+N/2)</text>
-  <text x="590.0" y="215.0" text-anchor="start" font-size="12" fill="var(--text-normal,#1f2328)" font-weight="normal">X(k+N/2) = x(n) − W_N^k x(n+N/2)</text>
-  <text x="60.0" y="285.0" text-anchor="start" font-size="12" fill="var(--text-muted,#57606a)" font-weight="normal">蝶形运算（butterfly）：一次复数乘 + 两次复数加，是基-2 FFT 的最小积木</text>
-  <text x="462.0" y="205.0" text-anchor="start" font-size="16" fill="#dc2626" font-weight="normal">−</text>
-</svg>
-
-> [!important] 蝶形的"省"在哪
-> 如果分开算 $X(k)$ 与 $X(k+N/2)$，需要乘两次 $W_N^k$ 和 $W_N^{k+N/2}$；利用 $W_N^{k+N/2}=-W_N^k$，**第二次乘法变成取负号**，乘法次数直接减半。整个 FFT 的加速就来自这里。
-
-## 递归分解与位倒序
-
-对 $X_1(k)$、$X_2(k)$ 继续按奇偶分解，直到每个子 DFT 只有 2 点。整个过程共 $\log_2N$ 级，每级 $N/2$ 个蝶形。
-
-以 $N=8$ 为例，输入的分组顺序为：
+对两个子 DFT 继续按奇偶分解，直到每个子 DFT 只有 2 点，整个过程共 $\log_2N$ 级、每级 $N/2$ 个蝶形。因为每一级都在按奇偶"抽"，输入必须预先按位倒序排好，输出才是自然序。
 
 $$
 x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)
 $$
-
-这正是下标的 **3 位二进制位倒序**：
 
 | 自然序 | 二进制 | 位倒序 | 倒序后下标 |
 | --- | --- | --- | --- |
@@ -200,167 +124,149 @@ $$
 | 6 | 110 | 011 | 3 |
 | 7 | 111 | 111 | 7 |
 
-> [!info] Def 3 位倒序
-> **位倒序**（bit-reversal）是把下标用 $L=\log_2N$ 位二进制表示后，左右翻转得到的顺序。DIT 算法要求**输入按位倒序、输出按自然序**。
+位倒序是把下标用 $L=\log_2N$ 位二进制表示后左右翻转；DIT 的硬约束是**输入位倒序、输出自然序**，画图时两端标号不能互换。
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="100%" style="max-width:760px" font-family="inherit">
-  <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
-  <rect x="346.0" y="26.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="380.0" y="43.9" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N = 8</text>
-  <rect x="166.0" y="86.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="200.0" y="103.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/2</text>
-  <rect x="526.0" y="86.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="560.0" y="103.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/2</text>
-  <rect x="76.0" y="146.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="110.0" y="163.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/4</text>
-  <rect x="256.0" y="146.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="290.0" y="163.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/4</text>
-  <rect x="436.0" y="146.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="470.0" y="163.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/4</text>
-  <rect x="616.0" y="146.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="650.0" y="163.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/4</text>
-  <rect x="31.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="65.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="121.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="155.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="211.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="245.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="301.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="335.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="391.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="425.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="481.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="515.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="571.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="605.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <rect x="661.0" y="216.0" width="68.0" height="28.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="695.0" y="233.8" text-anchor="middle" font-size="11" fill="var(--text-normal,#1f2328)">N/8</text>
-  <line x1="360.0" y1="54.0" x2="180.0" y2="86.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="400.0" y1="54.0" x2="580.0" y2="86.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="188.0" y1="114.0" x2="110.0" y2="146.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="188.0" y1="114.0" x2="290.0" y2="146.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="548.0" y1="114.0" x2="470.0" y2="146.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="548.0" y1="114.0" x2="650.0" y2="146.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="96.0" y1="174.0" x2="65.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="124.0" y1="174.0" x2="155.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="276.0" y1="174.0" x2="245.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="304.0" y1="174.0" x2="335.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="456.0" y1="174.0" x2="425.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="484.0" y1="174.0" x2="515.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="636.0" y1="174.0" x2="605.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <line x1="664.0" y1="174.0" x2="695.0" y2="216.0" stroke="var(--text-muted,#57606a)" stroke-width="1.0"/>
-  <text x="380.0" y="270.0" text-anchor="middle" font-size="12" fill="var(--text-accent,#705dcf)" font-weight="normal">输入按位倒序排列：x(0), x(4), x(2), x(6), x(1), x(5), x(3), x(7)</text>
-  <text x="380.0" y="292.0" text-anchor="middle" font-size="12" fill="var(--text-muted,#57606a)" font-weight="normal">每级 N/2 个蝶形，共 log₂N 级 → 复数乘 N/2·log₂N 次</text>
-</svg>
+*（图片未随站点发布：FFT_DIT_位倒序对照_手稿.jpg）*
 
-## 运算量
+*手稿：左边是位倒序对照表（3↔6、4↔1、5↔5、7↔7，成对出现才正常），右边是拉好 N 根线、打好点、还没连蝶形的样子。*
 
-每级有 $N/2$ 个蝶形，每个蝶形 1 次复数乘、2 次复数加；共 $\log_2N$ 级：
+### 手绘蝶形流图：六步法
+
+三个符号先记牢：$N$ 决定画几根横线；$L=\log_2N$ 是级数（"基-2"的基指 radix = 2）；$m=1..L$ 是当前第几级。数量关系一并记：每级 $N/2$ 个蝶形、共 $L$ 级，总蝶形数 $=\frac N2\log_2N$。
+
+**第 1 步：拉 $N$ 根横线，两端标号。** 从上到下编号 $0\sim N-1$，行号就是这一行当前的数组下标位置。右端写自然序 $X(0)..X(N-1)$；左端**不能**写 $x(0),x(1),\dots$，第 $i$ 行要写 $x(\mathrm{br}(i))$。
+
+| 行号 $i$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 左端标 | $x(0)$ | $x(4)$ | $x(2)$ | $x(6)$ | $x(1)$ | $x(5)$ | $x(3)$ | $x(7)$ |
+
+位倒序是自逆的（$\mathrm{br}(\mathrm{br}(i))=i$），所以表里一定成对出现；某一行找不到配对，通常是二进制没写满 $L$ 位。
+
+**第 2 步：沿每根线打点。** 每条横线打 $2L+1$ 个实心点：最左端输入点 1 个，之后每一级贡献 2 个（蝶形入口与出口）。$N=8$、$L=3$ 时每线 7 个点，相邻两级之间用横线连通，表示中间结果原样交给下一级。
+
+**第 3 步：定第 $m$ 级的配对。**
+
+同一蝶形的两行相距 $d_m$ 行——级数加一，跨越距离翻倍，物理意义是"先把相邻两点并成 2 点 DFT，再并成 4 点、8 点"。
 
 $$
-\text{复数乘}=\frac{N}{2}\log_2N,\qquad \text{复数加}=N\log_2N
+d_m=2^{m-1}\quad(\text{行})
 $$
 
-相比直接 DFT 的 $N^2$，加速比为
+| 级 $m$ | 间距 | 配对（行号） |
+| --- | --- | --- |
+| 1 | 1 | (0,1)、(2,3)、(4,5)、(6,7) |
+| 2 | 2 | (0,2)、(1,3)、(4,6)、(5,7) |
+| 3 | 4 | (0,4)、(1,5)、(2,6)、(3,7) |
+
+*（图片未随站点发布：FFT_DIT_蝶形连线_手稿.jpg）*
+
+*手稿：第一级连相邻两行，第二级跨两行，第三级跨四行 —— 由小到大逐级合并。*
+
+**第 4 步：画交叉，底部标 −1。** 上行走对角线穿到下行的那一路是"差"，在它的下端标 −1；上行原样向右传的那一路是"和"。这就是 $W_N^{k+N/2}=-W_N^k$ 的图形化：一次乘法喂两个输出，另一路只差一个负号。
+
+**第 5 步：标 $W_N^r$（最容易错）。**
+
+$W_N^r$ 写在交叉左下角，指数由"组内序号"决定，而不是全图行号——$k$ 是该蝶形在它所在组内自上而下数的序号，先转二进制再左移 $L-m$ 位（等价于乘 $2^{L-m}$，超出 $L$ 位的高位丢弃）。
 
 $$
-\frac{N^2}{(N/2)\log_2N}=\frac{2N}{\log_2N}
+r=k\cdot 2^{L-m}\bmod N
 $$
 
-## 原地运算
+| 级 $m$ | 组内序号 $k$ | $r$ | 该级用到的 $W_8^r$ |
+| --- | --- | --- | --- |
+| 1 | 0（每组仅 1 个蝶形） | $0\cdot4=0$ | $W_8^0=1$ |
+| 2 | 0、1 | 0、2 | $W_8^0=1$，$W_8^2=-j$ |
+| 3 | 0、1、2、3 | 0、1、2、3 | $W_8^0$~$W_8^3$ |
 
-DIT 的每一级蝶形只依赖上一级的两个节点，且输出可以覆盖输入（**in-place**），因此只需要 $N$ 个复数存储单元（外加旋转因子表）。这是 FFT 能塞进单片机/FPGA 的重要原因。
+常用值：$W_8^0=1$、$W_8^1=\frac{\sqrt2}{2}(1-j)$、$W_8^2=-j$、$W_8^3=-\frac{\sqrt2}{2}(1+j)$。所以 $r$ 一定是 $2^{L-m}$ 的整数倍：第 1 级只能取 0，最后一级取遍 $0\sim\frac N2-1$。递归推导里出现的 $W_4$ 与流图上的 $W_8^2$ 是同一个数（$W_{N/2}=W_N^2$），画图统一用下标 $N$ 即可。
 
-> [!example] N=8 的第一级
-> 输入位倒序后为 $x(0),x(4),x(2),x(6),x(1),x(5),x(3),x(7)$。
-> 第一级把相邻两两做 2 点 DFT（旋转因子 $W_2^0=1$）：
-> $$
-> x(0)\pm x(4),\quad x(2)\pm x(6),\quad x(1)\pm x(5),\quad x(3)\pm x(7)
-> $$
-> 第二级用 $W_4^0=1$、$W_4^1=-j$；第三级用 $W_8^0,W_8^1,W_8^2,W_8^3$。三级之后得到自然序的 $X(0)\sim X(7)$。
+**第 6 步：连线收尾并自检。** 每级结果写在右侧点上作为下一级输入（原地运算，图上就是点—点相连）。五条验收：级数 $=\log_2N$、每级 $N/2$ 个蝶形；每组最上面那个蝶形必是 $W^0$；最后一级指数从 0 连续递增；左端位倒序右端自然序；用 $x=[1,0,\dots,0]$ 走一遍应得全 1。
 
-## MATLAB
+*（图片未随站点发布：FFT_DIT_蝶形流图标注_手稿.jpg）*
+
+*手稿：每个交叉底部标 −1、左下角标 $W_N^r$；右侧是"第 $m$ 级两数相距 $2^{m-1}$"与"$r$ 的确定方式"两条规则。*
+
+### 运算量
+
+每级 $N/2$ 个蝶形、每个蝶形 1 次复乘 2 次复加、共 $\log_2N$ 级，于是复乘次数是原来 $N^2$ 的对数级压缩。加速比随 $N$ 增大迅速拉开。
+
+$$
+\text{复乘}=\frac N2\log_2N,\qquad \text{复加}=N\log_2N,\qquad \text{加速比}=\frac{2N}{\log_2N}
+$$
+
+### 原地运算
+
+每一级蝶形只依赖上一级的两个节点，输出可以直接覆盖输入，因此只需 $N$ 个复数存储单元加一张旋转因子表。这是 FFT 能塞进单片机与 FPGA 的重要原因。
+
+### 适用前提
+
+- 只对 $N=2^L$ 成立；非 2 的幂要补零或改用混合基算法。
+- 位倒序的前提是"每级都按奇偶抽"，DIF 则相反。
+- 蝶形的一次乘法只在"两个输出共用同一个 $W$"时成立，改成其他基就不成立。
+
+### 常见工程坑点
+
+- 左端写成自然序（那是 DIF 的输入侧），或者间距写成 $2^m$、$2^{L-m}$（间距只由 $m$ 决定，是 $2^{m-1}$）。
+- $r$ 直接拿行号或输出序号代入，忘了 $k$ 是组内序号还要乘 $2^{L-m}$。
+- 运算量记成复乘 $N\log_2N$：蝶形数才是 $\frac N2\log_2N$，复加是它的 2 倍。
+- 输入忘了位倒序，输出会是"位倒序的频谱"，看起来像算错了。
+
+版本一把上面六步直接写成三重循环，逐级打印中间结果，是核对"手绘图与代码是否一致"的最快办法。
 
 ```matlab
-N = 8;
-x = randn(1, N);                 % 随便取一个序列
-X = fft(x);                      % MATLAB 内部就是 FFT（混合基）
-% 手写一个简单的基-2 DIT（递归版，帮助理解）
-function X = my_fft(x)
-    N = length(x);
-    if N == 1
-        X = x; return;
+% 版本一：照着流图逐级算，逐级打印用来和手绘图对账
+N = 8; L = log2(N); n = 0:N-1; x = randn(1,N);
+br = bin2dec(fliplr(dec2bin(n,L)));  a = x(br+1);   % 第 i 行放 x(br(i))
+for m = 1:L
+    d = 2^(m-1);
+    for g = 0 : 2^m : N-1
+        for k = 0 : d-1
+            p = g+k+1; q = p+d;
+            W = exp(-2j*pi*(k*2^(L-m))/N);           % 指数 r=k·2^(L-m)
+            t = W*a(q);  a(q) = a(p)-t;  a(p) = a(p)+t;
+        end
     end
-    xe = my_fft(x(1:2:end));     % 偶序号
-    xo = my_fft(x(2:2:end));     % 奇序号
-    W = exp(-2j*pi*(0:N/2-1)/N);
-    X = [xe + W.*xo, xe - W.*xo];
+    fprintf('第 %d 级后：', m); disp(a)
 end
-X2 = my_fft(x);
-disp(norm(X - X2));              % 应为 0（或 1e-15 量级）
+max(abs(a - fft(x)))                                % ≈1e-15
 ```
 
-# 4. 按频率抽取（DIF）的基-2 FFT 算法
+版本二用递归写，帮助理解"分治"本身，代码短但看不出位倒序从哪来。
 
-## 输出奇偶分解
+```matlab
+% 版本二：递归版
+function X = my_fft(x)
+    N = length(x);
+    if N == 1, X = x; return; end
+    xe = my_fft(x(1:2:end)); xo = my_fft(x(2:2:end));  % 偶序号 / 奇序号
+    W  = exp(-2j*pi*(0:N/2-1)/N);
+    X  = [xe + W.*xo, xe - W.*xo];
+end
+max(abs(my_fft(randn(1,64)) - fft(randn(1,64))))     % 换同一组输入时应为 0
+```
 
-DIF 不拆输入，而是把输入序列分成前后两半，先做蝶形，再把输出按 $k$ 的奇偶拆开。
+## 4. 按频率抽取（DIF）的基-2 FFT
 
-由 DFT 定义，把 $n$ 分成 $0\sim N/2-1$ 与 $N/2\sim N-1$：
+### 输出奇偶分解
 
-$$
-X(k)=\sum_{n=0}^{N/2-1}x(n)W_N^{nk}+\sum_{n=0}^{N/2-1}x\left(n+\frac{N}{2}\right)W_N^{(n+N/2)k}
-$$
-
-利用 $W_N^{Nk/2}=(-1)^k$：
-
-$$
-X(k)=\sum_{n=0}^{N/2-1}\left[x(n)+(-1)^kx\left(n+\frac{N}{2}\right)\right]W_N^{nk}
-$$
-
-- $k$ 为偶数（$k=2r$）：括号内为 $x(n)+x(n+N/2)$
-- $k$ 为奇数（$k=2r+1$）：括号内为 $[x(n)-x(n+N/2)]W_N^n$
-
-于是
+DIF 不拆输入，而是把输入分成前后两半先做蝶形（和/差），再把输出按 $k$ 的奇偶拆开——所以蝶形在最前面，位倒序落在最后。
 
 $$
-X(2r)=\mathrm{DFT}_{N/2}\left[x(n)+x\left(n+\frac{N}{2}\right)\right]
-$$
-$$
-X(2r+1)=\mathrm{DFT}_{N/2}\left[\left(x(n)-x\left(n+\frac{N}{2}\right)\right)W_N^n\right]
+X(k)=\sum_{n=0}^{N/2-1}\Big[x(n)+(-1)^kx\!\left(n+\tfrac N2\right)\Big]W_N^{nk}
 $$
 
-> [!info] Def 4 按频率抽取
-> **按频率抽取**（decimation in frequency，简称 DIF）的基-2 FFT：先对输入前后两半做蝶形（和/差），再分别做 $N/2$ 点 DFT，输出按偶/奇频率分开。
+- $k$ 偶（$k=2r$）：括号内为 $x(n)+x(n+N/2)$
+- $k$ 奇（$k=2r+1$）：括号内为 $[x(n)-x(n+N/2)]W_N^n$
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="100%" style="max-width:760px" font-family="inherit">
-  <defs><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted,#57606a)"/></marker></defs>
-  <text x="40.0" y="100.0" text-anchor="start" font-size="13" fill="var(--text-normal,#1f2328)" font-weight="normal">x(n)</text>
-  <text x="40.0" y="210.0" text-anchor="start" font-size="13" fill="var(--text-normal,#1f2328)" font-weight="normal">x(n+N/2)</text>
-  <line x1="110.0" y1="95.0" x2="250.0" y2="95.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="110.0" y1="205.0" x2="250.0" y2="205.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="95.0" x2="250.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="150.0" x2="420.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="205.0" x2="250.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="250.0" y1="250.0" x2="320.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <rect x="320.0" y="232.0" width="70.0" height="36.0" rx="3" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.2"/>
-  <text x="355.0" y="254.2" text-anchor="middle" font-size="12" fill="var(--text-normal,#1f2328)">W_N^k</text>
-  <line x1="390.0" y1="250.0" x2="420.0" y2="250.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="420.0" y1="250.0" x2="420.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <circle cx="470.0" cy="150.0" r="11.0" fill="none" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="462.0" y1="150.0" x2="478.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.0"/>
-  <line x1="470.0" y1="142.0" x2="470.0" y2="158.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.0"/>
-  <line x1="420.0" y1="150.0" x2="459.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="481.0" y1="150.0" x2="560.0" y2="150.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4" marker-end="url(#ar)"/>
-  <line x1="470.0" y1="161.0" x2="470.0" y2="210.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4"/>
-  <line x1="470.0" y1="210.0" x2="560.0" y2="210.0" stroke="var(--text-normal,#1f2328)" stroke-width="1.4" marker-end="url(#ar)"/>
-  <text x="590.0" y="155.0" text-anchor="start" font-size="12" fill="var(--text-normal,#1f2328)" font-weight="normal">X(k) = x(n) + W_N^k x(n+N/2)</text>
-  <text x="590.0" y="215.0" text-anchor="start" font-size="12" fill="var(--text-normal,#1f2328)" font-weight="normal">X(k+N/2) = x(n) − W_N^k x(n+N/2)</text>
-  <text x="60.0" y="285.0" text-anchor="start" font-size="12" fill="var(--text-muted,#57606a)" font-weight="normal">蝶形运算（butterfly）：一次复数乘 + 两次复数加，是基-2 FFT 的最小积木</text>
-  <text x="462.0" y="205.0" text-anchor="start" font-size="16" fill="#dc2626" font-weight="normal">−</text>
-</svg>
+于是偶、奇频率各对应一个 $N/2$ 点 DFT，前半段做加减、后半段做旋转。
 
-## DIT 与 DIF 的对比
+$$
+X(2r)=\mathrm{DFT}_{N/2}\Big[x(n)+x\!\left(n+\tfrac N2\right)\Big];\qquad X(2r+1)=\mathrm{DFT}_{N/2}\Big[\big(x(n)-x(n+\tfrac N2)\big)W_N^n\Big]
+$$
+
+### DIT 与 DIF 对比
+
+两者互为转置，运算量完全相同，差别只在"蝶形与位倒序的先后"。写代码时按输入是否已经是自然序来挑。
 
 | 维度 | DIT | DIF |
 | --- | --- | --- |
@@ -369,205 +275,108 @@ $$
 | 输入顺序 | **位倒序** | 自然序 |
 | 输出顺序 | 自然序 | **位倒序** |
 | 旋转因子 | 先乘后加 | 先加后乘 |
-| 运算量 | $N/2\log_2N$ 复数乘 | 相同 |
-| 适用 | 输入需要倒序的场合 | 输入自然序更方便（如实时流） |
 
-> [!tip] 记忆
-> **DIT = "时间先拆，蝶形收尾"；DIF = "频率先拆，蝶形开头"。** 两者是转置关系，写代码时任选其一。
+### 常见工程坑点
 
-# 5. 快速傅里叶反变换（IFFT）算法
+- 把 DIT 的输入倒序套到 DIF 上，等于倒了两次，结果仍是错的。
+- 实时流处理更喜欢 DIF：输入天然是自然序，位倒序只在最后做一次。
 
-IDFT 的定义是
+## 5. 快速傅里叶反变换（IFFT）
 
-$$
-x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}
-$$
-
-与 DFT 相比，只差**旋转因子取共轭**和**除以 $N$**。因此可以完全复用 FFT 程序：
+IDFT 与 DFT 只差"旋转因子取共轭"和"除以 $N$"，所以完全可以复用 FFT 程序：对 $X^*(k)$ 做正变换、再取共轭、再除以 $N$ 就得到序列。FPGA 里因此通常只做一个 FFT 核，切换旋转因子表再加一级缩放即可。
 
 $$
-x(n)=\frac{1}{N}\left[\mathrm{FFT}\big(X^*(k)\big)\right]^*
+x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk}=\frac{1}{N}\big[\mathrm{FFT}(X^*)\big]^*
 $$
 
-推导：对 $X^*(k)$ 做 DFT：
+推导只用一步：对 $X^*(k)$ 做 DFT 得到 $\big[\sum X(k)W_N^{-nk}\big]^*=\big[Nx(n)\big]^*$，两边取共轭除 $N$ 即得。工程上也可以把全部 $W_N$ 换成 $W_N^{-1}$、最后乘 $1/N$。MATLAB 直接用 `ifft(X)`。
 
-$$
-\mathrm{DFT}[X^*(k)]=\sum_{k=0}^{N-1}X^*(k)W_N^{nk}=\left[\sum_{k=0}^{N-1}X(k)W_N^{-nk}\right]^*=\big[Nx(n)\big]^*
-$$
+### 常见工程坑点
 
-两边取共轭再除以 $N$，即得 $x(n)$。
+- 只换旋转因子不除以 $N$，反变换结果整体大 $N$ 倍（定点实现里会直接溢出）。
+- 用共轭技巧时忘记"共轭—FFT—共轭"是两次共轭，只做一次等于算出的是共轭序列。
 
-> [!info] Def 5 快速傅里叶反变换
-> **快速傅里叶反变换**（inverse fast Fourier transform，简称 IFFT）用 FFT 实现 IDFT：
-> $$
-> x(n)=\frac{1}{N}\big[\mathrm{FFT}(X^*)\big]^*
-> $$
-> 也可以把 FFT 中的 $W_N$ 全部换成 $W_N^{-1}$，最后乘 $1/N$。
+## 6. 线性卷积与线性相关
 
-MATLAB 里直接 `ifft(X)`；FPGA 里通常复用同一个 FFT 核，切换旋转因子表并加一个 $1/N$ 缩放。
+### 用 FFT 算线性卷积
 
-# 6. 线性卷积与线性相关的 FFT 算法
-
-## 用 FFT 算线性卷积
-
-由第 3 章，补零到 $L\ge L_x+L_h-1$ 后：
+卷积在频域是乘法，所以补零到足够长后做一次正变换、一次点乘、一次反变换即可，代价从 $L_xL_h$ 降到 $O(L\log L)$。补零长度必须 $\ge L_x+L_h-1$，否则圆周卷积的尾部会绕回污染结果。
 
 $$
 y(n)=x(n)*h(n)=\mathrm{IFFT}\big[\mathrm{FFT}_L(x)\cdot\mathrm{FFT}_L(h)\big]
 $$
 
-运算量：
-
-| 方法 | 复数乘 |
+| 方法 | 复乘 |
 | --- | --- |
 | 直接线性卷积 | $L_xL_h$ |
 | FFT 法 | $\frac{3L}{2}\log_2L+O(L)$（两次正变换 + 一次反变换） |
 
-当 $L_x,L_h$ 都很大时，FFT 法明显更快。
+例：$L_x=L_h=1024$ 时直接卷积约 $1.05\times10^6$ 次复乘；补零到 2048 后 FFT 法约 $3\times\frac{2048}{2}\times11\approx3.4\times10^4$ 次，快约 30 倍。
 
-> [!example] 长度比较
-> $L_x=L_h=1024$：直接卷积约 $1.05\times10^6$ 次复数乘；补零到 $L=2047$（取 2048）后 FFT 法约 $3\times\frac{2048}{2}\times11\approx3.4\times10^4$ 次，快约 30 倍。
+### 重叠相加（OLA）
 
-## 重叠相加法（overlap-add）
-
-当 $x(n)$ 很长、$h(n)$ 较短时，把 $x(n)$ 切成若干段，每段长度 $L$，与 $h(n)$（长度 $M$）做 $N=L+M-1$ 点 FFT 卷积，再把各段结果**重叠相加**：
+长序列 $x(n)$ 与短滤波器 $h(n)$ 卷积时，把 $x$ 切成不重叠的段，每段补零到 $N=L+M-1$ 做 FFT 卷积，再把相邻段结果的**重叠部分相加**。它把"任意长"化成"固定长度"，适合块处理。
 
 1. 把 $x(n)$ 分成不重叠的段 $x_i(n)$，每段长 $L$
 2. 每段补零到 $N=L+M-1$，与补零到 $N$ 的 $h(n)$ 做 $N$ 点 FFT 卷积
-3. 第 $i$ 段的结果长度为 $N$，其前 $M-1$ 个点与上一段的尾部重叠
-4. 把重叠部分相加，拼接输出
+3. 第 $i$ 段结果长 $N$，其前 $M-1$ 点与上一段尾部重叠
+4. 重叠部分相加后拼接
 
-> [!info] Def 6 重叠相加法
-> **重叠相加法**（overlap-add，简称 OLA）把长序列分段与短滤波器卷积，各段卷积结果的**重叠部分相加**，从而用固定长度的 FFT 完成任意长序列的线性卷积。
+### 重叠保留（OLS）
 
-## 重叠保留法（overlap-save）
+另一种分块方式：输入相邻段**重叠** $M-1$ 点，每段做 $N$ 点圆周卷积后丢弃被"绕回"污染的前 $M-1$ 点、保留后 $N-M+1$ 点。它不需要额外的加法缓冲，实时流处理更常用。
 
-另一种分块方式：
+| 方法 | 输入 | 输出 | 适用 |
+| --- | --- | --- | --- |
+| 重叠相加 | 不重叠 | 重叠相加 | 块处理，直观 |
+| 重叠保留 | 重叠 | 丢弃前 $M-1$ 点 | 实时流，省缓冲 |
 
-1. 每段输入取 $N$ 点，相邻段**重叠** $M-1$ 点
-2. 与 $h(n)$ 做 $N$ 点圆周卷积（$h$ 补零到 $N$）
-3. 每段输出的前 $M-1$ 点是被"绕回"污染的，**丢弃**；保留后 $N-M+1$ 点
-4. 拼接保留部分
+### 线性相关
 
-> [!tip] OLA 与 OLS 的选择
-> - **重叠相加**：输入不重叠，输出重叠相加；直观，适合块处理。
-> - **重叠保留**：输入重叠，输出丢弃前 $M-1$ 点；不需要额外的加法缓冲，实时流处理更常用。
-
-## 线性相关
-
-互相关：
+互相关与卷积只差一次翻转，因此同样是"共轭相乘再反变换"，只是要把 $Y$ 换成 $Y^*$。自相关是它的特例，等于功率谱的反变换。
 
 $$
-R_{xy}(m)=\sum_{n=-\infty}^{\infty}x(n)y(n-m)
+R_{xy}(m)=\mathrm{IFFT}\big[X(k)Y^*(k)\big];\qquad R_{xx}(m)=\mathrm{IFFT}\big[|X(k)|^2\big]
 $$
 
-用 FFT 计算：
+### 适用前提
 
-$$
-R_{xy}(m)=\mathrm{IFFT}\big[X(k)Y^*(k)\big]
-$$
+- FFT 快速卷积要求补零到 $L\ge L_x+L_h-1$，且两序列都按同一个 $L$ 变换。
+- OLA/OLS 的段长 $N$ 必须覆盖 $L+M-1$，否则段内也会绕回。
+- 相关运算要求两序列等长（或先补零到同长）。
 
-注意是 $Y^*$ 而不是 $Y$。自相关同理：$R_{xx}(m)=\mathrm{IFFT}[|X(k)|^2]$。
+### 常见工程坑点
 
-## MATLAB
+- 补零不足是 FFT 卷积最隐蔽的错误：结果看着"差不多"，实际前几个点被尾部污染。
+- OLA 段长取 $L$ 而不是 $L+M-1$，第 3 步的重叠关系就不成立。
+- OLS 忘记丢弃前 $M-1$ 点，输出会周期性地出现小的跳变。
+
+这段代码把三条卷积路径并排验证：FFT 法、分块法、直接卷积应给出同一个结果。最后两行顺带验证 IFFT 的共轭技巧。
 
 ```matlab
-% 线性卷积：补零 + FFT
-x = randn(1, 4000); h = fir1(63, 0.3);
-L = length(x) + length(h) - 1;
-y_fft = ifft(fft(x, L) .* fft(h, L));
-y_dir = conv(x, h);
-disp(norm(y_fft - y_dir));       % 应接近 0
-
-% 重叠相加（MATLAB 的 fftfilt 内部就是这么做的）
-y_ola = fftfilt(h, x);           % 自动分块、重叠相加
-
-% 互相关
-r = ifft(fft(x, L) .* conj(fft(h, L)));
-
-% IFFT 的共轭技巧
-X = fft(x);
-x2 = conj(fft(conj(X))) / length(X);
-disp(norm(x - x2));
+% 三种卷积路径互相对照
+x = randn(1,4000); h = fir1(63,0.3);
+L = length(x)+length(h)-1;
+y_fft = ifft(fft(x,L).*fft(h,L));  max(abs(y_fft - conv(x,h)))   % ≈1e-15
+y_ola = fftfilt(h,x);              max(abs(y_ola - conv(x,h)))   % ≈1e-15
+r = ifft(fft(x,L).*conj(fft(h,L)));                              % 互相关
+x2 = conj(fft(conj(fft(x))))/length(x); max(abs(x-x2))           % IFFT 共轭技巧
 ```
 
-> [!tip] 本章收官
-> 本章只做了一件事：**把 DFT 算快**。全部推导可以压缩成三步：
-> 1. **数清代价**（4.2）：直接 DFT 是 $O(N^2)$，瓶颈是重复计算 $W_N^{nk}$；
-> 2. **利用对称性**（4.3/4.4）：$W_N^{k+N/2}=-W_N^k$ 让一次蝶形同时算出两个输出，乘法减半；
-> 3. **分治递归**（4.3/4.4）：把 $N$ 点拆成两个 $N/2$ 点，递归 $\log_2N$ 级，得到 $O(N\log_2N)$。
->
-> 第 4.5 节的 IFFT 是"共轭 + FFT + 共轭 + 除以 $N$"，第 4.6 节把 FFT 用在卷积与相关上——这两节是 FFT 在工程里真正的用武之地。下一章转向"给定 $H(z)$，怎么把它画成电路/程序"，即数字滤波器的基本结构。
+## 本章接口
 
-# 本章知识地图
-
-```
-快速傅里叶变换（FFT）
-  ├─ 1. 引言
-  │     ├── FFT 是 DFT 的快速算法，不是新变换
-  │     ├── 直接 DFT：N² 复数乘、N(N−1) 复数加
-  │     └── 基-2 FFT：N/2·log₂N 复数乘、N·log₂N 复数加
-  │
-  ├─ 2. 减少运算量的三条途径
-  │     ├── 对称性：W_N^{k+N/2} = −W_N^k
-  │     ├── 周期性：W_N^{nk} = W_N^{nk mod N}
-  │     └── 分治：按时间拆（DIT）/ 按频率拆（DIF）
-  │
-  ├─ 3. DIT 基-2 FFT
-  │     ├── x₁(r)=x(2r)，x₂(r)=x(2r+1)
-  │     ├── X(k)=X₁(k)+W_N^kX₂(k)
-  │     ├── X(k+N/2)=X₁(k)−W_N^kX₂(k)
-  │     ├── 蝶形：1 次复乘 + 2 次复加
-  │     ├── 输入位倒序、输出自然序
-  │     └── log₂N 级、每级 N/2 个蝶形
-  │
-  ├─ 4. DIF 基-2 FFT
-  │     ├── 先蝶形（和/差），再 N/2 点 DFT
-  │     ├── X(2r)=DFT[x(n)+x(n+N/2)]
-  │     ├── X(2r+1)=DFT[(x(n)−x(n+N/2))W_N^n]
-  │     └── 输入自然序、输出位倒序（与 DIT 互为转置）
-  │
-  ├─ 5. IFFT
-  │     ├── x(n)=1/N·[FFT(X*)]*
-  │     └── 或把 W_N 换成 W_N⁻¹，最后乘 1/N
-  │
-  └─ 6. 线性卷积与相关
-        ├── 补零到 L≥L_x+L_h−1，再做 FFT/IFFT
-        ├── 重叠相加 OLA：输入不重叠，输出重叠相加
-        ├── 重叠保留 OLS：输入重叠，丢弃前 M−1 点
-        └── 互相关：IFFT[X(k)Y*(k)]
-```
-
-# 关联
-
-- 上一章：[[vault-notes/dsp/03-discrete-fourier-transform]] —— FFT 是 DFT 的快速算法
-- 下一章：[[vault-notes/dsp/05-filter-structures]] —— 从"算频谱"转向"实现系统"
-- 全书骨架：[[vault-notes/dsp/01-discrete-time-systems]] → [[vault-notes/dsp/02-z-transform-and-dtft]] → [[vault-notes/dsp/03-discrete-fourier-transform]] → **本章** → [[vault-notes/dsp/05-filter-structures]] → [[vault-notes/dsp/06-iir-filter-design]] → [[vault-notes/dsp/07-fir-filter-design]] → [[vault-notes/dsp/08-multirate-sampling]]
-
-**本章与前后章节的接口**
+- 上一章：[[vault-notes/dsp/03-discrete-fourier-transform|3. 离散傅里叶变换(DFT)]] —— FFT 只是 DFT 的快速算法
+- 下一章：[[vault-notes/dsp/05-filter-structures|5. 数字滤波器的基本结构]] —— 从"算频谱"转向"实现系统"
+- 全书骨架：[[vault-notes/dsp/01-discrete-time-systems|1. 离散时间信号与系统]] → [[vault-notes/dsp/02-z-transform-and-dtft|2. Z变换与离散时间傅里叶变换(DTFT)]] → [[vault-notes/dsp/03-discrete-fourier-transform|3. 离散傅里叶变换(DFT)]] → **本章** → [[vault-notes/dsp/05-filter-structures|5. 数字滤波器的基本结构]] → [[vault-notes/dsp/06-iir-filter-design|6. 无限长单位冲激响应数字滤波器(IIR)设计方法]] → [[vault-notes/dsp/07-fir-filter-design|7. 有限长单位冲激响应数字滤波器(FIR)设计方法]] → [[vault-notes/dsp/08-multirate-sampling|8. 序列的抽取和插值--多抽样率数字信号处理基础]]
 
 | 本章概念 | 后续落点 |
 | --- | --- |
-| 蝶形、旋转因子 | [[vault-notes/dsp/05-filter-structures]] 的信号流图；FPGA 的 FFT 核 |
-| 位倒序 | OFDM 的 IFFT 实现；[[vault-notes/dsp/08-multirate-sampling]] 的多相结构 |
-| IFFT | [[vault-notes/dsp/07-fir-filter-design]] 的频率采样设计 |
-| 线性卷积的 FFT 算法 | [[vault-notes/dsp/05-filter-structures]] 的频域实现；[[vault-notes/communication/06-digital-baseband]] 的频域均衡 |
-| 重叠相加/保留 | 实时滤波、软件无线电的长数据流处理 |
+| 蝶形、旋转因子 | [[vault-notes/dsp/05-filter-structures\|5. 数字滤波器的基本结构]] 的信号流图；FPGA 的 FFT 核 |
+| 位倒序 | OFDM 的 IFFT 实现；[[vault-notes/dsp/08-multirate-sampling\|8. 序列的抽取和插值--多抽样率数字信号处理基础]] 的多相结构 |
+| IFFT | [[vault-notes/dsp/07-fir-filter-design\|7. 有限长单位冲激响应数字滤波器(FIR)设计方法]] 的频率采样设计 |
+| 线性卷积的 FFT 算法 | [[vault-notes/communication/06-digital-baseband\|6. 数字基带传输系统]] 的频域均衡 |
+| OLA / OLS | 实时滤波、软件无线电的长数据流处理 |
 
-**本章留下的三个悬念（第 5 章结清）**：
-
-| 本章的悬念 | 第 5 章的答案 |
-| --- | --- |
-| 蝶形图很直观，但一个滤波器到底长什么样？ | 用 $z^{-1}$、乘法器、加法器画出**直接型/级联型/并联型**结构 |
-| IIR 与 FIR 的结构差别在哪？ | IIR 有反馈（递归），FIR 只有前馈（非递归）；直接型 I/II 的延迟数不同 |
-| 结构不同会影响性能吗？ | 会：有限字长下的舍入噪声、溢出、系数敏感度都与结构有关；级联/并联比直接型稳健 |
-
-**通信方向应用**：
-
-- [[vault-notes/5g/phy/04-physical-channels-signals]] —— 5G NR 的 OFDM 调制/解调就是 IFFT/FFT；FFT 的 $N$ 点大小、位倒序、旋转因子表直接决定基带处理的复杂度。
-- [[vault-notes/communication/06-digital-baseband]] —— 频域均衡（FDE）用 FFT 把信道卷积变乘法；OFDM 接收机一个抽头就能均衡，全部依赖本章的"卷积 ↔ 乘法"。
-- 雷达／[[vault-notes/fpga/ad9361/iq-signals]] —— 脉冲压缩就是匹配滤波 = 相关 = FFT 共轭相乘；雷达的距离像、SAR 成像都靠 FFT。
-- [[vault-notes/matlab/matlab-notes]] —— `fft`/`ifft`/`fftfilt`/`xcorr`/`nextpow2` 是本章内容的直接工具。
-- [[vault-notes/math/linear-algebra/01-vector-introduction]] —— FFT 是 DFT 矩阵的**快速分解**：把 $\mathbf{W}_N$ 拆成稀疏矩阵的乘积，$\mathbf{W}_N=\mathbf{P}\mathbf{A}_1\cdots\mathbf{A}_L$，其中 $\mathbf{P}$ 是位倒序置换矩阵。
-
-**相关**：[[vault-notes/dsp/03-discrete-fourier-transform]]｜[[vault-notes/dsp/05-filter-structures]]｜[[vault-notes/5g/phy/04-physical-channels-signals]]｜[[vault-notes/matlab/matlab-notes]]
+- 通信方向：[[vault-notes/5g/phy/04-physical-channels-signals|5G物理层信道与信号]] 的 OFDM 调制解调就是 IFFT/FFT，$N$ 点大小与旋转因子表直接决定基带复杂度；[[vault-notes/communication/06-digital-baseband|6. 数字基带传输系统]] 的频域均衡靠"卷积 ↔ 乘法"；[[vault-notes/fpga/ad9361/iq-signals|IQ信号]] 的脉冲压缩就是匹配滤波 = 共轭相乘 = FFT 实现。
+- 线性代数接口：[[vault-notes/math/linear-algebra/01-vector-introduction|1. 向量引论]] —— FFT 是 DFT 矩阵的快速分解 $\mathbf W_N=\mathbf P\mathbf A_1\cdots\mathbf A_L$，$\mathbf P$ 就是位倒序置换矩阵。
+- 相关：[[vault-notes/matlab/matlab-notes]]

@@ -67,6 +67,10 @@
       "destination": "vault-notes/communication/b-cross-library-links.md"
     },
     {
+      "source": "数字信号处理/0. 傅里叶变换的基本公式汇总(包括正反).md",
+      "destination": "vault-notes/dsp/00-fourier-formulas.md"
+    },
+    {
       "source": "数字信号处理/1. 离散时间信号与系统.md",
       "destination": "vault-notes/dsp/01-discrete-time-systems.md"
     },
@@ -535,15 +539,16 @@
       "destination": "vault-notes/fpga/ad9361/iq-signals-lab-matlab-rtl.md"
     },
     {
-      "source": "FPGA/FPGA结构/串口-UART(RS232).md",
-      "destination": "vault-notes/fpga/architecture/uart-rs232.md"
+      "source": "FPGA/FPGA结构/接口/串口_UART_基础线性序列机版.md",
+      "destination": "vault-notes/fpga/architecture/uart-rs232.md",
+      "title": "串口-UART(RS232)"
     },
     {
-      "source": "FPGA/FPGA结构/FIFO核.md",
+      "source": "FPGA/FPGA结构/IP/FIFO核.md",
       "destination": "vault-notes/fpga/architecture/fifo-ip-core.md"
     },
     {
-      "source": "FPGA/FPGA结构/PLL IP核的调用.md",
+      "source": "FPGA/FPGA结构/IP/PLL IP核的调用.md",
       "destination": "vault-notes/fpga/architecture/pll-ip-core.md"
     },
     {
